@@ -1,5 +1,6 @@
-@extends('layouts.master')
-@section('title','Home')
+@extends('layouts.app')
+
 @section('content')
-Home
+    <h1>Welcome to Home Page</h1>
+    <!-- Contenido adicional para Home -->
 @endsection
