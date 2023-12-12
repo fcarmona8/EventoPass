@@ -2,10 +2,10 @@
     $routes = [
         'home' => 'Home',
         'tickets.promoterhome' => 'Home Promotor',
-        'tickets.aboutus' => 'Sobre Nosaltres',
-        'tickets.legalnotice' => 'Avisos Legals',
         'tickets.showevent' => 'Mostrar Esdeveniment',
         'tickets.buytickets' => 'Comprar Entrades',
+        'tickets.aboutus' => 'Sobre Nosaltres',
+        'tickets.legalnotice' => 'Avisos Legals',
     ];
     $activeRoute = Route::currentRouteName();
 @endphp

@@ -1,0 +1,187 @@
+/* Importar las fuentes de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Lato:wght@300;400&family=Roboto:wght@400&display=swap');
+
+/* Definición de colores */
+:root {
+    --fondo-y-contraste: #F0E6D2;
+    --principal: #5C5346;
+    --botones-accion: #D4AF37;
+    --texto-detalle: #1A1A1A;
+    --destacados-enlaces: #C9B7A5;
+    --titulos: #C9B7A5;
+    --elementos-secundarios: #857C6D;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.w3-content {
+    flex: 1;  /* Permite que el contenedor crezca y llene el espacio disponible */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos generales */
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: var(--fondo-y-contraste);
+    color: var(--texto-detalle);
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+header {
+    display: flex;
+    flex-direction: row-reverse;
+    background-color: var(--principal);
+    color: var(--fondo-y-contraste);
+    padding: 1rem;
+    justify-content: flex-end;
+}
+
+
+footer {
+    background-color: var(--principal);
+    color: var(--fondo-y-contraste);
+    padding: 1rem;
+    text-align: center;
+    margin-top: auto;
+}
+
+#logo {
+    width: 20%;
+    margin-right: 2.5%;
+    margin-bottom: 0.5rem;
+}
+
+/* Encabezados */
+#title {
+    color: var(--titulos);
+}
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 28px;
+    color: var(--texto-detalle)
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--texto-detalle)
+}
+
+h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--texto-detalle)
+}
+
+/* Texto general */
+p, .text {
+    font-family: 'Lato', sans-serif;
+    font-size: 8px;
+}
+
+/* Botones y llamadas a la acción */
+button, .button {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 6px;
+    background-color: var(--botones-accion);
+    color: var(--fondo-y-contraste);
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+/* Texto de ayuda y pie de página */
+.help-text, .footer-text {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 4px;
+}
+
+nav {
+
+}
+
+/* Etiquetas de formulario y menús de navegación */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav li {
+    margin-right: 20px;
+}
+
+nav li:last-child {
+    margin-right: 0;
+}
+
+nav a {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+}
+
+label {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+}
+
+/* Enlaces destacados */
+a, .link-highlight {
+    color: var(--destacados-enlaces);
+    text-decoration: none;
+}
+
+a:hover, .link-highlight:hover {
+    text-decoration: underline;
+}
+
+/* Elementos secundarios */
+.secondary-item {
+    color: var(--elementos-secundarios);
+}
+
+/* Estilos para móviles y Media Queries */
+@media (min-width: 768px) {
+    header {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        padding: 1rem 2rem;
+    }
+
+    #logo {
+        width: 20%;
+        margin-right: 1rem;
+    }
+
+    h1 {
+        font-size: 36px; /* Tamaño más grande para tablets y escritorio */
+        margin: 0;
+    }
+    
+    footer {
+        text-align: left;
+        padding: 1rem 2rem;
+    }
+
+}
+
+@media (min-width: 1024px) {
+    body {
+        margin: 0 auto;
+    }
+}
