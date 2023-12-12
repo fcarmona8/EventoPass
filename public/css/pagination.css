@@ -1,0 +1,19 @@
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination li a {
+    color: #007bff; /* Color del enlace */
+    text-decoration: none;
+}
+
+.pagination li.disabled span,
+.pagination li a:hover {
+    color: #6c757d; /* Color al pasar el ratón */
+}
