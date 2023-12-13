@@ -60,6 +60,42 @@ image::DiagramaE-R.png[Diagrama d'Entitat-Relació,600,400]
 
 Nota: Les relacions són del tipus "foreign key" (clau forana), que connecten les taules d'una manera que reflecteix la lògica del negoci.
 
+[plantuml, target="db-uml-diagram"]
+....
+@startuml
+
+entity "Categories" as categories {
+    * id : bigint <<PK>>
+    * name : varchar(255)
+    * created_at : timestamp
+    * updated_at : timestamp
+}
+
+entity "Events" as events {
+    * id : bigint <<PK>>
+    * name : varchar(255)
+    * description : text
+    * main_image : varchar(255)
+    * category_id : bigint <<FK>>
+    * venue_id : bigint <<FK>>
+    * created_at : timestamp
+    * updated_at : timestamp
+    * event_date : date
+}
+
+entity "Venues" as venues {
+    * id : bigint <<PK>>
+    * name : varchar(255)
+    * location : text
+    * created_at : timestamp
+    * updated_at : timestamp
+}
+
+events }|--|{ categories : "category_id"
+events }|--|{ venues : "venue_id"
+
+@enduml
+....
 
 == Sketching i Mockup d'Interfícies
 Descripció del procés de disseny d'interfícies, amb imatges dels sketchings i mockups.
@@ -75,12 +111,12 @@ La nostra paleta de colors està dissenyada per reflectir la nostra marca i faci
 [options="header"]
 |=======================
 | Nom          | Hex       
-| Fons i Contrast | pass:q[F0E6D2] 
-| Principal    | pass:q[5C5346] 
-| Botons i Trucades d'Ació | pass:q[D4AF37] 
-| Text i Detalls | pass:q[1A1A1A] 
-| Destacats i Enllaços | pass:q[C9B7A5] 
-| Elements Secundaris | pass:q[857C6D] 
+| Fons i Contrast | [.fons-i-contrast]#F0E6D2# 
+| Principal    | [.principal]#5C5346# 
+| Botons i Trucades d'Ació | [.botons-i-trucades]#D4AF37# 
+| Text i Detalls | [.text-i-detalls]#1A1A1A# 
+| Destacats i Enllaços | [.destacats-i-enllacos]#C9B7A5# 
+| Elements Secundaris | [.elements-secundaris]#857C6D# 
 |=======================
 
 === Tipografies
