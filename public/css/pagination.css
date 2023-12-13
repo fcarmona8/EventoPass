@@ -1,19 +1,40 @@
 .pagination {
     display: flex;
     list-style: none;
-    padding: 0;
+    padding: 7%;
+    margin-top: 85%;
 }
 
 .pagination li {
     margin: 0 5px;
 }
 
-.pagination li a {
-    color: #007bff; /* Color del enlace */
+.pagination li a{
+    color: #D4AF37; /* Color del enlace */
     text-decoration: none;
+    font-size: 16px;
+    font-family: 'lato', sans-serif;
 }
 
 .pagination li.disabled span,
 .pagination li a:hover {
     color: #6c757d; /* Color al pasar el ratón */
+}
+
+.pagination-info{
+    width: 100%;
+    text-align: center;
+    color: #000000;
+    font-size: 16px;
+}
+
+@media (min-width: 768px) {
+
+    .pagination {
+        display: flex;
+        list-style: none;
+        padding: 7% 7% 2% 7%;
+        margin-top: 12%;
+    }
+
 }
