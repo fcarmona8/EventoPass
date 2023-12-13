@@ -1,0 +1,23 @@
+/* Estilos básicos para móviles */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 10px;
+}
+
+.event-card {
+    padding: 15px;
+}
+
+.event-card img {
+    width: 100%;
+    height: auto;
+}
+
+/* Media query para pantallas más grandes */
+@media (min-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas para pantallas más grandes */
+    }
+}

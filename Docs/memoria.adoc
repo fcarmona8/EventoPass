@@ -1,0 +1,38 @@
+= Proyecto 2: EventoPass
+
+[logo]
+
+
+Guiu Puigantell Jordan
+
+Ferran Carmona Hernández
+
+Alfred Pérez Herranz
+
+
+= Introducción
+
+=== Objetivo:
+
+=== Target:
+
+=== Requisitos funcionales:
+
+=== Requisitos no funcionales:
+
+= Diseño base de datos:
+
+= Sketching y Mockups:
+
+= Guia estilos:
+
+= Manual instalación/distribución:
+
+= Lineas Futuras
+
+= Conclusiones
+
+= Web-Grafia:
+
+= Presentación: 
+
