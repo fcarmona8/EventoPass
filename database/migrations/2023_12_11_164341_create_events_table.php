@@ -12,6 +12,7 @@ class CreateEventsTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
+            $table->string('main_image')->nullable();
             $table->foreignId('category_id')->constrained();
             $table->foreignId('venue_id')->constrained();
             $table->timestamps();
