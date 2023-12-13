@@ -1,38 +1,148 @@
-= Proyecto 2: EventoPass
+= Títol del Projecte
+:toc:
+:icons: font
+:sectnums:
 
-[logo]
+== Portada
+image::logo.png[Logotip de la Institució,200,200]
+
+*EventoPass* +
+
+_Autors: Alfred Pérez_ +
+
+== Introducció
+=== Objectiu de l'Aplicació
+El projecte té com a objectiu principal el desenvolupament d'un portal web innovador destinat a la venda d'entrades per a esdeveniments variats. Aquesta plataforma es concep com un eina clau per als promotors d'esdeveniments, oferint-los la capacitat de gestionar la venda d'entrades i la publicació dels seus esdeveniments de manera eficient i centralitzada.
+
+La plataforma es diferenciarà per les següents característiques:
+
+. *Venda d'Entrades*: Facilitarà la compra d'entrades de manera segura i fiable, satisfent les necessitats tant dels promotors com dels assistents.
+. *Gestió d'Esdeveniments pels Promotors*: Permetrà als promotors publicar i gestionar els seus esdeveniments, creant una experiència personalitzada i adaptada a les seves necessitats.
+. *Model de Negoci*: Implementarà un model de negoci basat en un percentatge sobre les vendes de cada entrada, assegurant un benefici mutu entre la plataforma i els promotors.
+. *Validació d'Entrades*: A través d'una aplicació web independent, es proporcionarà una solució per a la validació eficient d'entrades en l'entrada dels esdeveniments, garantint una gestió segura i ràpida.
+
+Aquesta plataforma no només respondrà a una necessitat de mercat actual, sinó que també aportarà valor afegit als seus usuaris, facilitant una experiència d'usuari millorada i eficient tant per als promotors com per als assistents dels esdeveniments.
 
 
-Guiu Puigantell Jordan
+== Disseny de Base de Dades
 
-Ferran Carmona Hernández
+El disseny de la base de dades per al portal web es basa en tres taules principals:`categories`, `events` i `venues`. Aquestes taules estan interconnectades per garantir una gestió eficient de les dades dels esdeveniments. A continuació, es detallen les taules i les seves relacions.
 
-Alfred Pérez Herranz
+image::DiagramaE-R.png[Diagrama d'Entitat-Relació,600,400]
+
+=== Taula: Categories
+* `id`: clau primària, bigint.
+* `name`: nom de la categoria, character varying(255).
+* `created_at`: data de creació, timestamp.
+* `updated_at`: data d'actualització, timestamp.
+
+=== Taula: Events
+* `id`: clau primària, bigint.
+* `name`: nom de l'esdeveniment, character varying(255).
+* `description`: descripció de l'esdeveniment, text.
+* `main_image`: imatge principal, character varying(255).
+* `category_id`: clau forana a `categories`, bigint.
+* `venue_id`: clau forana a `venues`, bigint.
+* `created_at`: data de creació, timestamp.
+* `updated_at`: data d'actualització, timestamp.
+* `event_date`: data de l'esdeveniment, date.
+
+=== Taula: Venues
+* `id`: clau primària, bigint.
+* `name`: nom del recinte, character varying(255).
+* `location`: ubicació del recinte, text.
+* `created_at`: data de creació, timestamp.
+* `updated_at`: data d'actualització, timestamp.
+
+=== Relacions
+* La taula `events` està relacionada amb `categories` a través de `category_id`.
+* La taula `events` està relacionada amb `venues` a través de `venue_id`.
+
+Nota: Les relacions són del tipus "foreign key" (clau forana), que connecten les taules d'una manera que reflecteix la lògica del negoci.
 
 
-= Introducción
+== Sketching i Mockup d'Interfícies
+Descripció del procés de disseny d'interfícies, amb imatges dels sketchings i mockups.
 
-=== Objetivo:
+== Guia d'Estil
 
-=== Target:
+La guia d'estil de l'aplicació proporciona una referència visual i técnica per mantenir la coherència en tots els elements gràfics i interfaces d'usuari. A continuació es detallen els components clau de la nostra guia d'estil.
 
-=== Requisitos funcionales:
+=== Paleta de Colors
 
-=== Requisitos no funcionales:
+La nostra paleta de colors està dissenyada per reflectir la nostra marca i facilitar la lectura i la navegació.
 
-= Diseño base de datos:
+[options="header"]
+|=======================
+| Nom          | Hex       
+| Fons i Contrast | pass:q[F0E6D2] 
+| Principal    | pass:q[5C5346] 
+| Botons i Trucades d'Ació | pass:q[D4AF37] 
+| Text i Detalls | pass:q[1A1A1A] 
+| Destacats i Enllaços | pass:q[C9B7A5] 
+| Elements Secundaris | pass:q[857C6D] 
+|=======================
 
-= Sketching y Mockups:
+=== Tipografies
 
-= Guia estilos:
+==== Tipografies per a Escriptori
 
-= Manual instalación/distribución:
+Utilitzem un conjunt seleccionat de tipografies per garantir que la nostra comunicació sigui clara i consistent.
 
-= Lineas Futuras
+[options="header"]
+|=======================
+| Element        | Font                  | Mida | Pes
+| Capçalera H1   | Montserrat Bold       | 36px | Bold
+| Capçalera H2   | Montserrat SemiBold   | 28px | SemiBold
+| Capçalera H3   | Montserrat SemiBold   | 22px | SemiBold
+| Text           | Lato Regular          | 18px | Regular
+| Botons i Trucades d'Ació | Lato Light  | 16px | Light
+| Text d'Ajuda i Peu de Pàgina | Lato Light | 14px | Light
+| Etiquetes de Formulari i Menús de Navegació | Roboto Regular | 16px | Regular
+|=======================
 
-= Conclusiones
+==== Tipografies per a Mòbil
 
-= Web-Grafia:
+Per a una millor experiència d'usuari en dispositius mòbils, hem adaptat les mides de les nostres tipografies per assegurar una lectura òptima en pantalles més petites.
 
-= Presentación: 
+[options="header"]
+|=======================
+| Element        | Font                  | Mida   | Pes
+| Capçalera H1   | Montserrat Bold       | 30px   | Bold
+| Capçalera H2   | Montserrat SemiBold   | 24px   | SemiBold
+| Capçalera H3   | Montserrat SemiBold   | 20px   | SemiBold
+| Text           | Lato Regular          | 16px   | Regular
+| Botons i Trucades d'Ació | Lato Light  | 18px   | Light
+| Text d'Ajuda i Peu de Pàgina | Lato Light | 12px   | Light
+| Etiquetes de Formulari i Menús de Navegació | Roboto Regular | 14px   | Regular
+|=======================
 
+Noteu que la mida dels botons i trucades d'acció s'ha incrementat lleugerament per a facilitar la interacció tàctil, mentre que les mides del text d'ajuda i els peus de pàgina s'han reduït per optimitzar l'espai sense comprometre la llegibilitat.
+
+
+=== Estàndards de Disseny
+
+Els estàndards de disseny inclouen les especificacions per a marges, espaiat, alineació i altres elements de disseny que contribueixen a la coherència visual i funcional de l'aplicació. S'espera que tots els dissenyadors i desenvolupadors segueixin aquests estàndards per assegurar una experiència d'usuari unificada.
+
+
+== Manual d'Instal·lació/Distribució
+Pas a pas detallat de com instal·lar i distribuir l'aplicació.
+
+== Documentació de Permisos
+Descripció detallada dels permisos necessaris per a components, programes, contenidors, etc.
+
+== Línies Futures
+Plantejaments sobre l'evolució futura del projecte.
+
+== Conclusions
+* Desviacions en la planificació.
+* Aportacions del projecte als coneixements de l'alumne.
+
+== Glossari
+Termes clau utilitzats al llarg de la memòria.
+
+== Web-grafia i Altres Recursos de Consulta
+Llistat de fonts consultades i recursos addicionals.
+
+== Presentació del Projecte
+Breu descripció de com es presentarà el projecte.
