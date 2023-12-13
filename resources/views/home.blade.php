@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="pagination-info">
+        <p>Mostrando {{ $events->firstItem() }} - {{ $events->lastItem() }} de {{ $events->total() }} eventos</p>
+    </div>
+
     <div class="grid-container">
         @foreach ($events as $event)
             <div class="event-card">
@@ -15,5 +19,6 @@
             </div>
         @endforeach
     </div>
-    {{-- {{ $events->links() }} --}}
+    {{ $events->links('vendor.pagination.bootstrap-4') }}
+
 @endsection
