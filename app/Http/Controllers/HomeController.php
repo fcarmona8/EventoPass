@@ -31,7 +31,7 @@ class HomeController extends Controller
         }
 
         // Aplicar la paginación después de los filtros
-        $eventsPerPage = config('app.events_per_page', 1);
+        $eventsPerPage = config('app.events_per_page', env('PAGINATION_LIMIT', 10));
         $events = $query->orderBy('event_date')->paginate($eventsPerPage);
 
         return view('home', compact('events'));

@@ -157,14 +157,14 @@ a:hover, .link-highlight:hover {
 /* Estilos para móviles y Media Queries */
 @media (min-width: 768px) {
     header {
-        display: grid;
+        display: flex;
         grid-template-columns: 1fr auto;
         align-items: center;
         padding: 1rem 2rem;
     }
 
     #logo {
-        width: 20%;
+        width: 100px;
         margin-right: 1rem;
     }
 

@@ -20,5 +20,4 @@
         @endforeach
     </div>
     {{ $events->links('vendor.pagination.bootstrap-4') }}
-
 @endsection
