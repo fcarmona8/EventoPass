@@ -24,7 +24,7 @@ Aquesta plataforma no només respondrà a una necessitat de mercat actual, sinó
 
 == Disseny de Base de Dades
 
-El disseny de la base de dades per al portal web es basa en tres taules principals:`categories`, `events` i `venues`. Aquestes taules estan interconnectades per garantir una gestió eficient de les dades dels esdeveniments. A continuació, es detallen les taules i les seves relacions.
+El disseny de la base de dades per al portal web es basa en diverses taules interconnectades que garanteixen una gestió eficient de les dades dels esdeveniments. Aquestes taules principals són `categories`, `events`, `venues`, `sessions`, `purchases`, `users`, `ticket_types` i `tickets`. A continuació, es detallen aquestes taules i les seves relacions.
 
 image::images/DiagramaE-R.png[Diagrama d'Entitat-Relació,600,400]
 
