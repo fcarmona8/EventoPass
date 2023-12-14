@@ -20,4 +20,20 @@ class Event extends Model
     public function venue() { 
         return $this->belongsTo(Venue::class); 
     }
+
+    public function sessions()
+    {
+        return $this->hasMany(Session::class);
+    }
+
+
+    public function lowestTicketPrice()
+    {
+        return $this->sessions()
+                    ->join('purchases', 'sessions.id', '=', 'purchases.session_id')
+                    ->join('tickets', 'purchases.id', '=', 'tickets.purchase_id')
+                    ->join('ticket_types', 'tickets.type_id', '=', 'ticket_types.id')
+                    ->min('ticket_types.price');
+    }
+
 }

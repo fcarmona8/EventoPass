@@ -1,17 +1,14 @@
-= Títol del Projecte
-:toc:
-:icons: font
+= EventoPass
+:image:: logo.png[]
+:author: Alfred Pérez
+:doctype: article
 :sectnums:
+:toc: left
+:toclevels: 6
+:toc-title: Table of Contents
 
-== Portada
-image::logo.png[Logotip de la Institució,200,200]
-
-*EventoPass* +
-
-_Autors: Alfred Pérez_ +
-
-== Introducció
-=== Objectiu de l'Aplicació
+= Introducció
+== Objectiu de l'Aplicació
 El projecte té com a objectiu principal el desenvolupament d'un portal web innovador destinat a la venda d'entrades per a esdeveniments variats. Aquesta plataforma es concep com un eina clau per als promotors d'esdeveniments, oferint-los la capacitat de gestionar la venda d'entrades i la publicació dels seus esdeveniments de manera eficient i centralitzada.
 
 La plataforma es diferenciarà per les següents característiques:
@@ -26,9 +23,9 @@ Aquesta plataforma no només respondrà a una necessitat de mercat actual, sinó
 
 == Disseny de Base de Dades
 
-El disseny de la base de dades per al portal web es basa en tres taules principals:`categories`, `events` i `venues`. Aquestes taules estan interconnectades per garantir una gestió eficient de les dades dels esdeveniments. A continuació, es detallen les taules i les seves relacions.
+El disseny de la base de dades per al portal web es basa en diverses taules interconnectades que garanteixen una gestió eficient de les dades dels esdeveniments. Aquestes taules principals són `categories`, `events`, `venues`, `sessions`, `purchases`, `users`, `ticket_types` i `tickets`. A continuació, es detallen aquestes taules i les seves relacions.
 
-image::DiagramaE-R.png[Diagrama d'Entitat-Relació,600,400]
+image::DiagramaE-R.png[Diagrama d'Entitat-Relació,1000,800]
 
 === Taula: Categories
 * `id`: clau primària, bigint.
@@ -36,7 +33,7 @@ image::DiagramaE-R.png[Diagrama d'Entitat-Relació,600,400]
 * `created_at`: data de creació, timestamp.
 * `updated_at`: data d'actualització, timestamp.
 
-=== Taula: Events
+==== Taula: Events
 * `id`: clau primària, bigint.
 * `name`: nom de l'esdeveniment, character varying(255).
 * `description`: descripció de l'esdeveniment, text.
@@ -54,48 +51,149 @@ image::DiagramaE-R.png[Diagrama d'Entitat-Relació,600,400]
 * `created_at`: data de creació, timestamp.
 * `updated_at`: data d'actualització, timestamp.
 
+=== Taula: Sessions
+* `id`: clau primària, bigint.
+* `event_id`: clau forana a `events`, bigint.
+* `date_time`: data i hora de la sessió, timestamp.
+* `created_at`: data de creació, timestamp.
+* `updated_at`: data d'actualització, timestamp.
+
+=== Taula: Purchases
+* `id`: clau primària, bigint.
+* `user_id`: clau forana a `users`, bigint.
+* `session_id`: clau forana a `sessions`, bigint.
+* `total_price`: preu total, numeric(8,2).
+* `created_at`: data de creació, timestamp.
+* `updated_at`: data d'actualització, timestamp.
+
+=== Taula: Users
+* `id`: clau primària, bigint.
+* `name`: nom de l'usuari, character varying(255).
+* `email`: correu electrònic, character varying(255).
+* `email_verified_at`: data de verificació del correu, timestamp.
+* `password`: contrasenya, character varying(255).
+* `remember_token`: token de recordatori, character varying(100).
+* `created_at`: data de creació, timestamp.
+* `updated_at`: data d'actualització, timestamp.
+* `role_id`: clau forana a `roles`, bigint.
+
+==== Taula: Ticket_Types
+* `id`: clau primària, bigint.
+* `name`: nom del tipus de tiquet, character varying(255).
+* `price`: preu, numeric(8,2).
+* `created_at`: data de creació, timestamp.
+* `updated_at`: data d'actualització, timestamp.
+
+=== Taula: Tickets
+* `id`: clau primària, bigint.
+* `purchase_id`: clau forana a `purchases`, bigint.
+* `type_id`: clau forana a `ticket_types`, bigint.
+* `created_at`: data de creació, timestamp.
+* `updated_at`: data d'actualització, timestamp.
+
 === Relacions
 * La taula `events` està relacionada amb `categories` a través de `category_id`.
 * La taula `events` està relacionada amb `venues` a través de `venue_id`.
+* La taula `sessions` està relacionada amb `events` a través de `event_id`.
+* La taula `purchases` està relacionada amb `sessions` a través de `session_id` i amb `users` a través de `user_id`.
+* La taula `tickets` està relacionada amb `purchases` a través de `purchase_id` i amb `ticket_types` a través de `type_id`.
 
 Nota: Les relacions són del tipus "foreign key" (clau forana), que connecten les taules d'una manera que reflecteix la lògica del negoci.
 
-[plantuml, target="db-uml-diagram"]
+
+[plantuml]
 ....
 @startuml
 
-entity "Categories" as categories {
-    * id : bigint <<PK>>
-    * name : varchar(255)
-    * created_at : timestamp
-    * updated_at : timestamp
+class "Category" as categories {
+    # id : bigint <<PK>>
+    # name : varchar(255)
+    --
+    + events() : Event[]
 }
 
-entity "Events" as events {
-    * id : bigint <<PK>>
-    * name : varchar(255)
-    * description : text
-    * main_image : varchar(255)
-    * category_id : bigint <<FK>>
-    * venue_id : bigint <<FK>>
-    * created_at : timestamp
-    * updated_at : timestamp
-    * event_date : date
+class "Event" as events {
+    # id : bigint <<PK>>
+    # name : varchar(255)
+    # description : text
+    # main_image : varchar(255)
+    # event_date : date
+    # category_id : bigint <<FK>>
+    # venue_id : bigint <<FK>>
+    --
+    + category() : Category
+    + venue() : Venue
+    + sessions() : Session[]
+    + lowestTicketPrice() : numeric
 }
 
-entity "Venues" as venues {
-    * id : bigint <<PK>>
-    * name : varchar(255)
-    * location : text
-    * created_at : timestamp
-    * updated_at : timestamp
+class "Venue" as venues {
+    # id : bigint <<PK>>
+    # name : varchar(255)
+    # location : text
+    --
+    + events() : Event[]
 }
 
-events }|--|{ categories : "category_id"
-events }|--|{ venues : "venue_id"
+class "Session" as sessions {
+    # id : bigint <<PK>>
+    # event_id : bigint <<FK>>
+    # date_time : timestamp
+    --
+    + event() : Event
+    + purchases() : Purchase[]
+}
+
+class "Purchase" as purchases {
+    # id : bigint <<PK>>
+    # user_id : bigint <<FK>>
+    # session_id : bigint <<FK>>
+    # total_price : numeric(8,2)
+    --
+    + user() : User
+    + session() : Session
+    + tickets() : Ticket[]
+}
+
+class "User" as users {
+    # id : bigint <<PK>>
+    # name : varchar(255)
+    # email : varchar(255)
+    # email_verified_at : timestamp
+    # password : varchar(255)
+    # remember_token : varchar(100)
+    --
+    + purchases() : Purchase[]
+}
+
+class "TicketType" as ticket_types {
+    # id : bigint <<PK>>
+    # name : varchar(255)
+    # price : numeric(8,2)
+    --
+    + tickets() : Ticket[]
+}
+
+class "Ticket" as tickets {
+    # id : bigint <<PK>>
+    # purchase_id : bigint <<FK>>
+    # type_id : bigint <<FK>>
+    --
+    + purchase() : Purchase
+    + type() : TicketType
+}
+
+events }|--|| categories : "category_id"
+events }|--|| venues : "venue_id"
+sessions }|--|| events : "event_id"
+purchases }|--|| sessions : "session_id"
+purchases }|--|| users : "user_id"
+tickets }|--|| purchases : "purchase_id"
+tickets }|--|| ticket_types : "type_id"
 
 @enduml
 ....
+
 
 == Sketching i Mockup d'Interfícies
 Descripció del procés de disseny d'interfícies, amb imatges dels sketchings i mockups.
@@ -111,12 +209,12 @@ La nostra paleta de colors està dissenyada per reflectir la nostra marca i faci
 [options="header"]
 |=======================
 | Nom          | Hex       
-| Fons i Contrast | [.fons-i-contrast]#F0E6D2# 
-| Principal    | [.principal]#5C5346# 
-| Botons i Trucades d'Ació | [.botons-i-trucades]#D4AF37# 
-| Text i Detalls | [.text-i-detalls]#1A1A1A# 
-| Destacats i Enllaços | [.destacats-i-enllacos]#C9B7A5# 
-| Elements Secundaris | [.elements-secundaris]#857C6D# 
+| Fons i Contrast | #F0E6D2# 
+| Principal    | #5C5346# 
+| Botons i Trucades d'Ació | #D4AF37# 
+| Text i Detalls | #1A1A1A# 
+| Destacats i Enllaços | #C9B7A5# 
+| Elements Secundaris | #857C6D# 
 |=======================
 
 === Tipografies
@@ -182,3 +280,4 @@ Llistat de fonts consultades i recursos addicionals.
 
 == Presentació del Projecte
 Breu descripció de com es presentarà el projecte.
+
