@@ -94,10 +94,14 @@
     }
 
     .card h3 {
-        font-size: 16px;
+        font-size: 18px;
         min-height: 59px;
         margin-top: 15px;
         font-weight: 600;
+    }
+
+    .card p {
+        font-size: 14px;
     }
 
 }

@@ -21,6 +21,7 @@
                     <p>Lloc: {{ $event->venue->name }}</p>
                     <span class="card-price">Des de {{ $event->lowestTicketPrice() }} €</span>
                 </div>
+            </div>
             </a>
         @endforeach
     </div>
