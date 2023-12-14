@@ -17,7 +17,7 @@
                 <div class="card-content">
                     <h3>{{ $event->name }}</h3>
                     <p class="description">{{ $event->description }}</p>
-                    <p>Data: {{ \Carbon\Carbon::parse($event->event_date)->format('d-m-Y') }}</p> 
+                    <p>Data: {{ \Carbon\Carbon::parse($event->event_date)->format('Y-m-d') }}</p> 
                     <p>Lloc: {{ $event->venue->name }}</p>
                     <span class="card-price">Des de {{ $event->lowestTicketPrice() }}€</span>
                 </div>
