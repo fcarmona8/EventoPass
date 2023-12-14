@@ -1,5 +1,6 @@
 = EventoPass
 :author: Alfred Perez
+:author: Ferran Carmona
 :doctype: book
 :chapter-label:
 :sectnums:
