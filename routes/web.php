@@ -21,7 +21,7 @@ Route::get('/tickets/legalnotice', function () {
 })->name('tickets.legalnotice');
 
 // Mostrar Evento
-Route::get('/tickets/showevent', function () {
+Route::get('/tickets/showevent/{id}', function () {
     return view('tickets.showevent');
 })->name('tickets.showevent');
 
