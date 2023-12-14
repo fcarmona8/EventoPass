@@ -17,16 +17,21 @@ class HomeController extends Controller
             $filtro = $request->get('filtro');
             $query->where(function ($q) use ($filtro, $searchTerm) {
                 if ($filtro === 'evento') {
-                    $q->where('name', 'LIKE', "%{$searchTerm}%"); 
-                }});
-                /** 
-            $query->where(function($q) use ($searchTerm) {
-                $q->where('name', 'LIKE', "%{$searchTerm}%")
-                  ->orWhereHas('venue', function($q) use ($searchTerm) {
-                      $q->where('name', 'LIKE', "%{$searchTerm}%")
-                        ->orWhere('location', 'LIKE', "%{$searchTerm}%");
-                  });
-            });*/
+                    $q->where('name', 'ILIKE', "%{$searchTerm}%"); 
+                }elseif($filtro === 'ciudad'){
+                    $q->whereIn('venue_id', function ($subquery) use ($searchTerm) {
+                        $subquery->select('id')
+                            ->from('venues')
+                            ->where('location', 'ILIKE', "%{$searchTerm}%");
+                    });
+                }elseif($filtro === 'recinto'){
+                    $q->whereIn('venue_id', function ($subquery) use ($searchTerm) {
+                        $subquery->select('id')
+                            ->from('venues')
+                            ->where('name', 'ILIKE', "%{$searchTerm}%");
+                    });
+                }
+            });
         }
         
 
@@ -37,10 +42,12 @@ class HomeController extends Controller
             });
         }
 
+        $selectedFiltro = $request->input('filtro');
+        $searchTerm = $request->input('search');
         // Aplicar la paginación después de los filtros
         $eventsPerPage = config('app.events_per_page', env('PAGINATION_LIMIT', 10));
         $events = $query->orderBy('event_date')->paginate($eventsPerPage);
 
-        return view('home', compact('events'));
+        return view('home', compact('events', 'selectedFiltro', 'searchTerm'));
     }
 }

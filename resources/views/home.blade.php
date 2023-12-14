@@ -8,11 +8,11 @@
     <div class="contenedorFiltro">
         <label for="filtro">Buscar por:</label>
         <select id="filtro" name="filtro" class="filtro">
-            <option value="ciudad">Ciudad</option>
-            <option value="recinto">Recinto</option>
-            <option value="evento">Evento</option>
+            <option value="ciudad" {{ $selectedFiltro == 'ciudad' ? 'selected' : '' }}>Ciudad</option>
+            <option value="recinto" {{ $selectedFiltro == 'recinto' ? 'selected' : '' }}>Recinto</option>
+            <option value="evento" {{ $selectedFiltro == 'evento' ? 'selected' : '' }}>Evento</option>
         </select>
-        <input type="text" name="search">
+        <input type="text" name="search" value="{{ $searchTerm }}">
         <button type="submit" class="fas fa-search iconoLupa"></button>
     </div>
     <div class="contenedorFiltro">
@@ -26,23 +26,31 @@
     </div>
 </form>
     <div class="pagination-info">
-        <p>Mostrando {{ $events->firstItem() }} - {{ $events->lastItem() }} de {{ $events->total() }} eventos</p>
+        <p>Mostrant {{ $events->firstItem() }} - {{ $events->lastItem() }} de {{ $events->total() }} events</p>
     </div>
 
     <div class="grid-container">
         @foreach ($events as $event)
-            <div class="event-card">
-                <h2>{{ $event->name }}</h2>
+        <a class="card-link" href="{{ route('tickets.showevent') }}">
+            <div class="card">
+                
                 @if ($event->main_image)
-                    <img src="{{ asset('storage/' . $event->main_image) }}" alt="{{ $event->name }}">
+                    <!-- <img src="{{ asset('storage/' . $event->main_image) }}" alt="{{ $event->name }}"> -->
+                    <img src="https://picsum.photos/2000" alt="{{ $event->name }}">
                 @endif
-                <p>{{ $event->description }}</p>
-                <p>Category: {{ $event->category->name }}</p>
-                <p>Venue: {{ $event->venue->name }}</p>
-                <p>Date: {{ \Carbon\Carbon::parse($event->event_date)->format('Y-m-d') }}</p>
-                <p>Lowest Ticket Price: {{ $event->lowestTicketPrice() }}</p>
+                <div class="card-content">
+                    <h3>{{ $event->name }}</h3>
+                    <p class="description">{{ $event->description }}</p>
+                    <p>Date: {{ \Carbon\Carbon::parse($event->event_date)->format('d-m-Y') }}</p> 
+                    <p>Venue: {{ $event->venue->name }}</p>
+                    <p>Lowest Ticket Price: {{ $event->lowestTicketPrice() }}</p>
+                    
+                </div>
+                
             </div>
+        </a>
         @endforeach
     </div>
     {{ $events->links('vendor.pagination.bootstrap-4') }}
 @endsection
+

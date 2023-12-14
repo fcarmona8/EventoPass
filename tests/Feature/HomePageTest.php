@@ -51,4 +51,69 @@ class HomePageTest extends TestCase
         $this->assertEquals(number_format($expectedLowestPrice, 2), number_format($actualLowestPrice, 2));
     }
 
+    public function testHomePageDisplaysEventsWithCorrectCheckFilterForCity(){
+        $city = "ports";
+
+        // Simular una búsqueda con filtro
+        $response = $this->get("/?filtro=ciudad&search={$city}");
+
+        $response->assertStatus(200);
+
+        // Verificar que la página contiene eventos que cumplen con el filtro
+        $events = Event::with(['category', 'venue', 'sessions.purchases.tickets.type'])
+            ->whereIn('venue_id', function ($subquery) use ($city) {
+                $subquery->select('id')
+                    ->from('venues')
+                    ->where('location', 'ILIKE', "%{$city}%");
+            })->get();
+
+
+        foreach ($events as $event) {
+            $response->assertSee(e($event->name));
+            $response->assertSee(e($event->description));
+        }
+    }
+
+    public function testHomePageDisplaysEventsWithCorrectCheckFilterForEvent()
+    {
+        $eventTitle = "sed";
+
+        // Simular una búsqueda con filtro
+        $response = $this->get("/?filtro=evento&search={$eventTitle}");
+
+        $response->assertStatus(200);
+
+        // Verificar que la página contiene eventos que cumplen con el filtro
+        $events = Event::with(['category', 'venue', 'sessions.purchases.tickets.type'])
+            ->where('name', 'ILIKE', "%{$eventTitle}%")->get();
+
+        foreach ($events as $event) {
+            $response->assertSee(e($event->name));
+            $response->assertSee(e($event->description));
+        }
+    }
+
+    public function testHomePageDisplaysEventsWithCorrectCheckFilterForVenue(){
+        $venue = "legros";
+
+        // Simular una búsqueda con filtro
+        $response = $this->get("/?filtro=ciudad&search={$venue}");
+
+        $response->assertStatus(200);
+
+        // Verificar que la página contiene eventos que cumplen con el filtro
+        $events = Event::with(['category', 'venue', 'sessions.purchases.tickets.type'])
+            ->whereIn('venue_id', function ($subquery) use ($venue) {
+                $subquery->select('id')
+                    ->from('venues')
+                    ->where('name', 'ILIKE', "%{$venue}%");
+            })->get();
+
+
+        foreach ($events as $event) {
+            $response->assertSee(e($event->name));
+            $response->assertSee(e($event->description));
+        }
+    }
+
 }
