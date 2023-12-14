@@ -7,22 +7,19 @@
 
     <div class="grid-container">
         @foreach ($events as $event)
-            <a class="card-link" href="{{ route('tickets.showevent') }}">
-                <div class="card">
-
-                    @if ($event->main_image)
-                        <!-- <img src="{{ asset('storage/' . $event->main_image) }}" alt="{{ $event->name }}"> -->
-                        <img src="https://picsum.photos/2000" alt="{{ $event->name }}">
-                    @endif
-                    <div class="card-content">
-                        <h3>{{ $event->name }}</h3>
-                        <p class="description">{{ $event->description }}</p>
-                        <p>Date: {{ \Carbon\Carbon::parse($event->event_date)->format('Y-m-d') }}</p>
-                        <p>Venue: {{ $event->venue->name }}</p>
-                        <p>Lowest Ticket Price: {{ $event->lowestTicketPrice() }}</p>
-
-                    </div>
-
+        <a class="card-link" href="{{ route('tickets.showevent', ['id' => $event->id]) }}">
+            <div class="card">
+                
+                @if ($event->main_image)
+                    <!-- <img src="{{ asset('storage/' . $event->main_image) }}" alt="{{ $event->name }}"> -->
+                    <img src="https://picsum.photos/2000" alt="{{ $event->name }}">
+                @endif
+                <div class="card-content">
+                    <h3>{{ $event->name }}</h3>
+                    <p class="description">{{ $event->description }}</p>
+                    <p>Data: {{ \Carbon\Carbon::parse($event->event_date)->format('d-m-Y') }}</p> 
+                    <p>Lloc: {{ $event->venue->name }}</p>
+                    <span class="card-price">Des de {{ $event->lowestTicketPrice() }}€</span>
                 </div>
             </a>
         @endforeach
