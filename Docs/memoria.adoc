@@ -25,7 +25,7 @@ Aquesta plataforma no només respondrà a una necessitat de mercat actual, sinó
 
 El disseny de la base de dades per al portal web es basa en diverses taules interconnectades que garanteixen una gestió eficient de les dades dels esdeveniments. Aquestes taules principals són `categories`, `events`, `venues`, `sessions`, `purchases`, `users`, `ticket_types` i `tickets`. A continuació, es detallen aquestes taules i les seves relacions.
 
-image::images/DiagramaE-R.png[Diagrama d'Entitat-Relació,1000,800]
+image::images/DiagramaE-R.png[Diagrama d'Entitat-Relació,800,600]
 
 === Taula: Categories
 * `id`: clau primària, bigint.
