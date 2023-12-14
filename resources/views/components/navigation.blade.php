@@ -13,7 +13,7 @@
 <nav>
     <ul>
         @foreach ($routes as $route => $label)
-            @if ($route != $activeRoute)
+            @if ($route != $activeRoute && $route != 'tickets.showevent')
                 <li><a href="{{ route($route) }}">{{ $label }}</a></li>
             @endif
         @endforeach

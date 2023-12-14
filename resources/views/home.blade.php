@@ -7,7 +7,7 @@
 
     <div class="grid-container">
         @foreach ($events as $event)
-        <a class="card-link" href="{{ route('tickets.showevent') }}">
+        <a class="card-link" href="{{ route('tickets.showevent', ['id' => $event->id]) }}">
             <div class="card">
                 
                 @if ($event->main_image)
@@ -17,10 +17,9 @@
                 <div class="card-content">
                     <h3>{{ $event->name }}</h3>
                     <p class="description">{{ $event->description }}</p>
-                    <p>Date: {{ \Carbon\Carbon::parse($event->event_date)->format('d-m-Y') }}</p> 
-                    <p>Venue: {{ $event->venue->name }}</p>
-                    <p>Lowest Ticket Price: {{ $event->lowestTicketPrice() }}</p>
-                    
+                    <p>Data: {{ \Carbon\Carbon::parse($event->event_date)->format('d-m-Y') }}</p> 
+                    <p>Lloc: {{ $event->venue->name }}</p>
+                    <span class="card-price">Des de {{ $event->lowestTicketPrice() }}€</span>
                 </div>
                 
             </div>
