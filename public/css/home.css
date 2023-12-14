@@ -3,7 +3,7 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
-    padding: 10px;
+    padding: 0 10px 10px 10px;
 }
 
 .event-card {
@@ -15,13 +15,49 @@
     height: auto;
 }
 
+.filtro, input{
+    padding: 3px;
+    background-color: #C9B7A5;
+    margin: 0px 5px;
+}
+
+input{
+    margin: 0 10px;
+}
+
+label{
+    padding: 3px;
+}
+
+.iconoLupa{
+    font-size: 10px;
+}
+
+.contenedorFiltro{
+    width: 98%;
+    margin: 2%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+    overflow-y: hidden;
+}
+
+
 /* Media query para pantallas más grandes */
 @media (min-width: 768px) {
     .grid-container {
         grid-template-columns: repeat(2, 1fr); /* 2 columnas para pantallas más grandes */
     }
-}
 
-.paginacion{
-    height: 2%;
+    .iconoLupa, .filtro, input, label{
+        font-size: 16px;
+    }
+    label{
+        padding: 10px 5px;
+    }
+    input{
+        width: 50%
+    }
+
 }

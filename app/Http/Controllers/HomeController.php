@@ -14,14 +14,23 @@ class HomeController extends Controller
         // Aplicar los filtros
         if ($request->filled('search')) {
             $searchTerm = $request->get('search');
+            $filtro = $request->get('filtro');
+            $query->where(function ($q) use ($filtro, $searchTerm) {
+                if ($filtro === 'evento') {
+                    $q->whereHas('venue', function ($q) use ($searchTerm) {
+                        $q->where('location', 'LIKE', "%{$searchTerm}%");
+                    });
+                }});
+                /** 
             $query->where(function($q) use ($searchTerm) {
                 $q->where('name', 'LIKE', "%{$searchTerm}%")
                   ->orWhereHas('venue', function($q) use ($searchTerm) {
                       $q->where('name', 'LIKE', "%{$searchTerm}%")
                         ->orWhere('location', 'LIKE', "%{$searchTerm}%");
                   });
-            });
+            });*/
         }
+        
 
         if ($request->filled('category')) {
             $category = $request->get('category');
