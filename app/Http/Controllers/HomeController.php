@@ -17,9 +17,7 @@ class HomeController extends Controller
             $filtro = $request->get('filtro');
             $query->where(function ($q) use ($filtro, $searchTerm) {
                 if ($filtro === 'evento') {
-                    $q->whereHas('venue', function ($q) use ($searchTerm) {
-                        $q->where('location', 'LIKE', "%{$searchTerm}%");
-                    });
+                    $q->where('name', 'LIKE', "%{$searchTerm}%"); 
                 }});
                 /** 
             $query->where(function($q) use ($searchTerm) {

@@ -25,8 +25,6 @@
         </select>
     </div>
 </form>
-
-    
     <div class="pagination-info">
         <p>Mostrando {{ $events->firstItem() }} - {{ $events->lastItem() }} de {{ $events->total() }} eventos</p>
     </div>
@@ -42,6 +40,7 @@
                 <p>Category: {{ $event->category->name }}</p>
                 <p>Venue: {{ $event->venue->name }}</p>
                 <p>Date: {{ \Carbon\Carbon::parse($event->event_date)->format('Y-m-d') }}</p>
+                <p>Lowest Ticket Price: {{ $event->lowestTicketPrice() }}</p>
             </div>
         @endforeach
     </div>
