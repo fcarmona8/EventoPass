@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Event extends Model
@@ -29,11 +30,17 @@ class Event extends Model
 
     public function lowestTicketPrice()
     {
-        return $this->sessions()
-                    ->join('purchases', 'sessions.id', '=', 'purchases.session_id')
-                    ->join('tickets', 'purchases.id', '=', 'tickets.purchase_id')
-                    ->join('ticket_types', 'tickets.type_id', '=', 'ticket_types.id')
-                    ->min('ticket_types.price');
-    }
+        $lowestPrice = $this->sessions()
+                            ->join('purchases', 'sessions.id', '=', 'purchases.session_id')
+                            ->join('tickets', 'purchases.id', '=', 'tickets.purchase_id')
+                            ->join('ticket_types', 'tickets.type_id', '=', 'ticket_types.id')
+                            ->min('ticket_types.price');
 
+        Log::info('Consulta de precio más bajo realizada en el modelo Event', [
+            'event_id' => $this->id,
+            'lowest_price' => $lowestPrice
+        ]);
+
+        return $lowestPrice;
+    }
 }
