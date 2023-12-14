@@ -1,13 +1,13 @@
 = EventoPass
-:image:: logo.png[]
-:author: Alfred Pérez
-:doctype: article
+:author: Alfred Perez
+:doctype: book
+:chapter-label:
 :sectnums:
 :toc: left
 :toclevels: 6
 :toc-title: Table of Contents
+:front-cover-image: image::images/logo.png[]
 
-= Introducció
 == Objectiu de l'Aplicació
 El projecte té com a objectiu principal el desenvolupament d'un portal web innovador destinat a la venda d'entrades per a esdeveniments variats. Aquesta plataforma es concep com un eina clau per als promotors d'esdeveniments, oferint-los la capacitat de gestionar la venda d'entrades i la publicació dels seus esdeveniments de manera eficient i centralitzada.
 
@@ -25,7 +25,7 @@ Aquesta plataforma no només respondrà a una necessitat de mercat actual, sinó
 
 El disseny de la base de dades per al portal web es basa en diverses taules interconnectades que garanteixen una gestió eficient de les dades dels esdeveniments. Aquestes taules principals són `categories`, `events`, `venues`, `sessions`, `purchases`, `users`, `ticket_types` i `tickets`. A continuació, es detallen aquestes taules i les seves relacions.
 
-image::DiagramaE-R.png[Diagrama d'Entitat-Relació,1000,800]
+image::images/DiagramaE-R.png[Diagrama d'Entitat-Relació,1000,800]
 
 === Taula: Categories
 * `id`: clau primària, bigint.
@@ -100,100 +100,7 @@ image::DiagramaE-R.png[Diagrama d'Entitat-Relació,1000,800]
 
 Nota: Les relacions són del tipus "foreign key" (clau forana), que connecten les taules d'una manera que reflecteix la lògica del negoci.
 
-
-[plantuml]
-....
-@startuml
-
-class "Category" as categories {
-    # id : bigint <<PK>>
-    # name : varchar(255)
-    --
-    + events() : Event[]
-}
-
-class "Event" as events {
-    # id : bigint <<PK>>
-    # name : varchar(255)
-    # description : text
-    # main_image : varchar(255)
-    # event_date : date
-    # category_id : bigint <<FK>>
-    # venue_id : bigint <<FK>>
-    --
-    + category() : Category
-    + venue() : Venue
-    + sessions() : Session[]
-    + lowestTicketPrice() : numeric
-}
-
-class "Venue" as venues {
-    # id : bigint <<PK>>
-    # name : varchar(255)
-    # location : text
-    --
-    + events() : Event[]
-}
-
-class "Session" as sessions {
-    # id : bigint <<PK>>
-    # event_id : bigint <<FK>>
-    # date_time : timestamp
-    --
-    + event() : Event
-    + purchases() : Purchase[]
-}
-
-class "Purchase" as purchases {
-    # id : bigint <<PK>>
-    # user_id : bigint <<FK>>
-    # session_id : bigint <<FK>>
-    # total_price : numeric(8,2)
-    --
-    + user() : User
-    + session() : Session
-    + tickets() : Ticket[]
-}
-
-class "User" as users {
-    # id : bigint <<PK>>
-    # name : varchar(255)
-    # email : varchar(255)
-    # email_verified_at : timestamp
-    # password : varchar(255)
-    # remember_token : varchar(100)
-    --
-    + purchases() : Purchase[]
-}
-
-class "TicketType" as ticket_types {
-    # id : bigint <<PK>>
-    # name : varchar(255)
-    # price : numeric(8,2)
-    --
-    + tickets() : Ticket[]
-}
-
-class "Ticket" as tickets {
-    # id : bigint <<PK>>
-    # purchase_id : bigint <<FK>>
-    # type_id : bigint <<FK>>
-    --
-    + purchase() : Purchase
-    + type() : TicketType
-}
-
-events }|--|| categories : "category_id"
-events }|--|| venues : "venue_id"
-sessions }|--|| events : "event_id"
-purchases }|--|| sessions : "session_id"
-purchases }|--|| users : "user_id"
-tickets }|--|| purchases : "purchase_id"
-tickets }|--|| ticket_types : "type_id"
-
-@enduml
-....
-
+image::images/DiagramaUML.png[Diagrama UML,1000,800]
 
 == Sketching i Mockup d'Interfícies
 Descripció del procés de disseny d'interfícies, amb imatges dels sketchings i mockups.
