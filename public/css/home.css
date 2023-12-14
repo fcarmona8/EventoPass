@@ -84,8 +84,8 @@
     }
     
     .card:hover {
-        box-shadow: 0 7px 10px rgba(0,0,0,0.1);
-        transform: scale(1.05);
+        box-shadow: 0 7px 10px rgba(0,0,0,0.3);
+        transform: scale(1.06);
         cursor: pointer;
       }
 
@@ -94,10 +94,14 @@
     }
 
     .card h3 {
-        font-size: 16px;
+        font-size: 18px;
         min-height: 59px;
         margin-top: 15px;
         font-weight: 600;
+    }
+
+    .card p {
+        font-size: 14px;
     }
 
 }
