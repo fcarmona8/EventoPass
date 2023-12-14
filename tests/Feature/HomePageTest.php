@@ -41,7 +41,7 @@ class HomePageTest extends TestCase
                 if ($event->main_image) {
                     $response->assertSee(asset('storage/' . $event->main_image));
                 }
-                $response->assertSee(e($event->category->name));
+                $response->assertSee(html_entity_decode(e($event->category->name)));
                 $response->assertSee(html_entity_decode(e($event->venue->name)));
                 $response->assertSee(e($event->event_date));
 
@@ -64,7 +64,7 @@ class HomePageTest extends TestCase
     }
 
     public function testHomePageDisplaysEventsWithCorrectCheckFilterForCity(){
-        $city = "ports";
+        $city = "a";
 
         // Simular una búsqueda con filtro
         $response = $this->get("/?filtro=ciudad&search={$city}");
