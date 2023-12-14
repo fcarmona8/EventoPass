@@ -1,0 +1,90 @@
+
+@startuml
+
+class "Category" as categories {
+    # id : bigint <<PK>>
+    # name : varchar(255)
+    --
+    + events() : Event[]
+}
+
+class "Event" as events {
+    # id : bigint <<PK>>
+    # name : varchar(255)
+    # description : text
+    # main_image : varchar(255)
+    # event_date : date
+    # category_id : bigint <<FK>>
+    # venue_id : bigint <<FK>>
+    --
+    + category() : Category
+    + venue() : Venue
+    + sessions() : Session[]
+    + lowestTicketPrice() : numeric
+}
+
+class "Venue" as venues {
+    # id : bigint <<PK>>
+    # name : varchar(255)
+    # location : text
+    --
+    + events() : Event[]
+}
+
+class "Session" as sessions {
+    # id : bigint <<PK>>
+    # event_id : bigint <<FK>>
+    # date_time : timestamp
+    --
+    + event() : Event
+    + purchases() : Purchase[]
+}
+
+class "Purchase" as purchases {
+    # id : bigint <<PK>>
+    # user_id : bigint <<FK>>
+    # session_id : bigint <<FK>>
+    # total_price : numeric(8,2)
+    --
+    + user() : User
+    + session() : Session
+    + tickets() : Ticket[]
+}
+
+class "User" as users {
+    # id : bigint <<PK>>
+    # name : varchar(255)
+    # email : varchar(255)
+    # email_verified_at : timestamp
+    # password : varchar(255)
+    # remember_token : varchar(100)
+    --
+    + purchases() : Purchase[]
+}
+
+class "TicketType" as ticket_types {
+    # id : bigint <<PK>>
+    # name : varchar(255)
+    # price : numeric(8,2)
+    --
+    + tickets() : Ticket[]
+}
+
+class "Ticket" as tickets {
+    # id : bigint <<PK>>
+    # purchase_id : bigint <<FK>>
+    # type_id : bigint <<FK>>
+    --
+    + purchase() : Purchase
+    + type() : TicketType
+}
+
+events }|--|| categories : "category_id"
+events }|--|| venues : "venue_id"
+sessions }|--|| events : "event_id"
+purchases }|--|| sessions : "session_id"
+purchases }|--|| users : "user_id"
+tickets }|--|| purchases : "purchase_id"
+tickets }|--|| ticket_types : "type_id"
+
+@enduml
