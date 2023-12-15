@@ -128,4 +128,28 @@ class HomePageTest extends TestCase
             $response->assertSee(e($event->description));
         }
     }
+
+    public function testHomePageDisplaysEventsWithCorrectCheckCategory(){
+        $category = 190;
+
+        // Simular una búsqueda con filtro
+        $response = $this->get("/?filtro=ciudad&search=a&categoria={$category}");
+
+        $response->assertStatus(200);
+
+        // Verificar que la página contiene eventos que cumplen con el filtro
+        $q = Event::with(['category', 'venue', 'sessions.purchases.tickets.type'])
+          ->whereIn('category_id', function ($q) use ($category) {
+            $q->select('id')
+                ->from('categories')
+                ->where('name', 'LIKE', "{$category}");
+        });
+
+            $events = $q->orderBy('event_date')->take(env('PAGINATION_LIMIT'));
+
+        foreach ($events as $event) {
+            $response->assertSee(e($event->name));
+            $response->assertSee(e($event->description));
+        }
+    }
 }
