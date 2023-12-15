@@ -40,6 +40,7 @@ class HomePageTest extends TestCase
                 $response->assertSee(e($event->event_date), false);
                 $response->assertSee(e($event->venue->name), false);
 
+
                 // Calcular el precio mínimo esperado y aserciones
                 $expectedLowestPrice = $event->sessions->flatMap(function ($session) {
                     return $session->purchases->flatMap(function ($purchase) {
@@ -55,6 +56,76 @@ class HomePageTest extends TestCase
             } else {
                 $page++;
             }
+        }
+    }
+
+    public function testHomePageDisplaysEventsWithCorrectCheckFilterForCity()
+    {
+        $city = "a";
+        // Simular una búsqueda con filtro y paginación
+        $response = $this->get("/?filtro=ciudad&search={$city}");
+
+        $response->assertStatus(200);
+
+        // Verificar que la página contiene eventos que cumplen con el filtro
+        $q = Event::with(['category', 'venue', 'sessions.purchases.tickets.type'])
+            ->whereIn('venue_id', function ($subquery) use ($city) {
+                $subquery->select('id')
+                    ->from('venues')
+                    ->where('location', 'ILIKE', "%{$city}%");
+            });
+
+        $events = $q->orderBy('event_date')->take(env('PAGINATION_LIMIT'));
+
+        foreach ($events as $event) {
+            $response->assertSeeText(e($event->name));
+            $response->assertSee(e($event->description));
+        }
+    }
+
+    public function testHomePageDisplaysEventsWithCorrectCheckFilterForEvent()
+    {
+        $eventTitle = "sed";
+
+        // Simular una búsqueda con filtro
+        $response = $this->get("/?filtro=evento&search={$eventTitle}");
+
+        $response->assertStatus(200);
+
+        // Verificar que la página contiene eventos que cumplen con el filtro
+        $q = Event::with(['category', 'venue', 'sessions.purchases.tickets.type'])
+            ->where('name', 'ILIKE', "%{$eventTitle}%");
+
+            $events = $q->orderBy('event_date')->take(env('PAGINATION_LIMIT'));
+
+        foreach ($events as $event) {
+            $response->assertSee(e($event->name));
+            $response->assertSee(e($event->description));
+        }
+    }
+
+    public function testHomePageDisplaysEventsWithCorrectCheckFilterForVenue()
+    {
+        $venue = "legros";
+
+        // Simular una búsqueda con filtro
+        $response = $this->get("/?filtro=ciudad&search={$venue}");
+
+        $response->assertStatus(200);
+
+        // Verificar que la página contiene eventos que cumplen con el filtro
+        $q = Event::with(['category', 'venue', 'sessions.purchases.tickets.type'])
+            ->whereIn('venue_id', function ($subquery) use ($venue) {
+                $subquery->select('id')
+                    ->from('venues')
+                    ->where('name', 'ILIKE', "%{$venue}%");
+            });
+
+            $events = $q->orderBy('event_date')->take(env('PAGINATION_LIMIT'));
+
+        foreach ($events as $event) {
+            $response->assertSee(e($event->name));
+            $response->assertSee(e($event->description));
         }
     }
 }
