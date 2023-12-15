@@ -46,7 +46,6 @@
                         <span class="card-price">Des de {{ $event->lowestTicketPrice() }}€</span>
                     </div>
                 </div>
-            </div>
             </a>
         @endforeach
     </div>

@@ -59,25 +59,26 @@ class HomePageTest extends TestCase
         }
     }
 
-    public function testHomePageDisplaysEventsWithCorrectCheckFilterForCity(){
+    public function testHomePageDisplaysEventsWithCorrectCheckFilterForCity()
+    {
         $city = "a";
-
-        // Simular una búsqueda con filtro
+        // Simular una búsqueda con filtro y paginación
         $response = $this->get("/?filtro=ciudad&search={$city}");
 
         $response->assertStatus(200);
 
         // Verificar que la página contiene eventos que cumplen con el filtro
-        $events = Event::with(['category', 'venue', 'sessions.purchases.tickets.type'])
+        $q = Event::with(['category', 'venue', 'sessions.purchases.tickets.type'])
             ->whereIn('venue_id', function ($subquery) use ($city) {
                 $subquery->select('id')
                     ->from('venues')
                     ->where('location', 'ILIKE', "%{$city}%");
-            })->get();
+            });
 
+        $events = $q->orderBy('event_date')->take(env('PAGINATION_LIMIT'));
 
         foreach ($events as $event) {
-            $response->assertSee(e($event->name));
+            $response->assertSeeText(e($event->name));
             $response->assertSee(e($event->description));
         }
     }
@@ -92,8 +93,10 @@ class HomePageTest extends TestCase
         $response->assertStatus(200);
 
         // Verificar que la página contiene eventos que cumplen con el filtro
-        $events = Event::with(['category', 'venue', 'sessions.purchases.tickets.type'])
-            ->where('name', 'ILIKE', "%{$eventTitle}%")->get();
+        $q = Event::with(['category', 'venue', 'sessions.purchases.tickets.type'])
+            ->where('name', 'ILIKE', "%{$eventTitle}%");
+
+            $events = $q->orderBy('event_date')->take(env('PAGINATION_LIMIT'));
 
         foreach ($events as $event) {
             $response->assertSee(e($event->name));
@@ -101,7 +104,8 @@ class HomePageTest extends TestCase
         }
     }
 
-    public function testHomePageDisplaysEventsWithCorrectCheckFilterForVenue(){
+    public function testHomePageDisplaysEventsWithCorrectCheckFilterForVenue()
+    {
         $venue = "legros";
 
         // Simular una búsqueda con filtro
@@ -110,18 +114,18 @@ class HomePageTest extends TestCase
         $response->assertStatus(200);
 
         // Verificar que la página contiene eventos que cumplen con el filtro
-        $events = Event::with(['category', 'venue', 'sessions.purchases.tickets.type'])
+        $q = Event::with(['category', 'venue', 'sessions.purchases.tickets.type'])
             ->whereIn('venue_id', function ($subquery) use ($venue) {
                 $subquery->select('id')
                     ->from('venues')
                     ->where('name', 'ILIKE', "%{$venue}%");
-            })->get();
+            });
 
+            $events = $q->orderBy('event_date')->take(env('PAGINATION_LIMIT'));
 
         foreach ($events as $event) {
             $response->assertSee(e($event->name));
             $response->assertSee(e($event->description));
         }
     }
-
 }

@@ -48,6 +48,8 @@ class HomeController extends Controller
         $eventsPerPage = config('app.events_per_page', env('PAGINATION_LIMIT', 10));
         $events = $query->orderBy('event_date')->paginate($eventsPerPage);
 
+        $events->appends($request->except('page'));
+
         return view('home', compact('events', 'selectedFiltro', 'searchTerm'));
     }
 }
