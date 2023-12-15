@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 
 class Event extends Model
 {
@@ -42,5 +43,9 @@ class Event extends Model
         ]);
 
         return $lowestPrice;
+    }
+
+            public function scopeNameEvent(Builder $query, string $name){
+        return $query->where('name', 'ILIKE', "%{$name}%");
     }
 }
