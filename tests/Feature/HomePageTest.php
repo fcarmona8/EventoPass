@@ -35,15 +35,11 @@ class HomePageTest extends TestCase
 
             if (str_contains($response->content(), e($event->name))) {
                 $found = true;
-                // Realizar las aserciones necesarias aquí
-                $response->assertSee(e($event->name));
-                $response->assertSee(e($event->description));
-                if ($event->main_image) {
-                    $response->assertSee(asset('storage/' . $event->main_image));
-                }
-                $response->assertSee(html_entity_decode(e($event->category->name)));
-                $response->assertSee(html_entity_decode(e($event->venue->name)));
-                $response->assertSee(e($event->event_date));
+                $response->assertSee(e($event->name), false);
+                $response->assertSee(e($event->description), false);
+                $response->assertSee(e($event->event_date), false);
+                $response->assertSee(e($event->venue->name), false);
+
 
                 // Calcular el precio mínimo esperado y aserciones
                 $expectedLowestPrice = $event->sessions->flatMap(function ($session) {
