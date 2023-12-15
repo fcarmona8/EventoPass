@@ -4,11 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
     public function index(Request $request)
     {
+        $categories = Category::pluck('name', 'id');
+        $categories = ['todas' => 'Totes'] + $categories->toArray();
+        $selectedCategoria = $request->input('categoria', 'todas');
+        
+
         $query = Event::with('category', 'venue');
 
         // Aplicar los filtros
@@ -17,7 +23,7 @@ class HomeController extends Controller
             $filtro = $request->get('filtro');
             $query->where(function ($q) use ($filtro, $searchTerm) {
                 if ($filtro === 'evento') {
-                    $q->where('name', 'ILIKE', "%{$searchTerm}%"); 
+                    $q->nameEvent("{$searchTerm}");
                 }elseif($filtro === 'ciudad'){
                     $q->whereIn('venue_id', function ($subquery) use ($searchTerm) {
                         $subquery->select('id')
@@ -33,12 +39,14 @@ class HomeController extends Controller
                 }
             });
         }
-        
 
-        if ($request->filled('category')) {
-            $category = $request->get('category');
-            $query->whereHas('category', function ($q) use ($category) {
-                $q->where('name', $category);
+        if($selectedCategoria !== 'todas'){
+            
+            $selectedCategoriaName = Category::find($selectedCategoria)->name;
+            $query->whereIn('category_id', function ($q) use ($selectedCategoriaName) {
+                $q->select('id')
+                    ->from('categories')
+                    ->where('name', 'LIKE', "{$selectedCategoriaName}");
             });
         }
 
@@ -50,6 +58,6 @@ class HomeController extends Controller
 
         $events->appends($request->except('page'));
 
-        return view('home', compact('events', 'selectedFiltro', 'searchTerm'));
+        return view('home', compact('events', 'selectedFiltro', 'searchTerm', 'categories', 'selectedCategoria'));
     }
 }
