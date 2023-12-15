@@ -2,8 +2,9 @@
 .grid-container {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 10px;
-    padding: 10px;
+    gap: 20px;
+    padding: 0 10px 10px 10px;
+
 }
 
 .card {
@@ -22,6 +23,34 @@
 .card-link{
     text-decoration: none;
     color: black;
+}
+
+.filtro, input{
+    padding: 3px;
+    background-color: #C9B7A5;
+    margin: 0px 5px;
+}
+
+input{
+    margin: 0 10px;
+}
+
+label{
+    padding: 3px;
+}
+
+.iconoLupa{
+    font-size: 10px;
+}
+
+.contenedorFiltro{
+    width: 98%;
+    margin: 2%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+    overflow-y: hidden;
 }
 
 .card-link:hover{
@@ -82,7 +111,17 @@
         gap: 2%;
         padding: 2% 10%;
     }
-    
+
+    .iconoLupa, .filtro, input, label{
+        font-size: 16px;
+    }
+    label{
+        padding: 10px 5px;
+    }
+    input{
+        width: 50%
+    }
+
     .card:hover {
         box-shadow: 0 7px 10px rgba(0,0,0,0.3);
         transform: scale(1.06);
@@ -104,9 +143,5 @@
         font-size: 14px;
     }
 
-}
-
-.paginacion{
-    height: 2%;
 }
 
