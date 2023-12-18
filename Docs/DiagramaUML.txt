@@ -21,6 +21,7 @@ class "Event" as events {
     + venue() : Venue
     + sessions() : Session[]
     + lowestTicketPrice() : numeric
+    + scopeNameEvent(query: Builder, name: string)
 }
 
 class "Venue" as venues {
