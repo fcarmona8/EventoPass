@@ -28,21 +28,34 @@ class Event extends Model
         return $this->hasMany(Session::class);
     }
 
-
     public function lowestTicketPrice()
     {
-        $lowestPrice = $this->sessions()
-                            ->join('purchases', 'sessions.id', '=', 'purchases.session_id')
-                            ->join('tickets', 'purchases.id', '=', 'tickets.purchase_id')
-                            ->join('ticket_types', 'tickets.type_id', '=', 'ticket_types.id')
-                            ->min('ticket_types.price');
+        try {
+            $lowestPrice = $this->sessions()
+                                ->join('purchases', 'sessions.id', '=', 'purchases.session_id')
+                                ->join('tickets', 'purchases.id', '=', 'tickets.purchase_id')
+                                ->join('ticket_types', 'tickets.type_id', '=', 'ticket_types.id')
+                                ->min('ticket_types.price');
 
-        Log::info('Consulta de precio más bajo realizada en el modelo Event', [
-            'event_id' => $this->id,
-            'lowest_price' => $lowestPrice
-        ]);
+            return $lowestPrice;
+        } catch (\Exception $e) {
+            Log::error('Error en la consulta de precio más bajo en el modelo Event', [
+                'event_id' => $this->id,
+                'error_message' => $e->getMessage()
+            ]);
 
-        return $lowestPrice;
+        }
+    }
+
+    public function scopeNameEvent(Builder $query, string $name){
+        try {
+            return $query->where('name', 'ILIKE', "%{$name}%");
+        } catch (\Exception $e) {
+            Log::error('Error en la función scopeNameEvent en el modelo Event', [
+                'name' => $name,
+                'error_message' => $e->getMessage()
+            ]);
+        }
     }
 
             public function scopeNameEvent(Builder $query, string $name){

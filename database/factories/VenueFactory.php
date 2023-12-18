@@ -12,8 +12,8 @@ class VenueFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->company,
-            'location' => $this->faker->address,
+            'name' => $this->faker->randomElement(['Tower', 'Building', 'Plaza', 'Center', 'Complex']),
+            'location' => $this->faker->city,
         ];
     }
 }

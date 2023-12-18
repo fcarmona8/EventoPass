@@ -134,7 +134,6 @@ class HomePageTest extends TestCase
 
         // Simular una búsqueda con filtro
         $response = $this->get("/?filtro=recinto&search=a&categoria={$category}");
-
         $response->assertStatus(200);
 
         // Verificar que la página contiene eventos que cumplen con el filtro
