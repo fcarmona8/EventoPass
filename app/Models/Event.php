@@ -57,8 +57,4 @@ class Event extends Model
             ]);
         }
     }
-
-            public function scopeNameEvent(Builder $query, string $name){
-        return $query->where('name', 'ILIKE', "%{$name}%");
-    }
 }
