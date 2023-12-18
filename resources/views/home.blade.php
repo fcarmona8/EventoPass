@@ -3,7 +3,6 @@
 @section('content')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-
     <form action="{{ route('home') }}" method="GET">
         <div class="contenedorFiltro">
             <label for="filtro">Buscar per:</label>
