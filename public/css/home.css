@@ -25,34 +25,6 @@
     color: black;
 }
 
-.filtro, input{
-    padding: 3px;
-    background-color: #C9B7A5;
-    margin: 0px 5px;
-}
-
-input{
-    margin: 0 10px;
-}
-
-label{
-    padding: 3px;
-}
-
-.iconoLupa{
-    font-size: 10px;
-}
-
-.contenedorFiltro{
-    width: 98%;
-    margin: 2%;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: row;
-    overflow-y: hidden;
-}
-
 .card-link:hover{
     text-decoration: none;
 }
@@ -87,9 +59,14 @@ label{
 
 .card h3 {
     font-size: 16px;
-    min-height: 59px;
+    height: 59px;
     margin: 0;
     font-weight: 600;
+    overflow: hidden; /* Oculta el contenido que se desborda */
+    text-overflow: ellipsis; /* Muestra tres puntos (...) cuando el texto se corta */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Establece el número de líneas que se mostrarán */
+    -webkit-box-orient: vertical;
 }
 .card p {
     font-size: 12px;
@@ -103,6 +80,130 @@ label{
     font-size: 13px;
 }
 
+.barraLateral {
+    position: fixed;
+    top: 0;
+    right: -350px; /* Inicialmente oculto fuera del área visible */
+    width: 350px; /* Ajustar el ancho a la pantalla */
+    height: 100%;
+    background-color: #B4A289;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease-in-out;
+    overflow-y: auto; /* Añadido para permitir desplazamiento en la barra lateral */
+}
+
+.barraLateral form {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#cerrarFiltros {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    background-color: #B4A289;
+}
+.iconoCerrar{
+    font-size: 26px;
+}
+
+.contenedorFiltro {
+    margin-bottom: 20px;
+}
+
+.contenedorFiltro label {
+    display: block;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.contenedorFiltro select,
+.contenedorFiltro input {
+    width: 110px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.contenedorFiltro input{
+    width: 100%;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    font-size: 18px;
+}
+
+.filtro{
+    font-size: 18px;
+}
+.iconoLupa {
+    font-family: 'Lato', sans-serif;
+    width: 50%;
+    padding: 10px;
+    font-size: 18px;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.iconoLupa span {
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    margin-left: 6px;
+}
+
+.filterForm{
+    margin-top: 100px;
+    font-size: 18px;
+}
+
+.filterForm label{
+    font-size: 18px;
+}
+
+.contenedor-buscador{
+    display: flex;
+}
+
+#categoria {
+    border-radius: 10px;
+    width: 100%;
+}
+
+.contenedor-boton-buscar{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+#mostrarFiltros {
+    margin-top: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid rgb(119, 119, 119);
+    color: rgb(43, 43, 43);
+    background-color: white;
+    border-radius: 10px;
+    float: right;
+    margin-right: 20px;
+}
+
+.pagination-info{
+    margin-top: 90px;
+}
+
+.iconoFiltrar{
+    margin-right: 5px;
+    color: rgb(66, 66, 66);
+}
+
 
 /* Media query para pantallas más grandes */
 @media (min-width: 768px) {
@@ -112,7 +213,7 @@ label{
         padding: 2% 10%;
     }
 
-    .iconoLupa, .filtro, input, label{
+    .filtro, input, label{
         font-size: 16px;
     }
     label{
@@ -127,6 +228,9 @@ label{
         transform: scale(1.06);
         cursor: pointer;
       }
+    .card {
+        height: 210px;
+    }
 
       .card img {
         width: 180px;
@@ -134,7 +238,7 @@ label{
 
     .card h3 {
         font-size: 18px;
-        min-height: 59px;
+        min-height: 70px;
         margin-top: 15px;
         font-weight: 600;
     }
@@ -143,5 +247,103 @@ label{
         font-size: 14px;
     }
 
+    #cerrarFiltros {
+        display: none;
+    }
+
+    #mostrarFiltros {
+        display: none;
+    }
+
+    .filterForm{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .barraLateral {
+        position: static; 
+        width: auto;
+        height: auto;
+        background-color: initial; 
+        box-shadow: none; 
+        transition: none;
+        width: 80%;
+        margin-left: 10%;
+    }
+
+    .barraLateral form {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .contenedorFiltro {
+        display: flex;
+        align-items: center;
+        margin: 0;
+    }
+
+    .contenedorFiltro input {
+        width: 25vw;
+    }
+
+    .contenedor-boton-buscar {
+        display: flex;
+        margin-left: auto;
+        align-items: center;
+        border-radius: 15px;
+        justify-content: end;
+        width: 70%;
+        margin-top: 0px;
+    }
+
+    .contenedorFiltro select,
+    .contenedorFiltro input {
+        padding: 10px;
+        margin-bottom: 0px;
+        border: 1px solid #ddd;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    .contenedorFiltro input{
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+        font-size: 18px;
+    }
+
+    .contenedorFiltro label{
+        min-width: min-content;
+        text-wrap: nowrap;
+        color: #555;
+        margin-bottom: 0px;
+    }
+
+    #categoria {
+        border-radius: 10px;
+        width: 10vw;
+    }
+
+    .contenedor-buscador{
+        display: flex;
+    }
+
+    #contenedor-filtro-categoria{
+        margin-left: 1vw;
+        margin-right: 10px;
+    }
+
+    .iconoLupa {
+        font-size: 16px;
+        min-width: min-content;
+        text-wrap: nowrap;
+        padding: 10px 30px;
+    }
 }
+
+
+
+
+
 
