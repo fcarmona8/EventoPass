@@ -60,7 +60,7 @@ return [
 
         'single' => [
             'driver' => 'single',
-            'path' => storage_path('logs/models&controllers.log'),
+            'path' => storage_path('logs/models_controllers.log'),
             'level' => env('LOG_LEVEL', 'debug'),
             'replace_placeholders' => true,
         ],
