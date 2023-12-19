@@ -1,5 +1,5 @@
 = EventoPass
-:author: Alfred Perez, Ferran Carmona
+:author: Alfred Perez, Ferran Carmona, Guiu Puigantell
 :doctype: book
 :chapter-label:
 :sectnums:
@@ -169,8 +169,75 @@ Els estàndards de disseny inclouen les especificacions per a marges, espaiat, a
 == Manual d'Instal·lació/Distribució
 Pas a pas detallat de com instal·lar i distribuir l'aplicació.
 
+=== Diagrama de xarxa:
+image::images/diagramaServerIsard.png[Diagrama xarxa isard,800,600]
+
+=== Instal·lació del apache2:
+Fem un update -> sudo apt update
+
+Instal·lem l'apache2 -> sudo apt install apache2
+
+I el podem engegar -> sudo systemctl enable apache2
+
+=== Creació del docker:
+Instal·lem les dependencies del Docker -> sudo apt install apt-transport-https ca-certificates curl gnupg lsb-release
+
+Afegim la clau GPG oficial del Docker -> curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+Configurem el repositio de Docker -> echo "deb [signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+Fem un update -> sudo apt update
+
+Instal·lem el Docker CE -> sudo apt install docker-ce docker-ce-cli containerd.io
+
+Ahora descargamos la imagen del Postgres -> docker pull postgres:latest
+
+Creamos el contenedor -> docker run -d --name mi_postgres -e POSTGRES_PASSWORD=mi_contraseña -e POSTGRES_USER=mi_usuario -e POSTGRES_DB=mi_basededatos -v nombre_del_volumen:/var/lib/postgresql/data -p 5432:5432 postgres:latest
+
+.En el teu fitxer .env, edita les següents líneas per a conectarte a PostgreSQL:
+
+[source,ini]
+----
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=baseDeDatos
+DB_USERNAME=postgres
+DB_PASSWORD=1234
+----
+
+=== Obrir servidor web:
+
+Fiquem el nostre projecte a /var/www/html
+
+Creem un fitxer de configuració del apache2 -> /etc/apache2/sites-available/nom.conf
+
+Configures el fitxer amb les teves rutes i ips:
+
+[source,apache]
+----
+<VirtualHost *:80>
+    ServerAdmin webmaster@tudominio.com
+    ServerName tudominio.com
+    DocumentRoot /var/www/html/tudominio/public
+
+    <Directory /var/www/html/tudominio>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+----
+
+Per ultim reiniciem el servei apache2 -> sudo systemctl restart apache2
+
 == Documentació de Permisos
 Descripció detallada dels permisos necessaris per a components, programes, contenidors, etc.
+
+Hem de donar permisos a la carpeta de storage amb aquestes dos comandes -> chmod -R 775 storage i chown -R www-data:www-data storage
 
 == Línies Futures
 Plantejaments sobre l'evolució futura del projecte.
