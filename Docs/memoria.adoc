@@ -237,6 +237,8 @@ Per ultim reiniciem el servei apache2 -> sudo systemctl restart apache2
 == Documentació de Permisos
 Descripció detallada dels permisos necessaris per a components, programes, contenidors, etc.
 
+Hem de donar permisos a la carpeta de storage amb aquestes dos comandes -> chmod -R 775 storage i chown -R www-data:www-data storage
+
 == Línies Futures
 Plantejaments sobre l'evolució futura del projecte.
 
