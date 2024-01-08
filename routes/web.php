@@ -1,9 +1,9 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CercadorController;
 
 // Página principal
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/cercador', [CercadorController::class, 'index'])->name('cercador');
 
 // Home del Promotor
 Route::get('/tickets/promoterhome', function () {

@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Support\Facades\Log;
 
-class HomeController extends Controller
+class cercadorController extends Controller
 {
     public function index(Request $request)
     {
-        Log::info('Inicio de solicitud a HomeController@index', ['request_params' => $request->all()]);
+        Log::info('Inicio de solicitud a cercadorController@index', ['request_params' => $request->all()]);
 
         try {
             $categories = Category::pluck('name', 'id');
@@ -59,7 +59,7 @@ class HomeController extends Controller
             $eventsPerPage = config('app.events_per_page', env('PAGINATION_LIMIT', 10));
             $events = $query->orderBy('event_date')->paginate($eventsPerPage);
 
-            Log::info('Consulta completada en HomeController@index', [
+            Log::info('Consulta completada en cercadorController@index', [
                 'selectedFiltro' => $selectedFiltro,
                 'searchTerm' => $searchTerm,
                 'eventsPerPage' => $eventsPerPage
@@ -67,10 +67,10 @@ class HomeController extends Controller
 
             $events->appends($request->except('page'));
 
-            return view('home', compact('events', 'selectedFiltro', 'searchTerm', 'categories', 'selectedCategoria'));
+            return view('cercador', compact('events', 'selectedFiltro', 'searchTerm', 'categories', 'selectedCategoria'));
 
         } catch (\Exception $e) {
-            Log::error('Error en HomeController@index', [
+            Log::error('Error en cercadorController@index', [
                 'error_message' => $e->getMessage(),
                 'trace' => $e->getTraceAsString(),
             ]);

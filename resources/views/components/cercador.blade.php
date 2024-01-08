@@ -1,4 +1,4 @@
-<form action="{{ route('home') }}" method="GET">
+<form action="{{ route('cercador') }}" method="GET">
     <div class="contenedorFiltro">
         <label for="filtro">Buscar per:</label>
         <select id="filtro" name="filtro" class="filtro">
