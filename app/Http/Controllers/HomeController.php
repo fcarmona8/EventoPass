@@ -54,8 +54,8 @@ class HomeController extends Controller
                 });
             }
 
-            $selectedFiltro = $request->input('filtro');
-            $searchTerm = $request->input('search');
+            $selectedFiltro = $request->input('filtro') ?? '';
+            $searchTerm = $request->input('search') ?? '';
             $eventsPerPage = config('app.events_per_page', env('PAGINATION_LIMIT', 10));
             $events = $query->orderBy('event_date')->paginate($eventsPerPage);
 
