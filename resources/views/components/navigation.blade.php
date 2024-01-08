@@ -1,6 +1,6 @@
 @php
     $routes = [
-        'home' => 'Home',
+        'resultats' => 'resultats',
         'tickets.promoterhome' => 'Home Promotor',
         'tickets.showevent' => 'Mostrar Esdeveniment',
         'tickets.buytickets' => 'Comprar Entrades',
