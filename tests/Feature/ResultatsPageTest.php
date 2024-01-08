@@ -8,7 +8,7 @@ use App\Models\Event;
 use App\Models\Category;
 use App\Models\Venue;
 
-class HomePageTest extends TestCase
+class ResultatsPageTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -18,9 +18,9 @@ class HomePageTest extends TestCase
         $this->seed();
     }
 
-    public function testHomePageDisplaysEventsWithCorrectLowestTicketPrice()
+    public function testResultatsPageDisplaysEventsWithCorrectLowestTicketPrice()
     {
-        $response = $this->get('/');
+        $response = $this->get('/resultats');
 
         $response->assertStatus(200);
 
@@ -29,7 +29,7 @@ class HomePageTest extends TestCase
         $found = false;
 
         while (!$found) {
-            $response = $this->get('/?page=' . $page);
+            $response = $this->get('/resultats?page=' . $page);
 
             $response->assertStatus(200);
 
@@ -59,11 +59,11 @@ class HomePageTest extends TestCase
         }
     }
 
-    public function testHomePageDisplaysEventsWithCorrectCheckFilterForCity()
+    public function testResultatsPageDisplaysEventsWithCorrectCheckFilterForCity()
     {
         $city = "a";
         // Simular una búsqueda con filtro y paginación
-        $response = $this->get("/?filtro=ciudad&search={$city}");
+        $response = $this->get("/resultats?filtro=ciudad&search={$city}");
 
         $response->assertStatus(200);
 
@@ -83,12 +83,12 @@ class HomePageTest extends TestCase
         }
     }
 
-    public function testHomePageDisplaysEventsWithCorrectCheckFilterForEvent()
+    public function testResultatsPageDisplaysEventsWithCorrectCheckFilterForEvent()
     {
         $eventTitle = "sed";
 
         // Simular una búsqueda con filtro
-        $response = $this->get("/?filtro=evento&search={$eventTitle}");
+        $response = $this->get("/resultats?filtro=evento&search={$eventTitle}");
 
         $response->assertStatus(200);
 
@@ -104,12 +104,12 @@ class HomePageTest extends TestCase
         }
     }
 
-    public function testHomePageDisplaysEventsWithCorrectCheckFilterForVenue()
+    public function testResultatsPageDisplaysEventsWithCorrectCheckFilterForVenue()
     {
         $venue = "legros";
 
         // Simular una búsqueda con filtro
-        $response = $this->get("/?filtro=ciudad&search={$venue}");
+        $response = $this->get("/resultats?filtro=ciudad&search={$venue}");
 
         $response->assertStatus(200);
 
@@ -129,11 +129,11 @@ class HomePageTest extends TestCase
         }
     }
 
-    public function testHomePageDisplaysEventsWithCorrectCheckCategory(){
+    public function testResultatsPageDisplaysEventsWithCorrectCheckCategory(){
         $category = 190;
 
         // Simular una búsqueda con filtro
-        $response = $this->get("/?filtro=recinto&search=a&categoria={$category}");
+        $response = $this->get("/resultats?filtro=recinto&search=a&categoria={$category}");
         $response->assertStatus(200);
 
         // Verificar que la página contiene eventos que cumplen con el filtro
