@@ -33,7 +33,7 @@ image::images/DiagramaE-R.png[Diagrama d'Entitat-Relació,800,600]
 * `created_at`: data de creació, timestamp.
 * `updated_at`: data d'actualització, timestamp.
 
-==== Taula: Events
+=== Taula: Events
 * `id`: clau primària, bigint.
 * `name`: nom de l'esdeveniment, character varying(255).
 * `description`: descripció de l'esdeveniment, text.
@@ -77,7 +77,7 @@ image::images/DiagramaE-R.png[Diagrama d'Entitat-Relació,800,600]
 * `updated_at`: data d'actualització, timestamp.
 * `role_id`: clau forana a `roles`, bigint.
 
-==== Taula: Ticket_Types
+=== Taula: Ticket_Types
 * `id`: clau primària, bigint.
 * `name`: nom del tipus de tiquet, character varying(255).
 * `price`: preu, numeric(8,2).
