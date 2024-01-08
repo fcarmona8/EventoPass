@@ -1,14 +1,13 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ResetPasswordController;
-
+use App\Http\Controllers\ResultatsController;
 
 // Página principal
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/resultats', [ResultatsController::class, 'index'])->name('resultats');
 
 // Home del Promotor
 Route::get('/promotor/promoterhome', function () {
