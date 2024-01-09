@@ -64,4 +64,17 @@ class Event extends Model
             ]);
         }
     }
+    public function scopeCategoryEvent(Builder $query, int $category){
+        try {
+            $query->where('category', 'LIKE', "{$category}");
+
+            return $query::orderby("name")->take(5);
+        } catch (\Exception $e) {
+            Log::error('Error en la función scopeCategoryEvent en el modelo Event', [
+                'category' => $category,
+                'error_message' => $e->getMessage()
+            ]);
+        }
+    }
+    
 }

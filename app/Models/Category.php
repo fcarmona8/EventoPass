@@ -12,4 +12,9 @@ class Category extends Model
     
     protected $fillable = ['name'];
     public function events() { return $this->hasMany(Event::class); }
+
+    public function eventsWithLimit()
+    {
+        return $this->hasMany(Event::class)->take(env('SHOW_EVENTS_LIMIT', 5));
+    }
 }

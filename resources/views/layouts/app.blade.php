@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="shortcut icon" href="{{ asset('favicon/favicon.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/resultats.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <link href="{{ asset('css/pagination.css') }}" rel="stylesheet">
     <title>@yield('title')</title>

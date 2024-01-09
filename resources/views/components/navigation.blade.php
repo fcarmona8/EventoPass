@@ -1,6 +1,7 @@
 @php
     $routes = [
-        'resultats' => 'resultats',
+        'home' => 'Home',
+        'resultats' => 'Resultats',
         'tickets.promoterhome' => 'Home Promotor',
         'tickets.showevent' => 'Mostrar Esdeveniment',
         'tickets.buytickets' => 'Comprar Entrades',
@@ -12,7 +13,7 @@
 
 <nav>
     <ul>
-        <li><a href="{{ route('resultats') }}">Home</a></li>
+        <li><a href="{{ route('home') }}">Home</a></li>
 
         @auth
             @if (Auth::user()->role->name == 'administrador')
