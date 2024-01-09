@@ -9,11 +9,12 @@ class CreateTicketTypesTable extends Migration
     public function up()
     {
         Schema::create('ticket_types', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+            $table->bigIncrements('id');
+            $table->string('name', 255);
             $table->decimal('price', 8, 2);
+            $table->integer('available_tickets')->nullable();
             $table->timestamps();
-        });
+        });        
     }
 
     public function down()
