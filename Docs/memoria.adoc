@@ -27,78 +27,103 @@ El disseny de la base de dades per al portal web es basa en diverses taules inte
 
 image::images/DiagramaE-R.png[Diagrama d'Entitat-Relació,800,600]
 
-=== Taula: Categories
-* `id`: clau primària, bigint.
-* `name`: nom de la categoria, character varying(255).
-* `created_at`: data de creació, timestamp.
-* `updated_at`: data d'actualització, timestamp.
-
-=== Taula: Events
-* `id`: clau primària, bigint.
-* `name`: nom de l'esdeveniment, character varying(255).
-* `description`: descripció de l'esdeveniment, text.
-* `main_image`: imatge principal, character varying(255).
-* `category_id`: clau forana a `categories`, bigint.
-* `venue_id`: clau forana a `venues`, bigint.
-* `created_at`: data de creació, timestamp.
-* `updated_at`: data d'actualització, timestamp.
-* `event_date`: data de l'esdeveniment, date.
+== Taules de la Base de Dades
 
 === Taula: Venues
-* `id`: clau primària, bigint.
-* `name`: nom del recinte, character varying(255).
-* `location`: ubicació del recinte, text.
-* `created_at`: data de creació, timestamp.
-* `updated_at`: data d'actualització, timestamp.
-
-=== Taula: Sessions
-* `id`: clau primària, bigint.
-* `event_id`: clau forana a `events`, bigint.
-* `date_time`: data i hora de la sessió, timestamp.
-* `created_at`: data de creació, timestamp.
-* `updated_at`: data d'actualització, timestamp.
-
-=== Taula: Purchases
-* `id`: clau primària, bigint.
-* `user_id`: clau forana a `users`, bigint.
-* `session_id`: clau forana a `sessions`, bigint.
-* `total_price`: preu total, numeric(8,2).
-* `created_at`: data de creació, timestamp.
-* `updated_at`: data d'actualització, timestamp.
+* `id`: Clau primària, bigint.
+* `name`: Nom del recinte, character varying(255).
+* `location`: Ubicació del recinte, text.
+* `capacity`: Capacitat, integer, nullable.
+* `created_at`: Data de creació, timestamp.
+* `updated_at`: Data d'actualització, timestamp.
 
 === Taula: Users
-* `id`: clau primària, bigint.
-* `name`: nom de l'usuari, character varying(255).
-* `email`: correu electrònic, character varying(255).
-* `email_verified_at`: data de verificació del correu, timestamp.
-* `password`: contrasenya, character varying(255).
-* `remember_token`: token de recordatori, character varying(100).
-* `created_at`: data de creació, timestamp.
-* `updated_at`: data d'actualització, timestamp.
-* `role_id`: clau forana a `roles`, bigint.
+* `id`: Clau primària.
+* `name`: Nom de l'usuari.
+* `email`: Correu electrònic, únic.
+* `email_verified_at`: Data de verificació del correu, nullable.
+* `password`: Contrasenya.
+* `remember_token`: Token de recordatori.
+* `created_at`: Data de creació, timestamp.
+* `updated_at`: Data d'actualització, timestamp.
+* `role_id`: Clau forana a `roles`, bigint, nullable.
+
+=== Taula: Categories
+* `id`: Clau primària, bigint.
+* `name`: Nom de la categoria, character varying(255).
+* `created_at`: Data de creació, timestamp.
+* `updated_at`: Data d'actualització, timestamp.
+
+=== Taula: Events
+* `id`: Clau primària, bigint.
+* `name`: Nom de l'esdeveniment, character varying(255).
+* `description`: Descripció de l'esdeveniment, text.
+* `main_image`: Imatge principal, character varying(255).
+* `category_id`: Clau forana a `categories`, bigint.
+* `venue_id`: Clau forana a `venues`, bigint.
+* `event_date`: Data de l'esdeveniment, timestamp, nullable.
+* `max_capacity`: Aforament màxim, integer, nullable.
+* `video_link`: Enllaç a vídeo promocional, character varying(255), nullable.
+* `hidden`: Esdeveniment ocult, boolean, default false.
+* `created_at`: Data de creació, timestamp.
+* `updated_at`: Data d'actualització, timestamp.
+
+=== Taula: Sessions
+* `id`: Clau primària, bigint.
+* `event_id`: Clau forana a `events`, bigint.
+* `date_time`: Data i hora de la sessió, timestamp.
+* `online_sale_end_time`: Hora de finalització de la venda en línia, timestamp, nullable.
+* `created_at`: Data de creació, timestamp.
+* `updated_at`: Data d'actualització, timestamp.
 
 === Taula: Ticket_Types
-* `id`: clau primària, bigint.
-* `name`: nom del tipus de tiquet, character varying(255).
-* `price`: preu, numeric(8,2).
-* `created_at`: data de creació, timestamp.
-* `updated_at`: data d'actualització, timestamp.
+* `id`: Clau primària, bigint.
+* `name`: Nom del tipus de tiquet, character varying(255).
+* `price`: Preu, numeric(8,2).
+* `available_tickets`: Entrades disponibles, integer, nullable.
+* `created_at`: Data de creació, timestamp.
+* `updated_at`: Data d'actualització, timestamp.
+
+=== Taula: Purchases
+* `id`: Clau primària, bigint.
+* `user_id`: Clau forana a `users`, bigint.
+* `session_id`: Clau forana a `sessions`, bigint.
+* `total_price`: Preu total, numeric(8,2).
+* `created_at`: Data de creació, timestamp.
+* `updated_at`: Data d'actualització, timestamp.
 
 === Taula: Tickets
-* `id`: clau primària, bigint.
-* `purchase_id`: clau forana a `purchases`, bigint.
-* `type_id`: clau forana a `ticket_types`, bigint.
-* `created_at`: data de creació, timestamp.
-* `updated_at`: data d'actualització, timestamp.
+* `id`: Clau primària, bigint.
+* `purchase_id`: Clau forana a `purchases`, bigint.
+* `type_id`: Clau forana a `ticket_types`, bigint.
+* `created_at`: Data de creació, timestamp.
+* `updated_at`: Data d'actualització, timestamp.
 
-=== Relacions
-* La taula `events` està relacionada amb `categories` a través de `category_id`.
-* La taula `events` està relacionada amb `venues` a través de `venue_id`.
-* La taula `sessions` està relacionada amb `events` a través de `event_id`.
-* La taula `purchases` està relacionada amb `sessions` a través de `session_id` i amb `users` a través de `user_id`.
-* La taula `tickets` està relacionada amb `purchases` a través de `purchase_id` i amb `ticket_types` a través de `type_id`.
+=== Taula: Roles
+* `id`: Clau primària.
+* `name`: Nom, únic.
+* `created_at`: Data de creació, timestamp.
+* `updated_at`: Data d'actualització, timestamp.
 
-Nota: Les relacions són del tipus "foreign key" (clau forana), que connecten les taules d'una manera que reflecteix la lògica del negoci.
+=== Taula: Event_Images
+* `id`: Clau primària, bigint.
+* `event_id`: Clau forana a `events`, bigint.
+* `image_url`: URL de la imatge.
+* `is_main`: Imatge principal, boolean, default false.
+* `created_at`: Data de creació, timestamp.
+* `updated_at`: Data d'actualització, timestamp.
+
+=== Taula: Addresses
+* `id`: Clau primària, bigint.
+* `province`: Província, character varying(255).
+* `city`: Ciutat, character varying(255).
+* `postal_code`: Codi postal, character varying(255).
+* `venue_name`: Nom del local, character varying(255).
+* `capacity`: Capacitat, integer.
+* `user_id`: Clau forana a `users`, bigint.
+* `created_at`: Data de creació, timestamp.
+* `updated_at`: Data d'actualització, timestamp.
+
 
 image::images/DiagramaUML.png[Diagrama UML,1000,800]
 
