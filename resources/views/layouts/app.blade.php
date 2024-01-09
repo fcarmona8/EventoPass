@@ -14,6 +14,9 @@
 <body class="w3-content">
 
     <header>
+        @auth
+            <p>Bienvenido, {{ Auth::user()->name }} | <a href="{{ route('logout') }}">Salir</a></p>
+        @endauth
         <h1 id="title">EventoPass</h1>
         <img id="logo" src="{{ asset('logo/logo.png') }}" alt="Logo de la Aplicación">
     </header>
