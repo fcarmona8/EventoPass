@@ -1,4 +1,3 @@
-
 @startuml
 
 class "Category" as categories {
@@ -16,6 +15,9 @@ class "Event" as events {
     # event_date : date
     # category_id : bigint <<FK>>
     # venue_id : bigint <<FK>>
+    # max_capacity : integer
+    # video_link : varchar(255)
+    # hidden : boolean
     --
     + category() : Category
     + venue() : Venue
@@ -28,6 +30,7 @@ class "Venue" as venues {
     # id : bigint <<PK>>
     # name : varchar(255)
     # location : text
+    # capacity : integer
     --
     + events() : Event[]
 }
@@ -36,6 +39,7 @@ class "Session" as sessions {
     # id : bigint <<PK>>
     # event_id : bigint <<FK>>
     # date_time : timestamp
+    # online_sale_end_time : timestamp
     --
     + event() : Event
     + purchases() : Purchase[]
@@ -59,14 +63,17 @@ class "User" as users {
     # email_verified_at : timestamp
     # password : varchar(255)
     # remember_token : varchar(100)
+    # role_id : bigint <<FK>>
     --
     + purchases() : Purchase[]
+    + addresses() : Address[]
 }
 
 class "TicketType" as ticket_types {
     # id : bigint <<PK>>
     # name : varchar(255)
     # price : numeric(8,2)
+    # available_tickets : integer
     --
     + tickets() : Ticket[]
 }
@@ -80,6 +87,33 @@ class "Ticket" as tickets {
     + type() : TicketType
 }
 
+class "Role" as roles {
+    # id : bigint <<PK>>
+    # name : varchar(255)
+    --
+}
+
+class "Event_Image" as event_images {
+    # id : bigint <<PK>>
+    # event_id : bigint <<FK>>
+    # image_url : varchar(255)
+    # is_main : boolean
+    --
+    + event() : Event
+}
+
+class "Address" as addresses {
+    # id : bigint <<PK>>
+    # province : varchar(255)
+    # city : varchar(255)
+    # postal_code : varchar(255)
+    # venue_name : varchar(255)
+    # capacity : integer
+    # user_id : bigint <<FK>>
+    --
+    + user() : User
+}
+
 events }|--|| categories : "category_id"
 events }|--|| venues : "venue_id"
 sessions }|--|| events : "event_id"
@@ -87,5 +121,8 @@ purchases }|--|| sessions : "session_id"
 purchases }|--|| users : "user_id"
 tickets }|--|| purchases : "purchase_id"
 tickets }|--|| ticket_types : "type_id"
+users }|--|| roles : "role_id"
+event_images }|--|| events : "event_id"
+addresses }|--|| users : "user_id"
 
 @enduml
