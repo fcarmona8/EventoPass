@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="shortcut icon" href="{{ asset('favicon/favicon.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
@@ -15,8 +16,13 @@
 
     <header>
         @auth
-            <p>Bienvenido, {{ Auth::user()->name }} | <a href="{{ route('logout') }}">Salir</a></p>
+            <div class="user-info">
+                <i class="fa fa-user"></i>
+                <p>Bienvenido, {{ Auth::user()->name }}</p>
+                <a href="{{ route('logout') }}"><i class="fa fa-sign-out-alt"></i> Salir</a>
+            </div>
         @endauth
+
         <h1 id="title">EventoPass</h1>
         <img id="logo" src="{{ asset('logo/logo.png') }}" alt="Logo de la Aplicación">
     </header>
