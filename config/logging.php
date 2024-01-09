@@ -58,6 +58,30 @@ return [
             'ignore_exceptions' => false,
         ],
 
+        'reset_password' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/reset_password.log'),
+            'level' => 'debug',
+        ],
+
+        'forgot_password' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/forgot_password.log'),
+            'level' => 'debug',
+        ],
+
+        'login' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/login.log'),
+            'level' => 'debug',
+        ],
+
+        'logout' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/logout.log'),
+            'level' => 'debug',
+        ],
+
         'single' => [
             'driver' => 'single',
             'path' => storage_path('logs/models_controllers.log'),

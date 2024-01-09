@@ -1,5 +1,3 @@
-{{-- resources/views/auth/passwords/reset.blade.php --}}
-
 <!DOCTYPE html>
 <html lang="en">
 
