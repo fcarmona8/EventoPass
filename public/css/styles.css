@@ -59,8 +59,8 @@ footer {
 
 /* Encabezados */
 #title {
-    position: fixed;
-    left: 8%;
+    position: relative;
+    left: 3%;
     color: var(--titulos);
 }
 
@@ -157,7 +157,7 @@ a:hover, .link-highlight:hover {
     top: 11%;
     position: relative;
     display: flex;
-    left: 79%;
+    margin-left: auto;
     align-items: center;
     font-family: 'Lato', sans-serif;
     background-color: var(--fondo-y-contraste);
@@ -195,13 +195,13 @@ a:hover, .link-highlight:hover {
         display: flex;
         grid-template-columns: 1fr auto;
         align-items: center;
-        padding: 1rem 2rem;
+        padding: 0.5rem 1rem;
     }
 
     #logo {
-        position: fixed;
+        position: relative;
         width: 100px;
-        margin-right: 1rem;
+        margin-right: 0.5rem;
         left: 1%;
     }
 
