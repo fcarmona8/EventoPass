@@ -44,8 +44,8 @@ class ResetPasswordController extends Controller
         // Obtiene la duración de caducidad desde .env, o usa un valor predeterminado
         $tokenLifetime = env('PASSWORD_RESET_EXPIRATION', 60);
 
+        // El token no existe o ha caducado
         if (!$tokenData || Carbon::parse($tokenData->created_at)->addMinutes($tokenLifetime)->isPast()) {
-            // El token no existe o ha caducado
             return back()->withErrors(['email' => 'El enlace de restablecimiento de contraseña ha caducado o es inválido.']);
         }
 
