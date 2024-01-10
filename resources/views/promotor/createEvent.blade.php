@@ -1,10 +1,10 @@
 <!-- resources/views/tickets/createEvent.blade.php -->
-@extends('layouts.app') <!-- Asegúrate de tener una plantilla base, si no, crea una -->
+@extends('layouts.app')
 
 @section('content')
     <h2 class="titol-crear-event">Crear Esdeveniment</h2>
 
-    <form class="event-create" method="post" enctype="multipart/form-data">
+    <form class="event-create" method="post" action="{{ route('event.store') }}" enctype="multipart/form-data">
         @csrf
 
         <h3 class="h3-event">Informacio Principal</h3>

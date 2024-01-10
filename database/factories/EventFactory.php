@@ -16,7 +16,6 @@ class EventFactory extends Factory
         return [
             'name' => $this->faker->sentence,
             'description' => $this->faker->paragraph,
-            'category_id' => Category::factory(),
             'venue_id' => Venue::factory(),
             'main_image' => $this->faker->imageUrl(640, 480, 'events'),
             'event_date' => $this->faker->date()

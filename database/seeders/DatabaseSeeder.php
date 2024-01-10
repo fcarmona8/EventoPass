@@ -11,15 +11,15 @@ use App\Models\Ticket;
 use App\Models\Session;
 use App\Models\Purchase;
 use App\Models\User;
-use App\Models\Role; // Asegúrate de importar el modelo de Role
+use App\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
     public function run()
     {
         // Crea algunos roles
-        $promoterRole = Role::factory()->promoter()->create(); // Supongamos que esto crea el rol con ID 1
-        $adminRole = Role::factory()->administrator()->create(); // Supongamos que esto crea el rol con ID 2
+        $promoterRole = Role::factory()->promoter()->create();
+        $adminRole = Role::factory()->administrator()->create();
 
         // Crea algunos usuarios específicos
         User::factory()->promoter()->create(['role_id' => $promoterRole->id]);
@@ -27,11 +27,26 @@ class DatabaseSeeder extends Seeder
         User::factory()->promoterThree()->create(['role_id' => $promoterRole->id]);
         User::factory()->promoterFour()->create(['role_id' => $promoterRole->id]);
 
-        // El resto de tus factories...
-        Category::factory()->count(10)->create();
+        // Crea categorías específicas y recupera sus ID
+        $concertsId = Category::factory()->concerts()->create()->id;
+        $festivalsId = Category::factory()->festivals()->create()->id;
+        $conferencesId = Category::factory()->conferences()->create()->id;
+        $theatreId = Category::factory()->theatre()->create()->id;
+        $sportsId = Category::factory()->sports()->create()->id;
+
+        // Crear venues y otros datos
         Venue::factory()->count(10)->create();
         TicketType::factory()->count(5)->create();
-        Event::factory()->count(30)->create()->each(function ($event) {
+
+        // Creación de eventos asignados a categorías específicas
+        Event::factory()->count(6)->create(['category_id' => $concertsId]);
+        Event::factory()->count(6)->create(['category_id' => $festivalsId]);
+        Event::factory()->count(6)->create(['category_id' => $conferencesId]);
+        Event::factory()->count(6)->create(['category_id' => $theatreId]);
+        Event::factory()->count(6)->create(['category_id' => $sportsId]);
+
+        // Creación de sesiones, compras y tickets
+        Event::all()->each(function ($event) {
             Session::factory()->count(rand(1, 3))->create(['event_id' => $event->id])
                 ->each(function ($session) {
                     Purchase::factory()->count(rand(1, 5))->create(['session_id' => $session->id])

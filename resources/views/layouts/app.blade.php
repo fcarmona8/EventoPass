@@ -27,7 +27,7 @@
                     @csrf
                     <button type="submit" class="logout-button"
                         style="background: none; border: none; padding: 0; text-decoration: underline; cursor: pointer;">
-                        <i class="fa fa-sign-out-alt"></i> Salir
+                        <i class="fa fa-sign-out-alt" style="font-size: 18px;"></i> Salir
                     </button>
                 </form>
             </div>

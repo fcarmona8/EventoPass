@@ -12,31 +12,20 @@
         @foreach ($categoriesPerPage as $categoria)
             <div class="cardCategoria">
                 <h1>{{ $categoria->name }}</h1>
-                @foreach($events as $event)
-                    @if($event->category_id  == $categoria->id)
-                    <a class="card-link" href="{{ route('tickets.showevent', ['id' => $event->id]) }}">
-                        <div class="card">
-                            @if ($event->main_image)
-                                <!-- <img src="{{ asset('storage/' . $event->main_image) }}" alt="{{ $event->name }}"> -->
-                                <img src="https://picsum.photos/2000" alt="{{ $event->name }}">
-                            @endif
-                            <div class="card-content">
-                                <h3>{{ $event->name }}</h3>
-                                <p class="description">{{ $event->description }}</p>
-                                <p>Data: {{ \Carbon\Carbon::parse($event->event_date)->format('Y-m-d') }}</p>
-                                <p>Ubicació: {{ $event->venue->name }}, {{ $event->venue->location }}</p>
-                                <span class="card-price">Des de {{ $event->lowestTicketPrice() }} €</span>
+                <div class="events">
+                    @foreach ($events as $event)
+                        @if ($event->category_id == $categoria->id)
+                            <div class="event">
+                                <x-card-event :event=$event />
                             </div>
-                        </div>
-                    </a>
                         @endif
-                @endforeach
-                <form id="searchForm" action="{{ route('resultats') }}" method="GET">
-                    <button >Ver mas</button>
-                    <input type="text" name="categoria" value={{$categoria->id}} style="display: none">
+                    @endforeach
+                </div>
+                <form class="verMas" id="searchForm" action="{{ route('resultats') }}" method="GET">
+                    <button class="BtnVerMas">Ver mas</button>
+                    <input type="text" name="categoria" value={{ $categoria->id }} style="display: none">
                     </select>
-                    </form>
-                
+                </form>
             </div>
         @endforeach
     </div>
