@@ -2,12 +2,12 @@
 <html lang="en">
  <head>
   <meta charset="UTF-8">
-  <title>Dashboard for C:\Users\guiup\Desktop\proyectoDAW\gr04-puigantell-carmona-perez\app\Console</title>
+  <title>Dashboard for C:\Users\guiup\Desktop\proyectoDAW\gr04-puigantell-carmona-perez\app\Http\Controllers\Auth</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="../_css/bootstrap.min.css?v=10.1.10" rel="stylesheet" type="text/css">
-  <link href="../_css/nv.d3.min.css?v=10.1.10" rel="stylesheet" type="text/css">
-  <link href="../_css/style.css?v=10.1.10" rel="stylesheet" type="text/css">
-  <link href="../_css/custom.css" rel="stylesheet" type="text/css">
+  <link href="../../../_css/bootstrap.min.css?v=10.1.10" rel="stylesheet" type="text/css">
+  <link href="../../../_css/nv.d3.min.css?v=10.1.10" rel="stylesheet" type="text/css">
+  <link href="../../../_css/style.css?v=10.1.10" rel="stylesheet" type="text/css">
+  <link href="../../../_css/custom.css" rel="stylesheet" type="text/css">
  </head>
  <body>
   <header>
@@ -16,8 +16,10 @@
      <div class="col-md-12">
       <nav aria-label="breadcrumb">
        <ol class="breadcrumb">
-         <li class="breadcrumb-item"><a href="../index.html">C:\Users\guiup\Desktop\proyectoDAW\gr04-puigantell-carmona-perez\app</a></li>
-         <li class="breadcrumb-item"><a href="index.html">Console</a></li>
+         <li class="breadcrumb-item"><a href="../../../index.html">C:\Users\guiup\Desktop\proyectoDAW\gr04-puigantell-carmona-perez\app</a></li>
+         <li class="breadcrumb-item"><a href="../../index.html">Http</a></li>
+         <li class="breadcrumb-item"><a href="../index.html">Controllers</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Auth</a></li>
          <li class="breadcrumb-item active">(Dashboard)</li>
 
        </ol>
@@ -58,7 +60,8 @@
         </tr>
        </thead>
        <tbody>
-       <tr><td><a href="Kernel.php.html#8">App\Console\Kernel</a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="LogoutController.php.html#10">App\Http\Controllers\Auth\LogoutController</a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="LoginController.php.html#10">App\Http\Controllers\Auth\LoginController</a></td><td class="text-right">87%</td></tr>
 
        </tbody>
       </table>
@@ -75,6 +78,8 @@
         </tr>
        </thead>
        <tbody>
+       <tr><td><a href="LoginController.php.html#10">App\Http\Controllers\Auth\LoginController</a></td><td class="text-right">5</td></tr>
+       <tr><td><a href="LogoutController.php.html#10">App\Http\Controllers\Auth\LogoutController</a></td><td class="text-right">2</td></tr>
 
        </tbody>
       </table>
@@ -112,7 +117,8 @@
         </tr>
        </thead>
        <tbody>
-       <tr><td><a href="Kernel.php.html#13"><abbr title="App\Console\Kernel::schedule">schedule</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="LogoutController.php.html#12"><abbr title="App\Http\Controllers\Auth\LogoutController::logout">logout</abbr></a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="LoginController.php.html#21"><abbr title="App\Http\Controllers\Auth\LoginController::login">login</abbr></a></td><td class="text-right">85%</td></tr>
 
        </tbody>
       </table>
@@ -129,6 +135,8 @@
         </tr>
        </thead>
        <tbody>
+       <tr><td><a href="LoginController.php.html#21"><abbr title="App\Http\Controllers\Auth\LoginController::login">login</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="LogoutController.php.html#12"><abbr title="App\Http\Controllers\Auth\LogoutController::logout">logout</abbr></a></td><td class="text-right">2</td></tr>
 
        </tbody>
       </table>
@@ -142,9 +150,9 @@
     </p>
    </footer>
   </div>
-  <script src="../_js/jquery.min.js?v=10.1.10" type="text/javascript"></script>
-  <script src="../_js/d3.min.js?v=10.1.10" type="text/javascript"></script>
-  <script src="../_js/nv.d3.min.js?v=10.1.10" type="text/javascript"></script>
+  <script src="../../../_js/jquery.min.js?v=10.1.10" type="text/javascript"></script>
+  <script src="../../../_js/d3.min.js?v=10.1.10" type="text/javascript"></script>
+  <script src="../../../_js/nv.d3.min.js?v=10.1.10" type="text/javascript"></script>
   <script type="text/javascript">
 $(document).ready(function() {
   nv.addGraph(function() {
@@ -157,7 +165,7 @@ $(document).ready(function() {
       .yAxis.tickFormat(d3.format('d'));
 
     d3.select('#classCoverageDistribution svg')
-      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,1,0,0,0,0], "Class Coverage"))
+      .datum(getCoverageDistributionData([0,0,0,0,0,0,1,0,0,1,0,0], "Class Coverage"))
       .transition().duration(500).call(chart);
 
     nv.utils.windowResize(chart.update);
@@ -175,7 +183,7 @@ $(document).ready(function() {
       .yAxis.tickFormat(d3.format('d'));
 
     d3.select('#methodCoverageDistribution svg')
-      .datum(getCoverageDistributionData([1,0,0,0,0,0,0,0,0,0,0,1], "Method Coverage"))
+      .datum(getCoverageDistributionData([0,0,0,0,0,0,1,0,0,1,0,1], "Method Coverage"))
       .transition().duration(500).call(chart);
 
     nv.utils.windowResize(chart.update);
@@ -225,7 +233,7 @@ $(document).ready(function() {
     chart.yAxis.axisLabel('Cyclomatic Complexity');
 
     d3.select('#classComplexity svg')
-      .datum(getComplexityData([[66.66666666666666,2,"<a href=\"Kernel.php.html#8\">App\\Console\\Kernel<\/a>"]], 'Class Complexity'))
+      .datum(getComplexityData([[87.5,5,"<a href=\"LoginController.php.html#10\">App\\Http\\Controllers\\Auth\\LoginController<\/a>"],[50,2,"<a href=\"LogoutController.php.html#10\">App\\Http\\Controllers\\Auth\\LogoutController<\/a>"]], 'Class Complexity'))
       .transition()
       .duration(500)
       .call(chart);
@@ -249,7 +257,7 @@ $(document).ready(function() {
     chart.yAxis.axisLabel('Method Complexity');
 
     d3.select('#methodComplexity svg')
-      .datum(getComplexityData([[0,1,"<a href=\"Kernel.php.html#13\">App\\Console\\Kernel::schedule<\/a>"],[100,1,"<a href=\"Kernel.php.html#21\">App\\Console\\Kernel::commands<\/a>"]], 'Method Complexity'))
+      .datum(getComplexityData([[100,1,"<a href=\"LoginController.php.html#13\">App\\Http\\Controllers\\Auth\\LoginController::showLoginForm<\/a>"],[85.71428571428571,4,"<a href=\"LoginController.php.html#21\">App\\Http\\Controllers\\Auth\\LoginController::login<\/a>"],[50,2,"<a href=\"LogoutController.php.html#12\">App\\Http\\Controllers\\Auth\\LogoutController::logout<\/a>"]], 'Method Complexity'))
       .transition()
       .duration(500)
       .call(chart);
