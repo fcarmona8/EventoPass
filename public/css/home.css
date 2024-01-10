@@ -54,7 +54,7 @@
     border-radius: 8px;
     margin-right: 10px;
     margin-bottom: 5px;
-    background-color: var(--principal);
+    background-color: var(--destacados-enlaces);
 }
 
 .card h3 {
@@ -86,7 +86,7 @@
     right: -350px; /* Inicialmente oculto fuera del área visible */
     width: 350px; /* Ajustar el ancho a la pantalla */
     height: 100%;
-    background-color: #B4A289;
+    background-color: rgb(25, 67, 109);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: right 0.3s ease-in-out;
     overflow-y: auto; /* Añadido para permitir desplazamiento en la barra lateral */
@@ -105,7 +105,7 @@
     color: white;
     border: none;
     cursor: pointer;
-    background-color: #B4A289;
+    background-color:  rgb(25, 67, 109);
 }
 .iconoCerrar{
     font-size: 26px;
@@ -274,6 +274,10 @@
     .barraLateral form {
         display: flex;
         flex-direction: row;
+        border-radius: 20px;
+        flex-wrap: wrap;
+        border: 2px solid var(--principal);
+        justify-content: center;
     }
 
     .contenedorFiltro {
@@ -287,13 +291,10 @@
     }
 
     .contenedor-boton-buscar {
-        display: flex;
-        margin-left: auto;
         align-items: center;
         border-radius: 15px;
-        justify-content: end;
-        width: 70%;
-        margin-top: 0px;
+        justify-content: center;
+
     }
 
     .contenedorFiltro select,
@@ -339,6 +340,7 @@
         min-width: min-content;
         text-wrap: nowrap;
         padding: 10px 30px;
+        width: min-content;
     }
 }
 
