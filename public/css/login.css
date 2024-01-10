@@ -9,14 +9,15 @@
     padding: 1rem;
     max-width: 363px;
     margin: 0 auto;
-    background-color: #f0e6d2;
+    background-color: var(--principal);
     border-radius: 10px;
     box-shadow: -1px 1px 6px 6px rgba(0,0,0,0.1);
+    color: var(--titulos);
 }
 
 .container h1 {
-    color: var(--principal);
     margin-bottom: 1rem;
+    color: var(--titulos);
 }
 
 .form-group {
@@ -28,8 +29,7 @@
 .form-group label {
     font-family: 'Roboto', sans-serif;
     margin-bottom: 0.5rem;
-    color: #1a1a1a;
-}
+    color: var(--titulos);}
 
 .form-group input {
     font-family: 'Lato', sans-serif;
@@ -64,7 +64,7 @@
     }
     
     .container h1 {
-        color: var(--principal);
+        color: var(--titulos);
         font-size: 35px;
     }
 
@@ -79,7 +79,7 @@
     }
 
     .container h1 {
-        color: var(--principal);
+        color: var(--titulos);
         font-size: 35px;
     }
 }

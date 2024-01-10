@@ -140,7 +140,7 @@ label {
 
 /* Enlaces destacados */
 a, .link-highlight {
-    color: white;
+    color: var(--titulos);
     text-decoration: none;
 }
 

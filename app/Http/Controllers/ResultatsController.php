@@ -28,18 +28,20 @@ class ResultatsController extends Controller
 
                 $query->where(function ($q) use ($filtro, $searchTerm) {
                     if ($filtro === 'evento') {
-                        $q->nameEvent("{$searchTerm}");
+                        $q->nameEvent("{$searchTerm}")->where('hidden', '=', 'false');
                     } elseif ($filtro === 'ciudad') {
                         $q->whereIn('venue_id', function ($subquery) use ($searchTerm) {
                             $subquery->select('id')
                                      ->from('venues')
-                                     ->where('location', 'ILIKE', "%{$searchTerm}%");
+                                     ->where('location', 'ILIKE', "%{$searchTerm}%")
+                                     ->where('hidden', '=', 'false');
                         });
                     } elseif ($filtro === 'recinto') {
                         $q->whereIn('venue_id', function ($subquery) use ($searchTerm) {
                             $subquery->select('id')
                                      ->from('venues')
-                                     ->where('name', 'ILIKE', "%{$searchTerm}%");
+                                     ->where('name', 'ILIKE', "%{$searchTerm}%")
+                                     ->where('hidden', '=', 'false');
                         });
                     }
                 });
@@ -50,7 +52,8 @@ class ResultatsController extends Controller
                 $query->whereIn('category_id', function ($q) use ($selectedCategoriaName) {
                     $q->select('id')
                       ->from('categories')
-                      ->where('name', 'LIKE', "{$selectedCategoriaName}");
+                      ->where('name', 'LIKE', "{$selectedCategoriaName}")
+                      ->where('hidden', '=', 'false');
                 });
             }
 
