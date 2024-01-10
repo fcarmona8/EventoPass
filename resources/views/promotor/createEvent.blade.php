@@ -1,10 +1,10 @@
 <!-- resources/views/tickets/createEvent.blade.php -->
-@extends('layouts.app') <!-- Asegúrate de tener una plantilla base, si no, crea una -->
+@extends('layouts.app')
 
 @section('content')
     <h2 class="titol-crear-event">Crear Esdeveniment</h2>
 
-    <form class="event-create" method="post" enctype="multipart/form-data">
+    <form class="event-create" method="post" action="{{ route('event.store') }}" enctype="multipart/form-data">
         @csrf
 
         <h3 class="h3-event">Informacio Principal</h3>
@@ -92,21 +92,23 @@
         <div class="div-event">
             <div class="div-event ticket-type" id="entradas-container">
                 <div class="div-informacion-principal ticket-input">
-                <input type="text" class="input-event" name="entry_type_name" id="entry_type_name" required
-                    placeholder="Nom del tipus d'entrada">
+                    <input type="text" class="input-event" name="entry_type_name" id="entry_type_name" required
+                        placeholder="Nom del tipus d'entrada">
 
-                <input type="number" class="input-event" name="entry_type_price" id="entry_type_price" placeholder="Preu" step="0.01"
-                    required>
+                    <input type="number" class="input-event" name="entry_type_price" id="entry_type_price"
+                        placeholder="Preu" step="0.01" required>
 
-                <input type="number" class="input-event" name="entry_type_quantity" id="entry_type_quantity"
-                    placeholder="Quantitat" required min="0" oninput="actualizarMaxEntradas()">
-                    <button type="button" class="eliminar-linea" style="display: none;" onclick="eliminarEntrada(this)">Eliminar</button>
+                    <input type="number" class="input-event" name="entry_type_quantity" id="entry_type_quantity"
+                        placeholder="Quantitat" required min="0" oninput="actualizarMaxEntradas()">
+                    <button type="button" class="eliminar-linea" style="display: none;"
+                        onclick="eliminarEntrada(this)">Eliminar</button>
 
-                <hr class="separador-entradas">
+                    <hr class="separador-entradas">
+                </div>
             </div>
-            </div>
 
-            <button type="button" id="agregar-entrada" class="agregar-entrada" onclick="agregarEntrada()"><span class="icono-plus">+</span><u>Afegir Entrada</u></button>
+            <button type="button" id="agregar-entrada" class="agregar-entrada" onclick="agregarEntrada()"><span
+                    class="icono-plus">+</span><u>Afegir Entrada</u></button>
 
             <!-- Afegir més tipus d'entrades -->
 
@@ -186,86 +188,87 @@
             })
 
             selector.addEventListener('mousedown', e => {
-                
-                    e.preventDefault();
 
-                    const select = selector.children[0];
-                    const dropDown = document.createElement('ul');
-                    dropDown.className = "selector-options";
+                e.preventDefault();
 
-                    [...select.children].forEach(option => {
-                        const dropDownOption = document.createElement('li');
-                        dropDownOption.textContent = option.textContent;
+                const select = selector.children[0];
+                const dropDown = document.createElement('ul');
+                dropDown.className = "selector-options";
 
-                        dropDownOption.addEventListener('mousedown', (e) => {
-                            e.stopPropagation();
-                            select.value = option.value;
-                            selector.value = option.value;
-                            select.dispatchEvent(new Event('change'));
-                            selector.dispatchEvent(new Event('change'));
-                            dropDown.remove();
-                        });
+                [...select.children].forEach(option => {
+                    const dropDownOption = document.createElement('li');
+                    dropDownOption.textContent = option.textContent;
 
-                        dropDown.appendChild(dropDownOption);
+                    dropDownOption.addEventListener('mousedown', (e) => {
+                        e.stopPropagation();
+                        select.value = option.value;
+                        selector.value = option.value;
+                        select.dispatchEvent(new Event('change'));
+                        selector.dispatchEvent(new Event('change'));
+                        dropDown.remove();
                     });
 
-                    selector.appendChild(dropDown);
+                    dropDown.appendChild(dropDownOption);
+                });
 
-                    // handle click out
-                    document.addEventListener('click', (e) => {
-                        if (!selector.contains(e.target)) {
-                            dropDown.remove();
-                        }
-                    });
-                
+                selector.appendChild(dropDown);
+
+                // handle click out
+                document.addEventListener('click', (e) => {
+                    if (!selector.contains(e.target)) {
+                        dropDown.remove();
+                    }
+                });
+
             });
         }
 
         function agregarEntrada() {
-        var primerSeparador = document.querySelector('hr')
-        var contenedor = document.getElementById('entradas-container');
-        var nuevoEntrada = document.querySelector('.ticket-input').cloneNode(true);
+            var primerSeparador = document.querySelector('hr')
+            var contenedor = document.getElementById('entradas-container');
+            var nuevoEntrada = document.querySelector('.ticket-input').cloneNode(true);
 
-        // Limpiar los valores de los campos clonados
-        nuevoEntrada.querySelectorAll('input').forEach(function (input) {
-            input.value = '';
-        });
-        var separador = nuevoEntrada.querySelector('hr')
-        var botonEliminar = nuevoEntrada.querySelector('button');
+            // Limpiar los valores de los campos clonados
+            nuevoEntrada.querySelectorAll('input').forEach(function(input) {
+                input.value = '';
+            });
+            var separador = nuevoEntrada.querySelector('hr')
+            var botonEliminar = nuevoEntrada.querySelector('button');
 
-        primerSeparador.style.display = 'block'
+            primerSeparador.style.display = 'block'
 
-        separador.style.display = 'block'
-        
-        botonEliminar.style.display = 'block';
+            separador.style.display = 'block'
 
-        if (window.innerWidth > 768) {
-            primerSeparador.style.display = 'none'
-            separador.style.display = 'none';
+            botonEliminar.style.display = 'block';
+
+            if (window.innerWidth > 768) {
+                primerSeparador.style.display = 'none'
+                separador.style.display = 'none';
+            }
+
+            // Agregar el nuevo div al contenedor
+            contenedor.appendChild(nuevoEntrada);
+
+
+            actualizarMaxEntradas();
+
+
         }
 
-        // Agregar el nuevo div al contenedor
-        contenedor.appendChild(nuevoEntrada);
+        function eliminarEntrada(elemento) {
+            var contenedor = document.getElementById('entradas-container');
+            var divAEliminar = elemento.parentNode;
 
-
-        actualizarMaxEntradas();
-
-
-    }
-    function eliminarEntrada(elemento) {
-        var contenedor = document.getElementById('entradas-container');
-        var divAEliminar = elemento.parentNode;
-
-        // Asegurarse de que no se elimine el primer conjunto
-        if (divAEliminar.previousElementSibling !== null) {
-            contenedor.removeChild(divAEliminar);
+            // Asegurarse de que no se elimine el primer conjunto
+            if (divAEliminar.previousElementSibling !== null) {
+                contenedor.removeChild(divAEliminar);
+            }
         }
-    }
 
-    function actualizarMaxEntradas() {
+        function actualizarMaxEntradas() {
             const aforoMaximo = parseInt(document.getElementById("max_capacity").value);
             const entradasInputs = Array.from(document.querySelectorAll("#entry_type_quantity"));
-            
+
             // Calcular la suma de las entradas actuales
             const sumaEntradas = entradasInputs.reduce((sum, input) => sum + (parseInt(input.value) || 0), 0);
 
