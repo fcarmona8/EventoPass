@@ -19,6 +19,8 @@ h1{
 .events {
     display: flex;
     flex-wrap: wrap;
+    max-height: 630px;
+    overflow: hidden;
 }
 
 .event {
