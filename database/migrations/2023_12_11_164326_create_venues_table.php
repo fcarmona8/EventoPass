@@ -9,11 +9,12 @@ class CreateVenuesTable extends Migration
     public function up()
     {
         Schema::create('venues', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+            $table->bigIncrements('id');
+            $table->string('name', 255);
             $table->text('location');
+            $table->integer('capacity')->nullable();
             $table->timestamps();
-        });
+        });        
     }
 
     public function down()

@@ -10,7 +10,7 @@ class Session extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['event_id', 'date_time'];
+    protected $fillable = ['event_id', 'date_time', 'online_sale_end_time'];
 
     public function event()
     {

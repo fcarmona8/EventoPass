@@ -10,7 +10,7 @@ class TicketType extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'price'];
+    protected $fillable = ['name', 'price', 'available_tickets'];
 
     public function tickets()
     {

@@ -59,8 +59,11 @@ footer {
 
 /* Encabezados */
 #title {
-    color: white;
+    position: relative;
+    left: 3%;
+    color: var(--titulos);
 }
+
 h1 {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
@@ -150,22 +153,60 @@ a:hover, .link-highlight:hover {
     color: var(--elementos-secundarios);
 }
 
+.user-info {
+    top: 11%;
+    position: relative;
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+    font-family: 'Lato', sans-serif;
+    background-color: var(--fondo-y-contraste);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    justify-content: center;
+}
+
+.user-info i {
+    margin-right: 0.5rem;
+    color: var(--principal);
+}
+
+.user-info p {
+    margin: 0;
+    margin-right: 14px;
+    color: var(--texto-detalle);
+}
+
+.user-info a {
+    margin-left: auto;
+    color: var(--destacados-enlaces);
+    text-decoration: none;
+}
+
+.user-info a:hover {
+    text-decoration: underline;
+}
+
 /* Estilos para móviles y Media Queries */
 @media (min-width: 768px) {
     header {
         display: flex;
         grid-template-columns: 1fr auto;
         align-items: center;
-        padding: 1rem 2rem;
+        padding: 0.5rem 1rem;
     }
 
     #logo {
+        position: relative;
         width: 100px;
-        margin-right: 1rem;
+        margin-right: 0.5rem;
+        left: 1%;
     }
 
     h1 {
-        font-size: 36px; /* Tamaño más grande para tablets y escritorio */
+        font-size: 36px;
         margin: 0;
     }
     

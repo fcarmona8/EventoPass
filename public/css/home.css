@@ -1,23 +1,8 @@
-/* Estilos básicos para móviles */
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 0 10px 10px 10px;
-
-}
-
-.card {
+.categories{
     display: flex;
-    flex-direction: row;
-    border: 1px solid var(--destacados-enlaces);
-    background-color: white;
-    border-radius: 5px;
-    margin: 10px;
-    height: 190px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease-in-out;
-
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
 }
 
 .card-link{
@@ -349,3 +334,13 @@
 
 
 
+.cardCategoria{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 5%;
+}
+
+h1{
+    text-align: center;
+}
