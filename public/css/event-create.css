@@ -14,7 +14,7 @@
 .input-event{
     width: 100%;
     padding: 10px;
-    border-radius: 16px;
+    border-radius: 8px;
     border: 1px solid black;
     font-size: 16px;
     box-sizing: border-box;
@@ -24,7 +24,7 @@
 .textarea-event{
     width: 100%;
     padding: 10px;
-    border-radius: 16px;
+    border-radius: 8px;
     border: 1px solid black;
     font-size: 16px;
     margin-top: 15px;
@@ -118,7 +118,6 @@
     border-radius: 20px;
     font-size: 18px;
     margin-top: 36px;
-    margin-bottom: 10px;
     width: 220px;
     padding: 10px 0px;
 
@@ -201,6 +200,8 @@
     position: absolute;
     left: 2%;
     top: 35%;
+    max-height: 360px;
+    overflow: scroll;
   }
   
   .label-adreca .selector-options li {
@@ -252,6 +253,14 @@
     margin-right: 5px;
   }
 
+  .label-adreca {
+    padding: 0;
+}
+
+.div-tancament{
+    align-items: flex-start;
+}
+
 
 
 @media (min-width: 768px) {
@@ -259,6 +268,7 @@
         width: 100%;
         display: flex;
         gap: 16px;
+        align-items: flex-end;
     }
 
     .div-data-image{
@@ -309,5 +319,23 @@
     .eliminar-linea{
         right: -103px;
         top: 18px;
+    }
+
+    .label-categoria{
+        width: 100%;
+        padding: 0;
+    }
+
+    .label-categoria select{
+        width: 100%;
+    }
+
+    .select-categoria-desktop{
+        width: 100% !important;
+        left: 0% !important;
+    }
+
+    .label-adreca {
+        padding: 0;
     }
 }
