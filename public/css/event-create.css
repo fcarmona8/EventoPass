@@ -1,0 +1,313 @@
+
+
+.event-create {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.label-event{
+    font-size: 16px;
+    margin-top: 20px;
+}
+.input-event{
+    width: 100%;
+    padding: 10px;
+    border-radius: 16px;
+    border: 1px solid black;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin-top: 15px;
+}
+
+.textarea-event{
+    width: 100%;
+    padding: 10px;
+    border-radius: 16px;
+    border: 1px solid black;
+    font-size: 16px;
+    margin-top: 15px;
+
+}
+
+.div-event{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.h3-event{
+    font-size: 20px;
+    margin-left: 15%;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+/* Estilo para el modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    width: 80%;
+    max-width: 400px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+}
+
+/* Estilo para el botón de cerrar */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.nova-adreca{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+}
+
+#guardar-adreca{
+    border-radius: 20px;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 150px;
+}
+
+#cerrar-modal-direccion{
+    background-color: #fff;
+    color: black;
+    border: 1px solid black;
+    border-radius: 20px;
+    font-size: 18px;
+    margin: 0px 0px;
+    width: 150px;
+}
+
+.btn-form{
+    border-radius: 20px;
+    font-size: 18px;
+    margin-top: 36px;
+    margin-bottom: 10px;
+    width: 220px;
+    padding: 10px 0px;
+
+}
+
+.titol-crear-event{
+    margin-left: 12%;
+    font-size: 24px;
+}
+
+.div-formulario-evento{
+    width: 100%;
+    display: flex;
+}
+
+.div-informacion-principal{
+    width: 100%;
+}
+
+.div-data-image{
+    display: flex;
+    flex-direction: column;
+}
+
+.div-textarea{
+    display: flex;
+    width: 100%;
+}
+
+* {
+    box-sizing: border-box;
+  }
+  
+  .label-adreca {
+    position: relative;
+    display: inline-block;
+    font-size: 14px;
+    color: #888;
+  }
+  
+  .label-adreca select {
+    display: block;
+    width: 250px;
+    min-height: 35px;
+    border-radius: 3px;
+    border: 2px solid #2196F3;
+    outline: none;
+    padding: 0 20px 0 10px;
+    height: 42px;
+    margin-top: 5px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+  }
+  
+  .label-adreca::after {
+    content: '';
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent;
+    border-top-color: #222;
+    display: inline-block;
+    border-radius: 2px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+  }
+  
+  .label-adreca .selector-options {
+    list-style: none;
+    padding: 5px 0;
+    margin: 0;
+    background: #11436b;
+    color: #fff;
+    border-radius: 4px;
+    z-index: 1;
+    width: 96%;
+    position: absolute;
+    left: 2%;
+    top: 35%;
+  }
+  
+  .label-adreca .selector-options li {
+    height: 35px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    cursor: pointer;
+  }
+  
+  .label-adreca .selector-options li:hover {
+    background: #03A9F4;
+  }
+
+  .separador-entradas{
+    border: 1px solid gray;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    display: none;
+  }
+
+  .ticket-type{
+    width: 100%;
+  }
+
+  .ticket-input{
+    position: relative;
+  }
+
+  .eliminar-linea {
+    position: absolute;
+    right: 0px;
+    top: 180px;
+    font-size: 16px;
+    background-color: #11436b;
+    border-radius: 6px;
+  }
+
+  #agregar-entrada {
+    background-color: inherit;
+    font-size: 16px;
+    color: rgb(49, 49, 49);
+    margin-right: auto;
+  }
+
+  .icono-plus{
+    font-size: 28px;
+    vertical-align: -4px;
+    margin-right: 5px;
+  }
+
+
+
+@media (min-width: 768px) {
+    .div-informacion-principal{
+        width: 100%;
+        display: flex;
+        gap: 16px;
+    }
+
+    .div-data-image{
+        width: 100%;
+    }
+
+    .date-input{
+        text-align: center;
+        width: min-content;
+        height: 46.5px;
+    }
+
+    .div-data{
+        width: min-content;
+    }
+
+    .label-event{
+        margin-top: 30px;
+        padding: 0;
+    }
+
+    .btn-guardar{
+        margin-left: auto;
+        margin-right: 15%;
+        margin-top: 30px;
+        margin-bottom: 100px;
+    }
+
+    .div-adreca{
+        display: flex;
+        flex-direction: row;
+        justify-content:flex-start;
+        align-items: flex-end;
+        gap: 30px;
+    }
+
+    #entry_type_price, #entry_type_quantity{
+        width: 20%;
+    }
+
+    .separador-entradas{
+        display: none;
+        border: none;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
+    .eliminar-linea{
+        right: -103px;
+        top: 18px;
+    }
+}
