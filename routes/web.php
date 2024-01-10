@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CreateEventController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\ForgotPasswordController;
@@ -32,6 +33,12 @@ Route::get('/tickets/legalnotice', function () {
 Route::get('/tickets/showevent/{id}', function () {
     return view('tickets.showevent');
 })->name('tickets.showevent');
+
+//Crear Evento
+Route::get('/promotor/create-event', [CreateEventController::class, 'create'])->name('promotor.createEvent');
+
+//Guardar Evento
+Route::post('/promotor/create-event', [CreateEventController::class, 'store'])->name('promotor.createEvent');
 
 // Comprar Entradas
 Route::get('/tickets/buytickets', function () {

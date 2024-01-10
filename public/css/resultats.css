@@ -27,12 +27,6 @@
 
 .filtro, input{
     padding: 3px;
-    background-color: #C9B7A5;
-    margin: 0px 5px;
-}
-
-input{
-    margin: 0 10px;
 }
 
 label{

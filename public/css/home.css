@@ -5,6 +5,335 @@
     width: 100%;
 }
 
+.card-link{
+    text-decoration: none;
+    color: black;
+}
+
+.card-link:hover{
+    text-decoration: none;
+}
+
+.card img {
+    width: 150px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.card-content {
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 90%;
+}
+
+.card-price{
+    color: white;
+    display: flex;
+    width: min-content;
+    padding: 7px 15px;
+    white-space: nowrap;
+    margin-left: auto;
+    margin-top: auto;
+    border-radius: 8px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    background-color: var(--destacados-enlaces);
+}
+
+.card h3 {
+    font-size: 16px;
+    height: 59px;
+    margin: 0;
+    font-weight: 600;
+    overflow: hidden; /* Oculta el contenido que se desborda */
+    text-overflow: ellipsis; /* Muestra tres puntos (...) cuando el texto se corta */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Establece el número de líneas que se mostrarán */
+    -webkit-box-orient: vertical;
+}
+.card p {
+    font-size: 12px;
+    margin: 5px 0px;
+}
+
+  
+.description {
+    display: none;
+    margin: 5px 0;
+    font-size: 13px;
+}
+
+.barraLateral {
+    position: fixed;
+    top: 0;
+    right: -350px; /* Inicialmente oculto fuera del área visible */
+    width: 350px; /* Ajustar el ancho a la pantalla */
+    height: 100%;
+    background-color: rgb(25, 67, 109);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease-in-out;
+    overflow-y: auto; /* Añadido para permitir desplazamiento en la barra lateral */
+}
+
+.barraLateral form {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#cerrarFiltros {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    background-color:  rgb(25, 67, 109);
+}
+.iconoCerrar{
+    font-size: 26px;
+}
+
+.contenedorFiltro {
+    margin-bottom: 20px;
+}
+
+.contenedorFiltro label {
+    display: block;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.contenedorFiltro select,
+.contenedorFiltro input {
+    width: 110px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.contenedorFiltro input{
+    width: 100%;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    font-size: 18px;
+}
+
+.filtro{
+    font-size: 18px;
+}
+.iconoLupa {
+    font-family: 'Lato', sans-serif;
+    width: 50%;
+    padding: 10px;
+    font-size: 18px;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.iconoLupa span {
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    margin-left: 6px;
+}
+
+.filterForm{
+    margin-top: 100px;
+    font-size: 18px;
+}
+
+.filterForm label{
+    font-size: 18px;
+}
+
+.contenedor-buscador{
+    display: flex;
+}
+
+#categoria {
+    border-radius: 10px;
+    width: 100%;
+}
+
+.contenedor-boton-buscar{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+#mostrarFiltros {
+    margin-top: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid rgb(119, 119, 119);
+    color: rgb(43, 43, 43);
+    background-color: white;
+    border-radius: 10px;
+    float: right;
+    margin-right: 20px;
+}
+
+.pagination-info{
+    margin-top: 90px;
+}
+
+.iconoFiltrar{
+    margin-right: 5px;
+    color: rgb(66, 66, 66);
+}
+
+
+/* Media query para pantallas más grandes */
+@media (min-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas para pantallas más grandes */
+        gap: 2%;
+        padding: 2% 10%;
+    }
+
+    .filtro, input, label{
+        font-size: 16px;
+    }
+    label{
+        padding: 10px 5px;
+    }
+    input{
+        width: 50%
+    }
+
+    .card:hover {
+        box-shadow: 0 7px 10px rgba(0,0,0,0.3);
+        transform: scale(1.06);
+        cursor: pointer;
+      }
+    .card {
+        height: 210px;
+    }
+
+      .card img {
+        width: 180px;
+    }
+
+    .card h3 {
+        font-size: 18px;
+        min-height: 70px;
+        margin-top: 15px;
+        font-weight: 600;
+    }
+
+    .card p {
+        font-size: 14px;
+    }
+
+    #cerrarFiltros {
+        display: none;
+    }
+
+    #mostrarFiltros {
+        display: none;
+    }
+
+    .filterForm{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .barraLateral {
+        position: static; 
+        width: auto;
+        height: auto;
+        background-color: initial; 
+        box-shadow: none; 
+        transition: none;
+        width: 80%;
+        margin-left: 10%;
+    }
+
+    .barraLateral form {
+        display: flex;
+        flex-direction: row;
+        border-radius: 20px;
+        flex-wrap: wrap;
+        border: 2px solid var(--principal);
+        justify-content: center;
+    }
+
+    .contenedorFiltro {
+        display: flex;
+        align-items: center;
+        margin: 0;
+    }
+
+    .contenedorFiltro input {
+        width: 25vw;
+    }
+
+    .contenedor-boton-buscar {
+        align-items: center;
+        border-radius: 15px;
+        justify-content: center;
+
+    }
+
+    .contenedorFiltro select,
+    .contenedorFiltro input {
+        padding: 10px;
+        margin-bottom: 0px;
+        border: 1px solid #ddd;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    .contenedorFiltro input{
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+        font-size: 18px;
+    }
+
+    .contenedorFiltro label{
+        min-width: min-content;
+        text-wrap: nowrap;
+        color: #555;
+        margin-bottom: 0px;
+    }
+
+    #categoria {
+        border-radius: 10px;
+        width: 10vw;
+    }
+
+    .contenedor-buscador{
+        display: flex;
+    }
+
+    #contenedor-filtro-categoria{
+        margin-left: 1vw;
+        margin-right: 10px;
+    }
+
+    .iconoLupa {
+        font-size: 16px;
+        min-width: min-content;
+        text-wrap: nowrap;
+        padding: 10px 30px;
+        width: min-content;
+    }
+}
+
+
+
+
+
+
 .cardCategoria{
     display: flex;
     justify-content: center;
