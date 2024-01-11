@@ -8,14 +8,16 @@ class CreateTicketTypesTable extends Migration
 {
     public function up()
     {
-        Schema::create('ticket_types', function (Blueprint $table) {
+        Schema::create('tickets', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name', 255);
-            $table->decimal('price', 8, 2);
-            $table->integer('available_tickets')->nullable();
+            $table->unsignedBigInteger('purchase_id');
+            $table->unsignedBigInteger('type_id');
+            $table->unsignedBigInteger('session_id');
             $table->timestamps();
-        });     
-      
+            $table->foreign('purchase_id')->references('id')->on('purchases');
+            $table->foreign('type_id')->references('id')->on('ticket_types');
+            $table->foreign('session_id')->references('id')->on('sessions');
+        });        
     }
 
     public function down()
