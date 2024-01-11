@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Event;
 use App\Models\Venue;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,38 +23,65 @@ class CreateEventController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'category' => 'required|string|max:255',
-            'description' => 'required|string',
-            'event_datetime' => 'required|date',
-            'event_image' => 'required|image',
-            'max_capacity' => 'required|integer|min:1',
-            'promo_video_link' => 'nullable|url',
-            'event_hidden' => 'sometimes|boolean',
-        ]);
+        try {
+            Log::info('Inicio del proceso de almacenamiento del evento.');
 
-        $imagePath = $request->file('event_image')->store('event_images', 'public');
-        
-        $category = Category::firstOrCreate(['name' => $request->input('category')]);
+            // Validación de los datos del formulario
+            $validatedData = $request->validate([
+                'title' => 'required|string|max:255',
+                'selector-options-categoria' => 'required|string|max:255',
+                'description' => 'required|string',
+                'event_datetime' => 'required|date',
+                'event_image' => 'required|image',
+                'max_capacity' => 'required|integer|min:1',
+                'promo_video_link' => 'nullable|url',
+                'event_hidden' => 'sometimes|boolean',
+            ]);
 
-        $venueId = $request->input('selector-options');
+            Log::info('Datos del evento validados: ' . json_encode($validatedData));
 
-        $event = new Event([
-            'name' => $validatedData['title'],
-            'description' => $validatedData['description'],
-            'main_image' => $imagePath,
-            'event_date' => $validatedData['event_datetime'],
-            'category_id' => $category->id,
-            'venue_id' => $venueId,
-            'max_capacity' => $validatedData['max_capacity'],
-            'video_link' => $validatedData['promo_video_link'] ?? null,
-            'hidden' => $validatedData['event_hidden'] ?? false,
-        ]);
-        
-        $event->save();
+            // Guardar imagen principal del evento
+            $imagePath = $request->file('event_image')->store('event_images', 'public');
+            Log::info('Imagen del evento almacenada: ' . $imagePath);
 
-        return redirect()->route('promotor.createEvent')->with('success', 'Evento creado con éxito');
+             // Buscar la categoría por ID
+            $categoryId = $request->input('selector-options-categoria');
+            $category = Category::find($categoryId);
+
+            if (!$category) {
+                Log::error('Categoría no encontrada con ID: ' . $categoryId);
+                return back()->withErrors(['error' => 'Categoría no encontrada.']);
+            }
+
+            Log::info('Categoría encontrada: ' . $category->id);
+
+            // Obtener el ID del venue
+            $venueId = $request->input('selector-options');
+            Log::info('Venue ID obtenido: ' . $venueId);
+
+            // Crear el evento
+            $event = new Event([
+                'name' => $validatedData['title'],
+                'description' => $validatedData['description'],
+                'main_image' => $imagePath,
+                'event_date' => $validatedData['event_datetime'],
+                'category_id' => $category->id,
+                'venue_id' => $venueId,
+                'max_capacity' => $validatedData['max_capacity'],
+                'video_link' => $validatedData['promo_video_link'] ?? null,
+                'hidden' => $validatedData['event_hidden'] ?? false,
+            ]);
+
+            // Guardar el evento
+            $event->save();
+            Log::info('Evento guardado con éxito: ' . $event->id);
+
+            // Redirigir con mensaje de éxito
+            return redirect()->route('promotor.createEvent')->with('success', 'Evento creado con éxito');
+        } catch (\Exception $e) {
+            Log::error('Error en el proceso de almacenamiento del evento: ' . $e->getMessage());
+            return back()->withErrors(['error' => 'Error al guardar el evento.']);
+        }
     }
 
     public function storeVenue(Request $request){

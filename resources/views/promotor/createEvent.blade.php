@@ -132,7 +132,8 @@
         <div class="div-event extraInfoContainer">
             <div class="primaryDetail">
                 <label for="event_hidden" class="switch">Esdeveniment Ocult:
-                    <input type="checkbox" class="input-event" name="event_hidden" id="event_hidden">
+                    <input type="hidden" name="event_hidden" value="0">
+                    <input type="checkbox" class="input-event" name="event_hidden" id="event_hidden" value="1">
                     <span class="slider round"></span>
                 </label>
             </div>
@@ -158,14 +159,14 @@
                 <input class="input-event input-adreca" type="text" name="nova_provincia" id="nova_provincia"
                     placeholder="Provincia" required>
 
-                <input class="input-event input-adreca" type="text" name="nova_ciutat" id="nova_ciutat" placeholder="Ciutat"
-                    required>
+                <input class="input-event input-adreca" type="text" name="nova_ciutat" id="nova_ciutat"
+                    placeholder="Ciutat" required>
 
                 <input class="input-event input-adreca" type="number" name="codi_postal" id="codi_postal"
                     placeholder="Codi Postal"required>
 
-                <input class="input-event input-adreca" type="text" name="nom_local" id="nom_local" placeholder="Nom del local"
-                    required>
+                <input class="input-event input-adreca" type="text" name="nom_local" id="nom_local"
+                    placeholder="Nom del local" required>
 
                 <input class="input-event input-adreca" type="number" name="capacitat_local" id="capacitat_local"
                     placeholder="Capacitat del local" required>

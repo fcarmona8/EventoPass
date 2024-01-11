@@ -33,6 +33,11 @@ class DatabaseSeeder extends Seeder
         $conferencesId = Category::factory()->conferences()->create()->id;
         $theatreId = Category::factory()->theatre()->create()->id;
         $sportsId = Category::factory()->sports()->create()->id;
+        $artsId = Category::firstOrCreate(['name' => 'Arte'])->id;
+        $moviesId = Category::firstOrCreate(['name' => 'Cine'])->id;
+        $musicId = Category::firstOrCreate(['name' => 'Música'])->id;
+        $danceId = Category::firstOrCreate(['name' => 'Danza'])->id;
+        $literatureId = Category::firstOrCreate(['name' => 'Literatura'])->id;
 
         // Crear venues y otros datos
         Venue::factory()->count(10)->create();
