@@ -10,9 +10,13 @@ class CreateVenuesTable extends Migration
     {
         Schema::create('venues', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name', 255);
-            $table->text('location');
-            $table->integer('capacity')->nullable();
+            $table->string('province', 255);
+            $table->string('city', 255);
+            $table->string('postal_code', 255);
+            $table->string('venue_name', 255);
+            $table->integer('capacity');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });        
     }
@@ -22,3 +26,4 @@ class CreateVenuesTable extends Migration
         Schema::dropIfExists('venues');
     }
 };
+

@@ -11,8 +11,16 @@ class Venue extends Model
 
     use HasFactory;
     
-    protected $fillable = ['name', 'location', 'capacity'];
+    protected $fillable = ['province', 'city', 'postal_code', 'venue_name', 'capacity', 'user_id'];
 
+    // Relación con el modelo User
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    
     public function events() { return $this->hasMany(Event::class); }
+
+    
 }
 
