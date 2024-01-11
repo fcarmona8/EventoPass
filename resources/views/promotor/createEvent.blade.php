@@ -4,7 +4,7 @@
 @section('content')
     <h2 class="titol-crear-event">Crear Esdeveniment</h2>
 
-    <form class="event-create" method="post" action="{{ route('event.store') }}" enctype="multipart/form-data">
+    <form class="event-create" method="post" action="{{ route('promotor.storeEvent') }}" enctype="multipart/form-data">
         @csrf
 
         <h3 class="h3-event">Informacio Principal</h3>
@@ -27,9 +27,6 @@
                         </select>
                     </label>
                 </div>
-                <!-- Categoria -->
-
-
             </div>
 
             <!-- Descripció de l’esdeveniment -->
@@ -58,10 +55,13 @@
         <div class="div-event div-adreca">
             <label class="label-adreca">
                 Selecciona una adreça
-                <select name="selector-options">
-                    <option value="1">Adreca 1</option>
-                    <option value="2">Adreca 2</option>
-                    <option value="3">Adreca 3</option>
+                <select name="selector-options" class="select-categoria-desktop" id="adreces-select">
+                    @foreach ($existingAddresses as $direccion)
+                        <option value="{{ $direccion->id }}">
+                            {{ $direccion->venue_name }}, {{ $direccion->city }}, {{ $direccion->province }},
+                            {{ $direccion->postal_code }}
+                        </option>
+                    @endforeach
                 </select>
             </label>
             <!-- Botón para abrir el modal de Nova Adreça -->
@@ -86,11 +86,11 @@
             </div>
 
 
-
-            <!-- Imatges addicionals -->
-            <label for="additional_images" class="label-event">Imatges Adicionals:</label>
-            <input type="file" class="input-event" name="additional_images[]" id="additional_images" accept="image/*"
-                multiple>
+            <div class="div-additional-images">
+                <label for="additional_images" class="label-event">Imatges Adicionals:</label>
+                <input type="file" class="input-event" name="additional_images[]" id="additional_images" accept="image/*"
+                    multiple>
+            </div>
         </div>
 
         <!-- Tipus d'entrades -->
@@ -117,21 +117,30 @@
                     class="icono-plus">+</span><u>Afegir Entrada</u></button>
         </div>
         <div class="div-event div-tancament">
-            <label for="online_sales_closure">Tancament de la Venta Online:</label>
-            <select name="online_sales_closure" id="online_sales_closure">
-                <option value="event_time">A l'hora de l'esdeveniment</option>
-                <option value="1_hour_before">1 hora abans</option>
-            </select>
+            <div class="div-tancament2">
+                <label class="label-adreca label-categoria">
+                    Tancament de la Venta Online:
+                    <select name="selector-options" class="select-categoria-desktop">
+                        <option value="1">Hora de l'esdeveniment</option>
+                        <option value="2">1 hora abans</option>
+                        <option value="3">2 hores abans</option>
+                    </select>
+                </label>
+            </div>
         </div>
 
-        <div class="div-event">
-            <div>
-                <label for="event_hidden">Esdeveniment Ocult:</label>
-                <input type="checkbox" class="input-event" name="event_hidden" id="event_hidden">
+        <div class="div-event extraInfoContainer">
+            <div class="primaryDetail">
+                <label for="event_hidden" class="switch">Esdeveniment Ocult:
+                    <input type="checkbox" class="input-event" name="event_hidden" id="event_hidden">
+                    <span class="slider round"></span>
+                </label>
             </div>
-            <div>
-                <label for="nominal_entries">Entrades Nominals:</label>
-                <input type="checkbox" class="input-event" name="nominal_entries" id="nominal_entries">
+            <div class="primaryDetail secondaryDetail">
+                <label for="nominal_entries" class="switch">Entrades Nominals:
+                    <input type="checkbox" class="input-event" name="nominal_entries" id="nominal_entries">
+                    <span class="slider round"></span>
+                </label>
             </div>
         </div>
 
@@ -142,22 +151,24 @@
     <div id="nueva-direccion-modal" class="modal">
         <div class="modal-content div-adreca">
             <span class="close" onclick="cerrarModalDireccion()">&times;</span>
-            <form class="nova-adreca" action="">
+            <form class="nova-adreca" id="formularioVenue" action="" method="POST">
                 @csrf
                 <h2>Nova Adreça</h2>
                 <!-- Formulario para crear nova adreça -->
-                <input class="input-event" type="text" name="nova_provincia" id="nova_provincia"
-                    placeholder="Provincia">
+                <input class="input-event input-adreca" type="text" name="nova_provincia" id="nova_provincia"
+                    placeholder="Provincia" required>
 
-                <input class="input-event" type="text" name="nova_ciutat" id="nova_ciutat" placeholder="Ciutat">
+                <input class="input-event input-adreca" type="text" name="nova_ciutat" id="nova_ciutat" placeholder="Ciutat"
+                    required>
 
-                <input class="input-event" type="number" name="codi_postal" id="codi_postal"
-                    placeholder="Codi Postal">
+                <input class="input-event input-adreca" type="number" name="codi_postal" id="codi_postal"
+                    placeholder="Codi Postal"required>
 
-                <input class="input-event" type="text" name="nom_local" id="nom_local" placeholder="Nom del local">
+                <input class="input-event input-adreca" type="text" name="nom_local" id="nom_local" placeholder="Nom del local"
+                    required>
 
-                <input class="input-event" type="text" name="capacitat_local" id="capacitat_local"
-                    placeholder="Capacitat del local">
+                <input class="input-event input-adreca" type="number" name="capacitat_local" id="capacitat_local"
+                    placeholder="Capacitat del local" required>
 
                 <button type="button" class="btn btn-primary" id="guardar-adreca"
                     onclick="guardarNovaAdreca()">Guardar</button>
@@ -169,8 +180,6 @@
     <div id="overlay" class="overlay" onclick="cerrarModalDireccion()"></div>
 
     <script>
-        // Evento al hacer clic en el botón para abrir el modal de Nova Adreça
-
         document.querySelectorAll('.label-adreca').forEach(setupSelector);
 
         document.getElementById('abrir-modal-direccion').addEventListener('click', function() {
@@ -183,15 +192,76 @@
             document.getElementById('nueva-direccion-modal').style.display = 'none';
         });
 
+        function guardarNovaAdreca() {
+
+            var camposRequeridos = ['nova_provincia', 'nova_ciutat', 'codi_postal', 'nom_local', 'capacitat_local'];
+
+            // Función para resaltar campo vacío
+            function resaltarCampoVacio(campo) {
+                campo.style.border = "1px solid red";
+            }
+
+            // Función para quitar resaltado de campos
+            function quitarResaltadoCampos() {
+                camposRequeridos.forEach(campoId => {
+                    var campo = document.getElementById(campoId);
+                    campo.style.border = "";
+                });
+            }
+
+            // Validación de campos requeridos
+            var campoVacioEncontrado = false;
+            camposRequeridos.forEach(campoId => {
+                var campo = document.getElementById(campoId);
+                if (campo.value === "") {
+                    resaltarCampoVacio(campo);
+                    campoVacioEncontrado = true;
+                } else {
+                    campo.style.border = "1px solid black";
+                }
+            });
+
+            if (!campoVacioEncontrado) {
+                quitarResaltadoCampos();
+
+                var formData = new FormData(document.getElementById("formularioVenue"));
+                fetch("{{ route('promotor.createVenue') }}", {
+                        method: "POST",
+                        body: formData,
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.addresses) {
+                            var select = document.querySelector('select[name="selector-options"]');
+                            select.innerHTML = "";
+
+                            data.addresses.forEach(direccion => {
+                                var option = document.createElement("option");
+                                option.value = direccion.id;
+                                option.text =
+                                    `${direccion.venue_name}, ${direccion.city}, ${direccion.province}, ${direccion.postal_code}`;
+                                select.appendChild(option);
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+
+                cerrarModalDireccion();
+
+            };
+        }
+
         function cerrarModalDireccion() {
+            document.querySelectorAll('.input-adreca').forEach(function(input) {
+                input.value = "";
+            });
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('nueva-direccion-modal').style.display = 'none';
         }
 
         function setupSelector(selector) {
-            selector.addEventListener('change', e => {
-                console.log('changed', e.target.value)
-            })
 
             selector.addEventListener('mousedown', e => {
 
@@ -199,7 +269,7 @@
 
                 const select = selector.children[0];
                 const dropDown = document.createElement('ul');
-                dropDown.className = "selector-options select-categoria-desktop";
+                dropDown.className = "selector-options select-categoria-desktop ";
 
                 [...select.children].forEach(option => {
                     const dropDownOption = document.createElement('li');
@@ -227,6 +297,23 @@
                 });
 
             });
+        }
+
+        function actualizarMaxEntradas() {
+            const aforoMaximo = parseInt(document.getElementById("max_capacity").value);
+            const entradasInputs = Array.from(document.querySelectorAll("#entry_type_quantity"));
+
+            const sumaEntradas = entradasInputs.reduce((sum, input) => sum + (parseInt(input.value) || 0), 0);
+
+            entradasInputs.forEach(input => {
+                if (input !== document.activeElement) {
+                    input.max = aforoMaximo - sumaEntradas + (parseInt(input.value) || 0);
+                }
+            });
+
+            if (document.activeElement.value > parseInt(document.activeElement.max)) {
+                document.activeElement.value = parseInt(document.activeElement.max)
+            }
         }
 
         function agregarEntrada() {
@@ -269,25 +356,8 @@
             if (divAEliminar.previousElementSibling !== null) {
                 contenedor.removeChild(divAEliminar);
             }
-        }
 
-        function actualizarMaxEntradas() {
-            const aforoMaximo = parseInt(document.getElementById("max_capacity").value);
-            const entradasInputs = Array.from(document.querySelectorAll("#entry_type_quantity"));
-
-            // Calcular la suma de las entradas actuales
-            const sumaEntradas = entradasInputs.reduce((sum, input) => sum + (parseInt(input.value) || 0), 0);
-
-            // Actualizar el atributo max de cada campo de entradas
-            entradasInputs.forEach(input => {
-                if (input !== document.activeElement) {
-                    input.max = aforoMaximo - sumaEntradas + (parseInt(input.value) || 0);
-                }
-            });
-
-            if (document.activeElement.value > parseInt(document.activeElement.max)) {
-                document.activeElement.value = parseInt(document.activeElement.max)
-            }
+            actualizarMaxEntradas()
         }
     </script>
 @endsection

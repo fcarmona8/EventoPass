@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Venue;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class VenueFactory extends Factory
@@ -12,8 +13,12 @@ class VenueFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->randomElement(['Tower', 'Building', 'Plaza', 'Center', 'Complex']),
-            'location' => $this->faker->city,
+            'venue_name' => $this->faker->company,
+            'city' => $this->faker->city,
+            'province' => $this->faker->state,
+            'postal_code' => $this->faker->postcode,
+            'capacity' => $this->faker->randomNumber(3),
+            'user_id' => User::factory()
         ];
     }
 }
