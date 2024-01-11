@@ -262,7 +262,9 @@ Per ultim reiniciem el servei apache2 -> sudo systemctl restart apache2
 == Documentació de Permisos
 Descripció detallada dels permisos necessaris per a components, programes, contenidors, etc.
 
-Hem de donar permisos a la carpeta de storage amb aquestes dos comandes -> chmod -R 775 storage i chown -R www-data:www-data storage
+Hem de donar permisos a la carpeta de logs amb aquestes dos comandes -> chmod -R 775 storage i chown -R www-data:www-data logs
+
+I hem de fer un link simbòlic entre storag/app i publiv amb -> php artisan storage:link
 
 == Línies Futures
 Plantejaments sobre l'evolució futura del projecte.
