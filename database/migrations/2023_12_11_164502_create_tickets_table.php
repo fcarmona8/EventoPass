@@ -12,6 +12,7 @@ class CreateTicketsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('purchase_id');
             $table->unsignedBigInteger('type_id');
+            $table->unsignedBigInteger('session_id');
             $table->timestamps();
             $table->foreign('purchase_id')->references('id')->on('purchases');
             $table->foreign('type_id')->references('id')->on('ticket_types');
