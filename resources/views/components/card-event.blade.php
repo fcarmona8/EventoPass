@@ -1,4 +1,4 @@
-<a class="card-link" href="{{ route('tickets.showevent', ['id' => $event->id]) }}">  
+<a class="card-link" href="{{ route('tickets.showevent', ['id' => $event->id]) }}">
     <div class="card">
         @if ($event->main_image)
             <!-- <img src="{{ asset('storage/' . $event->main_image) }}" alt="{{ $event->name }}"> -->
