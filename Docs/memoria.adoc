@@ -235,7 +235,7 @@ Tabe podem obrir el docker fent -> sudo docker-compose up -d
 
 En el fitxer docker-compose escribim:
 
-[source,ini]
+[source,yaml]
 ----
 version: '3'
 
@@ -261,6 +261,7 @@ services:
     working_dir: /app
     command: sh -c "php artisan migrate"
 ----
+
 
 === Obrir servidor web:
 
