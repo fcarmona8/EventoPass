@@ -38,7 +38,10 @@ Route::get('/tickets/showevent/{id}', function () {
 Route::get('/promotor/create-event', [CreateEventController::class, 'create'])->name('promotor.createEvent');
 
 //Guardar Evento
-Route::post('/promotor/create-event', [CreateEventController::class, 'store'])->name('promotor.createEvent');
+Route::post('/promotor/create-event', [CreateEventController::class, 'store'])->name('promotor.storeEvent');
+
+//Guardar store
+Route::post('/promotor/create-venue', [CreateEventController::class, 'storeVenue'])->name('promotor.createVenue');
 
 // Comprar Entradas
 Route::get('/tickets/buytickets', function () {

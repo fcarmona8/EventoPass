@@ -3,18 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Event;
 use App\Models\Category;
+use App\Models\Event;
 use App\Models\Venue;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class CreateEventController extends Controller
 {
     public function create()
     {
+        $categories = Category::pluck('name', 'id');
+        $categories = $categories->toArray();
         $existingAddresses = Venue::all();
 
-        return view('promotor.createEvent', compact('existingAddresses'));
+        return view('promotor.createEvent', compact('existingAddresses', 'categories'));
     }
 
     public function store(Request $request)
@@ -30,30 +33,12 @@ class CreateEventController extends Controller
             'event_hidden' => 'sometimes|boolean',
         ]);
 
-        // Subida de la imagen principal
         $imagePath = $request->file('event_image')->store('event_images', 'public');
-
-        // Encuentra o crea la categoría
+        
         $category = Category::firstOrCreate(['name' => $request->input('category')]);
 
-        // Manejo de la dirección
-        $venueId = null;
-        if ($request->has('existing_address') && $request->input('existing_address')) {
-            $venueId = $request->input('existing_address');
-        } elseif ($request->has('new_address')) {
-            $validatedAddressData = $request->validate([
-                'new_address.province' => 'required',
-                'new_address.city' => 'required',
-            ]);
+        $venueId = $request->input('selector-options');
 
-            $venue = Venue::create([
-                'name' => $request->input('new_address.venue_name'),
-                'location' => $request->input('new_address.city') . ', ' . $request->input('new_address.province'),
-            ]);
-            $venueId = $venue->id;
-        }
-
-        // Crear el evento
         $event = new Event([
             'name' => $validatedData['title'],
             'description' => $validatedData['description'],
@@ -65,10 +50,38 @@ class CreateEventController extends Controller
             'video_link' => $validatedData['promo_video_link'] ?? null,
             'hidden' => $validatedData['event_hidden'] ?? false,
         ]);
+        
         $event->save();
-
-        // Aquí puedes agregar lógica adicional si necesitas procesar imágenes adicionales, entradas, etc.
 
         return redirect()->route('promotor.createEvent')->with('success', 'Evento creado con éxito');
     }
+
+    public function storeVenue(Request $request){
+        $request->validate([
+            'nova_provincia' => 'required|string',
+            'nova_ciutat' => 'required|string',
+            'codi_postal' => 'required|numeric',
+            'nom_local' => 'required|string',
+            'capacitat_local' => 'required|numeric',
+        ]);
+
+        $user_id = Auth::id();
+
+        $venue = new Venue([
+            'province' => $request['nova_provincia'],
+            'city' => $request['nova_ciutat'],
+            'postal_code' => $request['codi_postal'],
+            'venue_name' => $request['nom_local'],
+            'capacity' => $request['capacitat_local'],
+            'user_id' => $user_id
+
+        ]);
+
+        $venue->save();
+
+        $existingAddresses = Venue::all();
+
+        return response()->json(['message' => 'Dirección guardada correctamente', 'addresses' => $existingAddresses]);
+            
+        }
 }
