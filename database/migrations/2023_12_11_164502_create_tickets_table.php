@@ -15,6 +15,7 @@ class CreateTicketsTable extends Migration
             $table->timestamps();
             $table->foreign('purchase_id')->references('id')->on('purchases');
             $table->foreign('type_id')->references('id')->on('ticket_types');
+            $table->foreign('session_id')->references('id')->on('sessions');
         });
         
     }
