@@ -37,7 +37,6 @@ class ResultatsPageTest extends TestCase
                 $found = true;
                 $response->assertSee(e($event->name), false);
                 $response->assertSee(e($event->description), false);
-                //$response->assertSee(e($event->event_date), false);
                 $response->assertSee(e($event->venue->name), false);
 
 
