@@ -47,7 +47,7 @@
             </div>
         </form>
 
-        <a href="{{ route('password.request') }}">He olvidat la contrasenya</a>
+        <a href="{{ route('password.request') }}">He oblidat la contrasenya</a>
     </div>
 </body>
 

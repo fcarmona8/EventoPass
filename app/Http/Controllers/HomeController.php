@@ -25,7 +25,7 @@ class HomeController extends Controller{
     
 
     $query = Category::query();
-    $categoriesPage = config('app.events_per_page', env('PAGINATION_LIMIT', 10));
+    $categoriesPage = config('app.events_per_page', env('CATEGORIES_PAGE', 7));
     $categoriesPerPage = $query->orderBy("name")->paginate($categoriesPage);
     
 

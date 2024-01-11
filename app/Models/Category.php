@@ -15,6 +15,6 @@ class Category extends Model
 
     public function eventsWithLimit()
     {
-        return $this->hasMany(Event::class)->take(env('SHOW_EVENTS_LIMIT', 6));
+        return $this->hasMany(Event::class)->where('hidden', false)->take(env('SHOW_EVENTS_LIMIT', 6));
     }
 }

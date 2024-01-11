@@ -88,7 +88,7 @@ class UserFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'name' => 'promotor3',
+                'name' => 'promotor4',
                 'email' => 'gpuigantell@alumnat.copernic.cat',
                 'password' => Hash::make('123456789'),
                 'role_id' => 1,
