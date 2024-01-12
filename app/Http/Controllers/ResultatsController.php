@@ -33,7 +33,7 @@ class ResultatsController extends Controller
                         $q->whereIn('venue_id', function ($subquery) use ($searchTerm) {
                             $subquery->select('id')
                                      ->from('venues')
-                                     ->where('location', 'ILIKE', "%{$searchTerm}%")
+                                     ->where('city', 'ILIKE', "%{$searchTerm}%")
                                      ->where('hidden', '=', 'false');
                         });
                     } elseif ($filtro === 'recinto') {
