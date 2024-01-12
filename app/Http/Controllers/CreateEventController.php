@@ -11,6 +11,7 @@ use App\Models\TicketType;
 use App\Models\Ticket;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class CreateEventController extends Controller
 {
@@ -18,7 +19,8 @@ class CreateEventController extends Controller
     {
         $categories = Category::pluck('name', 'id');
         $categories = $categories->toArray();
-        $existingAddresses = Venue::all();
+        $userId = Auth::id();
+        $existingAddresses = Venue::where('user_id', $userId)->get();
 
         return view('promotor.createEvent', compact('existingAddresses', 'categories'));
     }
@@ -41,15 +43,11 @@ class CreateEventController extends Controller
                 'selector-options-venue' => 'required|integer',
                 'entry_type_name.*' => 'required|string',
                 'entry_type_price.*' => 'required|numeric',
-                'entry_type_quantity.*' => 'required|integer'
+                'entry_type_quantity.*' => 'required|integer',
+                'additional_images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
 
             Log::info('Datos del evento validados: ' . json_encode($validatedData));
-
-            // Guardar imagen principal del evento
-            $image = $request->file('event_image');
-            $imagePath = $image->storeAs('main_images', time().'_'.$image->getClientOriginalName(), 'public');
-            Log::info('Imagen del evento almacenada: ' . $imagePath);
 
             // Buscar la categoría y el venue por ID
             $categoryId = $request->input('selector-options-categoria');
@@ -68,7 +66,6 @@ class CreateEventController extends Controller
             $event = new Event([
                 'name' => $validatedData['title'],
                 'description' => $validatedData['description'],
-                'main_image' => $imagePath,
                 'event_date' => $validatedData['event_datetime'],
                 'category_id' => $category->id,
                 'venue_id' => $venue->id,
@@ -80,6 +77,30 @@ class CreateEventController extends Controller
             $event->save();
             Log::info('Evento guardado con éxito: ' . $event->id);
 
+            // Crear directorio base para el evento
+            $eventDirectory = 'event_' . $event->id;
+            Storage::disk('public')->makeDirectory($eventDirectory);
+
+            // Guardar imagen principal en subcarpeta 'main_image'
+            if ($request->hasFile('event_image')) {
+                $image = $request->file('event_image');
+                $imagePath = $image->storeAs($eventDirectory . '/main_image', time().'_'.$image->getClientOriginalName(), 'public');
+                $event->main_image = $imagePath;
+                $event->save();
+                Log::info('Imagen principal del evento almacenada: ' . $imagePath);
+            }
+
+            // Guardar imágenes adicionales en subcarpeta 'event_images'
+            if ($request->hasFile('additional_images')) {
+                foreach ($request->file('additional_images') as $image) {
+                    $additionalImagePath = $image->store($eventDirectory . '/event_images', 'public');
+                    $event->images()->create([
+                        'image_url' => $additionalImagePath,
+                        'is_main' => false,
+                    ]);
+                }
+            }
+
             // Crear el cierre de sesión basándose en la selección del usuario
             $selectorOption = $request->input('selector-options-venue');
             Log::info('Selector Option: ' . $selectorOption);
@@ -88,6 +109,9 @@ class CreateEventController extends Controller
             $onlineSaleEndTime = clone $eventDateTime;
 
             switch ($selectorOption) {
+                case "1":
+                    $onlineSaleEndTime;
+                    break;
                 case "2":
                     $onlineSaleEndTime->modify('-1 hour');
                     break;
@@ -166,7 +190,7 @@ class CreateEventController extends Controller
 
         $venue->save();
 
-        $existingAddresses = Venue::all();
+        $existingAddresses = Venue::where('user_id', $userId)->get();
 
         return response()->json(['message' => 'Dirección guardada correctamente', 'addresses' => $existingAddresses]);
             
