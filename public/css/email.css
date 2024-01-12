@@ -55,7 +55,6 @@
 .btn-primary {
     font-family: 'Montserrat', sans-serif;
     background-color: var(--botones-accion);
-    color: var(--fondo-y-contraste);
     border: none;
     padding: 0.5rem 1rem;
     cursor: pointer;
@@ -65,9 +64,15 @@
 
 .alert-success, .alert-danger {
     font-family: 'Roboto', sans-serif;
-    font-size: 12px;
     margin-bottom: 1rem;
     text-align: center;
+    color: var(--botones-accion);
+    font-weight: bold;
+    font-size: 15px;
+    
+}
+li{
+    list-style: none;
 }
 
 /* Estilos para pantallas más grandes */
