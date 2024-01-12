@@ -97,10 +97,11 @@ button, .button {
     font-weight: 300;
     font-size: 6px;
     background-color: var(--botones-accion);
-    color: var(--fondo-y-contraste);
+    color: #0b2c47;
     border: none;
     padding: 0.5rem 1rem;
     cursor: pointer;
+    font-weight: bold;
 }
 
 /* Texto de ayuda y pie de página */
