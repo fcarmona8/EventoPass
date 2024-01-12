@@ -20,14 +20,14 @@
         @auth
             <div class="user-info">
                 <i class="fa fa-user"></i>
-                <p>Bienvenido, {{ Auth::user()->name }}</p>
+                <p>{{ Auth::user()->name }}</p>
 
                 <!-- Formulario de Logout -->
                 <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                     @csrf
                     <button type="submit" class="logout-button"
                         style="background: none; border: none; padding: 0; text-decoration: underline; cursor: pointer;">
-                        <i class="fa fa-sign-out-alt" style="font-size: 18px;"></i> Salir
+                        <i class="fa fa-sign-out-alt" style="font-size: 18px;"></i>
                     </button>
                 </form>
             </div>
