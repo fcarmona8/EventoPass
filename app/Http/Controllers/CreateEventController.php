@@ -47,7 +47,8 @@ class CreateEventController extends Controller
             Log::info('Datos del evento validados: ' . json_encode($validatedData));
 
             // Guardar imagen principal del evento
-            $imagePath = $request->file('event_image')->store('event_images', 'public');
+            $image = $request->file('event_image');
+            $imagePath = $image->storeAs('main_images', time().'_'.$image->getClientOriginalName(), 'public');
             Log::info('Imagen del evento almacenada: ' . $imagePath);
 
             // Buscar la categoría y el venue por ID
