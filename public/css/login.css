@@ -47,6 +47,8 @@
     cursor: pointer;
     border-radius: 5px;
     font-size: 14px;
+    font-weight: bold;
+    color: #0b2c47;
 }
 
 .alert-danger {
@@ -54,6 +56,13 @@
     color: red;
     font-size: 12px;
     margin-bottom: 1rem;
+}
+
+.error{
+    color: var(--botones-accion);
+    font-weight: bold;
+    font-size: 15px;
+    list-style: none;
 }
 
 /* Estilos para pantallas más grandes */
