@@ -10,7 +10,7 @@ class Session extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['event_id', 'date_time', 'online_sale_end_time'];
+    protected $fillable = ['event_id', 'date_time', 'online_sale_end_time', 'ticket_quantity'];
 
     public function event()
     {
@@ -21,4 +21,10 @@ class Session extends Model
     {
         return $this->hasMany(Purchase::class);
     }
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
+
 }

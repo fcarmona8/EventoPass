@@ -18,7 +18,7 @@ class VenueFactory extends Factory
             'province' => $this->faker->state,
             'postal_code' => $this->faker->postcode,
             'capacity' => $this->faker->randomNumber(3),
-            'user_id' => User::factory()
+            'user_id' => User::inRandomOrder()->first()->id
         ];
     }
 }

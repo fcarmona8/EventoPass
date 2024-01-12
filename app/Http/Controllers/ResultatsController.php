@@ -18,7 +18,7 @@ class ResultatsController extends Controller
             $categories = ['todas' => 'Totes'] + $categories->toArray();
             $selectedCategoria = $request->input('categoria', 'todas');
 
-            $query = Event::with('category', 'venue');
+            $query = Event::with('category', 'venue', 'sessions.tickets'); 
 
             if ($request->filled('search')) {
                 $searchTerm = $request->get('search');
@@ -60,7 +60,7 @@ class ResultatsController extends Controller
             $selectedFiltro = $request->input('filtro') ?? '';
             $searchTerm = $request->input('search') ?? '';
             $eventsPerPage = config('app.events_per_page', env('PAGINATION_LIMIT', 10));
-            $events = $query->orderBy('event_date')->paginate($eventsPerPage);
+            $events = $query->with('sessions.tickets')->orderBy('event_date')->paginate($eventsPerPage);
 
             Log::info('Consulta completada en ResultatsController@index', [
                 'selectedFiltro' => $selectedFiltro,
@@ -69,9 +69,19 @@ class ResultatsController extends Controller
             ]);
 
             $events->appends($request->except('page'));
+            $eventId = $request->input('eventId');
+            $event = Event::find($eventId);
 
-            return view('resultats', compact('events', 'selectedFiltro', 'searchTerm', 'categories', 'selectedCategoria'));
+            // Inicializamos $lowestPrice
+            $lowestPrice = null;
 
+            // Verificamos que $event no sea null antes de llamar al método
+            if ($event !== null) {
+                $lowestPrice = $event->lowestTicketPrice();
+            }
+
+            return view('resultats', compact('events', 'selectedFiltro', 'searchTerm', 'categories', 'selectedCategoria', 'lowestPrice'));
+ 
         } catch (\Exception $e) {
 
             Log::error('Error en ResultatsController@index', [

@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Event;
 use App\Models\Venue;
+use App\Models\Session;
+use App\Models\TicketType;
+use App\Models\Ticket;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
 class CreateEventController extends Controller
@@ -36,6 +38,10 @@ class CreateEventController extends Controller
                 'max_capacity' => 'required|integer|min:1',
                 'promo_video_link' => 'nullable|url',
                 'event_hidden' => 'sometimes|boolean',
+                'selector-options-venue' => 'required|integer',
+                'entry_type_name.*' => 'required|string',
+                'entry_type_price.*' => 'required|numeric',
+                'entry_type_quantity.*' => 'required|integer'
             ]);
 
             Log::info('Datos del evento validados: ' . json_encode($validatedData));
@@ -44,20 +50,18 @@ class CreateEventController extends Controller
             $imagePath = $request->file('event_image')->store('event_images', 'public');
             Log::info('Imagen del evento almacenada: ' . $imagePath);
 
-             // Buscar la categoría por ID
+            // Buscar la categoría y el venue por ID
             $categoryId = $request->input('selector-options-categoria');
+            $venueId = $request->input('selector-options-venue');
             $category = Category::find($categoryId);
+            $venue = Venue::find($venueId);
 
-            if (!$category) {
-                Log::error('Categoría no encontrada con ID: ' . $categoryId);
-                return back()->withErrors(['error' => 'Categoría no encontrada.']);
+            if (!$category || !$venue) {
+                Log::error('Categoría o Venue no encontrados con IDs: ' . $categoryId . ', ' . $venueId);
+                return back()->withErrors(['error' => 'Categoría o Venue no encontrados.']);
             }
 
-            Log::info('Categoría encontrada: ' . $category->id);
-
-            // Obtener el ID del venue
-            $venueId = $request->input('selector-options');
-            Log::info('Venue ID obtenido: ' . $venueId);
+            Log::info('Categoría y Venue encontrados: ' . $category->id . ', ' . $venue->id);
 
             // Crear el evento
             $event = new Event([
@@ -66,25 +70,79 @@ class CreateEventController extends Controller
                 'main_image' => $imagePath,
                 'event_date' => $validatedData['event_datetime'],
                 'category_id' => $category->id,
-                'venue_id' => $venueId,
+                'venue_id' => $venue->id,
                 'max_capacity' => $validatedData['max_capacity'],
                 'video_link' => $validatedData['promo_video_link'] ?? null,
                 'hidden' => $validatedData['event_hidden'] ?? false,
             ]);
 
-            // Guardar el evento
             $event->save();
             Log::info('Evento guardado con éxito: ' . $event->id);
 
-            // Redirigir con mensaje de éxito
-            return redirect()->route('promotor.createEvent')->with('success', 'Evento creado con éxito');
+            // Crear el cierre de sesión basándose en la selección del usuario
+            $selectorOption = $request->input('selector-options-venue');
+            Log::info('Selector Option: ' . $selectorOption);
+
+            $eventDateTime = new \DateTime($validatedData['event_datetime']);
+            $onlineSaleEndTime = clone $eventDateTime;
+
+            switch ($selectorOption) {
+                case "2":
+                    $onlineSaleEndTime->modify('-1 hour');
+                    break;
+                case "3":
+                    $onlineSaleEndTime->modify('-2 hours');
+                    break;
+            }
+
+            $session = new Session([
+                'event_id' => $event->id,
+                'date_time' => $eventDateTime,
+                'online_sale_end_time' => $onlineSaleEndTime,
+                'ticket_quantity' => $validatedData['max_capacity'],
+            ]);
+
+            $session->save();
+            Log::info('Sesión guardada con éxito: ' . $session->id);
+
+            // Procesar los tipos de tickets
+            $typeNames = $request->input('entry_type_name');
+            $typePrices = $request->input('entry_type_price');
+            $typeQuantities = $request->input('entry_type_quantity');
+
+            if (is_array($typeNames) && is_array($typePrices) && is_array($typeQuantities)) {
+                foreach ($typeNames as $index => $name) {
+                    // Crear el tipo de ticket
+                    $ticketType = new TicketType([
+                        'name' => $name,
+                        'price' => $typePrices[$index],
+                        'available_tickets' => $typeQuantities[$index],
+                    ]);
+
+                    $ticketType->save();
+
+                    // Crear los tickets
+                    for ($i = 0; $i < $ticketType->available_tickets; $i++) {
+                        $ticket = new Ticket([
+                            // Asignar 'purchase_id' según tu lógica de negocio
+                            'type_id' => $ticketType->id,
+                            'session_id' => $session->id,
+                        ]);
+
+                        $ticket->save();
+                    }
+                }
+            }
+
+            return redirect()->route('promotor.createEvent')->with('success', 'Evento, sesión y tickets creados con éxito');
         } catch (\Exception $e) {
-            Log::error('Error en el proceso de almacenamiento del evento: ' . $e->getMessage());
-            return back()->withErrors(['error' => 'Error al guardar el evento.']);
+            Log::error('Error en el proceso de almacenamiento del evento, sesión y tickets: ' . $e->getMessage());
+            return back()->withErrors(['error' => 'Error al guardar el evento, sesión y tickets.']);
         }
     }
 
-    public function storeVenue(Request $request){
+    public function storeVenue(Request $request)
+    {
         $request->validate([
             'nova_provincia' => 'required|string',
             'nova_ciutat' => 'required|string',
@@ -111,5 +169,5 @@ class CreateEventController extends Controller
 
         return response()->json(['message' => 'Dirección guardada correctamente', 'addresses' => $existingAddresses]);
             
-        }
+    }
 }

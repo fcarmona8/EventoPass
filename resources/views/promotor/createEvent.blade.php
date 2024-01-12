@@ -98,14 +98,14 @@
         <div class="div-event">
             <div class="div-event ticket-type" id="entradas-container">
                 <div class="div-informacion-principal ticket-input">
-                    <input type="text" class="input-event" name="entry_type_name" id="entry_type_name" required
+                    <input type="text" class="input-event" name="entry_type_name[]" required
                         placeholder="Nom del tipus d'entrada">
 
-                    <input type="number" class="input-event" name="entry_type_price" id="entry_type_price"
-                        placeholder="Preu" step="0.01" required>
+                    <input type="number" class="input-event" name="entry_type_price[]" placeholder="Preu" step="0.01"
+                        required>
 
-                    <input type="number" class="input-event" name="entry_type_quantity" id="entry_type_quantity"
-                        placeholder="Quantitat" required min="0" oninput="actualizarMaxEntradas()">
+                    <input type="number" class="input-event" name="entry_type_quantity[]" placeholder="Quantitat" required
+                        min="0" oninput="actualizarMaxEntradas()">
                     <button type="button" class="eliminar-linea" style="display: none;"
                         onclick="eliminarEntrada(this)">Eliminar</button>
 
@@ -120,7 +120,7 @@
             <div class="div-tancament2">
                 <label class="label-adreca label-categoria">
                     Tancament de la Venta Online:
-                    <select name="selector-options" class="select-categoria-desktop">
+                    <select name="selector-options-venue" class="select-categoria-desktop">
                         <option value="1">Hora de l'esdeveniment</option>
                         <option value="2">1 hora abans</option>
                         <option value="3">2 hores abans</option>
@@ -318,47 +318,32 @@
         }
 
         function agregarEntrada() {
-            var primerSeparador = document.querySelector('hr')
             var contenedor = document.getElementById('entradas-container');
-            var nuevoEntrada = document.querySelector('.ticket-input').cloneNode(true);
+            var primerTicketInput = contenedor.querySelector('.ticket-input');
+            var nuevoTicketInput = primerTicketInput.cloneNode(true);
 
-            // Limpiar los valores de los campos clonados
-            nuevoEntrada.querySelectorAll('input').forEach(function(input) {
+            nuevoTicketInput.querySelectorAll('input').forEach(function(input) {
                 input.value = '';
             });
-            var separador = nuevoEntrada.querySelector('hr')
-            var botonEliminar = nuevoEntrada.querySelector('button');
 
-            primerSeparador.style.display = 'block'
+            var botonEliminar = document.createElement('button');
+            botonEliminar.type = 'button';
+            botonEliminar.textContent = 'Eliminar';
+            botonEliminar.onclick = function() {
+                contenedor.removeChild(nuevoTicketInput);
+            };
+            nuevoTicketInput.appendChild(botonEliminar);
 
-            separador.style.display = 'block'
-
-            botonEliminar.style.display = 'block';
-
-            if (window.innerWidth > 768) {
-                primerSeparador.style.display = 'none'
-                separador.style.display = 'none';
-            }
-
-            // Agregar el nuevo div al contenedor
-            contenedor.appendChild(nuevoEntrada);
-
-
-            actualizarMaxEntradas();
-
-
+            contenedor.appendChild(nuevoTicketInput);
         }
 
         function eliminarEntrada(elemento) {
             var contenedor = document.getElementById('entradas-container');
             var divAEliminar = elemento.parentNode;
 
-            // Asegurarse de que no se elimine el primer conjunto
-            if (divAEliminar.previousElementSibling !== null) {
+            if (divAEliminar !== contenedor.firstChild) {
                 contenedor.removeChild(divAEliminar);
             }
-
-            actualizarMaxEntradas()
         }
     </script>
 @endsection

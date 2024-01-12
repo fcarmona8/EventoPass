@@ -15,11 +15,11 @@ class CreateEventsTable extends Migration
             $table->string('main_image', 255);
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('venue_id');
-            $table->timestampTz('event_date')->nullable();
+            $table->timestamp('event_date')->nullable();
             $table->integer('max_capacity')->nullable();
             $table->string('video_link', 255)->nullable();
             $table->boolean('hidden')->default(false);
-            $table->timestampsTz();
+            $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('venue_id')->references('id')->on('venues');
         });

@@ -13,7 +13,7 @@ class SessionFactory extends Factory
     public function definition()
     {
         return [
-            'event_id' => Event::factory(),
+            'event_id' => Event::inRandomOrder()->first()->id,
             'date_time' => $this->faker->dateTime,
         ];
     }

@@ -10,7 +10,7 @@ class CreateTicketsTable extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('purchase_id');
+            $table->unsignedBigInteger('purchase_id')->nullable();
             $table->unsignedBigInteger('type_id');
             $table->unsignedBigInteger('session_id');
             $table->timestamps();

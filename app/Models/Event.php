@@ -31,19 +31,25 @@ class Event extends Model
         return $this->hasMany(Session::class);
     }
 
+    public function tickets()
+    {
+        return $this->hasManyThrough(Ticket::class, Session::class);
+    }
+
     public function lowestTicketPrice()
     {
-        $startTime = microtime(true);
-
         try {
-            $lowestPrice = $this->sessions()
-                                ->join('purchases', 'sessions.id', '=', 'purchases.session_id')
-                                ->join('tickets', 'purchases.id', '=', 'tickets.purchase_id')
+            Log::info('Iniciando cálculo del precio más bajo para el evento', ['event_id' => $this->id]);
+
+            // Obtén las sesiones para este evento
+            $sessionIds = $this->sessions()->pluck('id');
+
+            // Obtén el precio más bajo entre los tickets de esas sesiones
+            $lowestPrice = Ticket::whereIn('session_id', $sessionIds)
                                 ->join('ticket_types', 'tickets.type_id', '=', 'ticket_types.id')
                                 ->min('ticket_types.price');
 
-            $endTime = microtime(true);
-            Log::info('Tiempo de ejecución de lowestTicketPrice', ['duration' => $endTime - $startTime]);
+            Log::info('Precio más bajo encontrado', ['event_id' => $this->id, 'lowestPrice' => $lowestPrice]);
 
             return $lowestPrice;
         } catch (\Exception $e) {
@@ -51,6 +57,7 @@ class Event extends Model
                 'event_id' => $this->id,
                 'error_message' => $e->getMessage()
             ]);
+            return null;
         }
     }
 
@@ -64,6 +71,7 @@ class Event extends Model
             ]);
         }
     }
+
     public function scopeCategoryEvent(Builder $query, int $category){
         try {
             $query->where('category', 'LIKE', "{$category}");

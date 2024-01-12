@@ -13,7 +13,8 @@ class TicketTypeFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
-            'price' => $this->faker->randomFloat(2, 10, 200)
+            'price' => $this->faker->randomFloat(2, 10, 200),
+            'available_tickets' => $this->faker->numberBetween(1, 5)
         ];
     }
 }

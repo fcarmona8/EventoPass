@@ -13,6 +13,7 @@ class CreateSessionsTable extends Migration
             $table->unsignedBigInteger('event_id');
             $table->timestamp('date_time');
             $table->timestamp('online_sale_end_time')->nullable();
+            $table->integer('ticket_quantity')->nullable();
             $table->timestamps();
             $table->foreign('event_id')->references('id')->on('events');
         });

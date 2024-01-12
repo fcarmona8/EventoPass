@@ -12,7 +12,7 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            'name' => '',
+            //
         ];
     }
 
@@ -41,7 +41,6 @@ class CategoryFactory extends Factory
         return $this->state(['name' => 'Deportes']);
     }
 
-    // Nuevas categorías
     public function arts()
     {
         return $this->state(['name' => 'Arte']);
