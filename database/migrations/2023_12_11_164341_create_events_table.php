@@ -12,7 +12,7 @@ class CreateEventsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name', 255);
             $table->text('description');
-            $table->string('main_image', 255);
+            $table->string('main_image', 255)->nullable();
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('venue_id');
             $table->timestamp('event_date')->nullable();

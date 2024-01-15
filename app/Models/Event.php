@@ -36,6 +36,11 @@ class Event extends Model
         return $this->hasManyThrough(Ticket::class, Session::class);
     }
 
+    public function images()
+    {
+        return $this->hasMany(EventImage::class);
+    }
+    
     public function lowestTicketPrice()
     {
         try {

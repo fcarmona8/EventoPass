@@ -1,8 +1,8 @@
 <a class="card-link" href="{{ route('tickets.showevent', ['id' => $event->id]) }}">
     <div class="card">
         @if ($event->main_image)
-            <!-- <img src="{{ asset('storage/' . $event->main_image) }}" alt="{{ $event->name }}"> -->
-            <img src="https://picsum.photos/2000" alt="{{ $event->name }}">
+            <img src="{{ asset('storage/' . $event->main_image) }}" alt="{{ $event->name }}">
+            {{-- <img src="https://picsum.photos/2000" alt="{{ $event->name }}"> --}}
         @endif
         <div class="card-content">
             <h3>{{ Str::limit($event->name, $limit = 55, $end = '...') }}</h3>
