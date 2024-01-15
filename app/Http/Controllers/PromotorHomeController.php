@@ -21,6 +21,5 @@ class PromotorHomeController extends Controller{
     
         return view('promotor/promotorhome', compact('events'));
     }
-    
 
 }

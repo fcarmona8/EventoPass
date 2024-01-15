@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
