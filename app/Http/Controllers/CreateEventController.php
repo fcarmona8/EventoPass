@@ -18,7 +18,8 @@ class CreateEventController extends Controller
     {
         $categories = Category::pluck('name', 'id');
         $categories = $categories->toArray();
-        $existingAddresses = Venue::all();
+        $user_id = Auth::id();
+        $existingAddresses = Venue::where('user_id', $user_id)->get();
 
         return view('promotor.createEvent', compact('existingAddresses', 'categories'));
     }
@@ -165,7 +166,7 @@ class CreateEventController extends Controller
 
         $venue->save();
 
-        $existingAddresses = Venue::all();
+        $existingAddresses = Venue::where('user_id', $user_id)->get();
 
         return response()->json(['message' => 'Dirección guardada correctamente', 'addresses' => $existingAddresses]);
             

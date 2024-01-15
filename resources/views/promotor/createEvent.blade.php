@@ -53,9 +53,9 @@
 
         <h3 class="h3-event">Adreça</h3>
         <div class="div-event div-adreca">
-            <label class="label-adreca">
+            <label class="label-adreca" style="display: {{ $existingAddresses->count() > 0 ? 'block' : 'none' }}" id="label-adreca">
                 Selecciona una adreça
-                <select name="selector-options" class="select-categoria-desktop" id="adreces-select">
+                <select name="selector-options" class="select-categoria-desktop"  id="adreces-select">
                     @foreach ($existingAddresses as $direccion)
                         <option value="{{ $direccion->id }}">
                             {{ $direccion->venue_name }}, {{ $direccion->city }}, {{ $direccion->province }},
@@ -104,7 +104,7 @@
                     <input type="number" class="input-event" name="entry_type_price[]" placeholder="Preu" step="0.01"
                         required>
 
-                    <input type="number" class="input-event" name="entry_type_quantity[]" placeholder="Quantitat" required
+                    <input type="number" class="input-event" name="entry_type_quantity[]" id="entry_type_quantity" placeholder="Quantitat" required
                         min="0" oninput="actualizarMaxEntradas()">
                     <button type="button" class="eliminar-linea" style="display: none;"
                         onclick="eliminarEntrada(this)">Eliminar</button>
@@ -196,6 +196,7 @@
         function guardarNovaAdreca() {
 
             var camposRequeridos = ['nova_provincia', 'nova_ciutat', 'codi_postal', 'nom_local', 'capacitat_local'];
+            const contenedorAdreca = document.getElementById('label-adreca');
 
             // Función para resaltar campo vacío
             function resaltarCampoVacio(campo) {
@@ -249,6 +250,8 @@
                         console.error(error);
                     });
 
+                    contenedorAdreca.style.display = 'block';
+
                 cerrarModalDireccion();
 
             };
@@ -300,24 +303,37 @@
             });
         }
 
+        function validarNumero(input) {
+            var valor = parseFloat(input.value);
+
+            if (valor < 0) {
+                input.value = 0;
+            }
+
+        }
+
         function actualizarMaxEntradas() {
             const aforoMaximo = parseInt(document.getElementById("max_capacity").value);
             const entradasInputs = Array.from(document.querySelectorAll("#entry_type_quantity"));
 
-            const sumaEntradas = entradasInputs.reduce((sum, input) => sum + (parseInt(input.value) || 0), 0);
-
-            entradasInputs.forEach(input => {
-                if (input !== document.activeElement) {
-                    input.max = aforoMaximo - sumaEntradas + (parseInt(input.value) || 0);
-                }
-            });
-
             if (document.activeElement.value > parseInt(document.activeElement.max)) {
                 document.activeElement.value = parseInt(document.activeElement.max)
             }
+
+            document.activeElement.value = Math.ceil(document.activeElement.value);
+
+            const sumaEntradas = entradasInputs.reduce((sum, input) => sum + (parseInt(input.value) || 0), 0);
+
+            entradasInputs.forEach(input => {
+                validarNumero(input);
+                if (input !== document.activeElement) {
+                    input.max = aforoMaximo - sumaEntradas + (parseInt(input.value) || 0);
+                };
+            });
         }
 
         function agregarEntrada() {
+            var primerSeparador = document.querySelector('hr');
             var contenedor = document.getElementById('entradas-container');
             var primerTicketInput = contenedor.querySelector('.ticket-input');
             var nuevoTicketInput = primerTicketInput.cloneNode(true);
@@ -326,15 +342,23 @@
                 input.value = '';
             });
 
-            var botonEliminar = document.createElement('button');
-            botonEliminar.type = 'button';
-            botonEliminar.textContent = 'Eliminar';
-            botonEliminar.onclick = function() {
-                contenedor.removeChild(nuevoTicketInput);
-            };
-            nuevoTicketInput.appendChild(botonEliminar);
+            var separador = nuevoTicketInput.querySelector('hr')
+            var botonEliminar = nuevoTicketInput.querySelector('button');
+
+            primerSeparador.style.display = 'block';
+
+            separador.style.display = 'block';
+
+            botonEliminar.style.display = 'block';
+
+            if (window.innerWidth > 768) {
+                primerSeparador.style.display = 'none'
+                separador.style.display = 'none';
+            }
 
             contenedor.appendChild(nuevoTicketInput);
+
+            actualizarMaxEntradas();
         }
 
         function eliminarEntrada(elemento) {
@@ -344,6 +368,8 @@
             if (divAEliminar !== contenedor.firstChild) {
                 contenedor.removeChild(divAEliminar);
             }
+
+            actualizarMaxEntradas();
         }
     </script>
 @endsection

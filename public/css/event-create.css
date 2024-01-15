@@ -239,6 +239,8 @@
 
   .ticket-input{
     position: relative;
+    display: grid;
+    grid-template-columns: 5fr 1fr 1fr;
   }
 
   .eliminar-linea {
@@ -445,10 +447,6 @@
         gap: 30px;
     }
 
-    #entry_type_price, #entry_type_quantity{
-        width: 20%;
-    }
-
     .separador-entradas{
         display: none;
         border: none;
@@ -471,6 +469,12 @@
         right: -178px;
         bottom: -4px;
     }
+
+    .ticket-input{
+        position: relative;
+        display: grid !important;
+        grid-template-columns: 5fr 1fr 1fr;
+      }
 
     
 }
