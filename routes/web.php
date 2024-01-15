@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\ResultatsController;
+use App\Http\Controllers\PromotorHomeController;
 
 // Página principal
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -15,9 +16,11 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/resultats', [ResultatsController::class, 'index'])->name('resultats');
 
 // Home del Promotor
-Route::get('/promotor/promoterhome', function () {
+Route::get('/promotor/promotorhome', [PromotorHomeController::class, 'index'])->name('promotorhome')->middleware('isPromotor');
+
+/**Route::get('/promotor/promoterhome', function () {
     return view('promotor.promoterhome');
-})->name('promotor.promoterhome')->middleware('isPromotor');
+})->name('promotor.promoterhome')->middleware('isPromotor');**/
 
 // Sobre Nosotros
 Route::get('/tickets/aboutus', function () {

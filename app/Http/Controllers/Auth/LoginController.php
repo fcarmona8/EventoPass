@@ -32,7 +32,7 @@ class LoginController extends Controller
             if ($user->role->name == 'administrador') {
                 return redirect()->route('ruta.admin');
             } elseif ($user->role->name == 'promotor') {
-                return redirect()->route('promotor.promoterhome');
+                return redirect()->route('promotorhome');
             }
             return redirect()->intended('/');
         }
