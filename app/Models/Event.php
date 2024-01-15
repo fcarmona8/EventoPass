@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use auth;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Event extends Model
 {
@@ -68,6 +69,18 @@ class Event extends Model
 
     public function scopeNameEvent(Builder $query, string $name){
         try {
+            return $query->where('name', 'ILIKE', "%{$name}%");
+        } catch (\Exception $e) {
+            Log::error('Error en la función scopeNameEvent en el modelo Event', [
+                'name' => $name,
+                'error_message' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function scopeUserEvent(Builder $query, string $name){
+        try {
+            $user_id = auth::id();
             return $query->where('name', 'ILIKE', "%{$name}%");
         } catch (\Exception $e) {
             Log::error('Error en la función scopeNameEvent en el modelo Event', [
