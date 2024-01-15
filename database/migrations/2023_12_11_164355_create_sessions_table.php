@@ -12,6 +12,7 @@ class CreateSessionsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('event_id');
             $table->timestamp('date_time');
+            $table->integer('max_capacity')->nullable();
             $table->timestamp('online_sale_end_time')->nullable();
             $table->integer('ticket_quantity')->nullable();
             $table->timestamps();

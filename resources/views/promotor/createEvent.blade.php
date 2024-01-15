@@ -59,7 +59,7 @@
                     @foreach ($existingAddresses as $direccion)
                         <option value="{{ $direccion->id }}">
                             {{ $direccion->venue_name }}, {{ $direccion->city }}, {{ $direccion->province }},
-                            {{ $direccion->postal_code }}, {{ $direccion->capacity }}
+                            {{ $direccion->postal_code }}, Capacitat del local: {{ $direccion->capacity }}
                         </option>
                     @endforeach
                 </select>
@@ -195,7 +195,7 @@
 
         function guardarNovaAdreca() {
 
-            var camposRequeridos = ['nova_provincia', 'nova_ciutat', 'codi_postal', 'nom_local', 'capacitat_local'];
+            let camposRequeridos = ['nova_provincia', 'nova_ciutat', 'codi_postal', 'nom_local', 'capacitat_local'];
             const contenedorAdreca = document.getElementById('label-adreca');
 
             // Función para resaltar campo vacío
@@ -206,15 +206,15 @@
             // Función para quitar resaltado de campos
             function quitarResaltadoCampos() {
                 camposRequeridos.forEach(campoId => {
-                    var campo = document.getElementById(campoId);
+                    let campo = document.getElementById(campoId);
                     campo.style.border = "";
                 });
             }
 
             // Validación de campos requeridos
-            var campoVacioEncontrado = false;
+            let campoVacioEncontrado = false;
             camposRequeridos.forEach(campoId => {
-                var campo = document.getElementById(campoId);
+                let campo = document.getElementById(campoId);
                 if (campo.value === "") {
                     resaltarCampoVacio(campo);
                     campoVacioEncontrado = true;
@@ -226,7 +226,7 @@
             if (!campoVacioEncontrado) {
                 quitarResaltadoCampos();
 
-                var formData = new FormData(document.getElementById("formularioVenue"));
+                const formData = new FormData(document.getElementById("formularioVenue"));
                 fetch("{{ route('promotor.createVenue') }}", {
                         method: "POST",
                         body: formData,
@@ -234,14 +234,14 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.addresses) {
-                            var select = document.querySelector('select[name="selector-options"]');
+                            const select = document.querySelector('select[name="selector-options"]');
                             select.innerHTML = "";
 
                             data.addresses.forEach(direccion => {
-                                var option = document.createElement("option");
+                                const option = document.createElement("option");
                                 option.value = direccion.id;
                                 option.text =
-                                    `${direccion.venue_name}, ${direccion.city}, ${direccion.province}, ${direccion.postal_code}`;
+                                    `${direccion.venue_name}, ${direccion.city}, ${direccion.province}, ${direccion.postal_code}, Capacitat del local: ${ $direccion->capacity }`;
                                 select.appendChild(option);
                             });
                         }
@@ -304,7 +304,7 @@
         }
 
         function validarNumero(input) {
-            var valor = parseFloat(input.value);
+            const valor = parseFloat(input.value);
 
             if (valor < 0) {
                 input.value = 0;
@@ -333,17 +333,17 @@
         }
 
         function agregarEntrada() {
-            var primerSeparador = document.querySelector('hr');
-            var contenedor = document.getElementById('entradas-container');
-            var primerTicketInput = contenedor.querySelector('.ticket-input');
-            var nuevoTicketInput = primerTicketInput.cloneNode(true);
+            const primerSeparador = document.querySelector('hr');
+            const contenedor = document.getElementById('entradas-container');
+            const primerTicketInput = contenedor.querySelector('.ticket-input');
+            const nuevoTicketInput = primerTicketInput.cloneNode(true);
 
             nuevoTicketInput.querySelectorAll('input').forEach(function(input) {
                 input.value = '';
             });
 
-            var separador = nuevoTicketInput.querySelector('hr')
-            var botonEliminar = nuevoTicketInput.querySelector('button');
+            const separador = nuevoTicketInput.querySelector('hr')
+            const botonEliminar = nuevoTicketInput.querySelector('button');
 
             primerSeparador.style.display = 'block';
 
@@ -362,8 +362,8 @@
         }
 
         function eliminarEntrada(elemento) {
-            var contenedor = document.getElementById('entradas-container');
-            var divAEliminar = elemento.parentNode;
+            const contenedor = document.getElementById('entradas-container');
+            const divAEliminar = elemento.parentNode;
 
             if (divAEliminar !== contenedor.firstChild) {
                 contenedor.removeChild(divAEliminar);

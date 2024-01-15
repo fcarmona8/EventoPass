@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<a href="{{}}"></a>
 <div class="homepromotor">
 @foreach ($events as $event)
 <div class="card">
