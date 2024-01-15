@@ -8,7 +8,7 @@
             @endif
 
             @if (Auth::user()->role->name == 'promotor')
-                <li><a href="{{ route('promotor.promoterhome') }}">Home Promotor</a></li>
+                <li><a href="{{ route('promotorhome') }}">Home Promotor</a></li>
                 <li><a href="{{ route('promotor.createEvent') }}">Crear Esdeveniment</a></li>
             @else
                 <li><a href="{{ route('login') }}">Accés Promotors</a></li>
