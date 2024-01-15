@@ -59,7 +59,7 @@
                     @foreach ($existingAddresses as $direccion)
                         <option value="{{ $direccion->id }}">
                             {{ $direccion->venue_name }}, {{ $direccion->city }}, {{ $direccion->province }},
-                            {{ $direccion->postal_code }}
+                            {{ $direccion->postal_code }}, {{ $direccion->capacity }}
                         </option>
                     @endforeach
                 </select>
