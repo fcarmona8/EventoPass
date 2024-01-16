@@ -17,7 +17,6 @@ class CreateEventsTable extends Migration
             $table->unsignedBigInteger('venue_id');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamp('event_date')->nullable();
-            $table->integer('max_capacity')->nullable();
             $table->string('video_link', 255)->nullable();
             $table->boolean('hidden')->default(false);
             $table->timestamps();
