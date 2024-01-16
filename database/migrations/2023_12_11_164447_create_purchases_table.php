@@ -15,7 +15,6 @@ class CreatePurchasesTable extends Migration
             $table->decimal('total_price', 8, 2);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('session_id')->references('id')->on('sessions');
         });
         
     }
