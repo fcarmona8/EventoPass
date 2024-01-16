@@ -53,9 +53,10 @@
 
         <h3 class="h3-event">Adreça</h3>
         <div class="div-event div-adreca">
-            <label class="label-adreca" style="display: {{ $existingAddresses->count() > 0 ? 'block' : 'none' }}" id="label-adreca">
+            <label class="label-adreca" style="display: {{ $existingAddresses->count() > 0 ? 'block' : 'none' }}"
+                id="label-adreca">
                 Selecciona una adreça
-                <select name="selector-options" class="select-categoria-desktop"  id="adreces-select">
+                <select name="selector-options" class="select-categoria-desktop" id="adreces-select">
                     @foreach ($existingAddresses as $direccion)
                         <option value="{{ $direccion->id }}">
                             {{ $direccion->venue_name }}, {{ $direccion->city }}, {{ $direccion->province }},
@@ -104,8 +105,8 @@
                     <input type="number" class="input-event" name="entry_type_price[]" placeholder="Preu" step="0.01"
                         required>
 
-                    <input type="number" class="input-event" name="entry_type_quantity[]" id="entry_type_quantity" placeholder="Quantitat" required
-                        min="0" oninput="actualizarMaxEntradas()">
+                    <input type="number" class="input-event" name="entry_type_quantity[]" id="entry_type_quantity"
+                        placeholder="Quantitat" required min="0" oninput="actualizarMaxEntradas()">
                     <button type="button" class="eliminar-linea" style="display: none;"
                         onclick="eliminarEntrada(this)">Eliminar</button>
 
@@ -181,8 +182,6 @@
     <div id="overlay" class="overlay" onclick="cerrarModalDireccion()"></div>
 
     <script>
-        document.querySelectorAll('.label-adreca').forEach(setupSelector);
-
         document.getElementById('abrir-modal-direccion').addEventListener('click', function() {
             document.getElementById('overlay').style.display = 'block';
             document.getElementById('nueva-direccion-modal').style.display = 'block';
@@ -192,6 +191,114 @@
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('nueva-direccion-modal').style.display = 'none';
         });
+
+        function validarNumero(input) {
+            const valor = parseFloat(input.value);
+
+            if (valor < 0) {
+                input.value = 0;
+            }
+
+        }
+
+        function actualizarMaxEntradas() {
+            const aforoMaximo = parseInt(document.getElementById("max_capacity").value);
+            const entradasInputs = Array.from(document.querySelectorAll("#entry_type_quantity"));
+
+            if (document.activeElement.value > parseInt(document.activeElement.max)) {
+                document.activeElement.value = parseInt(document.activeElement.max)
+            }
+            document.activeElement.value = Math.ceil(document.activeElement.value);
+
+            const sumaEntradas = entradasInputs.reduce((sum, input) => sum + (parseInt(input.value) || 0), 0);
+
+            entradasInputs.forEach(input => {
+                validarNumero(input);
+                if (input !== document.activeElement) {
+                    input.max = aforoMaximo - sumaEntradas + (parseInt(input.value) || 0);
+                };
+            });
+        }
+
+        function setupSelector(selector) {
+
+            selector.addEventListener('mousedown', e => {
+
+                e.preventDefault();
+
+                const select = selector.children[0];
+                const dropDown = document.createElement('ul');
+                dropDown.className = "selector-options select-categoria-desktop ";
+
+                [...select.children].forEach(option => {
+                    const dropDownOption = document.createElement('li');
+                    dropDownOption.textContent = option.textContent;
+
+                    dropDownOption.addEventListener('mousedown', (e) => {
+                        e.stopPropagation();
+                        select.value = option.value;
+                        selector.value = option.value;
+                        select.dispatchEvent(new Event('change'));
+                        selector.dispatchEvent(new Event('change'));
+                        dropDown.remove();
+                    });
+
+                    dropDown.appendChild(dropDownOption);
+                });
+
+                selector.appendChild(dropDown);
+
+                // handle click out
+                document.addEventListener('click', (e) => {
+                    if (!selector.contains(e.target)) {
+                        dropDown.remove();
+                    }
+                });
+
+            });
+        }
+
+        document.querySelectorAll('.label-adreca').forEach(setupSelector);
+
+        function agregarEntrada() {
+            const primerSeparador = document.querySelector('hr');
+            const contenedor = document.getElementById('entradas-container');
+            const primerTicketInput = contenedor.querySelector('.ticket-input');
+            const nuevoTicketInput = primerTicketInput.cloneNode(true);
+
+            nuevoTicketInput.querySelectorAll('input').forEach(function(input) {
+                input.value = '';
+            });
+
+            const separador = nuevoTicketInput.querySelector('hr')
+            const botonEliminar = nuevoTicketInput.querySelector('button');
+
+            primerSeparador.style.display = 'block';
+
+            separador.style.display = 'block';
+
+            botonEliminar.style.display = 'block';
+
+            if (window.innerWidth > 768) {
+                primerSeparador.style.display = 'none'
+                separador.style.display = 'none';
+            }
+
+            contenedor.appendChild(nuevoTicketInput);
+
+            actualizarMaxEntradas();
+        }
+
+        function eliminarEntrada(elemento) {
+            const contenedor = document.getElementById('entradas-container');
+            const divAEliminar = elemento.parentNode;
+
+            if (divAEliminar !== contenedor.firstChild) {
+                contenedor.removeChild(divAEliminar);
+            }
+
+            actualizarMaxEntradas();
+        }
 
         function guardarNovaAdreca() {
 
@@ -234,14 +341,14 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.addresses) {
-                            const select = document.querySelector('select[name="selector-options"]');
+                            const select = document.getElementById('adreces-select');
                             select.innerHTML = "";
 
                             data.addresses.forEach(direccion => {
                                 const option = document.createElement("option");
                                 option.value = direccion.id;
                                 option.text =
-                                    `${direccion.venue_name}, ${direccion.city}, ${direccion.province}, ${direccion.postal_code}, Capacitat del local: ${ $direccion->capacity }`;
+                                    `${direccion.venue_name}, ${direccion.city}, ${direccion.province}, ${direccion.postal_code}, Capacitat del local: ${direccion.capacity }`;
                                 select.appendChild(option);
                             });
                         }
@@ -250,126 +357,19 @@
                         console.error(error);
                     });
 
-                    contenedorAdreca.style.display = 'block';
+                contenedorAdreca.style.display = 'block';
 
                 cerrarModalDireccion();
 
             };
-        }
 
-        function cerrarModalDireccion() {
+            function cerrarModalDireccion() {
             document.querySelectorAll('.input-adreca').forEach(function(input) {
                 input.value = "";
             });
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('nueva-direccion-modal').style.display = 'none';
         }
-
-        function setupSelector(selector) {
-
-            selector.addEventListener('mousedown', e => {
-
-                e.preventDefault();
-
-                const select = selector.children[0];
-                const dropDown = document.createElement('ul');
-                dropDown.className = "selector-options select-categoria-desktop ";
-
-                [...select.children].forEach(option => {
-                    const dropDownOption = document.createElement('li');
-                    dropDownOption.textContent = option.textContent;
-
-                    dropDownOption.addEventListener('mousedown', (e) => {
-                        e.stopPropagation();
-                        select.value = option.value;
-                        selector.value = option.value;
-                        select.dispatchEvent(new Event('change'));
-                        selector.dispatchEvent(new Event('change'));
-                        dropDown.remove();
-                    });
-
-                    dropDown.appendChild(dropDownOption);
-                });
-
-                selector.appendChild(dropDown);
-
-                // handle click out
-                document.addEventListener('click', (e) => {
-                    if (!selector.contains(e.target)) {
-                        dropDown.remove();
-                    }
-                });
-
-            });
-        }
-
-        function validarNumero(input) {
-            const valor = parseFloat(input.value);
-
-            if (valor < 0) {
-                input.value = 0;
-            }
-
-        }
-
-        function actualizarMaxEntradas() {
-            const aforoMaximo = parseInt(document.getElementById("max_capacity").value);
-            const entradasInputs = Array.from(document.querySelectorAll("#entry_type_quantity"));
-
-            if (document.activeElement.value > parseInt(document.activeElement.max)) {
-                document.activeElement.value = parseInt(document.activeElement.max)
-            }
-
-            document.activeElement.value = Math.ceil(document.activeElement.value);
-
-            const sumaEntradas = entradasInputs.reduce((sum, input) => sum + (parseInt(input.value) || 0), 0);
-
-            entradasInputs.forEach(input => {
-                validarNumero(input);
-                if (input !== document.activeElement) {
-                    input.max = aforoMaximo - sumaEntradas + (parseInt(input.value) || 0);
-                };
-            });
-        }
-
-        function agregarEntrada() {
-            const primerSeparador = document.querySelector('hr');
-            const contenedor = document.getElementById('entradas-container');
-            const primerTicketInput = contenedor.querySelector('.ticket-input');
-            const nuevoTicketInput = primerTicketInput.cloneNode(true);
-
-            nuevoTicketInput.querySelectorAll('input').forEach(function(input) {
-                input.value = '';
-            });
-
-            const separador = nuevoTicketInput.querySelector('hr')
-            const botonEliminar = nuevoTicketInput.querySelector('button');
-
-            primerSeparador.style.display = 'block';
-
-            separador.style.display = 'block';
-
-            botonEliminar.style.display = 'block';
-
-            if (window.innerWidth > 768) {
-                primerSeparador.style.display = 'none'
-                separador.style.display = 'none';
-            }
-
-            contenedor.appendChild(nuevoTicketInput);
-
-            actualizarMaxEntradas();
-        }
-
-        function eliminarEntrada(elemento) {
-            const contenedor = document.getElementById('entradas-container');
-            const divAEliminar = elemento.parentNode;
-
-            if (divAEliminar !== contenedor.firstChild) {
-                contenedor.removeChild(divAEliminar);
-            }
-
-            actualizarMaxEntradas();
         }
     </script>
 @endsection

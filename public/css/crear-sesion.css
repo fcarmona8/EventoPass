@@ -1,0 +1,69 @@
+#entradas-sesion{
+    width: 100% !important;
+}
+
+#ticket-input{
+    display: grid;
+    grid-template-columns: 1fr 1fr !important;
+    grid-row-gap: 0px;
+    grid-column-gap: 15px;
+}
+
+#nombre-entradas-sesion{
+    grid-area: 1 / 1 / 1 / span 2;
+}
+
+#div-crear-sesion{
+    overflow-x: scroll;
+    max-height: 650px;
+}
+
+
+.separador-entradas-sesion{
+    border: 1px solid rgb(67, 67, 67);
+    width: 100%;
+    margin-top: 20px;
+    grid-area: 3 / 1 / 3 / span 2;
+}
+
+#eliminar-entrada-session{
+    color: red;
+    font-size: 14px;
+    background-color: inherit;
+    text-decoration: underline;
+    right: -16px;
+    top: 109px;
+}
+
+.nueva-linea{
+    margin-top: 35px;
+}
+
+#selector-options-sesion{
+    width: 100%;
+    display: "" !important;
+    min-height: 35px;
+}
+
+#cierre-entradas-sesion{
+    width: 100%;
+}
+
+#div-event-sesion{
+    width: 100%;
+    margin-top: 15px;
+}
+
+
+#entradas-nominales-sesion{
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+@media (min-width: 768px){
+    #eliminar-entrada-session {
+        right: -16px;
+        top: 109px;
+    }
+}

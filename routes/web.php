@@ -23,6 +23,9 @@ Route::get('/promotor/promotorhome', [PromotorHomeController::class, 'index'])->
 //Lista sessiones de un evento promotor
 Route::get('/promotor/promotorsessionlist', [PromotorSessionsListController::class, 'index'])->name('promotorsessionslist')->middleware('isPromotor');
 
+//Guardar una nueva sesión
+Route::post('/promotor/promotorsessionlist', [PromotorSessionsListController::class, 'storeSession'])->name('promotorsessionslist.storeSession');
+
 // Sobre Nosotros
 Route::get('/tickets/aboutus', function () {
     return view('tickets.aboutus');
