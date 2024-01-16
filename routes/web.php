@@ -46,6 +46,9 @@ Route::get('/promotor/create-event', [CreateEventController::class, 'create'])->
 //Guardar Evento
 Route::post('/promotor/create-event', [CreateEventController::class, 'store'])->name('promotor.storeEvent');
 
+//Editar Evento
+Route::post('/promotor/promotorhomeedit', [PromotorHomeController::class, 'edit'])->name('promotor.editEvent');
+
 //Guardar store
 Route::post('/promotor/create-venue', [CreateEventController::class, 'storeVenue'])->name('promotor.createVenue');
 
