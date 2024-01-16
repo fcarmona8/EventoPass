@@ -19,8 +19,8 @@ class CreateEventController extends Controller
     {
         $categories = Category::pluck('name', 'id');
         $categories = $categories->toArray();
-        $userId = Auth::id();
-        $existingAddresses = Venue::where('user_id', $userId)->get();
+        $user_id = Auth::id();
+        $existingAddresses = Venue::where('user_id', $user_id)->get();
 
         return view('promotor.createEvent', compact('existingAddresses', 'categories'));
     }
@@ -40,7 +40,7 @@ class CreateEventController extends Controller
                 'max_capacity' => 'required|integer|min:1',
                 'promo_video_link' => 'nullable|url',
                 'event_hidden' => 'sometimes|boolean',
-                'selector-options-venue' => 'required|integer',
+                'selector-options' => 'required|integer',
                 'entry_type_name.*' => 'required|string',
                 'entry_type_price.*' => 'required|numeric',
                 'entry_type_quantity.*' => 'required|integer',
@@ -51,9 +51,10 @@ class CreateEventController extends Controller
 
             // Buscar la categoría y el venue por ID
             $categoryId = $request->input('selector-options-categoria');
-            $venueId = $request->input('selector-options-venue');
+            $venueId = $request->input('selector-options');
             $category = Category::find($categoryId);
             $venue = Venue::find($venueId);
+            $user_id = Auth::id();
 
             if (!$category || !$venue) {
                 Log::error('Categoría o Venue no encontrados con IDs: ' . $categoryId . ', ' . $venueId);
@@ -69,11 +70,11 @@ class CreateEventController extends Controller
                 'event_date' => $validatedData['event_datetime'],
                 'category_id' => $category->id,
                 'venue_id' => $venue->id,
-                'max_capacity' => $validatedData['max_capacity'],
                 'video_link' => $validatedData['promo_video_link'] ?? null,
                 'hidden' => $validatedData['event_hidden'] ?? false,
+                'user_id' => $user_id,
             ]);
-
+            
             $event->save();
             Log::info('Evento guardado con éxito: ' . $event->id);
 
@@ -123,6 +124,7 @@ class CreateEventController extends Controller
             $session = new Session([
                 'event_id' => $event->id,
                 'date_time' => $eventDateTime,
+                'max_capacity' => $validatedData['max_capacity'],
                 'online_sale_end_time' => $onlineSaleEndTime,
                 'ticket_quantity' => $validatedData['max_capacity'],
             ]);
@@ -149,7 +151,6 @@ class CreateEventController extends Controller
                     // Crear los tickets
                     for ($i = 0; $i < $ticketType->available_tickets; $i++) {
                         $ticket = new Ticket([
-                            // Asignar 'purchase_id' según tu lógica de negocio
                             'type_id' => $ticketType->id,
                             'session_id' => $session->id,
                         ]);
@@ -168,31 +169,37 @@ class CreateEventController extends Controller
 
     public function storeVenue(Request $request)
     {
-        $request->validate([
-            'nova_provincia' => 'required|string',
-            'nova_ciutat' => 'required|string',
-            'codi_postal' => 'required|numeric',
-            'nom_local' => 'required|string',
-            'capacitat_local' => 'required|numeric',
-        ]);
 
-        $user_id = Auth::id();
+        try {
+            $validatedData = $request->validate([
+                'nova_provincia' => 'required|string',
+                'nova_ciutat' => 'required|string',
+                'codi_postal' => 'required|numeric',
+                'nom_local' => 'required|string',
+                'capacitat_local' => 'required|numeric',
+            ]);
 
-        $venue = new Venue([
-            'province' => $request['nova_provincia'],
-            'city' => $request['nova_ciutat'],
-            'postal_code' => $request['codi_postal'],
-            'venue_name' => $request['nom_local'],
-            'capacity' => $request['capacitat_local'],
-            'user_id' => $user_id
+            Log::info('Datos de la direccion validados: ' . json_encode($validatedData));
+    
+            $user_id = Auth::id();
+    
+            $venue = new Venue([
+                'province' => $request['nova_provincia'],
+                'city' => $request['nova_ciutat'],
+                'postal_code' => $request['codi_postal'],
+                'venue_name' => $request['nom_local'],
+                'capacity' => $request['capacitat_local'],
+                'user_id' => $user_id
+    
+            ]);
 
-        ]);
-
-        $venue->save();
-
-        $existingAddresses = Venue::where('user_id', $userId)->get();
-
-        return response()->json(['message' => 'Dirección guardada correctamente', 'addresses' => $existingAddresses]);
-            
+            $venue->save();
+            $existingAddresses = Venue::where('user_id', $user_id)->get();
+    
+            return response()->json(['message' => 'Dirección guardada correctamente', 'addresses' => $existingAddresses]);
+        } catch (\Exception $e) {
+            Log::error('Error en el proceso de almacenamiento de la dirección: ' . $e->getMessage());
+            return back()->withErrors(['error' => 'Error al guardar la dirección.']);
+        }
     }
 }

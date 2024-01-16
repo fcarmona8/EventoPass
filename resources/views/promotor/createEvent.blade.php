@@ -53,13 +53,14 @@
 
         <h3 class="h3-event">Adreça</h3>
         <div class="div-event div-adreca">
-            <label class="label-adreca">
+            <label class="label-adreca" style="display: {{ $existingAddresses->count() > 0 ? 'block' : 'none' }}"
+                id="label-adreca">
                 Selecciona una adreça
                 <select name="selector-options" class="select-categoria-desktop" id="adreces-select">
                     @foreach ($existingAddresses as $direccion)
                         <option value="{{ $direccion->id }}">
                             {{ $direccion->venue_name }}, {{ $direccion->city }}, {{ $direccion->province }},
-                            {{ $direccion->postal_code }}, {{ $direccion->capacity }}
+                            {{ $direccion->postal_code }}, Capacitat del local: {{ $direccion->capacity }}
                         </option>
                     @endforeach
                 </select>
@@ -104,8 +105,8 @@
                     <input type="number" class="input-event" name="entry_type_price[]" placeholder="Preu" step="0.01"
                         required>
 
-                    <input type="number" class="input-event" name="entry_type_quantity[]" placeholder="Quantitat" required
-                        min="0" oninput="actualizarMaxEntradas()">
+                    <input type="number" class="input-event" name="entry_type_quantity[]" id="entry_type_quantity"
+                        placeholder="Quantitat" required min="0" oninput="actualizarMaxEntradas()">
                     <button type="button" class="eliminar-linea" style="display: none;"
                         onclick="eliminarEntrada(this)">Eliminar</button>
 
@@ -181,8 +182,6 @@
     <div id="overlay" class="overlay" onclick="cerrarModalDireccion()"></div>
 
     <script>
-        document.querySelectorAll('.label-adreca').forEach(setupSelector);
-
         document.getElementById('abrir-modal-direccion').addEventListener('click', function() {
             document.getElementById('overlay').style.display = 'block';
             document.getElementById('nueva-direccion-modal').style.display = 'block';
@@ -193,73 +192,32 @@
             document.getElementById('nueva-direccion-modal').style.display = 'none';
         });
 
-        function guardarNovaAdreca() {
+        function validarNumero(input) {
+            const valor = parseFloat(input.value);
 
-            var camposRequeridos = ['nova_provincia', 'nova_ciutat', 'codi_postal', 'nom_local', 'capacitat_local'];
-
-            // Función para resaltar campo vacío
-            function resaltarCampoVacio(campo) {
-                campo.style.border = "1px solid red";
+            if (valor < 0) {
+                input.value = 0;
             }
 
-            // Función para quitar resaltado de campos
-            function quitarResaltadoCampos() {
-                camposRequeridos.forEach(campoId => {
-                    var campo = document.getElementById(campoId);
-                    campo.style.border = "";
-                });
-            }
-
-            // Validación de campos requeridos
-            var campoVacioEncontrado = false;
-            camposRequeridos.forEach(campoId => {
-                var campo = document.getElementById(campoId);
-                if (campo.value === "") {
-                    resaltarCampoVacio(campo);
-                    campoVacioEncontrado = true;
-                } else {
-                    campo.style.border = "1px solid black";
-                }
-            });
-
-            if (!campoVacioEncontrado) {
-                quitarResaltadoCampos();
-
-                var formData = new FormData(document.getElementById("formularioVenue"));
-                fetch("{{ route('promotor.createVenue') }}", {
-                        method: "POST",
-                        body: formData,
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.addresses) {
-                            var select = document.querySelector('select[name="selector-options"]');
-                            select.innerHTML = "";
-
-                            data.addresses.forEach(direccion => {
-                                var option = document.createElement("option");
-                                option.value = direccion.id;
-                                option.text =
-                                    `${direccion.venue_name}, ${direccion.city}, ${direccion.province}, ${direccion.postal_code}`;
-                                select.appendChild(option);
-                            });
-                        }
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
-
-                cerrarModalDireccion();
-
-            };
         }
 
-        function cerrarModalDireccion() {
-            document.querySelectorAll('.input-adreca').forEach(function(input) {
-                input.value = "";
+        function actualizarMaxEntradas() {
+            const aforoMaximo = parseInt(document.getElementById("max_capacity").value);
+            const entradasInputs = Array.from(document.querySelectorAll("#entry_type_quantity"));
+
+            if (document.activeElement.value > parseInt(document.activeElement.max)) {
+                document.activeElement.value = parseInt(document.activeElement.max)
+            }
+            document.activeElement.value = Math.ceil(document.activeElement.value);
+
+            const sumaEntradas = entradasInputs.reduce((sum, input) => sum + (parseInt(input.value) || 0), 0);
+
+            entradasInputs.forEach(input => {
+                validarNumero(input);
+                if (input !== document.activeElement) {
+                    input.max = aforoMaximo - sumaEntradas + (parseInt(input.value) || 0);
+                };
             });
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('nueva-direccion-modal').style.display = 'none';
         }
 
         function setupSelector(selector) {
@@ -300,50 +258,118 @@
             });
         }
 
-        function actualizarMaxEntradas() {
-            const aforoMaximo = parseInt(document.getElementById("max_capacity").value);
-            const entradasInputs = Array.from(document.querySelectorAll("#entry_type_quantity"));
-
-            const sumaEntradas = entradasInputs.reduce((sum, input) => sum + (parseInt(input.value) || 0), 0);
-
-            entradasInputs.forEach(input => {
-                if (input !== document.activeElement) {
-                    input.max = aforoMaximo - sumaEntradas + (parseInt(input.value) || 0);
-                }
-            });
-
-            if (document.activeElement.value > parseInt(document.activeElement.max)) {
-                document.activeElement.value = parseInt(document.activeElement.max)
-            }
-        }
+        document.querySelectorAll('.label-adreca').forEach(setupSelector);
 
         function agregarEntrada() {
-            var contenedor = document.getElementById('entradas-container');
-            var primerTicketInput = contenedor.querySelector('.ticket-input');
-            var nuevoTicketInput = primerTicketInput.cloneNode(true);
+            const primerSeparador = document.querySelector('hr');
+            const contenedor = document.getElementById('entradas-container');
+            const primerTicketInput = contenedor.querySelector('.ticket-input');
+            const nuevoTicketInput = primerTicketInput.cloneNode(true);
 
             nuevoTicketInput.querySelectorAll('input').forEach(function(input) {
                 input.value = '';
             });
+            primerSeparador.classList.add('primer-separador')
+            const separador = nuevoTicketInput.querySelector('hr')
+            const botonEliminar = nuevoTicketInput.querySelector('button');
 
-            var botonEliminar = document.createElement('button');
-            botonEliminar.type = 'button';
-            botonEliminar.textContent = 'Eliminar';
-            botonEliminar.onclick = function() {
-                contenedor.removeChild(nuevoTicketInput);
-            };
-            nuevoTicketInput.appendChild(botonEliminar);
+            primerSeparador.style.display = 'block';
+
+            separador.style.display = 'block';
+
+            botonEliminar.style.display = 'block';
+
+            if (window.innerWidth > 768) {
+                primerSeparador.style.display = 'none'
+                separador.style.display = 'none';
+            }
 
             contenedor.appendChild(nuevoTicketInput);
+
+            actualizarMaxEntradas();
         }
 
         function eliminarEntrada(elemento) {
-            var contenedor = document.getElementById('entradas-container');
-            var divAEliminar = elemento.parentNode;
+            const contenedor = document.getElementById('entradas-container');
+            const divAEliminar = elemento.parentNode;
 
             if (divAEliminar !== contenedor.firstChild) {
                 contenedor.removeChild(divAEliminar);
             }
+
+            actualizarMaxEntradas();
+        }
+
+        function guardarNovaAdreca() {
+
+            let camposRequeridos = ['nova_provincia', 'nova_ciutat', 'codi_postal', 'nom_local', 'capacitat_local'];
+            const contenedorAdreca = document.getElementById('label-adreca');
+
+            // Función para resaltar campo vacío
+            function resaltarCampoVacio(campo) {
+                campo.style.border = "1px solid red";
+            }
+
+            // Función para quitar resaltado de campos
+            function quitarResaltadoCampos() {
+                camposRequeridos.forEach(campoId => {
+                    let campo = document.getElementById(campoId);
+                    campo.style.border = "";
+                });
+            }
+
+            // Validación de campos requeridos
+            let campoVacioEncontrado = false;
+            camposRequeridos.forEach(campoId => {
+                let campo = document.getElementById(campoId);
+                if (campo.value === "") {
+                    resaltarCampoVacio(campo);
+                    campoVacioEncontrado = true;
+                } else {
+                    campo.style.border = "1px solid black";
+                }
+            });
+
+            if (!campoVacioEncontrado) {
+                quitarResaltadoCampos();
+
+                const formData = new FormData(document.getElementById("formularioVenue"));
+                fetch("{{ route('promotor.createVenue') }}", {
+                        method: "POST",
+                        body: formData,
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.addresses) {
+                            const select = document.getElementById('adreces-select');
+                            select.innerHTML = "";
+
+                            data.addresses.forEach(direccion => {
+                                const option = document.createElement("option");
+                                option.value = direccion.id;
+                                option.text =
+                                    `${direccion.venue_name}, ${direccion.city}, ${direccion.province}, ${direccion.postal_code}, Capacitat del local: ${direccion.capacity }`;
+                                select.appendChild(option);
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+
+                contenedorAdreca.style.display = 'block';
+
+                cerrarModalDireccion();
+
+            };
+
+            function cerrarModalDireccion() {
+            document.querySelectorAll('.input-adreca').forEach(function(input) {
+                input.value = "";
+            });
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('nueva-direccion-modal').style.display = 'none';
+        }
         }
     </script>
 @endsection

@@ -11,7 +11,7 @@ class Session extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['event_id', 'date_time', 'online_sale_end_time', 'ticket_quantity'];
+    protected $fillable = ['event_id', 'date_time', 'online_sale_end_time', 'ticket_quantity', 'named_tickets', 'max_capacity'];
 
     public function event()
     {
