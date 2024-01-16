@@ -1,0 +1,219 @@
+/* Estilos básicos aplicados para dispositivos móviles */
+.container {
+    padding: 20px;
+}
+
+.carousel-item {
+    text-align: center;
+}
+
+.carousel-item img {
+    max-width: 100%;
+    height: auto;
+}
+
+.venue-details {
+    background-color: var(--elementos-secundarios);
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Estilos para FullCalendar */
+#calendar {
+    background-color: #ffffff; /* Fondo más claro */
+    color: #2C3E50; /* Texto oscuro para mejor contraste */
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra para darle profundidad */
+    width: 100%;
+}
+
+.fc .fc-toolbar-title {
+    font-size: 20px; /* Más grande para mejor legibilidad */
+    color: var(--principal);
+}
+
+.fc .fc-daygrid-day {
+    transition: background-color 0.3s; /* Transición suave para interacciones */
+}
+
+.fc .fc-daygrid-day:hover {
+    background-color: #f2f2f2; /* Resaltar al pasar el cursor */
+}
+
+.fc .fc-day-today {
+    background-color: var(--destacados-enlaces); /* Resaltar el día actual */
+    color: #ffffff;
+}
+
+.fc .fc-daygrid-day-number {
+    font-size: 14px; /* Tamaño adecuado para los números */
+}
+
+.fc .fc-daygrid-event {
+    background-color: var(--botones-accion);
+    border-color: var(--botones-accion);
+    color: #ffffff;
+    border-radius: 3px; /* Bordes redondeados para los eventos */
+    padding: 2px 5px;
+}
+
+.fc .fc-button {
+   
+background-color: var(--botones-accion);
+color: #ffffff;
+border: none;
+padding: 10px 15px;
+border-radius: 4px;
+font-size: 16px;
+transition: background-color 0.3s;
+}
+
+.fc .fc-button:hover {
+background-color: var(--principal);
+}
+
+.fc .fc-button-primary {
+box-shadow: none; /* Remover sombra por defecto para un look más plano */
+}
+
+.fc .fc-button-group > .fc-button:not(:last-child) {
+border-right: none; /* Remover bordes innecesarios en botones agrupados */
+}
+
+.fc .fc-button-active {
+background-color: var(--principal);
+color: var(--titulos);
+}
+
+.fc .fc-daygrid-day--has-event {
+    background-color: #fff3e0; /* Fondo suave para días con eventos */
+    border: 1px solid var(--botones-accion); /* Borde destacado para días con eventos */
+}
+
+.fc .fc-daygrid-day--has-event:hover {
+    background-color: #ffe0b2; /* Fondo más oscuro al pasar el cursor */
+}
+
+.fc .fc-event-title {
+    font-size: 14px; /* Tamaño adecuado para el texto del evento */
+    font-weight: bold; /* Negrita para mejorar la legibilidad */
+}
+
+.fc .fc-daygrid-day {
+    transition: background-color 0.3s; /* Suavizar la transición de fondo */
+}
+
+/* Mejora de los botones de navegación */
+.fc .fc-toolbar-chunk {
+    display: flex;
+    justify-content: center; /* Centrar botones en la barra de herramientas */
+    align-items: center;
+    gap: 10px; /* Espacio entre botones */
+}
+
+.fc .fc-button {
+    background-color: var(--botones-accion);
+    color: white;
+    margin: 0 4px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.fc .fc-button:hover {
+    background-color: var(--principal);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave al pasar el cursor */
+}
+
+.fc .fc-daygrid-day {
+box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+}
+
+.fc .fc-daygrid-day:hover {
+box-shadow: inset 0 0 10px rgba(0,0,0,0.1); /* Sombra interna más pronunciada al pasar el cursor */
+}
+
+.fc .fc-daygrid-day-number {
+font-weight: bold; /* Hacer los números de los días más prominentes */
+color: var(--texto-detalle);
+}
+
+
+.fc .fc-daygrid-event {
+border: none; 
+border-radius: 4px; 
+overflow: hidden;
+}
+
+.fc .fc-daygrid-event:hover .fc-event-title {
+text-decoration: underline; /* Subrayar el título del evento al pasar el cursor */
+}
+
+.fc .fc-daygrid-event .fc-event-title {
+color: var(--texto-detalle); 
+}
+
+.fc .fc-daygrid-block-event .fc-event-title {
+padding: 4px;
+display: block; 
+white-space: nowrap; 
+overflow: hidden;
+text-overflow: ellipsis; 
+}
+
+
+.fc .fc-prev-button, .fc .fc-next-button, .fc .fc-today-button {
+font-size: 16px; 
+text-transform: uppercase; 
+letter-spacing: 0.05em; 
+}
+
+#sessionDetails, #totalPriceContainer {
+    background-color: var(--principal);
+    color: var(--titulos);
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+#sessionList li {
+    cursor: pointer;
+    padding: 5px;
+    border-bottom: 1px solid var(--elementos-secundarios);
+}
+
+#sessionList li:hover {
+    background-color: var(--botones-accion);
+    color: var(--titulos);
+}
+
+input[type='number'] {
+    width: 60px;
+    margin-left: 10px;
+}
+
+/* Estilos adaptativos para pantallas más grandes */
+@media screen and (min-width: 601px) {
+    .container {
+    max-width: 800px;
+    margin: auto;
+    }
+    .fc .fc-toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .fc .fc-daygrid-day {
+        border: 1px solid #e1e1e1; /* Agregar bordes sutiles para definir los días */
+    }
+    
+    .fc .fc-daygrid-day-events {
+        margin-top: 4px; /* Espacio para eventos dentro de un día */
+    }
+    
+}

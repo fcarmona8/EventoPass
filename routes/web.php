@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\ResultatsController;
+use App\Http\Controllers\ShowEventController;
 
 // Página principal
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -30,9 +31,7 @@ Route::get('/tickets/legalnotice', function () {
 })->name('tickets.legalnotice');
 
 // Mostrar Evento
-Route::get('/tickets/showevent/{id}', function () {
-    return view('tickets.showevent');
-})->name('tickets.showevent');
+Route::get('/tickets/showevent/{id}', [ShowEventController::class, 'show'])->name('tickets.showevent');
 
 //Crear Evento
 Route::get('/promotor/create-event', [CreateEventController::class, 'create'])->name('promotor.createEvent');
