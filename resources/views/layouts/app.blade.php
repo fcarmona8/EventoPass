@@ -45,6 +45,8 @@
     <footer>
         <x-navigation :activeRoute="Route::currentRouteName()" />
     </footer>
+
+    @stack('scripts')
 </body>
 
 </html>

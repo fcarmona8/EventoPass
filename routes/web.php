@@ -34,9 +34,7 @@ Route::get('/tickets/legalnotice', function () {
 })->name('tickets.legalnotice');
 
 // Mostrar Evento
-Route::get('/tickets/showevent/{id}', function () {
-    return view('tickets.showevent');
-})->name('tickets.showevent');
+Route::get('/tickets/showevent/{id}', [ShowEventController::class, 'show'])->name('tickets.showevent');
 
 //Crear Evento
 Route::get('/promotor/create-event', [CreateEventController::class, 'create'])->name('promotor.createEvent');
