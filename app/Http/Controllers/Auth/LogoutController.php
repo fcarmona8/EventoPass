@@ -22,7 +22,7 @@ class LogoutController extends Controller
             Log::channel('logout')->info('Sesión cerrada con éxito', ['user_id' => Auth::id()]);
 
             // Redireccionar a la página Home, que redirigirá a Login si el usuario no está autenticado
-            return redirect('/promotor/promoterhome');
+            return redirect('/promotor/promotorhome');
         } catch (\Exception $e) {
             Log::channel('logout')->error('Error al cerrar sesión', [
                 'error_message' => $e->getMessage(),
