@@ -22,6 +22,7 @@ h1{
     max-height: 630px;
     overflow: hidden;
     padding: 0% 1%;
+    justify-content: space-evenly;
 }
 
 .event {
@@ -46,7 +47,8 @@ img{
 
 @media (min-width: 768px) {
 .event {
-    width: 33%; /* 100% / 3 elementos por fila */
+    min-width: 450px; /* 100% / 3 elementos por fila */
+    max-width: 33%;
     box-sizing: border-box; /* Asegura que el padding y el borde no afecten el ancho */
 }
 }

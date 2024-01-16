@@ -15,6 +15,7 @@ class CreateEventsTable extends Migration
             $table->string('main_image', 255)->nullable();
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('venue_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamp('event_date')->nullable();
             $table->integer('max_capacity')->nullable();
             $table->string('video_link', 255)->nullable();
@@ -22,6 +23,7 @@ class CreateEventsTable extends Migration
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('venue_id')->references('id')->on('venues');
+            $table->foreign('user_id')->references('id')->on('users');
         });
         
     }

@@ -65,6 +65,13 @@ label{
     width: 90%;
 }
 
+.card-content2{
+    display: grid;
+    grid-template-columns: 1fr; /* Un solo columna */
+    gap: 10px; /* Espacio entre las celdas */
+    padding: 10px;
+}
+
 .card-price{
     color: white;
     display: flex;
