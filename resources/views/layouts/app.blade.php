@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/resultats.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('css/event-create.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/show.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/promotorhome.css') }}">
     <link href="{{ asset('css/pagination.css') }}" rel="stylesheet">
     <title>@yield('title')</title>
 </head>

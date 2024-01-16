@@ -1,0 +1,39 @@
+.homepromotor {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100%, auto));
+    gap: 20px;
+    padding: 1%;
+    width: 100%;
+}
+
+.card-editEvent{
+    color: white;
+    display: flex;
+    width: min-content;
+    padding: 7px 15px;
+    white-space: nowrap;
+    margin-right: auto;
+    margin-top: auto;
+    border-radius: 8px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    background-color: var(--principal);
+}
+
+.divBotones{
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 2%;
+}
+
+@media (min-width: 768px) {
+
+    .homepromotor {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(32%, auto));
+        gap: 20px;
+        padding: 1%;
+        width: 100%;
+    }
+
+}
