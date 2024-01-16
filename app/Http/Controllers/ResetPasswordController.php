@@ -16,18 +16,18 @@ class ResetPasswordController extends Controller
     {
         Log::channel('reset_password')->info('Accediendo a ResetPasswordController@showResetForm', ['request_params' => $request->all()]);
 
-        // Verificación del token
-        $tokenData = DB::table('password_reset_tokens')
-                       ->where('email', $request->email)
-                       ->where('token', $token)
-                       ->first();
+        // // Verificación del token
+        // $tokenData = DB::table('password_reset_tokens')
+        //                ->where('email', $request->email)
+        //                ->where('token', $token)
+        //                ->first();
 
-        if (!$tokenData || Carbon::parse($tokenData->created_at)->addMinutes(env('PASSWORD_RESET_EXPIRATION', 60))->isPast()) {
-            Log::channel('reset_password')->warning('Token de restablecimiento de contraseña caducado o inválido', ['email' => $request->email, 'token' => $token]);
+        // if (!$tokenData || Carbon::parse($tokenData->created_at)->addMinutes(env('PASSWORD_RESET_EXPIRATION', 60))->isPast()) {
+        //     Log::channel('reset_password')->warning('Token de restablecimiento de contraseña caducado o inválido', ['email' => $request->email, 'token' => $token]);
 
-            // Redirigir a la vista de token caducado
-            return view('auth.passwords.token_expired');
-        }
+        //     // Redirigir a la vista de token caducado
+        //     return view('auth.passwords.token_expired');
+        // }
 
         return view('auth.passwords.reset')->with(['token' => $token, 'email' => $request->email]);
     }

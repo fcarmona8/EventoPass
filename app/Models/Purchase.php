@@ -17,11 +17,6 @@ class Purchase extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function session()
-    {
-        return $this->belongsTo(Session::class);
-    }
-
     public function tickets()
     {
         return $this->hasMany(Ticket::class);

@@ -25,4 +25,36 @@ class PromotorHomeController extends Controller{
         return view('promotor/promotorhome', compact('events', 'existingAddresses'));
     }
 
+    public function edit(Request $request){
+        dd();
+        // Validación de los datos del formulario
+        $validatedData = $request->validate([
+            'eventId' => 'required',
+            'eventName' => 'required|string|max:255',
+            'eventDesc' => 'required|string',
+            //'event_image' => 'image',
+            'eventVid' => 'nullable|url',
+            //'event_hidden' => 'sometimes|boolean',
+            'eventAddress' => 'required|integer',
+        ]);
+
+        $venueId = $request->input('eventAddress');
+        $eventId = $request->input('eventId');
+        $eventName = $request->input('eventName');
+
+        $venue = Venue::find($venueId);
+        $event = Event::find($eventId);
+
+        if (!$venue) {
+            Log::error('Venue no encontrado con ID: ' . $venueId);
+            return back()->withErrors(['error' => 'Venue no encontrado.']);
+        }
+
+        $event->name = $eventName;
+
+        dd($event);
+
+        $event->save();
+    }
+
 }

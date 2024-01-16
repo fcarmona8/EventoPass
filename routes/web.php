@@ -10,6 +10,7 @@ use App\Http\Controllers\PromotorHomeController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\PromotorSessionsListController;
+use App\Http\Controllers\ShowEventController;
 
 
 // Página principal
@@ -34,15 +35,16 @@ Route::get('/tickets/legalnotice', function () {
 })->name('tickets.legalnotice');
 
 // Mostrar Evento
-Route::get('/tickets/showevent/{id}', function () {
-    return view('tickets.showevent');
-})->name('tickets.showevent');
+Route::get('/tickets/showevent/{id}', [ShowEventController::class, 'show'])->name('tickets.showevent');
 
 //Crear Evento
 Route::get('/promotor/create-event', [CreateEventController::class, 'create'])->name('promotor.createEvent');
 
 //Guardar Evento
 Route::post('/promotor/create-event', [CreateEventController::class, 'store'])->name('promotor.storeEvent');
+
+//Editar Evento
+Route::post('/promotor/promotorhomeedit', [PromotorHomeController::class, 'edit'])->name('promotor.editEvent');
 
 //Guardar store
 Route::post('/promotor/create-venue', [CreateEventController::class, 'storeVenue'])->name('promotor.createVenue');
