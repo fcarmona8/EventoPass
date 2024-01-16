@@ -5,33 +5,24 @@
         <h1>{{ $event->name }}</h1>
 
         <!-- Carrusel de fotografías -->
-        <div id="eventCarousel" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
+        <div class="slider-frame">
+            <ul>
                 @if ($event->main_image)
-                    <div class="carousel-item active">
+                    <li>
                         <img src="{{ asset('storage/' . $event->main_image) }}" class="d-block w-100"
                             alt="{{ $event->name }}">
-                    </div>
+                    </li>
                 @endif
 
                 @foreach ($event->images as $index => $image)
-                    <div class="carousel-item {{ $index == 0 && !$event->main_image ? 'active' : '' }}">
+                    <li>
                         <img src="{{ asset('storage/' . $image->image_url) }}" class="d-block w-100"
                             alt="{{ $image->alt_text ?? 'Evento' }}">
-                    </div>
+                    </li>
                 @endforeach
-            </div>
-            @if ($event->images->count() > 5 || $event->main_image)
-                <a class="carousel-control-prev" href="#eventCarousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Anterior</span>
-                </a>
-                <a class="carousel-control-next" href="#eventCarousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Siguiente</span>
-                </a>
-            @endif
+            </ul>
         </div>
+
 
         <!-- Descripción del evento -->
         <p>{{ $event->description }}</p>
@@ -154,5 +145,30 @@
             document.getElementById('totalPrice').textContent = '0.00';
             document.getElementById('totalPriceContainer').style.display = 'none';
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const imagesCount = document.querySelectorAll('.slider-frame li').length;
+            const sliderUl = document.querySelector('.slider-frame ul');
+
+            if (imagesCount > 0) {
+                // Ajustar el ancho del contenedor UL
+                sliderUl.style.width = `${imagesCount * 100}%`;
+
+                // Calcular los keyframes
+                const percentagePerImage = 100 / imagesCount;
+                let keyframes = '';
+
+                for (let i = 0; i < imagesCount; i++) {
+                    keyframes += `
+                ${i * percentagePerImage * 2}% {margin-left: ${-100 * i}%}
+                ${(i * percentagePerImage * 2) + percentagePerImage}% {margin-left: ${-100 * i}%}`;
+                }
+
+                const styleSheet = document.createElement('style');
+                styleSheet.type = 'text/css';
+                styleSheet.innerText = `@keyframes slide { ${keyframes} }`;
+                document.head.appendChild(styleSheet);
+            }
+        });
     </script>
 @endpush

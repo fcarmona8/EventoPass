@@ -10,6 +10,7 @@ use App\Http\Controllers\PromotorHomeController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\PromotorSessionsListController;
+use App\Http\Controllers\ShowEventController;
 
 
 // Página principal
