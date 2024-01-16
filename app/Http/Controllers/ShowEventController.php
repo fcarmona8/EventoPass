@@ -9,9 +9,28 @@ use App\Models\TicketType;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\Ticket;
+use Illuminate\Support\Facades\Log;
 
 class ShowEventController extends Controller
 {
+    function getCoordinates($venue)
+    {
+        $apiKey = 'AIzaSyCbSv4bCYfNwXa_MXnzon8gG2kK_1MpoZw';
+        $address = urlencode("{$venue->city}, {$venue->province}");
+        $url = "https://maps.googleapis.com/maps/api/geocode/json?address=$address&key=$apiKey";
+
+        $response = file_get_contents($url);
+        $data = json_decode($response);
+
+        if(isset($data->results[0])){
+            return $data->results[0]->geometry->location;
+        } else {
+            // Manejo de errores
+            Log::error("No se encontraron coordenadas para la dirección dada.");
+            return null;
+        }
+    }
+
     public function show($id)
     {
         $event = Event::with('images', 'venue')->find($id);
@@ -19,6 +38,7 @@ class ShowEventController extends Controller
         if (!$event) {
             return redirect()->route('home')->with('error', 'Evento no encontrado.');
         }
+        
 
         $sessions = Session::where('event_id', $event->id)
             ->where('date_time', '>=', now())
@@ -42,6 +62,7 @@ class ShowEventController extends Controller
             ];
         }
 
-        return view('tickets.showevent', compact('event', 'formattedSessions'));
+        $coordinates = $this->getCoordinates($event->venue);
+        return view('tickets.showevent', compact('event', 'formattedSessions', 'coordinates'));
     }
 }
