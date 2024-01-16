@@ -269,7 +269,7 @@
             nuevoTicketInput.querySelectorAll('input').forEach(function(input) {
                 input.value = '';
             });
-
+            primerSeparador.classList.add('primer-separador')
             const separador = nuevoTicketInput.querySelector('hr')
             const botonEliminar = nuevoTicketInput.querySelector('button');
 
