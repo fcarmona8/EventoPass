@@ -17,9 +17,8 @@
                     <p>Proxima ubicació: <span id="event-location-{{ $event->id }}">{{ $event->venue->city }},
                             {{ $event->venue->venue_name }}</span></p>
                     <div class="divBotones">
-                        <span class="card-editEvent" eventId="{{ $event->id }}" eventName="{{ $event->name }}"
-                            eventDesc="{{ $event->description }}" eventAddress="{{ $event->venue->id }}"
-                            eventVid="{{ $event->video_link }}">Editar evento</span>
+                        <span class="card-editEvent" eventId="{{ $event->id }}" eventName="{{ $event->name }}" eventDesc="{{ $event->description }}"
+                            eventAddress="{{ $event->venue->id }}" eventVid="{{ $event->video_link }}">Editar evento</span>
                         <a class="card-link" href="{{ route('promotorsessionslist', ['id' => $event->id]) }}">
                             <span class="card-price">Más información</span>
                         </a>
@@ -41,39 +40,39 @@
                 </div>
                 <form id="formularioEditEvent">
                     @csrf
-                    <div class="modal-body">
-                        <input type="text" id="eventId" name="eventId" hidden>
+                <div class="modal-body">
+                    <input type="text" id="eventId" name="eventId" hidden>
 
-                        <label for="eventName">Nom del event:</label>
-                        <input class="inputEditEvent" type="text" id="eventName" name="eventName" class="form-control"
-                            placeholder="Ingresa el nom del event">
+                    <label for="eventName">Nom del event:</label>
+                    <input class="inputEditEvent" type="text" id="eventName" name="eventName" class="form-control"
+                        placeholder="Ingresa el nom del event">
 
-                        <label for="eventDesc">Descripció del event:</label>
-                        <textarea id="eventDesc" class="form-control" name="eventDesc" placeholder="Ingresa la descripció del event"></textarea>
+                    <label for="eventDesc">Descripció del event:</label>
+                    <textarea id="eventDesc" class="form-control" name="eventDesc" placeholder="Ingresa la descripció del event"></textarea>
 
-                        <label for="eventAddress"> Adreça:</label>
-                        <select name="eventAddress" class="select-categoria-desktop" name="eventAddress" id="eventAddress">
-                            @foreach ($existingAddresses as $direccion)
-                                <option value="{{ $direccion->id }}">
-                                    {{ $direccion->venue_name }}, {{ $direccion->city }}, {{ $direccion->province }},
-                                    {{ $direccion->postal_code }}, {{ $direccion->capacity }}
-                                </option>
-                            @endforeach
-                        </select>
+                    <label for="eventAddress"> Adreça:</label>
+                    <select name="eventAddress" class="select-categoria-desktop" name="eventAddress" id="eventAddress">
+                        @foreach ($existingAddresses as $direccion)
+                            <option value="{{ $direccion->id }}">
+                                {{ $direccion->venue_name }}, {{ $direccion->city }}, {{ $direccion->province }},
+                                {{ $direccion->postal_code }}, {{ $direccion->capacity }}
+                            </option>
+                        @endforeach
+                    </select>
 
-                        <label>Foto del event:</label>
-                        <input class="inputEditEvent" type="file" id="eventPhoto" name="eventPhoto" class="form-control"
-                            placeholder="Ingresa la foto del event">
+                    <label>Foto del event:</label>
+                    <input class="inputEditEvent" type="file" id="eventPhoto" name="eventPhoto" class="form-control"
+                        placeholder="Ingresa la foto del event">
 
-                        <label for="eventVid">Video del event:</label>
-                        <input class="inputEditEvent" type="text" id="eventVid" name="eventVid" class="form-control"
-                            placeholder="Ingresa el video del event">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" onclick="saveEvent()">Guardar</button>
-                        <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
-                    </div>
-                </form>
+                    <label for="eventVid">Video del event:</label>
+                    <input class="inputEditEvent" type="text" id="eventVid" name="eventVid" class="form-control"
+                        placeholder="Ingresa el video del event">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="saveEvent()">Guardar</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                </div>
+            </form>
             </div>
         </div>
     </div>
