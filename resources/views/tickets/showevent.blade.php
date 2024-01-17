@@ -37,10 +37,6 @@
             <div id="map" style="height: 400px;"></div>
         </div>
 
-        <div class="card-body">
-            <div id='calendar'></div>
-        </div>
-
         <div id="sessionDetails" style="display: none;">
             <h3>Sesiones para la Fecha Seleccionada:</h3>
             <ul id="sessionList"></ul>
@@ -51,6 +47,10 @@
         </div>
 
         <button id="buyButton" class="btn btn-primary" style="display: none;">Comprar</button>
+
+        <div class="card-body">
+            <div id='calendar'></div>
+        </div>
     </div>
 @endsection
 

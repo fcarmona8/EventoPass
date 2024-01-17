@@ -14,27 +14,32 @@ class ResetPasswordController extends Controller
 {
     public function showResetForm(Request $request, $token = null)
     {
-        Log::channel('reset_password')->info('Accediendo a ResetPasswordController@showResetForm', ['request_params' => $request->all()]);
+        $start = microtime(true);
+        Log::channel('reset_password')->info('Accediendo a ResetPasswordController@showResetForm');
 
-        // // Verificación del token
-        // $tokenData = DB::table('password_reset_tokens')
-        //                ->where('email', $request->email)
-        //                ->where('token', $token)
-        //                ->first();
+        // Verificación del token
+        $tokenData = DB::table('password_reset_tokens')
+                       ->where('email', $request->email)
+                       ->where('token', $token)
+                       ->first();
 
-        // if (!$tokenData || Carbon::parse($tokenData->created_at)->addMinutes(env('PASSWORD_RESET_EXPIRATION', 60))->isPast()) {
-        //     Log::channel('reset_password')->warning('Token de restablecimiento de contraseña caducado o inválido', ['email' => $request->email, 'token' => $token]);
+        if (!$tokenData || Carbon::parse($tokenData->created_at)->addMinutes(env('PASSWORD_RESET_EXPIRATION', 60))->isPast()) {
+            Log::channel('reset_password')->warning('Token de restablecimiento de contraseña caducado o inválido', ['email' => $request->email, 'token' => $token]);
 
-        //     // Redirigir a la vista de token caducado
-        //     return view('auth.passwords.token_expired');
-        // }
+            // Redirigir a la vista de token caducado
+            return view('auth.passwords.token_expired');
+        }
+
+        $duration = microtime(true) - $start;
+        Log::channel('reset_password')->info('Token de restablecimiento de contraseña válido', ['duration' => $duration]);
 
         return view('auth.passwords.reset')->with(['token' => $token, 'email' => $request->email]);
     }
 
     public function reset(Request $request)
     {
-        Log::channel('reset_password')->info('Inicio de solicitud a ResetPasswordController@reset', ['request_params' => $request->all()]);
+        $start = microtime(true);
+        Log::channel('reset_password')->info('Inicio de solicitud a ResetPasswordController@reset');
 
         $validatedData = $request->validate([
             'token' => 'required',
@@ -66,7 +71,8 @@ class ResetPasswordController extends Controller
                 }
             );
 
-            Log::channel('reset_password')->info('Estado de restablecimiento de contraseña en ResetPasswordController@reset', ['status' => $status, 'email' => $request->email]);
+            $duration = microtime(true) - $start;
+            Log::channel('reset_password')->info('Fin de solicitud a ResetPasswordController@reset', ['status' => $status, 'duration' => $duration]);
 
             return $status === Password::PASSWORD_RESET
                         ? redirect()->route('login')->with('status', __($status))

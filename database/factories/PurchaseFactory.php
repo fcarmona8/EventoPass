@@ -13,9 +13,12 @@ class PurchaseFactory extends Factory
 
     public function definition()
     {
+        $userIds = User::pluck('id')->toArray();
+        $sessionIds = Session::pluck('id')->toArray();
+
         return [
-            'user_id' => User::inRandomOrder()->first()->id,
-            'session_id' => Session::inRandomOrder()->first()->id,
+            'user_id' => $userIds[array_rand($userIds)],
+            'session_id' => $sessionIds[array_rand($sessionIds)],
             'total_price' => $this->faker->randomFloat(2, 10, 500),
         ];
     }

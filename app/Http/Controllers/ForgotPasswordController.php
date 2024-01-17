@@ -11,36 +11,32 @@ class ForgotPasswordController extends Controller
     public function showLinkRequestForm()
     {
         Log::channel('forgot_password')->info('Accediendo a ForgotPasswordController@showLinkRequestForm');
-
         return view('auth.passwords.email');
     }
 
     public function sendResetLinkEmail(Request $request)
     {
-        Log::channel('forgot_password')->info('Inicio de solicitud a ForgotPasswordController@sendResetLinkEmail', ['request_params' => $request->all()]);
-
-        $validatedData = $request->validate(['email' => 'required|email']);
-        Log::channel('forgot_password')->info('Datos validados en ForgotPasswordController@sendResetLinkEmail', ['validated_data' => $validatedData]);
+        $start = microtime(true);
+        Log::channel('forgot_password')->info('Inicio de solicitud a ForgotPasswordController@sendResetLinkEmail');
 
         try {
-            $status = Password::sendResetLink($validatedData);
+            $validatedData = $request->validate(['email' => 'required|email']);
 
+            $status = Password::sendResetLink($validatedData);
             Log::channel('forgot_password')->info('Estado del enlace de restablecimiento de contraseña enviado', ['status' => $status, 'email' => $validatedData['email']]);
 
+            $duration = microtime(true) - $start;
+            Log::channel('forgot_password')->info('Fin de solicitud a ForgotPasswordController@sendResetLinkEmail', ['duration' => $duration]);
+
             if ($status === Password::RESET_LINK_SENT) {
-                $response = back()->with(['status' => __($status)]);
+                return back()->with(['status' => __($status)]);
             } else {
-                $response = back()->withErrors(['email' => __($status)]);
+                return back()->withErrors(['email' => __($status)]);
             }
-
-            Log::channel('forgot_password')->info('Respuesta de ForgotPasswordController@sendResetLinkEmail', ['response_status' => $response->status(), 'response_data' => $response->getSession()->all()]);
-
-            return $response;
         } catch (\Exception $e) {
             Log::channel('forgot_password')->error('Error en ForgotPasswordController@sendResetLinkEmail', [
                 'error_message' => $e->getMessage(),
-                'trace' => $e->getTraceAsString(),
-                'request_params' => $request->all()
+                'trace' => $e->getTraceAsString()
             ]);
 
             return back()->withErrors(['email' => __('Ha ocurrido un error inesperado.')]);

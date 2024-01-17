@@ -82,6 +82,18 @@ return [
             'level' => 'debug',
         ],
 
+        'showevent' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/showevent.log'),
+            'level' => 'debug',
+        ],
+
+        'home' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/home.log'),
+            'level' => 'debug',
+        ],
+
         'single' => [
             'driver' => 'single',
             'path' => storage_path('logs/models_controllers.log'),
