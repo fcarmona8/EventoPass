@@ -11,7 +11,8 @@ class ResultatsController extends Controller
 {
     public function index(Request $request)
     {
-        Log::info('Inicio de solicitud a ResultatsController@index', ['request_params' => $request->all()]);
+        $start = microtime(true);
+        Log::channel('resultats')->info('Inicio de solicitud a ResultatsController@index');
 
         try {
             $categories = Category::pluck('name', 'id');
@@ -47,6 +48,9 @@ class ResultatsController extends Controller
                 });
             }
 
+            $midDuration = microtime(true) - $start;
+            Log::channel('resultats')->info('Procesamiento parcial en ResultatsController@index', ['duration' => $midDuration]);
+
             if ($selectedCategoria !== 'todas') {
                 $selectedCategoriaName = Category::find($selectedCategoria)->name;
                 $query->whereIn('category_id', function ($q) use ($selectedCategoriaName) {
@@ -79,6 +83,9 @@ class ResultatsController extends Controller
             if ($event !== null) {
                 $lowestPrice = $event->lowestTicketPrice();
             }
+
+            $endDuration = microtime(true) - $start;
+            Log::channel('resultats')->info('Fin de solicitud a ResultatsController@index', ['duration' => $endDuration]);
 
             return view('resultats', compact('events', 'selectedFiltro', 'searchTerm', 'categories', 'selectedCategoria', 'lowestPrice'));
  

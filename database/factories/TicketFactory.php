@@ -14,10 +14,14 @@ class TicketFactory extends Factory
 
     public function definition()
     {
+        $purchaseIds = Purchase::pluck('id')->toArray();
+        $typeIds = TicketType::pluck('id')->toArray();
+        $sessionIds = Session::pluck('id')->toArray();
+
         return [
-            'purchase_id' => Purchase::inRandomOrder()->first()->id,
-            'type_id' => TicketType::inRandomOrder()->first()->id,
-            'session_id' => Session::inRandomOrder()->first()->id,
+            'purchase_id' => $purchaseIds[array_rand($purchaseIds)],
+            'type_id' => $typeIds[array_rand($typeIds)],
+            'session_id' => $sessionIds[array_rand($sessionIds)],
         ];
     }
 }
