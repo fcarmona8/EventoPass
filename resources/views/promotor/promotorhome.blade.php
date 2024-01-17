@@ -168,8 +168,7 @@
                 var formData = new FormData(document.getElementById("formularioEditEvent"));
                 // Asegúrate de que estás obteniendo el ID del evento correctamente
                 formData.append('eventId', document.getElementById('eventId').value);
-                console.log(eventHidden.value);
-                console.log(eventName.value);
+
                 fetch("{{ route('promotor.editEvent') }}", {
                         method: "POST",
                         body: formData,

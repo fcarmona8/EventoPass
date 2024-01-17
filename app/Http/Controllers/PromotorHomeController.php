@@ -14,6 +14,10 @@ class PromotorHomeController extends Controller {
     public function index(Request $request) {
         Log::info('Entrando en método index de PromotorHomeController.');
 
+class PromotorHomeController extends Controller {
+    public function index(Request $request) {
+        Log::info('Entrando en método index de PromotorHomeController.');
+
         $user_id = Auth::id();
         $query = Event::query(); 
 
@@ -25,7 +29,8 @@ class PromotorHomeController extends Controller {
         });
 
         $events = $query->orderBy('id')->paginate(env('PAGINATION_LIMIT_PROMOTOR', 10));
-    
+        Log::info('Eventos recuperados: ', ['events' => $events]);
+
         return view('promotor/promotorhome', compact('events', 'existingAddresses'));
     }
 
