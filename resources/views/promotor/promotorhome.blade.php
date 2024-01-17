@@ -3,7 +3,7 @@
 @section('content')
     <div class="homepromotor">
         @foreach ($events as $event)
-            <div class="card" id="event-card-{{ $event->id }}">
+            <div class="card cardHomePromotor" id="event-card-{{ $event->id }}">
                 @if ($event->main_image)
                     <img src="{{ asset('storage/' . $event->main_image) }}" alt="{{ $event->name }}"
                         id="event-image-{{ $event->id }}">
@@ -21,7 +21,7 @@
                             eventDesc="{{ $event->description }}" eventAddress="{{ $event->venue->id }}"
                             eventVid="{{ $event->video_link }}" eventHidden="{{ $event->hidden }}">Editar event</span>
                         <a class="card-link" href="{{ route('promotorsessionslist', ['id' => $event->id]) }}">
-                            <span class="card-price card-info">Mes infomració</span>
+                            <span class="card-price card-info">Sessións</span>
                         </a>
                     </div>
                 </div>
