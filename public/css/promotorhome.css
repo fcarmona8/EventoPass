@@ -6,6 +6,11 @@
     width: 100%;
 }
 
+.cardHomePromotor{
+    pointer-events: none;
+    height: 210px;
+}
+
 .card-editEvent{
     color: white;
     display: flex;
@@ -18,12 +23,18 @@
     margin-right: 10px;
     margin-bottom: 5px;
     background-color: var(--principal);
+    pointer-events: all;
+}
+
+.card-info{
+    pointer-events: all;
 }
 
 .divBotones{
     display: flex;
-    flex-wrap: nowrap;
-    padding: 2%;
+    flex-wrap: wrap;
+    padding: 2% 0%;
+    justify-content: center;
 }
 
 .modal-body{
@@ -102,7 +113,7 @@ option{
     font-weight: bold;
  }
 
- label{
+ .labelHomePromotor{
     text-align: center;
     margin-top: 5%;
  }
@@ -112,6 +123,30 @@ option{
     border-radius: 50px;
  }
  
+ .custom-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #4CAF50;
+    color: black;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 16px;
+}
+
+.close-btn {
+    cursor: pointer;
+    margin-top: 10px;
+    color: white;
+    text-decoration: underline;
+}
+
 
 @media (min-width: 768px) {
 
@@ -121,6 +156,10 @@ option{
         gap: 20px;
         padding: 1%;
         width: 100%;
+    }
+
+    .message{
+        font-size: 20px;
     }
 
 }
