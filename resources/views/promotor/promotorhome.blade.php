@@ -14,7 +14,8 @@
                     <p>Proxima data: {{ \Carbon\Carbon::parse($event->event_date)->format('Y-M-D , H:i') }}</p>
                     <p>Proxima ubicació: {{ $event->venue->city }}, {{ $event->venue->venue_name }}</p>
                     <div class="divBotones">
-                        <span class="card-editEvent">Editar event</span>
+                        <span class="card-editEvent" eventId="{{ $event->id }}" eventName="{{ $event->name }}" eventDesc="{{ $event->description }}"
+                            eventAddress="{{ $event->venue->id }}" eventVid="{{ $event->video_link }}">Editar evento</span>
                         <a class="card-link" href="{{ route('promotorsessionslist', ['id' => $event->id]) }}">
                             <span class="card-price">Mes informació</span>
                         </a>
@@ -23,5 +24,140 @@
             </div>
         @endforeach
     </div>
+
+    <!-- Modal para editar evento -->
+    <div class="modal" tabindex="-1" role="dialog" id="editEventModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Editar Evento</h2>
+                    <button type="button" class="close cerrar" onclick="closeModal()" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="formularioEditEvent">
+                    @csrf
+                <div class="modal-body">
+                    <input type="text" id="eventId" name="eventId" hidden>
+
+                    <label for="eventName">Nom del event:</label>
+                    <input class="inputEditEvent" type="text" id="eventName" name="eventName" class="form-control"
+                        placeholder="Ingresa el nom del event">
+
+                    <label for="eventDesc">Descripció del event:</label>
+                    <textarea id="eventDesc" class="form-control" name="eventDesc" placeholder="Ingresa la descripció del event"></textarea>
+
+                    <label for="eventAddress"> Adreça:</label>
+                    <select name="eventAddress" class="select-categoria-desktop" name="eventAddress" id="eventAddress">
+                        @foreach ($existingAddresses as $direccion)
+                            <option value="{{ $direccion->id }}">
+                                {{ $direccion->venue_name }}, {{ $direccion->city }}, {{ $direccion->province }},
+                                {{ $direccion->postal_code }}, {{ $direccion->capacity }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                    <label>Foto del event:</label>
+                    <input class="inputEditEvent" type="file" id="eventPhoto" name="eventPhoto" class="form-control"
+                        placeholder="Ingresa la foto del event">
+
+                    <label for="eventVid">Video del event:</label>
+                    <input class="inputEditEvent" type="text" id="eventVid" name="eventVid" class="form-control"
+                        placeholder="Ingresa el video del event">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="saveEvent()">Guardar</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
     {{ $events->links('vendor.pagination.bootstrap-4') }}
+
+    <script>
+        // Función para abrir el modal al hacer clic en "Editar evento"
+        document.querySelectorAll('.card-editEvent').forEach(function(element) {
+            element.addEventListener('click', function() {
+                var eventName = this.getAttribute('eventName');
+                var eventDesc = this.getAttribute('eventDesc');
+                var eventAddress = this.getAttribute('eventAddress');
+                var eventVid = this.getAttribute('eventVid');
+                var eventId = this.getAttribute('eventId');
+                openEditEventModal(eventName, eventDesc, eventAddress, eventVid, eventId);
+            });
+        });
+
+        // Función para abrir el modal y prellenar el nombre del evento si es necesario
+        function openEditEventModal(eventName, eventDesc, eventAddress, eventVid, eventId) {
+            var eventNameInput = document.getElementById('eventName');
+            var eventDescInput = document.getElementById('eventDesc');
+            var eventAddressInput = document.getElementById('eventAddress');
+            var eventVidInput = document.getElementById('eventVid');
+            var eventIdInput = document.getElementById('eventId');
+
+            eventNameInput.value = eventName;
+            eventDescInput.value = eventDesc;
+            eventAddressInput.value = eventAddress;
+            eventVidInput.value = eventVid;
+            eventIdInput.value = eventId;
+
+            document.getElementById('editEventModal').style.display = 'block';
+        }
+
+        // Función para cerrar el modal
+        function closeModal() {
+            document.getElementById('editEventModal').style.display = 'none';
+        }
+
+        function saveEvent() {
+
+            var camposObligatorios = ['eventName', 'eventDesc', 'eventAddress', 'eventVid'];
+
+            // Función para resaltar campo vacío
+            function resaltarCampoVacio(campo) {
+                campo.style.border = "1px solid red";
+            }
+
+            // Función para quitar resaltado de campos
+            function quitarResaltadoCampos() {
+                camposObligatorios.forEach(campoId => {
+                    var campo = document.getElementById(campoId);
+                    campo.style.border = "";
+                });
+            }
+
+            // Validación de campos requeridos
+            var campoVacioEncontrado = false;
+            camposObligatorios.forEach(campoId => {
+                var campo = document.getElementById(campoId);
+                if (campo.value === "") {
+                    resaltarCampoVacio(campo);
+                    campoVacioEncontrado = true;
+                } else {
+                    campo.style.border = "1px solid black";
+                }
+            });
+
+            if (!campoVacioEncontrado) {
+                quitarResaltadoCampos();
+
+                var formData = new FormData(document.getElementById("formularioEditEvent"));
+                console.log('a');
+                fetch("{{ route('promotor.editEvent') }}", {
+                        method: "POST",
+                        body: formData,
+                    })
+                    .then(response => response.json())
+                    .catch(error => {
+                        console.error('Error:'.error);
+                    });
+
+            };
+
+            closeModal();
+
+        }
+    </script>
 @endsection

@@ -26,6 +26,93 @@
     padding: 2%;
 }
 
+.modal-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.inputEditEvent{
+    width: 100%;
+}
+
+textarea{
+    height: 70px;
+    resize: none;
+}
+
+.modal-footer{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5%;
+}
+
+.btn{
+    font-size: 16px;
+    border-radius: 20px;
+}
+
+.btn-secondary {
+    background-color: red;
+}
+
+.btn-secondary:hover {
+    background-color: darkred;
+}
+
+.btn-primary {
+    background-color: green;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: darkgreen; 
+    color: #eee; 
+}
+
+option{
+    list-style: none;
+    padding: 5px 0;
+    margin: 0;
+    background: #11436b;
+    color: #fff;
+    border-radius: 4px;
+    z-index: 1;
+    width: 96%;
+    position: absolute;
+    left: 2%;
+    top: 35%;
+    max-height: 360px;
+    overflow: scroll;
+
+  }
+
+  option:hover {
+    background-color: #1767a0;
+    color: #ffeb3b;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+ }
+
+ select{
+    border-radius: 14px;
+ }
+
+ .modal-title{
+    text-align: center;
+    font-weight: bold;
+ }
+
+ label{
+    text-align: center;
+    margin-top: 5%;
+ }
+
+ .cerrar{
+    padding: 0% 2%;
+    border-radius: 50px;
+ }
+ 
+
 @media (min-width: 768px) {
 
     .homepromotor {
