@@ -7,6 +7,8 @@ use App\Models\Venue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 
 class PromotorHomeController extends Controller {
     public function index(Request $request) {
@@ -23,8 +25,7 @@ class PromotorHomeController extends Controller {
         });
 
         $events = $query->orderBy('id')->paginate(env('PAGINATION_LIMIT_PROMOTOR', 10));
-        Log::info('Eventos recuperados: ', ['events' => $events]);
-
+    
         return view('promotor/promotorhome', compact('events', 'existingAddresses'));
     }
 
@@ -38,11 +39,20 @@ class PromotorHomeController extends Controller {
             'eventDesc' => 'required|string',
             'eventVid' => 'nullable|url',
             'eventAddress' => 'required|integer',
+            'eventPhoto' => 'nullable|image',
+            'eventHidden' => 'nullable'
         ]);
     
         $venueId = $request->input('eventAddress');
         $eventId = $request->input('eventId');
         $eventName = $request->input('eventName');
+        $eventDesc = $request->input('eventDesc');
+        $eventVid = $request->input('eventVid');
+        $eventHidden = $request->input('eventHidden');
+
+        if($eventHidden == null){
+            $eventHidden = 1;
+        }
     
         $venue = Venue::find($venueId);
         $event = Event::find($eventId);
@@ -51,14 +61,34 @@ class PromotorHomeController extends Controller {
             Log::error('Venue no encontrado con ID: ', ['venueId' => $venueId]);
             return response()->json(['error' => 'Venue no encontrado.'], 404);
         }
+
+        // Crear directorio base para el evento
+        $eventDirectory = 'event_' . $event->id;
+        Storage::disk('public')->makeDirectory($eventDirectory);
+
+        // Guardar imagen principal en subcarpeta 'main_image'
+        if ($request->hasFile('eventPhoto')) {
+            $image = $request->file('eventPhoto');
+            $imagePath = $image->storeAs($eventDirectory . '/main_image', time().'_'.$image->getClientOriginalName(), 'public');
+            $event->main_image = $imagePath;
+            Log::info('Imagen principal del evento almacenada: ' . $imagePath);
+        }
+
     
         $event->name = $eventName;
+        $event->description = $eventDesc;
+        $event->video_link = $eventVid;
+        $event->venue_id = $venue->id;
+        $event->hidden = $eventHidden;
+
         Log::info('Actualizando evento: ', ['event' => $event]);
     
         try {
             $event->save();
-            return response()->json(['event' => $event]);
             Log::info('Evento guardado exitosamente.');
+            // Agregar mensaje flash a la sesión
+            Session::flash('success_message', 'Event: ' . $eventName . ' editat amb èxit');
+            return response()->json(['event' => $event]);
         } catch (\Exception $e) {
             Log::error('Error al guardar el evento: ', ['exception' => $e->getMessage()]);
             return response()->json(['error' => 'Error al guardar el evento'], 500);

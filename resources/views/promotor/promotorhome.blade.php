@@ -3,7 +3,7 @@
 @section('content')
     <div class="homepromotor">
         @foreach ($events as $event)
-            <div class="card" id="event-card-{{ $event->id }}">
+            <div class="card cardHomePromotor" id="event-card-{{ $event->id }}">
                 @if ($event->main_image)
                     <img src="{{ asset('storage/' . $event->main_image) }}" alt="{{ $event->name }}"
                         id="event-image-{{ $event->id }}">
@@ -17,10 +17,11 @@
                     <p>Proxima ubicació: <span id="event-location-{{ $event->id }}">{{ $event->venue->city }},
                             {{ $event->venue->venue_name }}</span></p>
                     <div class="divBotones">
-                        <span class="card-editEvent" eventId="{{ $event->id }}" eventName="{{ $event->name }}" eventDesc="{{ $event->description }}"
-                            eventAddress="{{ $event->venue->id }}" eventVid="{{ $event->video_link }}">Editar evento</span>
+                        <span class="card-editEvent" eventId="{{ $event->id }}" eventName="{{ $event->name }}"
+                            eventDesc="{{ $event->description }}" eventAddress="{{ $event->venue->id }}"
+                            eventVid="{{ $event->video_link }}" eventHidden="{{ $event->hidden }}">Editar event</span>
                         <a class="card-link" href="{{ route('promotorsessionslist', ['id' => $event->id]) }}">
-                            <span class="card-price">Más información</span>
+                            <span class="card-price card-info">Sessións</span>
                         </a>
                     </div>
                 </div>
@@ -33,52 +34,66 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title">Editar Evento</h2>
+                    <h2 class="modal-title">Editar event</h2>
                     <button type="button" class="close cerrar" onclick="closeModal()" aria-label="Cerrar">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <form id="formularioEditEvent">
                     @csrf
-                <div class="modal-body">
-                    <input type="text" id="eventId" name="eventId" hidden>
+                    <div class="modal-body">
+                        <input type="text" id="eventId" name="eventId" hidden>
 
-                    <label for="eventName">Nom del event:</label>
-                    <input class="inputEditEvent" type="text" id="eventName" name="eventName" class="form-control"
-                        placeholder="Ingresa el nom del event">
+                        <label for="eventName">Nom del event:</label>
+                        <input class="inputEditEvent" type="text" id="eventName" name="eventName" class="form-control"
+                            placeholder="Ingresa el nom del event">
 
-                    <label for="eventDesc">Descripció del event:</label>
-                    <textarea id="eventDesc" class="form-control" name="eventDesc" placeholder="Ingresa la descripció del event"></textarea>
+                        <label for="eventDesc">Descripció del event:</label>
+                        <textarea id="eventDesc" class="form-control" name="eventDesc" placeholder="Ingresa la descripció del event"></textarea>
 
-                    <label for="eventAddress"> Adreça:</label>
-                    <select name="eventAddress" class="select-categoria-desktop" name="eventAddress" id="eventAddress">
-                        @foreach ($existingAddresses as $direccion)
-                            <option value="{{ $direccion->id }}">
-                                {{ $direccion->venue_name }}, {{ $direccion->city }}, {{ $direccion->province }},
-                                {{ $direccion->postal_code }}, {{ $direccion->capacity }}
-                            </option>
-                        @endforeach
-                    </select>
+                        <label for="eventAddress"> Adreça:</label>
+                        <select name="eventAddress" class="select-categoria-desktop" name="eventAddress" id="eventAddress">
+                            @foreach ($existingAddresses as $direccion)
+                                <option value="{{ $direccion->id }}">
+                                    {{ $direccion->venue_name }}, {{ $direccion->city }}, {{ $direccion->province }},
+                                    {{ $direccion->postal_code }}, {{ $direccion->capacity }}
+                                </option>
+                            @endforeach
+                        </select>
 
-                    <label>Foto del event:</label>
-                    <input class="inputEditEvent" type="file" id="eventPhoto" name="eventPhoto" class="form-control"
-                        placeholder="Ingresa la foto del event">
+                        <label>Foto del event:</label>
+                        <input class="inputEditEvent" type="file" id="eventPhoto" name="eventPhoto" class="form-control"
+                            placeholder="Ingresa la foto del event">
 
-                    <label for="eventVid">Video del event:</label>
-                    <input class="inputEditEvent" type="text" id="eventVid" name="eventVid" class="form-control"
-                        placeholder="Ingresa el video del event">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="saveEvent()">Guardar</button>
-                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
-                </div>
-            </form>
+                        <label for="eventVid">Video del event:</label>
+                        <input class="inputEditEvent" type="text" id="eventVid" name="eventVid" class="form-control"
+                            placeholder="Ingresa el video del event">
+
+                            <label for="eventHidden" class="switch">Ocult:
+                                <input type="hidden" name="eventHidden" value="0">
+                                <input type="checkbox" class="input-event" name="eventHidden" id="eventHidden" value="1">
+                                <span class="slider round"></span>
+                            </label>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="saveEvent()">Guardar</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
-    {{ $events->links('vendor.pagination.bootstrap-4') }}
+    <div id="success-message" class="custom-alert" style="display:none;">
+        <p>{{ Session::get('success_message') }}</p>
+        <span class="close-btn" onclick="closeAlert()">Cerrar</span>
+    </div>
 
+    {{ $events->links('vendor.pagination.bootstrap-4') }}
+@endsection
+
+@push('scripts')
     <script>
         // Función para abrir el modal al hacer clic en "Editar evento"
         document.querySelectorAll('.card-editEvent').forEach(function(element) {
@@ -88,23 +103,27 @@
                 var eventAddress = this.getAttribute('eventAddress');
                 var eventVid = this.getAttribute('eventVid');
                 var eventId = this.getAttribute('eventId');
-                openEditEventModal(eventName, eventDesc, eventAddress, eventVid, eventId);
+                var eventHidden = this.getAttribute('eventHidden');
+                openEditEventModal(eventName, eventDesc, eventAddress, eventVid, eventId, eventHidden);
             });
         });
 
         // Función para abrir el modal y prellenar el nombre del evento si es necesario
-        function openEditEventModal(eventName, eventDesc, eventAddress, eventVid, eventId) {
+        function openEditEventModal(eventName, eventDesc, eventAddress, eventVid, eventId, eventHidden) {
+            
             var eventNameInput = document.getElementById('eventName');
             var eventDescInput = document.getElementById('eventDesc');
             var eventAddressInput = document.getElementById('eventAddress');
             var eventVidInput = document.getElementById('eventVid');
             var eventIdInput = document.getElementById('eventId');
+            var eventHiddenInput = document.getElementById('eventHidden');
 
             eventNameInput.value = eventName;
             eventDescInput.value = eventDesc;
             eventAddressInput.value = eventAddress;
             eventVidInput.value = eventVid;
             eventIdInput.value = eventId;
+            eventHiddenInput.checked = eventHidden == 1;
 
             document.getElementById('editEventModal').style.display = 'block';
         }
@@ -149,7 +168,8 @@
                 var formData = new FormData(document.getElementById("formularioEditEvent"));
                 // Asegúrate de que estás obteniendo el ID del evento correctamente
                 formData.append('eventId', document.getElementById('eventId').value);
-
+                console.log(eventHidden.value);
+                console.log(eventName.value);
                 fetch("{{ route('promotor.editEvent') }}", {
                         method: "POST",
                         body: formData,
@@ -162,14 +182,27 @@
                     })
                     .then(data => {
                         if (data.event) {
-                            window.location.reload();
+                            closeModal();
+                            showSuccessAlert('{{ Session::get('success_message') }}');
                         } else {}
-                        closeModal();
                     })
                     .catch(error => {
                         console.error('Error:', error.message);
                     });
             }
         }
+
+        function showSuccessAlert(message) {
+            var alertContainer = document.getElementById('success-message');
+            alertContainer.innerHTML = '<p class="message">' + message + '</p><span class="close-btn message" onclick="closeAlert()">Tancar</span>';
+            alertContainer.style.display = 'flex';
+        }
+
+        function closeAlert() {
+            var alertContainer = document.getElementById('success-message');
+            alertContainer.style.opacity = '0';
+            alertContainer.style.display = 'none';
+            window.location.reload();
+        }
     </script>
-@endsection
+@endpush
