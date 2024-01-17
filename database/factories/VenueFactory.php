@@ -12,13 +12,22 @@ class VenueFactory extends Factory
 
     public function definition()
     {
-        return [
-            'venue_name' => $this->faker->company,
+        static $venueCounter = 0;
+
+        $venueNames = ["Centro de Eventos", "Teatro Principal", "Auditorio Ciudad", "Palacio de Congresos", "Sala de Fiestas", "Estadio Municipal", "Arena Deportiva", "Club Nocturno", "Parque de Exposiciones", "Recinto Ferial"];
+
+        $user_id = User::inRandomOrder()->first()->id ?? User::factory()->create()->id;
+
+        $venueData = [
+            'venue_name' => $venueNames[$venueCounter % count($venueNames)],
             'city' => $this->faker->city,
             'province' => $this->faker->state,
             'postal_code' => $this->faker->postcode,
             'capacity' => $this->faker->randomNumber(3),
-            'user_id' => User::inRandomOrder()->first()->id
+            'user_id' => $user_id
         ];
+
+        $venueCounter++;
+        return $venueData;
     }
 }

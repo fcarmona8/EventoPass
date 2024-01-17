@@ -27,50 +27,34 @@ class DatabaseSeeder extends Seeder
         User::factory()->promoterThree()->create(['role_id' => $promoterRole->id]);
         User::factory()->promoterFour()->create(['role_id' => $promoterRole->id]);
 
-        // Crear categorías específicas usando la factory
-        $concerts = Category::factory()->concerts()->create();
-        $festivals = Category::factory()->festivals()->create();
-        $conferences = Category::factory()->conferences()->create();
-        $theatre = Category::factory()->theatre()->create();
-        $sports = Category::factory()->sports()->create();
-        $arts = Category::factory()->arts()->create();
-        $movies = Category::factory()->movies()->create();
-        $music = Category::factory()->music()->create();
-        $dance = Category::factory()->dance()->create();
-        $literature = Category::factory()->literature()->create();
+        // Crear categorías
+        Category::factory()->concerts()->create();
+        Category::factory()->festivals()->create();
+        Category::factory()->conferences()->create();
+        Category::factory()->theatre()->create();
+        Category::factory()->sports()->create();
+        Category::factory()->arts()->create();
+        Category::factory()->movies()->create();
+        Category::factory()->music()->create();
+        Category::factory()->dance()->create();
+        Category::factory()->literature()->create();
 
-        // Crear venues y otros datos
-        Venue::factory()->count(10)->create();
-        TicketType::factory()->count(5)->create();
+        // Crear recintos (venues)
+        Venue::factory(10)->create(); // Crear 10 recintos
 
-        // Crear eventos asignados a categorías específicas
-        $categories = Category::all();
-        foreach ($categories as $category) {
-            Event::factory()->count(6)->create(['category_id' => $category->id]);
-        }
+        // Crear eventos
+        Event::factory(30)->create(); // Crear 30 eventos
 
-         // Crear un arreglo global para rastrear los tickets disponibles para cada tipo
-        $globalTicketTypes = TicketType::all()->pluck('available_tickets', 'id')->toArray();
+        // Crear sesiones
+        Session::factory(50)->create(); // Crear 50 sesiones
 
-        // Crear eventos, sesiones, compras y tickets
-        Event::all()->each(function ($event) use (&$globalTicketTypes) {
-            Session::factory()->count(rand(1, 3))->create(['event_id' => $event->id])
-                ->each(function ($session) use (&$globalTicketTypes) {
-                    Purchase::factory()->count(rand(1, 5))->create(['session_id' => $session->id])
-                        ->each(function ($purchase) use (&$globalTicketTypes, $session) {
-                            foreach ($globalTicketTypes as $typeId => &$availableTickets) {
-                                $ticketsToCreate = min(rand(1, 4), $availableTickets);
+        // Crear tipos de ticket
+        TicketType::factory(10)->create(); // Crear 10 tipos de ticket
 
-                                Ticket::factory()->count($ticketsToCreate)->create([
-                                    'purchase_id' => $purchase->id,
-                                    'type_id' => $typeId,
-                                    'session_id' => $session->id
-                                ]);
+        // Crear compras
+        Purchase::factory(100)->create(); // Crear 100 compras
 
-                                $availableTickets -= $ticketsToCreate;
-                            }
-                        });
-                });
-        });
+        // Crear tickets
+        Ticket::factory(200)->create(); // Crear 200 tickets
     }
 }
