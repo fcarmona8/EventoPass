@@ -15,41 +15,43 @@ class ShowEventController extends Controller
 {
     function getCoordinates($venue)
     {
-        // Inicialización del registro
-        Log::info("Iniciando la obtención de coordenadas para: Provincia - {$venue->province}, Ciudad - {$venue->city}, Código Postal - {$venue->postal_code}");
+        $start = microtime(true);
+        Log::channel('showevent')->info("Iniciando getCoordinates", ['venue' => $venue]);
     
         $apiKey = 'AIzaSyCbSv4bCYfNwXa_MXnzon8gG2kK_1MpoZw';
         $address = urlencode("{$venue->province}, {$venue->city}, {$venue->postal_code}");
         $url = "https://maps.googleapis.com/maps/api/geocode/json?address=$address&key=$apiKey";
     
-        // Registro de la URL solicitada
-        Log::debug("URL de solicitud de la API de Google Maps: $url");
+        Log::channel('showevent')->debug("URL de solicitud de la API de Google Maps: $url");
     
         $response = file_get_contents($url);
         $data = json_decode($response);
     
-        // Registro de la respuesta cruda de la API
-        Log::debug("Respuesta cruda de la API de Google Maps: " . print_r($data, true));
+        Log::channel('showevent')->debug("Respuesta cruda de la API de Google Maps: " . print_r($data, true));
     
         if (isset($data->results[0])) {
-            // Registro de éxito
-            Log::info("Coordenadas encontradas: " . print_r($data->results[0]->geometry->location, true));
+            $duration = microtime(true) - $start;
+            Log::channel('showevent')->info("Finalizando getCoordinates", ['duration' => $duration]);
             return $data->results[0]->geometry->location;
         } else {
-            // Registro de error
-            Log::error("No se encontraron coordenadas para la dirección dada. Respuesta de la API: " . print_r($data, true));
+            Log::channel('showevent')->error("No se encontraron coordenadas para la dirección dada. Respuesta de la API: " . print_r($data, true));
             return null;
         }
     }    
 
     public function show($id)
     {
+        $start = microtime(true);
+        Log::channel('showevent')->info("Iniciando show", ['id' => $id]);
+
         $event = Event::with('images', 'venue')->find($id);
 
         if (!$event) {
+            Log::channel('showevent')->warning("Evento no encontrado", ['id' => $id]);
             return redirect()->route('home')->with('error', 'Evento no encontrado.');
         }
-        
+
+        Log::channel('showevent')->info("Evento encontrado: " . print_r($event->toArray(), true));
 
         $sessions = Session::where('event_id', $event->id)
             ->where('date_time', '>=', now())
@@ -59,9 +61,11 @@ class ShowEventController extends Controller
                 return Carbon::parse($session->date_time)->format('Y-m-d');
             });
 
+        Log::channel('showevent')->info("Sesiones encontradas para el evento: " . print_r($sessions->toArray(), true));
+
         $formattedSessions = [];
         foreach ($sessions as $date => $sessionsOnDate) {
-            $formattedSessions[] = [
+            $sessionDetails = [
                 'date' => $date,
                 'count' => count($sessionsOnDate),
                 'sessions' => $sessionsOnDate->map(function ($session) {
@@ -71,9 +75,16 @@ class ShowEventController extends Controller
                     return $session;
                 }),
             ];
+            $formattedSessions[] = $sessionDetails;
+
+            Log::channel('showevent')->debug("Detalles de la sesión: " . print_r($sessionDetails, true));
         }
 
         $coordinates = $this->getCoordinates($event->venue);
+
+        $duration = microtime(true) - $start;
+        Log::channel('showevent')->info("Finalizando show", ['duration' => $duration]);
+
         return view('tickets.showevent', compact('event', 'formattedSessions', 'coordinates'));
     }
 }
