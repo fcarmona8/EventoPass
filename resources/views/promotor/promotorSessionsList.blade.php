@@ -3,15 +3,26 @@
 @section('content')
     <button type="button" class="btn btn-primary" id="abrir-modal-sesion"></button>
 
+    @foreach ($sessions as $session)
+        <div class="session-card">
+            <img src="{{ $session->event->main_image_url }}" alt="Imagen del Evento">
+            <div>
+                <h3>{{ $session->event->title }}</h3>
+                <p>{{ \Carbon\Carbon::parse($session->date_time)->format('Y-m-d, H:i') }}</p>
+                <p>Ventas: {{ $session->sold_tickets }} / {{ $session->max_capacity }}</p>
+            </div>
+        </div>
+    @endforeach
+
     <div id="nueva-sesion-modal" class="modal">
         <div class="modal-content div-adreca" id="div-crear-sesion">
             <span class="close" onclick="cerrarModalDireccion()">&times;</span>
-            <form class="nova-adreca" id="formularioSession" action="{{ route('promotorsessionslist.storeSession')}}" method="POST">
+            <form class="nova-adreca" id="formularioSession" action="{{ route('promotorsessionslist.storeSession') }}"
+                method="POST">
                 @csrf
                 <h2>Nova Sessió</h2>
                 <!-- Formulario para crear nova adreça -->
-                <input type="datetime-local" class="input-event input-adreca" name="data_sesion" id="nova_data"
-                    required>
+                <input type="datetime-local" class="input-event input-adreca" name="data_sesion" id="nova_data" required>
 
                 <input class="input-event input-adreca" type="number" name="max_capacity" id="max_capacity_session"
                     placeholder="Aforament màxim" oninput="actualizarMaxEntradas()" required>
@@ -27,8 +38,9 @@
                             <input type="number" class="input-event" name="entry_type_price[]" placeholder="Preu"
                                 step="0.01" required>
 
-                            <input type="number" class="input-event" name="entry_type_quantity[]" id="entry_type_quantity_sesion"
-                                placeholder="Quantitat" required min="0" oninput="actualizarMaxEntradas()">
+                            <input type="number" class="input-event" name="entry_type_quantity[]"
+                                id="entry_type_quantity_sesion" placeholder="Quantitat" required min="0"
+                                oninput="actualizarMaxEntradas()">
 
                             <button type="button" class="eliminar-linea" id="eliminar-entrada-session"
                                 style="display: none;" onclick="eliminarEntrada(this)">Eliminar entrada</button>
@@ -222,7 +234,7 @@
 
             actualizarMaxEntradas();
         }
-        
+
 
         function setupSelector(selector) {
 
