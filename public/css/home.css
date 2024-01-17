@@ -17,17 +17,11 @@ h1{
 }
 
 .events {
-    display: flex;
-    flex-wrap: wrap;
-    max-height: 630px;
-    overflow: hidden;
-    padding: 0% 1%;
-    justify-content: space-evenly;
-}
-
-.event {
-    width: 100%; /* 100% / 1 elemento por fila */
-    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100%, auto));
+    gap: 20px;
+    padding: 1%;
+    width: 100%;
 }
 
 img{
@@ -46,9 +40,11 @@ img{
 }
 
 @media (min-width: 768px) {
-.event {
-    min-width: 450px; /* 100% / 3 elementos por fila */
-    max-width: 33%;
-    box-sizing: border-box; /* Asegura que el padding y el borde no afecten el ancho */
+
+.events{
+    display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(32%, auto));
+        padding: 1%;
+        width: 100%;
 }
 }
