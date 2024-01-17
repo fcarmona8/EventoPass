@@ -3,21 +3,25 @@
 @section('content')
     <div class="homepromotor">
         @foreach ($events as $event)
-            <div class="card">
+            <div class="card" id="event-card-{{ $event->id }}">
                 @if ($event->main_image)
-                    <img src="{{ asset('storage/' . $event->main_image) }}" alt="{{ $event->name }}">
-                    {{-- <img src="https://picsum.photos/2000" alt="{{ $event->name }}"> --}}
+                    <img src="{{ asset('storage/' . $event->main_image) }}" alt="{{ $event->name }}"
+                        id="event-image-{{ $event->id }}">
                 @endif
                 <div class="card-content">
-                    <h3>{{ Str::limit($event->name, $limit = 55, $end = '...') }}</h3>
-                    <p class="description">{{ $event->description }}</p>
-                    <p>Proxima data: {{ \Carbon\Carbon::parse($event->event_date)->format('Y-M-D , H:i') }}</p>
-                    <p>Proxima ubicació: {{ $event->venue->city }}, {{ $event->venue->venue_name }}</p>
+                    <h3 id="event-name-{{ $event->id }}">{{ Str::limit($event->name, $limit = 55, $end = '...') }}</h3>
+                    <p id="event-description-{{ $event->id }}" class="description">{{ $event->description }}</p>
+                    <p>Proxima data: <span
+                            id="event-date-{{ $event->id }}">{{ \Carbon\Carbon::parse($event->event_date)->format('Y-M-D , H:i') }}</span>
+                    </p>
+                    <p>Proxima ubicació: <span id="event-location-{{ $event->id }}">{{ $event->venue->city }},
+                            {{ $event->venue->venue_name }}</span></p>
                     <div class="divBotones">
-                        <span class="card-editEvent" eventId="{{ $event->id }}" eventName="{{ $event->name }}" eventDesc="{{ $event->description }}"
-                            eventAddress="{{ $event->venue->id }}" eventVid="{{ $event->video_link }}">Editar evento</span>
+                        <span class="card-editEvent" eventId="{{ $event->id }}" eventName="{{ $event->name }}"
+                            eventDesc="{{ $event->description }}" eventAddress="{{ $event->venue->id }}"
+                            eventVid="{{ $event->video_link }}">Editar evento</span>
                         <a class="card-link" href="{{ route('promotorsessionslist', ['id' => $event->id]) }}">
-                            <span class="card-price">Mes informació</span>
+                            <span class="card-price">Más información</span>
                         </a>
                     </div>
                 </div>
@@ -37,39 +41,39 @@
                 </div>
                 <form id="formularioEditEvent">
                     @csrf
-                <div class="modal-body">
-                    <input type="text" id="eventId" name="eventId" hidden>
+                    <div class="modal-body">
+                        <input type="text" id="eventId" name="eventId" hidden>
 
-                    <label for="eventName">Nom del event:</label>
-                    <input class="inputEditEvent" type="text" id="eventName" name="eventName" class="form-control"
-                        placeholder="Ingresa el nom del event">
+                        <label for="eventName">Nom del event:</label>
+                        <input class="inputEditEvent" type="text" id="eventName" name="eventName" class="form-control"
+                            placeholder="Ingresa el nom del event">
 
-                    <label for="eventDesc">Descripció del event:</label>
-                    <textarea id="eventDesc" class="form-control" name="eventDesc" placeholder="Ingresa la descripció del event"></textarea>
+                        <label for="eventDesc">Descripció del event:</label>
+                        <textarea id="eventDesc" class="form-control" name="eventDesc" placeholder="Ingresa la descripció del event"></textarea>
 
-                    <label for="eventAddress"> Adreça:</label>
-                    <select name="eventAddress" class="select-categoria-desktop" name="eventAddress" id="eventAddress">
-                        @foreach ($existingAddresses as $direccion)
-                            <option value="{{ $direccion->id }}">
-                                {{ $direccion->venue_name }}, {{ $direccion->city }}, {{ $direccion->province }},
-                                {{ $direccion->postal_code }}, {{ $direccion->capacity }}
-                            </option>
-                        @endforeach
-                    </select>
+                        <label for="eventAddress"> Adreça:</label>
+                        <select name="eventAddress" class="select-categoria-desktop" name="eventAddress" id="eventAddress">
+                            @foreach ($existingAddresses as $direccion)
+                                <option value="{{ $direccion->id }}">
+                                    {{ $direccion->venue_name }}, {{ $direccion->city }}, {{ $direccion->province }},
+                                    {{ $direccion->postal_code }}, {{ $direccion->capacity }}
+                                </option>
+                            @endforeach
+                        </select>
 
-                    <label>Foto del event:</label>
-                    <input class="inputEditEvent" type="file" id="eventPhoto" name="eventPhoto" class="form-control"
-                        placeholder="Ingresa la foto del event">
+                        <label>Foto del event:</label>
+                        <input class="inputEditEvent" type="file" id="eventPhoto" name="eventPhoto" class="form-control"
+                            placeholder="Ingresa la foto del event">
 
-                    <label for="eventVid">Video del event:</label>
-                    <input class="inputEditEvent" type="text" id="eventVid" name="eventVid" class="form-control"
-                        placeholder="Ingresa el video del event">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="saveEvent()">Guardar</button>
-                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
-                </div>
-            </form>
+                        <label for="eventVid">Video del event:</label>
+                        <input class="inputEditEvent" type="text" id="eventVid" name="eventVid" class="form-control"
+                            placeholder="Ingresa el video del event">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="saveEvent()">Guardar</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -144,20 +148,29 @@
                 quitarResaltadoCampos();
 
                 var formData = new FormData(document.getElementById("formularioEditEvent"));
-                console.log('a');
+                // Asegúrate de que estás obteniendo el ID del evento correctamente
+                formData.append('eventId', document.getElementById('eventId').value);
+
                 fetch("{{ route('promotor.editEvent') }}", {
                         method: "POST",
                         body: formData,
                     })
-                    .then(response => response.json())
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.event) {
+                            window.location.reload();
+                        } else {}
+                        closeModal();
+                    })
                     .catch(error => {
-                        console.error('Error:'.error);
+                        console.error('Error:', error.message);
                     });
-
-            };
-
-            closeModal();
-
+            }
         }
     </script>
 @endsection
