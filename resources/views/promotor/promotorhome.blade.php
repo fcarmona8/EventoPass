@@ -44,14 +44,14 @@
                     <div class="modal-body">
                         <input type="text" id="eventId" name="eventId" hidden>
 
-                        <label for="eventName">Nom del event:</label>
+                        <label class="labelHomePromotor" for="eventName">Nom del event:</label>
                         <input class="inputEditEvent" type="text" id="eventName" name="eventName" class="form-control"
                             placeholder="Ingresa el nom del event">
 
-                        <label for="eventDesc">Descripció del event:</label>
+                        <label class="labelHomePromotor" for="eventDesc">Descripció del event:</label>
                         <textarea id="eventDesc" class="form-control" name="eventDesc" placeholder="Ingresa la descripció del event"></textarea>
 
-                        <label for="eventAddress"> Adreça:</label>
+                        <label class="labelHomePromotor" for="eventAddress"> Adreça:</label>
                         <select name="eventAddress" class="select-categoria-desktop" name="eventAddress" id="eventAddress">
                             @foreach ($existingAddresses as $direccion)
                                 <option value="{{ $direccion->id }}">
@@ -61,11 +61,11 @@
                             @endforeach
                         </select>
 
-                        <label>Foto del event:</label>
+                        <label class="labelHomePromotor">Foto del event:</label>
                         <input class="inputEditEvent" type="file" id="eventPhoto" name="eventPhoto" class="form-control"
                             placeholder="Ingresa la foto del event">
 
-                        <label for="eventVid">Video del event:</label>
+                        <label class="labelHomePromotor" for="eventVid">Video del event:</label>
                         <input class="inputEditEvent" type="text" id="eventVid" name="eventVid" class="form-control"
                             placeholder="Ingresa el video del event">
 
