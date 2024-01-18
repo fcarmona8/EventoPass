@@ -3,7 +3,7 @@
 @section('content')
     @if ($isSpecificEvent)
         <button type="button" class="btn btn-primary btnSessions" id="abrir-modal-sesion">Crear Nueva Sesión</button>
-        <div class="listSessions">
+        <div class="listSessions" id="listSessions">
             @foreach ($sessions as $session)
                 <div class="card cardHomePromotor">
                     <img src="{{ asset('storage/' . $session->event->main_image) }}" alt="{{ $session->event->name }}">
@@ -323,15 +323,32 @@
                     .then(data => {
                         const seccionSesiones = document.getElementById('listSessions');
                         if (data.sessions) {
-                            seccionSesiones.innerHTML = data.sessions.map(session => (
-                                `<div class="session-card">
-                                <img src="${session.event.main_image}" alt="${session.event.name}">
-                                <div>
-                                    <p>${session.date_time}</p>
-                                    <p>Ventas: ${session.sold_tickets} / ${session.max_capacity}</p>
-                                </div>
-                            </div>`
-                            )).join('');
+                            seccionSesiones.innerHTML = data.sessions.map(session => {
+                                const date = new Date(session.date_time);
+                                const year = date.getFullYear();
+                                const month = String(date.getMonth() + 1).padStart(2,
+                                '0'); 
+                                const day = String(date.getDate()).padStart(2,
+                                '0'); 
+                                const hours = String(date.getHours()).padStart(2,
+                                '0'); 
+                                const minutes = String(date.getMinutes()).padStart(2,
+                                '0');
+
+                                const formattedDate = `${year}-${month}-${day}, ${hours}:${minutes}`;
+                                return (`<div class="card cardHomePromotor">
+                                    <img src="/storage/${session.event.main_image}" alt="${session.event.name}">
+                                    <div class="sessionCont">
+                                        <p>Data: ${(formattedDate)}</p>
+                                        <p>Ventas: ${ session.sold_tickets } / ${ session.max_capacity }</p>
+                                        <div class="divBoton">
+                                            <span class="card-price card-info card-sessions">Detalls</span>
+                                            <span class="card-price card-info card-sessions">Editar</span>
+                                            <span class="card-price card-info card-sessions">Entrades</span>
+                                        </div>
+                                    </div>
+                                </div>`);
+                            }).join('');
 
                         }
 
