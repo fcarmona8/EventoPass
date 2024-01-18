@@ -23,6 +23,6 @@ class LogoutTest extends TestCase
 
         $this->assertGuest();
 
-        $response->assertRedirect('/promotor/promoterhome');
+        $response->assertRedirect('/promotor/promotorhome');
     }
 }
