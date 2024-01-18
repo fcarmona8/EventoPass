@@ -14,10 +14,6 @@ class PromotorHomeController extends Controller {
     public function index(Request $request) {
         Log::info('Entrando en método index de PromotorHomeController.');
 
-class PromotorHomeController extends Controller {
-    public function index(Request $request) {
-        Log::info('Entrando en método index de PromotorHomeController.');
-
         $user_id = Auth::id();
         $query = Event::query(); 
 
@@ -78,7 +74,6 @@ class PromotorHomeController extends Controller {
             $event->main_image = $imagePath;
             Log::info('Imagen principal del evento almacenada: ' . $imagePath);
         }
-
     
         $event->name = $eventName;
         $event->description = $eventDesc;
