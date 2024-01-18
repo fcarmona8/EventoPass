@@ -25,7 +25,8 @@ class PromotorHomeController extends Controller {
         });
 
         $events = $query->orderBy('id')->paginate(env('PAGINATION_LIMIT_PROMOTOR', 10));
-    
+        Log::info('Eventos recuperados: ', ['events' => $events]);
+
         return view('promotor/promotorhome', compact('events', 'existingAddresses'));
     }
 
@@ -73,7 +74,6 @@ class PromotorHomeController extends Controller {
             $event->main_image = $imagePath;
             Log::info('Imagen principal del evento almacenada: ' . $imagePath);
         }
-
     
         $event->name = $eventName;
         $event->description = $eventDesc;

@@ -30,7 +30,8 @@ class SessionFactory extends Factory
 
         $sessionData = [
             'event_id' => Event::inRandomOrder()->first()->id,
-            'date_time' => $dateTimes[$sessionCounter % count($dateTimes)]
+            'date_time' => $dateTimes[$sessionCounter % count($dateTimes)],
+            'max_capacity' => $this->faker->numberBetween(10, 20) 
         ];
 
         $sessionCounter++;

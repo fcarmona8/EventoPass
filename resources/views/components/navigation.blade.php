@@ -10,6 +10,7 @@
             @if (Auth::user()->role->name == 'promotor')
                 <li><a href="{{ route('promotorhome') }}">Home Promotor</a></li>
                 <li><a href="{{ route('promotor.createEvent') }}">Crear Esdeveniment</a></li>
+                <a href="{{ route('promotorsessionslist') }}">Ver todas las sesiones</a>
             @else
                 <li><a href="{{ route('login') }}">Accés Promotors</a></li>
             @endif
