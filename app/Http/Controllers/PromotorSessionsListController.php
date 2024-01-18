@@ -21,13 +21,15 @@ class PromotorSessionsListController extends Controller{
         });
     
         $sessions = $query->orderBy('id')->paginate(env('PAGINATION_LIMIT_PROMOTOR', 10));
-        return view('promotor/promotorSessionsList', compact('sessions'));
+        return view('promotor/promotorSessionsList', compact('sessions', 'event_id'));
     }
 
 
     public function storeSession(Request $request){
 
         try {
+
+            $event_id = $request->input('id');
 
             $valorNominals = $request->has('nominal_entries');
 
@@ -59,8 +61,6 @@ class PromotorSessionsListController extends Controller{
                     $onlineSaleEndTime->modify('-2 hours');
                     break;
             }
-
-            $event_id = 1;
         
             $session = new Session([
                 'event_id' => $event_id,

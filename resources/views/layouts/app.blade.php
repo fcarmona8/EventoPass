@@ -21,19 +21,43 @@
 
     <header>
         @auth
-            <div class="user-info">
-                <i class="fa fa-user"></i>
-                <p>{{ Auth::user()->name }}</p>
+            <div id="mobile-menu-div"><button class="fa fa-user menu-mobile" onclick="toggleSidebar()"></button></div>
+            <div class="container">
+                <div class="sidebar" id="sidebar">
+                    <div class="user-info">
+                        <div class="usuari">
+                            <p class="user-name">Usuari: {{ Auth::user()->name }}</p>
 
-                <!-- Formulario de Logout -->
-                <form action="{{ route('logout') }}" method="POST" style="display: inline;">
-                    @csrf
-                    <button type="submit" class="logout-button"
-                        style="background: none; border: none; padding: 0; text-decoration: underline; cursor: pointer;">
-                        <i class="fa fa-sign-out-alt" style="font-size: 18px;"></i>
-                    </button>
-                </form>
+                            <!-- Formulario de Logout -->
+                        </div>
+
+                        <div class="user-menu">
+                            @if (Auth::user()->role->name == 'administrador')
+                                <li><a href="{{ route('ruta.admin') }}">Taulell d'administració</a></li>
+                            @endif
+
+                            @if (Auth::user()->role->name == 'promotor')
+                                <li><a href="{{ route('promotorhome') }}">Home Promotor</a></li>
+                                <li><a href="{{ route('promotor.createEvent') }}">Crear Esdeveniment</a></li>
+                            @else
+                                <li><a href="{{ route('login') }}">Accés Promotors</a></li>
+                            @endif
+                            <li><a href="{{ route('user.profile') }}">Perfil d'Usuari</a></li>
+                            <div class="logout-div">
+                                <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                                    @csrf
+                                    <button type="submit" class="logout-button">
+                                        <span class="logout-button-text">Tancar Sessió</span>
+                                        <i class="fa fa-sign-out-alt" style="font-size: 18px; color:#E00F00; margin-left:10px"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
+
         @endauth
 
         <h1 id="title">EventoPass</h1>
@@ -49,6 +73,16 @@
     </footer>
 
     @stack('scripts')
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const content = document.querySelector('.user-info');
+            sidebar.classList.toggle('active');
+            content.classList.toggle('active');
+            
+        }
+    </script>
 </body>
 
 </html>

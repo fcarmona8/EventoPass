@@ -6,15 +6,15 @@
     <div id="nueva-sesion-modal" class="modal">
         <div class="modal-content div-adreca" id="div-crear-sesion">
             <span class="close" onclick="cerrarModalDireccion()">&times;</span>
-            <form class="nova-adreca" id="formularioSession" action="{{ route('promotorsessionslist.storeSession')}}" method="POST">
+            <form class="nova-adreca" id="formularioSession"
+                action="{{ route('promotorsessionslist.storeSession', ['id' => $event_id]) }}" method="POST">
                 @csrf
                 <h2>Nova Sessió</h2>
                 <!-- Formulario para crear nova adreça -->
-                <input type="datetime-local" class="input-event input-adreca" name="data_sesion" id="nova_data"
-                    required>
+                <input type="datetime-local" class="input-event input-adreca" name="data_sesion" id="nova_data" required>
 
                 <input class="input-event input-adreca" type="number" name="max_capacity" id="max_capacity_session"
-                    placeholder="Aforament màxim" oninput="actualizarMaxEntradas()" required>
+                    placeholder="Aforament màxim" oninput="vaciarEntradas()" required>
 
                 <hr class="separador-entradas-sesion">
 
@@ -25,10 +25,11 @@
                                 required placeholder="Nom del tipus d'entrada">
 
                             <input type="number" class="input-event" name="entry_type_price[]" placeholder="Preu"
-                                step="0.01" required>
+                                id="precio_entradas" step="0.01" required>
 
-                            <input type="number" class="input-event" name="entry_type_quantity[]" id="entry_type_quantity_sesion"
-                                placeholder="Quantitat" required min="0" oninput="actualizarMaxEntradas()">
+                            <input type="number" class="input-event" name="entry_type_quantity[]"
+                                id="entry_type_quantity_sesion" placeholder="Quantitat" required min="0"
+                                oninput="actualizarMaxEntradas()">
 
                             <button type="button" class="eliminar-linea" id="eliminar-entrada-session"
                                 style="display: none;" onclick="eliminarEntrada(this)">Eliminar entrada</button>
@@ -62,15 +63,19 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary" id="guardar-adreca">Guardar</button>
+                <button type="button" class="btn btn-primary" id="guardar-adreca"
+                    onclick="guardarSesion()">Guardar</button>
                 <button type="button" class="btn btn-secondary" id="cerrar-modal-direccion">Tancar</button>
+
             </form>
         </div>
     </div>
 
 
     <div id="overlay" class="overlay" onclick="cerrarModalDireccion()"></div>
+@endsection
 
+@push('scripts')
     <script>
         document.querySelectorAll('.label-adreca').forEach(setupSelector);
 
@@ -97,9 +102,6 @@
             const aforoMaximo = parseInt(document.getElementById("max_capacity_session").value);
             const entradasInputs = Array.from(document.querySelectorAll("#entry_type_quantity_sesion"));
 
-            console.log(aforoMaximo);
-            console.log(entradasInputs);
-
             if (document.activeElement.value > parseInt(document.activeElement.max)) {
                 document.activeElement.value = parseInt(document.activeElement.max)
             }
@@ -112,7 +114,21 @@
                 if (input !== document.activeElement) {
                     input.max = aforoMaximo - sumaEntradas + (parseInt(input.value) || 0);
                 };
+
+                if (parseInt(input.value) < 0) {
+                    input.value = 0;
+                }
             });
+        }
+
+        function vaciarEntradas(){
+            const entradasInputs = Array.from(document.querySelectorAll("#entry_type_quantity_sesion"));
+
+            entradasInputs.forEach(input => {
+                    input.value = 0;
+            });
+
+            actualizarMaxEntradas();
         }
 
         function cerrarModalDireccion() {
@@ -121,70 +137,6 @@
             });
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('nueva-sesion-modal').style.display = 'none';
-        }
-
-        function guardarNovaAdreca() {
-
-            let camposRequeridos = ['nova_provincia', 'nova_ciutat', 'codi_postal', 'nom_local', 'capacitat_local'];
-            const contenedorAdreca = document.getElementById('label-adreca');
-
-            // Función para resaltar campo vacío
-            function resaltarCampoVacio(campo) {
-                campo.style.border = "1px solid red";
-            }
-
-            // Función para quitar resaltado de campos
-            function quitarResaltadoCampos() {
-                camposRequeridos.forEach(campoId => {
-                    let campo = document.getElementById(campoId);
-                    campo.style.border = "";
-                });
-            }
-
-            // Validación de campos requeridos
-            let campoVacioEncontrado = false;
-            camposRequeridos.forEach(campoId => {
-                let campo = document.getElementById(campoId);
-                if (campo.value === "") {
-                    resaltarCampoVacio(campo);
-                    campoVacioEncontrado = true;
-                } else {
-                    campo.style.border = "1px solid black";
-                }
-            });
-
-            if (!campoVacioEncontrado) {
-                quitarResaltadoCampos();
-
-                const formData = new FormData(document.getElementById("formularioVenue"));
-                fetch("{{ route('promotor.createVenue') }}", {
-                        method: "POST",
-                        body: formData,
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.addresses) {
-                            const select = document.querySelector('select[name="selector-options"]');
-                            select.innerHTML = "";
-
-                            data.addresses.forEach(direccion => {
-                                const option = document.createElement("option");
-                                option.value = direccion.id;
-                                select.appendChild(option);
-                            });
-                        }
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
-
-                contenedorAdreca.style.display = 'block';
-
-                cerrarModalDireccion();
-
-            };
-
-
         }
 
         function agregarEntrada() {
@@ -222,7 +174,7 @@
 
             actualizarMaxEntradas();
         }
-        
+
 
         function setupSelector(selector) {
 
@@ -261,5 +213,66 @@
 
             });
         }
+
+        function quitarResaltadoCampos() {
+            let camposRequeridos = ['nova_data', 'max_capacity_session', 'precio_entradas', 'nombre-entradas-sesion',
+                'entry_type_quantity_sesion'
+            ];
+
+            camposRequeridos.forEach(campoId => {
+                let campo = document.getElementById(campoId);
+                campo.style.border = "";
+            });
+        }
+
+        function resaltarCampos() {
+            let camposRequeridos = ['nova_data', 'max_capacity_session', 'precio_entradas', 'nombre-entradas-sesion',
+                'entry_type_quantity_sesion'
+            ];
+
+            // Función para resaltar campo vacío
+            function resaltarCampoVacio(campo) {
+                campo.style.border = "1px solid red";
+            }
+
+            // Validación de campos requeridos
+            let campoVacioEncontrado = false;
+            camposRequeridos.forEach(campoId => {
+                let campo = document.getElementById(campoId);
+                if (campo.value === "") {
+                    resaltarCampoVacio(campo);
+                    campoVacioEncontrado = true;
+                } else {
+                    campo.style.border = "1px solid black";
+                }
+            });
+
+
+            return campoVacioEncontrado;
+        }
+
+        function guardarSesion() {
+
+            if (!resaltarCampos()) {
+                quitarResaltadoCampos();
+
+                const formData = new FormData(document.getElementById("formularioSession"));
+                fetch("{{ route('promotorsessionslist.storeSession', ['id' => $event_id]) }}", {
+                        method: "POST",
+                        body: formData,
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('sesion guardada');
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+
+                cerrarModalDireccion();
+
+            };
+
+        }
     </script>
-@endsection
+@endpush
