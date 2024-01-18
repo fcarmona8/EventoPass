@@ -5,7 +5,7 @@
 
     @foreach ($sessions as $session)
         <div class="session-card">
-            <img src="{{ $session->event->main_image_url }}" alt="Imagen del Evento">
+            <img src="{{ $session->event->main_image }}" alt="Imagen del Evento">
             <div>
                 <h3>{{ $session->event->title }}</h3>
                 <p>{{ \Carbon\Carbon::parse($session->date_time)->format('Y-m-d, H:i') }}</p>
