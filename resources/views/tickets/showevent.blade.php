@@ -25,7 +25,10 @@
 
 
         <!-- Descripción del evento -->
-        <p>{{ $event->description }}</p>
+        <h1>Descripció:</h1>
+        <div class="divDescEvent">
+        <p class="pDescEvent">{{ $event->description }}</p>
+        </div>
 
         <!-- Datos del local -->
         <div class="venue-details">
@@ -38,16 +41,16 @@
         </div>
 
         <div id="sessionDetails" style="display: none;">
-            <h3>Sesiones para la Fecha Seleccionada:</h3>
+            <h3 class="h3Color">Sesiones para la Fecha Seleccionada:</h3>
             <ul id="sessionList"></ul>
         </div>
 
         <div id="totalPriceContainer" style="display: none;">
-            <h3>Precio Total: <span id="totalPrice">0</span> $</h3>
+            <h3 class="h3Color">Precio Total: <span id="totalPrice">0</span> $</h3>
         </div>
-
-        <button id="buyButton" class="btn btn-primary" style="display: none;">Comprar</button>
-
+        <div class="dvBotonCompra">
+        <button id="buyButton" class="btn btn-primary btnCompra" style="display: none;">Comprar</button>
+        </div>
         <div class="card-body">
             <div id='calendar'></div>
         </div>
@@ -118,6 +121,7 @@
                 inputQuantity.min = 0;
                 inputQuantity.max = ticketType.available_tickets;
                 inputQuantity.value = 0;
+                inputQuantity.classList.add('inputQuantity');
                 inputQuantity.addEventListener('change', function() {
                     selectedTickets[ticketType.id] = parseInt(inputQuantity.value);
                     recalculateTotalPrice(ticketTypes);
