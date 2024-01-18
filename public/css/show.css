@@ -5,7 +5,6 @@
 
 .slider-frame {
     width: 100%;
-    margin: 50px auto 0;
     overflow: hidden;
     height: auto;
 }
@@ -31,7 +30,7 @@
     background-color: var(--elementos-secundarios);
     padding: 15px;
     border-radius: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 2%;
 }
 
 /* Estilos para FullCalendar */
@@ -191,9 +190,9 @@ letter-spacing: 0.05em;
     background-color: var(--principal);
     color: var(--titulos);
     padding: 15px;
-    margin-top: 20px;
+    margin-top: 2%;
     border-radius: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 2%;
 }
 
 #sessionList li {
@@ -205,6 +204,43 @@ letter-spacing: 0.05em;
 #sessionList li:hover {
     background-color: var(--botones-accion);
     color: var(--titulos);
+}
+
+.h3Color{
+    color: white;
+}
+
+.dvBotonCompra{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.btnCompra{
+    margin-bottom: 2%;
+    width: 75%;
+}
+
+.divDescEvent{
+    border-radius: 10px;
+    border: 5px solid var(--principal);
+    margin-bottom: 2%;
+    margin-top: 1%;
+    padding: 2%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow-wrap: break-word;
+}
+
+.pDescEvent{
+    width: 100%;
+    overflow-wrap: break-word;
+    font-size: 16px;
+}
+
+.inputQuantity{
+    margin-left: 2%;
 }
 
 
@@ -228,5 +264,10 @@ letter-spacing: 0.05em;
     .fc .fc-daygrid-day-events {
         margin-top: 4px; /* Espacio para eventos dentro de un día */
     }
+
+    .slider-frame {
+        margin: 5% 0%;
+    }
+    
     
 }
