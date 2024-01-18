@@ -5,12 +5,14 @@
         <button type="button" class="btn btn-primary" id="abrir-modal-sesion">Crear Nueva Sesión</button>
 
         @foreach ($sessions as $session)
-            <div class="session-card">
-                <img src="{{ $session->event->main_image }}" alt="Imagen del Evento">
-                <div>
-                    <h3>{{ $session->event->title }}</h3>
-                    <p>{{ \Carbon\Carbon::parse($session->date_time)->format('Y-m-d, H:i') }}</p>
-                    <p>Ventas: {{ $session->sold_tickets }} / {{ $session->max_capacity }}</p>
+            <div id="seccionSesiones">
+                <div class="session-card">
+                    <img src="{{ $session->event->main_image }}" alt="Imagen del Evento">
+                    <div>
+                        <h3>{{ $session->event->title }}</h3>
+                        <p>{{ \Carbon\Carbon::parse($session->date_time)->format('Y-m-d, H:i') }}</p>
+                        <p>Ventas: {{ $session->sold_tickets }} / {{ $session->max_capacity }}</p>
+                    </div>
                 </div>
             </div>
         @endforeach
@@ -32,38 +34,42 @@
 
     <div id="nueva-sesion-modal" class="modal">
         <div class="modal-content div-adreca" id="div-crear-sesion">
-            <span class="close" onclick="cerrarModalDireccion()">&times;</span>
             <form class="nova-adreca" id="formularioSession"
                 action="{{ route('promotorsessionslist.storeSession', ['id' => $event_id]) }}" method="POST">
                 @csrf
                 <h2>Nova Sessió</h2>
                 <!-- Formulario para crear nova adreça -->
-                <input type="datetime-local" class="input-event input-adreca" name="data_sesion" id="nova_data" required>
+                <input type="datetime-local" class="input-event input-adreca" name="data_sesion" id="nova_data"
+                    value="{{ $primeraSesion->date_time }}" required>
 
                 <input class="input-event input-adreca" type="number" name="max_capacity" id="max_capacity_session"
-                    placeholder="Aforament màxim" oninput="vaciarEntradas()" required>
+                    placeholder="Aforament màxim" oninput="vaciarEntradas()" value="{{ $primeraSesion->max_capacity }}"
+                    required>
 
                 <hr class="separador-entradas-sesion">
 
                 <div class="div-event" id="entradas-sesion">
-                    <div class="div-event ticket-type" id="entradas-container">
-                        <div class="div-informacion-principal ticket-input" id="ticket-input">
-                            <input type="text" class="input-event" name="entry_type_name[]" id="nombre-entradas-sesion"
-                                required placeholder="Nom del tipus d'entrada">
 
-                            <input type="number" class="input-event" name="entry_type_price[]" placeholder="Preu"
-                                id="precio_entradas" step="0.01" required>
+                    @foreach ($ticketsPrimeraSesion as $ticket)
+                        <div class="div-event ticket-type" id="entradas-container">
+                            <div class="div-informacion-principal ticket-input" id="ticket-input">
+                                <input type="text" class="input-event" name="entry_type_name[]"
+                                    id="nombre-entradas-sesion" required value="{{ $ticket->name}}" placeholder="Nom del tipus d'entrada">
 
-                            <input type="number" class="input-event" name="entry_type_quantity[]"
-                                id="entry_type_quantity_sesion" placeholder="Quantitat" required min="0"
-                                oninput="actualizarMaxEntradas()">
+                                <input type="number" class="input-event" name="entry_type_price[]" placeholder="Preu"
+                                    id="precio_entradas" step="0.01" value="{{ $ticket->price}}" required>
 
-                            <button type="button" class="eliminar-linea" id="eliminar-entrada-session"
-                                style="display: none;" onclick="eliminarEntrada(this)">Eliminar entrada</button>
+                                <input type="number" class="input-event" name="entry_type_quantity[]"
+                                    id="entry_type_quantity_sesion" placeholder="Quantitat" value="{{ $ticket->available_tickets}}" required min="0"
+                                    oninput="actualizarMaxEntradas()">
 
-                            <hr class="separador-entradas-sesion">
+                                <button type="button" class="eliminar-linea" id="eliminar-entrada-session"
+                                    style="display: none;" onclick="eliminarEntrada(this)">Eliminar entrada</button>
+
+                                <hr class="separador-entradas-sesion">
+                            </div>
                         </div>
-                    </div>
+                    @endforeach
 
                     <button type="button" id="agregar-entrada" class="agregar-entrada" onclick="agregarEntrada()"><span
                             class="icono-plus">+</span><u>Afegir Entrada</u></button>
@@ -106,11 +112,12 @@
     <script>
         document.querySelectorAll('.label-adreca').forEach(setupSelector);
 
-        document.getElementById('abrir-modal-sesion').addEventListener('click', function() {
-            document.getElementById('overlay').style.display = 'block';
-            document.getElementById('nueva-sesion-modal').style.display = 'block';
-        });
-
+        if (document.getElementById('abrir-modal-sesion')) {
+            document.getElementById('abrir-modal-sesion').addEventListener('click', function() {
+                document.getElementById('overlay').style.display = 'block';
+                document.getElementById('nueva-sesion-modal').style.display = 'block';
+            });
+        }
         document.getElementById('cerrar-modal-direccion').addEventListener('click', function() {
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('nueva-sesion-modal').style.display = 'none';
@@ -148,11 +155,11 @@
             });
         }
 
-        function vaciarEntradas(){
+        function vaciarEntradas() {
             const entradasInputs = Array.from(document.querySelectorAll("#entry_type_quantity_sesion"));
 
             entradasInputs.forEach(input => {
-                    input.value = 0;
+                input.value = 0;
             });
 
             actualizarMaxEntradas();
@@ -290,7 +297,23 @@
                     })
                     .then(response => response.json())
                     .then(data => {
-                        console.log('sesion guardada');
+
+                        console.log(data.sessions);
+                        const seccionSesiones = document.getElementById('seccionSesiones');
+                        if (data.sessions) {
+                            seccionSesiones.innerHTML = data.sessions.map(session => (
+                                `<div class="session-card">
+                                <img src="${session.event.main_image}" alt="${session.event.name}">
+                                <div>
+                                    <p>${session.date_time}</p>
+                                    <p>Ventas: ${session.sold_tickets} / ${session.max_capacity}</p>
+                                </div>
+                            </div>`
+                            )).join('');
+
+                        }
+
+
                     })
                     .catch(error => {
                         console.error(error);

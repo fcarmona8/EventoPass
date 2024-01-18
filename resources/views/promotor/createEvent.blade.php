@@ -152,7 +152,6 @@
     <!-- Modal para Nova Adreça -->
     <div id="nueva-direccion-modal" class="modal">
         <div class="modal-content div-adreca">
-            <span class="close" onclick="cerrarModalDireccion()">&times;</span>
             <form class="nova-adreca" id="formularioVenue" action="" method="POST">
                 @csrf
                 <h2>Nova Adreça</h2>

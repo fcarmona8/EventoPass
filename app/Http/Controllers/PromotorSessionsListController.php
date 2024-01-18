@@ -50,7 +50,18 @@ class PromotorSessionsListController extends Controller{
             $isSpecificEvent = false;
         }
 
-        return view('promotor/promotorSessionsList', compact('sessions', 'events', 'isSpecificEvent', 'event_id'));
+        $primeraSesion = Session::with('event')
+                        ->where('event_id', $event_id)
+                        ->orderBy('id')
+                        ->first();
+
+        $ticketsPrimeraSesion = $primeraSesion->tickets;
+
+        $ticketsPrimeraSesion = $primeraSesion->tickets->pluck('type')->unique();
+
+
+        return view('promotor/promotorSessionsList', compact('sessions', 'events', 'isSpecificEvent', 
+                                            'event_id', 'primeraSesion', 'ticketsPrimeraSesion'));
     }
 
     public function storeSession(Request $request){
@@ -124,8 +135,19 @@ class PromotorSessionsListController extends Controller{
                     }
                 }
             }
+
+            $existingSessions = Session::with('event')
+                        ->where('event_id', $event_id)
+                        ->orderBy('date_time')
+                        ->get()
+                        ->map(function ($session) {
+                            $session->sold_tickets = Ticket::where('session_id', $session->id)
+                                                        ->whereNotNull('purchase_id')
+                                                        ->count();
+                            return $session;
+                        });
     
-            return response()->json(['message' => 'Sesion guardada correctamente']);
+            return response()->json(['message' => 'Sesion guardada correctamente', 'sessions' => $existingSessions]);
         } catch (\Exception $e) {
             Log::error('Error en el proceso de almacenamiento de la sesión: ' . $e->getMessage());
             return back()->withErrors(['error' => 'Error al guardar la sesión.']);
