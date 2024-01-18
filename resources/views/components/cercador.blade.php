@@ -6,7 +6,7 @@
             <option value="recinto" {{ $selectedFiltro == 'recinto' ? 'selected' : '' }}>Recinte</option>
             <option value="evento" {{ $selectedFiltro == 'evento' ? 'selected' : '' }}>Nom</option>
         </select>
-        <input type="text" name="search" value="{{ $searchTerm }}">
+        <input class="inputSearch" type="text" name="search" value="{{ $searchTerm }}">
         <button type="submit" class="fas fa-search iconoLupa"></button>
     </div>
     <div class="contenedorFiltro">
