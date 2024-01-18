@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
+use App\Models\Role;
 
 class LoginTest extends TestCase
 {
@@ -25,20 +26,25 @@ class LoginTest extends TestCase
     /** @test */
     public function user_can_login_with_correct_credentials()
     {
+        $role = Role::factory()->promoter()->create(['id' => 1]);
+
         $user = User::factory()->promoter()->create();
 
+        // Intentar iniciar sesión
         $response = $this->post('/login', [
             'email' => $user->email,
             'password' => 'p12345678'
         ]);
 
         $this->assertAuthenticated();
-        $response->assertRedirect('/');
+        $response->assertRedirect('/promotor/promotorhome');
     }
 
     /** @test */
     public function user_cannot_login_with_incorrect_credentials()
     {
+        $role = Role::factory()->promoter()->create(['id' => 1]);
+
         $user = User::factory()->promoter()->create();
 
         $response = $this->post('/login', [
