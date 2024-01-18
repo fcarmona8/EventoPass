@@ -37,6 +37,10 @@
     justify-content: center;
 }
 
+.btnSessions{
+    margin: 1%;
+}
+
 .modal-body{
     display: flex;
     flex-direction: column;
