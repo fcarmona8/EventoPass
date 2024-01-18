@@ -35,6 +35,13 @@ label{
 
 .iconoLupa{
     font-size: 10px;
+    border-radius: 1000px;
+}
+
+.inputSearch{
+    border-radius: 8px;
+    padding: 0.7%;
+    margin: 0% 5% 0% 2.5%;
 }
 
 .contenedorFiltro{
