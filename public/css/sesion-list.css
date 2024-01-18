@@ -29,6 +29,43 @@ img {
     font-size: 0.9rem;
 }
 
+.listSessions{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100%, auto));
+    gap: 20px;
+    padding: 1%;
+    width: 100%;
+}
+
+h2{
+    text-align: center;
+}
+
+.listEvents{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.sessionCont{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    padding: 5%;
+}
+
+.divBoton{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2% 0%;
+    justify-content: center;
+    margin: 10%;
+}
+
+.card-sessions{
+    margin-left: 0%;
+}
+
 @media (min-width: 600px){
     .session-card {
         flex-direction: row;
@@ -37,5 +74,13 @@ img {
 
     .session-card img {
         width: 50%;
+    }
+
+    .listSessions{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(32%, auto));
+        gap: 20px;
+        padding: 1%;
+        width: 100%;
     }
 }
