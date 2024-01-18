@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Event;
 use App\Models\Category;
 use App\Models\Venue;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class EventFactory extends Factory
@@ -61,6 +62,7 @@ class EventFactory extends Factory
             'name' => $eventNames[$eventCounter % count($eventNames)],
             'description' => $descriptions[$eventCounter % count($descriptions)],
             'venue_id' => Venue::inRandomOrder()->first()->id ?? Venue::factory(),
+            'user_id' => User::inRandomOrder()->first()->id ?? User::factory(),
             'category_id' => Category::inRandomOrder()->first()->id ?? Category::factory(),
             'main_image' => $images[$eventCounter % count($images)],
             'event_date' => $dates[$eventCounter % count($dates)]
