@@ -55,9 +55,16 @@ class PromotorSessionsListController extends Controller{
                         ->orderBy('id')
                         ->first();
 
-        $ticketsPrimeraSesion = $primeraSesion->tickets;
+        $ticketsPrimeraSesion = collect();
+        
+        if ($primeraSesion) {
 
-        $ticketsPrimeraSesion = $primeraSesion->tickets->pluck('type')->unique();
+            $ticketsPrimeraSesion = $primeraSesion->tickets;
+            $ticketsPrimeraSesion = $primeraSesion->tickets->pluck('type')->unique();
+
+        }
+
+        
 
 
         return view('promotor/promotorSessionsList', compact('sessions', 'events', 'isSpecificEvent', 

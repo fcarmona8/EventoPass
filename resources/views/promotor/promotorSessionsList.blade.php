@@ -3,9 +3,8 @@
 @section('content')
     @if ($isSpecificEvent)
         <button type="button" class="btn btn-primary" id="abrir-modal-sesion">Crear Nueva Sesión</button>
-
-        @foreach ($sessions as $session)
-            <div id="seccionSesiones">
+        <div id="seccionSesiones">
+            @foreach ($sessions as $session)
                 <div class="session-card">
                     <img src="{{ $session->event->main_image }}" alt="Imagen del Evento">
                     <div>
@@ -14,8 +13,8 @@
                         <p>Ventas: {{ $session->sold_tickets }} / {{ $session->max_capacity }}</p>
                     </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        </div>
     @else
         @foreach ($events as $event)
             <h2>{{ $event->name }}</h2>
@@ -39,37 +38,44 @@
                 @csrf
                 <h2>Nova Sessió</h2>
                 <!-- Formulario para crear nova adreça -->
-                <input type="datetime-local" class="input-event input-adreca" name="data_sesion" id="nova_data"
-                    value="{{ $primeraSesion->date_time }}" required>
 
-                <input class="input-event input-adreca" type="number" name="max_capacity" id="max_capacity_session"
-                    placeholder="Aforament màxim" oninput="vaciarEntradas()" value="{{ $primeraSesion->max_capacity }}"
-                    required>
+                @if ($primeraSesion)
+                    <input type="datetime-local" class="input-event input-adreca" name="data_sesion" id="nova_data"
+                        value="{{ $primeraSesion->date_time }}" required>
+
+                    <input class="input-event input-adreca" type="number" name="max_capacity" id="max_capacity_session"
+                        placeholder="Aforament màxim" oninput="vaciarEntradas()" value="{{ $primeraSesion->max_capacity }}"
+                        required>
+                @endif
 
                 <hr class="separador-entradas-sesion">
 
                 <div class="div-event" id="entradas-sesion">
 
-                    @foreach ($ticketsPrimeraSesion as $ticket)
-                        <div class="div-event ticket-type" id="entradas-container">
-                            <div class="div-informacion-principal ticket-input" id="ticket-input">
-                                <input type="text" class="input-event" name="entry_type_name[]"
-                                    id="nombre-entradas-sesion" required value="{{ $ticket->name}}" placeholder="Nom del tipus d'entrada">
+                    <div class="div-event ticket-type" id="entradas-container">
+                        @if ($ticketsPrimeraSesion)
+                            @foreach ($ticketsPrimeraSesion as $index => $ticket)
+                                <div class="div-informacion-principal ticket-input" id="ticket-input">
+                                    <input type="text" class="input-event" name="entry_type_name[]"
+                                        id="nombre-entradas-sesion" required value="{{ $ticket->name }}"
+                                        placeholder="Nom del tipus d'entrada">
 
-                                <input type="number" class="input-event" name="entry_type_price[]" placeholder="Preu"
-                                    id="precio_entradas" step="0.01" value="{{ $ticket->price}}" required>
+                                    <input type="number" class="input-event" name="entry_type_price[]" placeholder="Preu"
+                                        id="precio_entradas" step="0.01" value="{{ $ticket->price }}" required>
 
-                                <input type="number" class="input-event" name="entry_type_quantity[]"
-                                    id="entry_type_quantity_sesion" placeholder="Quantitat" value="{{ $ticket->available_tickets}}" required min="0"
-                                    oninput="actualizarMaxEntradas()">
+                                    <input type="number" class="input-event" name="entry_type_quantity[]"
+                                        id="entry_type_quantity_sesion" placeholder="Quantitat"
+                                        value="{{ $ticket->available_tickets }}" required min="0"
+                                        oninput="actualizarMaxEntradas()">
 
-                                <button type="button" class="eliminar-linea" id="eliminar-entrada-session"
-                                    style="display: none;" onclick="eliminarEntrada(this)">Eliminar entrada</button>
-
-                                <hr class="separador-entradas-sesion">
-                            </div>
-                        </div>
-                    @endforeach
+                                    <button type="button" class="eliminar-linea" id="eliminar-entrada-session"
+                                        style="display: {{ $index === 0 ? 'none' : 'block' }}"
+                                        onclick="eliminarEntrada(this)">Eliminar entrada</button>
+                                    <hr class="separador-entradas-sesion">
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
 
                     <button type="button" id="agregar-entrada" class="agregar-entrada" onclick="agregarEntrada()"><span
                             class="icono-plus">+</span><u>Afegir Entrada</u></button>
@@ -105,7 +111,7 @@
     </div>
 
 
-    <div id="overlay" class="overlay" onclick="cerrarModalDireccion()"></div>
+    <div id="overlay" class="overlay"></div>
 @endsection
 
 @push('scripts')
@@ -119,6 +125,11 @@
             });
         }
         document.getElementById('cerrar-modal-direccion').addEventListener('click', function() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('nueva-sesion-modal').style.display = 'none';
+        });
+
+        document.getElementById('overlay').addEventListener('click', function() {
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('nueva-sesion-modal').style.display = 'none';
         });
@@ -297,8 +308,6 @@
                     })
                     .then(response => response.json())
                     .then(data => {
-
-                        console.log(data.sessions);
                         const seccionSesiones = document.getElementById('seccionSesiones');
                         if (data.sessions) {
                             seccionSesiones.innerHTML = data.sessions.map(session => (
