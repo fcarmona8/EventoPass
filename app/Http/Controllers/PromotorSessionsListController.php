@@ -50,12 +50,32 @@ class PromotorSessionsListController extends Controller{
             $isSpecificEvent = false;
         }
 
-        return view('promotor/promotorSessionsList', compact('sessions', 'events', 'isSpecificEvent'));
+        $primeraSesion = Session::with('event')
+                        ->where('event_id', $event_id)
+                        ->orderBy('id')
+                        ->first();
+
+        $ticketsPrimeraSesion = collect();
+        
+        if ($primeraSesion) {
+
+            $ticketsPrimeraSesion = $primeraSesion->tickets;
+            $ticketsPrimeraSesion = $primeraSesion->tickets->pluck('type')->unique();
+
+        }
+
+        
+
+
+        return view('promotor/promotorSessionsList', compact('sessions', 'events', 'isSpecificEvent', 
+                                            'event_id', 'primeraSesion', 'ticketsPrimeraSesion'));
     }
 
     public function storeSession(Request $request){
 
         try {
+
+            $event_id = $request->input('id');
 
             $valorNominals = $request->has('nominal_entries');
 
@@ -87,8 +107,6 @@ class PromotorSessionsListController extends Controller{
                     $onlineSaleEndTime->modify('-2 hours');
                     break;
             }
-
-            $event_id = 1;
         
             $session = new Session([
                 'event_id' => $event_id,
@@ -124,8 +142,19 @@ class PromotorSessionsListController extends Controller{
                     }
                 }
             }
+
+            $existingSessions = Session::with('event')
+                        ->where('event_id', $event_id)
+                        ->orderBy('date_time')
+                        ->get()
+                        ->map(function ($session) {
+                            $session->sold_tickets = Ticket::where('session_id', $session->id)
+                                                        ->whereNotNull('purchase_id')
+                                                        ->count();
+                            return $session;
+                        });
     
-            return response()->json(['message' => 'Sesion guardada correctamente']);
+            return response()->json(['message' => 'Sesion guardada correctamente', 'sessions' => $existingSessions]);
         } catch (\Exception $e) {
             Log::error('Error en el proceso de almacenamiento de la sesión: ' . $e->getMessage());
             return back()->withErrors(['error' => 'Error al guardar la sesión.']);
