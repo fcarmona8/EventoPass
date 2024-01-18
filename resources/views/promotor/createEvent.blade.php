@@ -79,7 +79,7 @@
             <div class="div-informacion-principal">
                 <!-- Aforament màxim -->
                 <input type="number" class="input-event" name="max_capacity" id="max_capacity"
-                    placeholder="Aforament Màxim" oninput="actualizarMaxEntradas()">
+                    placeholder="Aforament Màxim" oninput="vaciarEntradas()">
 
                 <!-- Enllaç a vídeo promocional -->
                 <input type="url" class="input-event" name="promo_video_link" id="promo_video_link"
@@ -152,7 +152,6 @@
     <!-- Modal para Nova Adreça -->
     <div id="nueva-direccion-modal" class="modal">
         <div class="modal-content div-adreca">
-            <span class="close" onclick="cerrarModalDireccion()">&times;</span>
             <form class="nova-adreca" id="formularioVenue" action="" method="POST">
                 @csrf
                 <h2>Nova Adreça</h2>
@@ -218,6 +217,16 @@
                     input.max = aforoMaximo - sumaEntradas + (parseInt(input.value) || 0);
                 };
             });
+        }
+
+        function vaciarEntradas(){
+            const entradasInputs = Array.from(document.querySelectorAll("#entry_type_quantity"));
+
+            entradasInputs.forEach(input => {
+                    input.value = 0;
+            });
+
+            actualizarMaxEntradas();
         }
 
         function setupSelector(selector) {
@@ -300,6 +309,14 @@
             actualizarMaxEntradas();
         }
 
+        function cerrarModalDireccion() {
+            document.querySelectorAll('.input-adreca').forEach(function(input) {
+                input.value = "";
+            });
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('nueva-direccion-modal').style.display = 'none';
+        }
+
         function guardarNovaAdreca() {
 
             let camposRequeridos = ['nova_provincia', 'nova_ciutat', 'codi_postal', 'nom_local', 'capacitat_local'];
@@ -363,13 +380,6 @@
 
             };
 
-            function cerrarModalDireccion() {
-            document.querySelectorAll('.input-adreca').forEach(function(input) {
-                input.value = "";
-            });
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('nueva-direccion-modal').style.display = 'none';
-        }
         }
     </script>
 @endsection
