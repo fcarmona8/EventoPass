@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/promotorhome.css') }}">
     <link rel="stylesheet" href="{{ asset('css/crear-sesion.css') }}">
     <link rel="stylesheet" href="{{ asset('css/show.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sesion-list.css') }}">
     <link href="{{ asset('css/pagination.css') }}" rel="stylesheet">
     <title>@yield('title')</title>
 </head>

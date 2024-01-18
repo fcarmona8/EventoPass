@@ -1,7 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-    <button type="button" class="btn btn-primary" id="abrir-modal-sesion"></button>
+    @if ($isSpecificEvent)
+        <button type="button" class="btn btn-primary" id="abrir-modal-sesion">Crear Nueva Sesión</button>
+
+        @foreach ($sessions as $session)
+            <div class="session-card">
+                <img src="{{ $session->event->main_image }}" alt="Imagen del Evento">
+                <div>
+                    <h3>{{ $session->event->title }}</h3>
+                    <p>{{ \Carbon\Carbon::parse($session->date_time)->format('Y-m-d, H:i') }}</p>
+                    <p>Ventas: {{ $session->sold_tickets }} / {{ $session->max_capacity }}</p>
+                </div>
+            </div>
+        @endforeach
+    @else
+        @foreach ($events as $event)
+            <h2>{{ $event->name }}</h2>
+            @foreach ($event->sessions as $session)
+                <div class="session-card">
+                    <img src="{{ $session->event->main_image }}" alt="Imagen del Evento">
+                    <div>
+                        <h3>{{ $session->event->title }}</h3>
+                        <p>{{ \Carbon\Carbon::parse($session->date_time)->format('Y-m-d, H:i') }}</p>
+                        <p>Ventas: {{ $session->sold_tickets }} / {{ $session->max_capacity }}</p>
+                    </div>
+                </div>
+            @endforeach
+        @endforeach
+    @endif
 
     <div id="nueva-sesion-modal" class="modal">
         <div class="modal-content div-adreca" id="div-crear-sesion">

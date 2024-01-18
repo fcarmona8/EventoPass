@@ -11,19 +11,47 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class PromotorSessionsListController extends Controller{
-    public function index(Request $request){
 
+    public function index(Request $request)
+    {
         $event_id = $request->input('id');
-        $query = Session::query(); 
-    
-        $query->where(function ($q) use ($event_id) {
-            $q->eventSessions($event_id);
-        });
-    
-        $sessions = $query->orderBy('id')->paginate(env('PAGINATION_LIMIT_PROMOTOR', 10));
-        return view('promotor/promotorSessionsList', compact('sessions', 'event_id'));
-    }
+        $user_id = Auth::user()->id;
 
+        $sessions = collect();
+        $events = null;
+
+        if ($event_id) {
+            $sessions = Session::with('event')
+                ->where('event_id', $event_id)
+                ->orderBy('date_time')
+                ->get()
+                ->map(function ($session) {
+                    $session->sold_tickets = Ticket::where('session_id', $session->id)
+                                                ->whereNotNull('purchase_id')
+                                                ->count();
+                    return $session;
+                });
+            $isSpecificEvent = true;
+        } else {
+            $events = Event::with(['sessions' => function($query) {
+                    $query->orderBy('date_time');
+                }])
+                ->where('user_id', $user_id)
+                ->get()
+                ->map(function ($event) {
+                    $event->sessions->map(function ($session) {
+                        $session->sold_tickets = Ticket::where('session_id', $session->id)
+                                                    ->whereNotNull('purchase_id')
+                                                    ->count();
+                        return $session;
+                    });
+                    return $event;
+                });
+            $isSpecificEvent = false;
+        }
+
+        return view('promotor/promotorSessionsList', compact('sessions', 'events', 'isSpecificEvent', 'event_id'));
+    }
 
     public function storeSession(Request $request){
 

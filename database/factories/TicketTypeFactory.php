@@ -11,10 +11,17 @@ class TicketTypeFactory extends Factory
 
     public function definition()
     {
-        return [
-            'name' => $this->faker->word,
+        static $typeCounter = 0;
+
+        $typeNames = ["General", "VIP", "Platino", "Deluxe", "Económico", "Estudiantil", "Premium", "Gold", "Silver", "Bronze"];
+
+        $typeData = [
+            'name' => $typeNames[$typeCounter % count($typeNames)],
             'price' => $this->faker->randomFloat(2, 10, 200),
-            'available_tickets' => $this->faker->numberBetween(1, 5)
+            'available_tickets' => $this->faker->numberBetween(1, 5) 
         ];
+
+        $typeCounter++;
+        return $typeData;
     }
 }

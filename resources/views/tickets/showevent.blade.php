@@ -33,10 +33,8 @@
             <p>Nombre: {{ $event->venue->venue_name }}</p>
             <p>Ubicación: {{ $event->venue->city }}, {{ $event->venue->province }}</p>
             <p>Fecha del Evento: {{ \Carbon\Carbon::parse($event->event_date)->format('Y-M-D , H:i') }}</p>
-        </div>
-
-        <div class="card-body">
-            <div id='calendar'></div>
+            <!-- Mapa de Google Maps -->
+            <div id="map" style="height: 400px;"></div>
         </div>
 
         <div id="sessionDetails" style="display: none;">
@@ -46,6 +44,12 @@
 
         <div id="totalPriceContainer" style="display: none;">
             <h3>Precio Total: <span id="totalPrice">0</span> $</h3>
+        </div>
+
+        <button id="buyButton" class="btn btn-primary" style="display: none;">Comprar</button>
+
+        <div class="card-body">
+            <div id='calendar'></div>
         </div>
     </div>
 @endsection
@@ -129,13 +133,25 @@
         function recalculateTotalPrice(ticketTypes) {
             const totalPriceElement = document.getElementById('totalPrice');
             let total = 0;
+            let anyTicketsSelected = false;
 
             ticketTypes.forEach(ticketType => {
                 const quantity = selectedTickets[ticketType.id] || 0;
                 total += quantity * ticketType.price;
+                if (quantity > 0) {
+                    anyTicketsSelected = true;
+                }
             });
 
             totalPriceElement.textContent = total.toFixed(2);
+
+            // Actualizar la visibilidad del botón de compra
+            const buyButton = document.getElementById('buyButton');
+            if (anyTicketsSelected) {
+                buyButton.style.display = 'block';
+            } else {
+                buyButton.style.display = 'none';
+            }
         }
 
         function clearSessionsDisplay() {
@@ -144,6 +160,9 @@
             document.getElementById('sessionDetails').style.display = 'none';
             document.getElementById('totalPrice').textContent = '0.00';
             document.getElementById('totalPriceContainer').style.display = 'none';
+
+            // Ocultar el botón de compra
+            document.getElementById('buyButton').style.display = 'none';
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -160,8 +179,8 @@
 
                 for (let i = 0; i < imagesCount; i++) {
                     keyframes += `
-                ${i * percentagePerImage * 2}% {margin-left: ${-100 * i}%}
-                ${(i * percentagePerImage * 2) + percentagePerImage}% {margin-left: ${-100 * i}%}`;
+                    ${i * percentagePerImage * 2}% {margin-left: ${-100 * i}%}
+                    ${(i * percentagePerImage * 2) + percentagePerImage}% {margin-left: ${-100 * i}%}`;
                 }
 
                 const styleSheet = document.createElement('style');

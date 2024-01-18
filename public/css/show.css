@@ -191,6 +191,7 @@ letter-spacing: 0.05em;
     background-color: var(--principal);
     color: var(--titulos);
     padding: 15px;
+    margin-top: 20px;
     border-radius: 5px;
     margin-bottom: 20px;
 }
@@ -198,13 +199,15 @@ letter-spacing: 0.05em;
 #sessionList li {
     cursor: pointer;
     padding: 5px;
-    border-bottom: 1px solid var(--elementos-secundarios);
+    list-style: none;
 }
 
 #sessionList li:hover {
     background-color: var(--botones-accion);
     color: var(--titulos);
 }
+
+
 
 /* Estilos adaptativos para pantallas más grandes */
 @media screen and (min-width: 601px) {
