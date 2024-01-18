@@ -2,33 +2,46 @@
 
 @section('content')
     @if ($isSpecificEvent)
-        <button type="button" class="btn btn-primary" id="abrir-modal-sesion">Crear Nueva Sesión</button>
-        <div id="seccionSesiones">
+        <button type="button" class="btn btn-primary btnSessions" id="abrir-modal-sesion">Crear Nueva Sesión</button>
+        <div class="listSessions">
             @foreach ($sessions as $session)
-                <div class="session-card">
-                    <img src="{{ $session->event->main_image }}" alt="Imagen del Evento">
-                    <div>
-                        <h3>{{ $session->event->title }}</h3>
-                        <p>{{ \Carbon\Carbon::parse($session->date_time)->format('Y-m-d, H:i') }}</p>
+                <div class="card cardHomePromotor">
+                    <img src="{{ asset('storage/' . $session->event->main_image) }}" alt="{{ $session->event->name }}">
+                    <div class="sessionCont">
+                        <p>Data: {{ \Carbon\Carbon::parse($session->date_time)->format('Y-m-d, H:i') }}</p>
                         <p>Ventas: {{ $session->sold_tickets }} / {{ $session->max_capacity }}</p>
+                        <div class="divBoton">
+                            <span class="card-price card-info card-sessions">Detalls</span>
+                            <span class="card-price card-info card-sessions">Editar</span>
+                            <span class="card-price card-info card-sessions">Entrades</span>
+                        </div>
                     </div>
                 </div>
             @endforeach
         </div>
     @else
-        @foreach ($events as $event)
-            <h2>{{ $event->name }}</h2>
-            @foreach ($event->sessions as $session)
-                <div class="session-card">
-                    <img src="{{ $session->event->main_image }}" alt="Imagen del Evento">
-                    <div>
-                        <h3>{{ $session->event->title }}</h3>
-                        <p>{{ \Carbon\Carbon::parse($session->date_time)->format('Y-m-d, H:i') }}</p>
-                        <p>Ventas: {{ $session->sold_tickets }} / {{ $session->max_capacity }}</p>
-                    </div>
+        <div class="listEvents">
+            @foreach ($events as $event)
+                <h2>{{ $event->name }}</h2>
+                <div class="listSessions">
+                    @foreach ($event->sessions as $session)
+                        <div class="card cardHomePromotor">
+                            <img src="{{ asset('storage/' . $session->event->main_image) }}"
+                                alt="{{ $session->event->name }}">
+                            <div class="sessionCont">
+                                <p>Data: {{ \Carbon\Carbon::parse($session->date_time)->format('Y-m-d, H:i') }}</p>
+                                <p>Ventas: {{ $session->sold_tickets }} / {{ $session->max_capacity }}</p>
+                                <div class="divBoton">
+                                    <span class="card-price card-info card-sessions">Detalls</span>
+                                    <span class="card-price card-info card-sessions">Editar</span>
+                                    <span class="card-price card-info card-sessions">Entrades</span>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             @endforeach
-        @endforeach
+        </div>
     @endif
 
     <div id="nueva-sesion-modal" class="modal">
@@ -308,7 +321,7 @@
                     })
                     .then(response => response.json())
                     .then(data => {
-                        const seccionSesiones = document.getElementById('seccionSesiones');
+                        const seccionSesiones = document.getElementById('listSessions');
                         if (data.sessions) {
                             seccionSesiones.innerHTML = data.sessions.map(session => (
                                 `<div class="session-card">

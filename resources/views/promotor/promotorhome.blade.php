@@ -98,12 +98,12 @@
         // Función para abrir el modal al hacer clic en "Editar evento"
         document.querySelectorAll('.card-editEvent').forEach(function(element) {
             element.addEventListener('click', function() {
-                var eventName = this.getAttribute('eventName');
-                var eventDesc = this.getAttribute('eventDesc');
-                var eventAddress = this.getAttribute('eventAddress');
-                var eventVid = this.getAttribute('eventVid');
-                var eventId = this.getAttribute('eventId');
-                var eventHidden = this.getAttribute('eventHidden');
+                const eventName = this.getAttribute('eventName');
+                const eventDesc = this.getAttribute('eventDesc');
+                const eventAddress = this.getAttribute('eventAddress');
+                const eventVid = this.getAttribute('eventVid');
+                const eventId = this.getAttribute('eventId');
+                const eventHidden = this.getAttribute('eventHidden');
                 openEditEventModal(eventName, eventDesc, eventAddress, eventVid, eventId, eventHidden);
             });
         });
@@ -111,12 +111,12 @@
         // Función para abrir el modal y prellenar el nombre del evento si es necesario
         function openEditEventModal(eventName, eventDesc, eventAddress, eventVid, eventId, eventHidden) {
             
-            var eventNameInput = document.getElementById('eventName');
-            var eventDescInput = document.getElementById('eventDesc');
-            var eventAddressInput = document.getElementById('eventAddress');
-            var eventVidInput = document.getElementById('eventVid');
-            var eventIdInput = document.getElementById('eventId');
-            var eventHiddenInput = document.getElementById('eventHidden');
+            const eventNameInput = document.getElementById('eventName');
+            const eventDescInput = document.getElementById('eventDesc');
+            const eventAddressInput = document.getElementById('eventAddress');
+            const eventVidInput = document.getElementById('eventVid');
+            const eventIdInput = document.getElementById('eventId');
+            const eventHiddenInput = document.getElementById('eventHidden');
 
             eventNameInput.value = eventName;
             eventDescInput.value = eventDesc;
@@ -135,7 +135,7 @@
 
         function saveEvent() {
 
-            var camposObligatorios = ['eventName', 'eventDesc', 'eventAddress', 'eventVid'];
+            const camposObligatorios = ['eventName', 'eventDesc', 'eventAddress', 'eventVid'];
 
             // Función para resaltar campo vacío
             function resaltarCampoVacio(campo) {
@@ -145,15 +145,15 @@
             // Función para quitar resaltado de campos
             function quitarResaltadoCampos() {
                 camposObligatorios.forEach(campoId => {
-                    var campo = document.getElementById(campoId);
+                    const campo = document.getElementById(campoId);
                     campo.style.border = "";
                 });
             }
 
             // Validación de campos requeridos
-            var campoVacioEncontrado = false;
+            const campoVacioEncontrado = false;
             camposObligatorios.forEach(campoId => {
-                var campo = document.getElementById(campoId);
+                const campo = document.getElementById(campoId);
                 if (campo.value === "") {
                     resaltarCampoVacio(campo);
                     campoVacioEncontrado = true;
@@ -165,10 +165,9 @@
             if (!campoVacioEncontrado) {
                 quitarResaltadoCampos();
 
-                var formData = new FormData(document.getElementById("formularioEditEvent"));
+                const formData = new FormData(document.getElementById("formularioEditEvent"));
                 // Asegúrate de que estás obteniendo el ID del evento correctamente
                 formData.append('eventId', document.getElementById('eventId').value);
-
                 fetch("{{ route('promotor.editEvent') }}", {
                         method: "POST",
                         body: formData,
@@ -192,13 +191,13 @@
         }
 
         function showSuccessAlert(message) {
-            var alertContainer = document.getElementById('success-message');
+            const alertContainer = document.getElementById('success-message');
             alertContainer.innerHTML = '<p class="message">' + message + '</p><span class="close-btn message" onclick="closeAlert()">Tancar</span>';
             alertContainer.style.display = 'flex';
         }
 
         function closeAlert() {
-            var alertContainer = document.getElementById('success-message');
+            const alertContainer = document.getElementById('success-message');
             alertContainer.style.opacity = '0';
             alertContainer.style.display = 'none';
             window.location.reload();
