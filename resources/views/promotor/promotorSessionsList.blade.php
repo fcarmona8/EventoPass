@@ -6,7 +6,12 @@
         <div class="listSessions" id="listSessions">
             @foreach ($sessions as $session)
                 <div class="card cardHomePromotor">
-                    <img src="{{ asset('storage/' . $session->event->main_image) }}" alt="{{ $session->event->name }}">
+                    @if ($event->main_image)
+                        <img src="{{ asset('storage/' . $session->event->main_image) }}" alt="{{ $session->event->name }}"
+                            onerror="this.onerror=null; this.src='https://picsum.photos/200'">
+                    @else
+                        <img src="https://picsum.photos/2000" alt="{{ $session->event->name }}">
+                    @endif
                     <div class="sessionCont">
                         <p>Data: {{ \Carbon\Carbon::parse($session->date_time)->format('Y-m-d, H:i') }}</p>
                         <p>Ventas: {{ $session->sold_tickets }} / {{ $session->max_capacity }}</p>
@@ -26,8 +31,13 @@
                 <div class="listSessions">
                     @foreach ($event->sessions as $session)
                         <div class="card cardHomePromotor">
-                            <img src="{{ asset('storage/' . $session->event->main_image) }}"
-                                alt="{{ $session->event->name }}">
+                            @if ($event->main_image)
+                                <img src="{{ asset('storage/' . $session->event->main_image) }}"
+                                    alt="{{ $session->event->name }}"
+                                    onerror="this.onerror=null; this.src='https://picsum.photos/200'">
+                            @else
+                                <img src="https://picsum.photos/2000" alt="{{ $session->event->name }}">
+                            @endif
                             <div class="sessionCont">
                                 <p>Data: {{ \Carbon\Carbon::parse($session->date_time)->format('Y-m-d, H:i') }}</p>
                                 <p>Ventas: {{ $session->sold_tickets }} / {{ $session->max_capacity }}</p>
@@ -327,17 +337,22 @@
                                 const date = new Date(session.date_time);
                                 const year = date.getFullYear();
                                 const month = String(date.getMonth() + 1).padStart(2,
-                                '0'); 
+                                    '0');
                                 const day = String(date.getDate()).padStart(2,
-                                '0'); 
+                                    '0');
                                 const hours = String(date.getHours()).padStart(2,
-                                '0'); 
+                                    '0');
                                 const minutes = String(date.getMinutes()).padStart(2,
-                                '0');
+                                    '0');
 
                                 const formattedDate = `${year}-${month}-${day}, ${hours}:${minutes}`;
                                 return (`<div class="card cardHomePromotor">
-                                    <img src="/storage/${session.event.main_image}" alt="${session.event.name}">
+                                    @if ($event->main_image)
+                                        <img src="/storage/${session.event.main_image}" alt="${session.event.name}">
+                                        onerror="this.onerror=null; this.src='https://picsum.photos/200'">
+                                    @else
+                                        <img src="https://picsum.photos/2000" alt="{{ $session->event->name }}">
+                                    @endif
                                     <div class="sessionCont">
                                         <p>Data: ${(formattedDate)}</p>
                                         <p>Ventas: ${ session.sold_tickets } / ${ session.max_capacity }</p>

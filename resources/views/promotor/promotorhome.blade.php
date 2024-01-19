@@ -6,7 +6,9 @@
             <div class="card cardHomePromotor" id="event-card-{{ $event->id }}">
                 @if ($event->main_image)
                     <img src="{{ asset('storage/' . $event->main_image) }}" alt="{{ $event->name }}"
-                        id="event-image-{{ $event->id }}">
+                        onerror="this.onerror=null; this.src='https://picsum.photos/200'">
+                @else
+                    <img src="https://picsum.photos/2000" alt="{{ $event->name }}">
                 @endif
                 <div class="card-content">
                     <h3 id="event-name-{{ $event->id }}">{{ Str::limit($event->name, $limit = 55, $end = '...') }}</h3>
@@ -69,11 +71,11 @@
                         <input class="inputEditEvent" type="text" id="eventVid" name="eventVid" class="form-control"
                             placeholder="Ingresa el video del event">
 
-                            <label for="eventHidden" class="switch">Ocult:
-                                <input type="hidden" name="eventHidden" value="0">
-                                <input type="checkbox" class="input-event" name="eventHidden" id="eventHidden" value="1">
-                                <span class="slider round"></span>
-                            </label>
+                        <label for="eventHidden" class="switch">Ocult:
+                            <input type="hidden" name="eventHidden" value="0">
+                            <input type="checkbox" class="input-event" name="eventHidden" id="eventHidden" value="1">
+                            <span class="slider round"></span>
+                        </label>
 
                     </div>
                     <div class="modal-footer">
@@ -110,7 +112,7 @@
 
         // Función para abrir el modal y prellenar el nombre del evento si es necesario
         function openEditEventModal(eventName, eventDesc, eventAddress, eventVid, eventId, eventHidden) {
-            
+
             const eventNameInput = document.getElementById('eventName');
             const eventDescInput = document.getElementById('eventDesc');
             const eventAddressInput = document.getElementById('eventAddress');
@@ -192,7 +194,8 @@
 
         function showSuccessAlert(message) {
             const alertContainer = document.getElementById('success-message');
-            alertContainer.innerHTML = '<p class="message">' + message + '</p><span class="close-btn message" onclick="closeAlert()">Tancar</span>';
+            alertContainer.innerHTML = '<p class="message">' + message +
+                '</p><span class="close-btn message" onclick="closeAlert()">Tancar</span>';
             alertContainer.style.display = 'flex';
         }
 
