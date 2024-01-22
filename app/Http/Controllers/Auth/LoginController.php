@@ -12,8 +12,19 @@ class LoginController extends Controller
     // Mostrar el formulario de login
     public function showLoginForm()
     {
-        Log::channel('login')->info('Mostrando formulario de login');
+        if (Auth::check()) {
+            $user = Auth::user();
 
+            if ($user->role && $user->role->name == 'promotor') {
+                return redirect()->route('promotorhome');
+            } else if ($user->role && $user->role->name =='administrador') {
+                return redirect()->route('ruta.admin');
+            }
+
+            return redirect()->intended('/');
+        }
+
+        Log::channel('login')->info('Mostrando formulario de login');
         return view('auth.login');
     }
 

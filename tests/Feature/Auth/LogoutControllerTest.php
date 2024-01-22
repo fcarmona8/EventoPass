@@ -1,0 +1,31 @@
+<?php
+
+namespace Tests\Feature;
+
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+use App\Models\User;
+
+class LogoutControllerTest extends TestCase
+{
+    use RefreshDatabase;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->artisan('db:seed', ['--class' => 'Database\\Seeders\\Test\\DatabaseSeeder']);
+    }
+
+    public function testUserCanLogout()
+    {
+        $user = User::where('email', 'promotor1@test.com')->first();
+        $this->actingAs($user);
+
+        $response = $this->post('/logout');
+
+        $response->assertRedirect('/promotor/promotorhome');
+
+        $this->assertGuest();
+    }
+}
