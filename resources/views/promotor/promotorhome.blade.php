@@ -137,7 +137,7 @@
 
         function saveEvent() {
 
-            const camposObligatorios = ['eventName', 'eventDesc', 'eventAddress', 'eventVid'];
+            const camposObligatorios = ['eventName', 'eventDesc', 'eventAddress'];
 
             // Función para resaltar campo vacío
             function resaltarCampoVacio(campo) {
