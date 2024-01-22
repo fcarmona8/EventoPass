@@ -6,7 +6,9 @@
             <div class="card cardHomePromotor" id="event-card-{{ $event->id }}">
                 @if ($event->main_image)
                     <img src="{{ asset('storage/' . $event->main_image) }}" alt="{{ $event->name }}"
-                        id="event-image-{{ $event->id }}">
+                        onerror="this.onerror=null; this.src='https://picsum.photos/200'">
+                @else
+                    <img src="https://picsum.photos/2000" alt="{{ $event->name }}">
                 @endif
                 <div class="card-content">
                     <h3 id="event-name-{{ $event->id }}">{{ Str::limit($event->name, $limit = 55, $end = '...') }}</h3>
