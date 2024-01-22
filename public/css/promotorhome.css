@@ -6,10 +6,6 @@
     width: 100%;
 }
 
-.cardHomePromotor{
-    height: 210px;
-}
-
 .card-editEvent{
     color: white;
     display: flex;
@@ -34,6 +30,7 @@
     flex-wrap: wrap;
     padding: 2% 0%;
     justify-content: center;
+    margin-top: auto;
 }
 
 .btnSessions{
