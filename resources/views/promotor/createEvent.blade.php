@@ -3,7 +3,6 @@
 
 @section('content')
     <h2 class="titol-crear-event">Crear Esdeveniment</h2>
-
     <form class="event-create" method="post" action="{{ route('promotor.storeEvent') }}" enctype="multipart/form-data">
         @csrf
 
@@ -178,8 +177,12 @@
         </div>
     </div>
 
-    <div id="overlay" class="overlay" onclick="cerrarModalDireccion()"></div>
+    <div id="toastBox"></div>
 
+    <div id="overlay" class="overlay" onclick="cerrarModalDireccion()"></div>
+@endsection
+
+@push('scripts')
     <script>
         document.getElementById('abrir-modal-direccion').addEventListener('click', function() {
             document.getElementById('overlay').style.display = 'block';
@@ -219,11 +222,11 @@
             });
         }
 
-        function vaciarEntradas(){
+        function vaciarEntradas() {
             const entradasInputs = Array.from(document.querySelectorAll("#entry_type_quantity"));
 
             entradasInputs.forEach(input => {
-                    input.value = 0;
+                input.value = 0;
             });
 
             actualizarMaxEntradas();
@@ -238,6 +241,10 @@
                 const select = selector.children[0];
                 const dropDown = document.createElement('ul');
                 dropDown.className = "selector-options select-categoria-desktop ";
+
+                if (selector.querySelector('#adreces-select')) {
+                    dropDown.classList.add("select-direcciones");
+                }
 
                 [...select.children].forEach(option => {
                     const dropDownOption = document.createElement('li');
@@ -317,25 +324,19 @@
             document.getElementById('nueva-direccion-modal').style.display = 'none';
         }
 
+        function quitarResaltadoCampos() {
+            let camposRequeridos = ['nova_provincia', 'nova_ciutat', 'codi_postal', 'nom_local', 'capacitat_local'];
+            camposRequeridos.forEach(campoId => {
+                let campo = document.getElementById(campoId);
+                campo.style.border = "";
+            });
+        }
+
         function guardarNovaAdreca() {
 
             let camposRequeridos = ['nova_provincia', 'nova_ciutat', 'codi_postal', 'nom_local', 'capacitat_local'];
             const contenedorAdreca = document.getElementById('label-adreca');
 
-            // Función para resaltar campo vacío
-            function resaltarCampoVacio(campo) {
-                campo.style.border = "1px solid red";
-            }
-
-            // Función para quitar resaltado de campos
-            function quitarResaltadoCampos() {
-                camposRequeridos.forEach(campoId => {
-                    let campo = document.getElementById(campoId);
-                    campo.style.border = "";
-                });
-            }
-
-            // Validación de campos requeridos
             let campoVacioEncontrado = false;
             camposRequeridos.forEach(campoId => {
                 let campo = document.getElementById(campoId);
@@ -369,9 +370,13 @@
                                 select.appendChild(option);
                             });
                         }
+
+                        showToast('Direcció creada correctament');
+
                     })
                     .catch(error => {
                         console.error(error);
+                        showToast('Error al crear la direcció');
                     });
 
                 contenedorAdreca.style.display = 'block';
@@ -382,4 +387,4 @@
 
         }
     </script>
-@endsection
+@endpush
