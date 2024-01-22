@@ -40,10 +40,10 @@
 
         <!-- Datos del local -->
         <div class="venue-details">
-            <h3>Detalles del Local</h3>
-            <p>Nombre: {{ $event->venue->venue_name }}</p>
-            <p>Ubicación: {{ $event->venue->city }}, {{ $event->venue->province }}</p>
-            <p>Fecha del Evento: {{ \Carbon\Carbon::parse($event->event_date)->format('Y-M-D , H:i') }}</p>
+            <h3 class="pUbiEvento">Detalles del Local</h3>
+            <p class="pUbiEvento">Nombre: {{ $event->venue->venue_name }}</p>
+            <p  class="pUbiEvento">Ubicación: {{ $event->venue->city }}, {{ $event->venue->province }}</p>
+            <p  class="pUbiEvento">Fecha del Evento: {{ \Carbon\Carbon::parse($event->event_date)->format('Y-M-D , H:i') }}</p>
             <!-- Mapa de Google Maps -->
             <div id="map" style="height: 400px;"></div>
         </div>
