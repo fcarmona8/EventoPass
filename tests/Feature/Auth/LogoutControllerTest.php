@@ -28,4 +28,37 @@ class LogoutControllerTest extends TestCase
 
         $this->assertGuest();
     }
+
+    public function testUserCannotLogoutIfNotAuthenticated()
+    {
+        $response = $this->post('/logout');
+
+        $response->assertRedirect('/promotor/promotorhome');
+        $this->assertGuest();
+    }
+
+    public function testUserIsLoggedOutAfterLogout()
+    {
+        $user = User::where('email', 'promotor1@test.com')->first();
+        $this->actingAs($user);
+
+        $response = $this->post('/logout');
+
+        $response->assertRedirect('/promotor/promotorhome');
+        $this->assertGuest();
+    }
+
+    public function testUserIsRedirectedToLoginAfterLogout()
+    {
+        $user = User::where('email', 'promotor1@test.com')->first();
+        $this->actingAs($user);
+
+        $response = $this->post('/logout');
+
+        $response->assertRedirect('/promotor/promotorhome');
+        $this->assertGuest();
+
+        $this->get('/promotor/promotorhome')->assertRedirect('/login');
+    }
+
 }
