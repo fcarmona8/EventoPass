@@ -39,6 +39,8 @@ img {
 
 h2{
     text-align: center;
+    word-break: break-all;
+    padding-top: 25px;
 }
 
 .listEvents{
