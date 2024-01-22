@@ -36,23 +36,35 @@ class LoginController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        try {
-            if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-            Log::channel('login')->info('Login exitoso', ['user_id' => $user->id, 'email' => $user->email]);
+        if (empty($credentials['email']) || empty($credentials['password'])) {
+            Log::channel('login')->warning('Credenciales de login incorrectas', ['email' => $request->email]);
 
-            $duration = microtime(true) - $start;
-            Log::channel('login')->info('Fin de solicitud de login exitosa', ['duration' => $duration]);
-
-            if ($user->role->name == 'administrador') {
-                return redirect()->route('ruta.admin');
-            } elseif ($user->role->name == 'promotor') {
-                return redirect()->route('promotorhome');
+            if (empty($credentials['email']) && empty($credentials['password'])) {
+                return back()->withErrors(['email' => 'El campo de correo electrónico es obligatorio.', 'password' => 'El campo de contraseña es obligatorio.']);
+            } elseif (empty($credentials['email'])) {
+                return back()->withErrors(['email' => 'El campo de correo electrónico es obligatorio.']);
+            } elseif (empty($credentials['password'])) {
+                return back()->withErrors(['password' => 'El campo de contraseña es obligatorio.']);
             }
-            return redirect()->intended('/');
         }
 
-        Log::channel('login')->warning('Credenciales de login incorrectas', ['email' => $request->email]);
+        try {
+            if (Auth::attempt($credentials)) {
+                $user = Auth::user();
+                Log::channel('login')->info('Login exitoso', ['user_id' => $user->id, 'email' => $user->email]);
+
+                $duration = microtime(true) - $start;
+                Log::channel('login')->info('Fin de solicitud de login exitosa', ['duration' => $duration]);
+
+                if ($user->role->name == 'administrador') {
+                    return redirect()->route('ruta.admin');
+                } elseif ($user->role->name == 'promotor') {
+                    return redirect()->route('promotorhome');
+                }
+                return redirect()->intended('/');
+            }
+
+            Log::channel('login')->warning('Credenciales de login incorrectas', ['email' => $request->email]);
 
             return back()->withErrors(['email' => 'Las credenciales proporcionadas no coinciden con nuestros registros.']);
         } catch (\Exception $e) {
