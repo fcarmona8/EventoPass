@@ -94,6 +94,12 @@ return [
             'level' => 'debug',
         ],
 
+        'resultats' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/resultats.log'),
+            'level' => 'debug',
+        ],
+
         'single' => [
             'driver' => 'single',
             'path' => storage_path('logs/models_controllers.log'),

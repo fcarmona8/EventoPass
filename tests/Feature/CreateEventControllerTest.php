@@ -14,7 +14,14 @@ use Mockery;
 
 class CreateEventControllerTest extends TestCase
 {
-    use RefreshDatabase;
+     use RefreshDatabase;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->artisan('db:seed', ['--class' => 'Database\\Seeders\\Test\\DatabaseSeeder']);
+    }
 
     public function testCreate()
     {
@@ -78,9 +85,9 @@ class CreateEventControllerTest extends TestCase
     //     $controller = new CreateEventController();
     //     $response = $controller->store($request);
 
-    //     $this->assertEquals(302, $response->getStatusCode());
-    //     $this->assertRedirect($response, route('promotor.createEvent'));
-    //     $this->assertSessionHasAll(['success' => 'Evento, sesión y tickets creados con éxito']);
+    //     $response = $this->post(route('promotor.storeEvent'), $data);
+    //     $response->assertRedirect(route('promotor.createEvent'));
+    //     $response->assertSessionHas('success', 'Evento, sesión y tickets creados con éxito');
     // }
 
     // public function testStoreVenue()

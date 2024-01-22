@@ -28,8 +28,6 @@
                     <div class="user-info">
                         <div class="usuari">
                             <p class="user-name">Usuari: {{ Auth::user()->name }}</p>
-
-                            <!-- Formulario de Logout -->
                         </div>
 
                         <div class="user-menu">
