@@ -1,4 +1,3 @@
-<!-- resources/views/tickets/createEvent.blade.php -->
 @extends('layouts.app')
 
 @section('content')
@@ -81,15 +80,15 @@
             <div class="div-informacion-principal">
                 <!-- Aforament màxim -->
                 <div class="divMaxCapacityVideo">
-                <label for="max_capacity" class="label-event">Aforament màxim</label>
-                <input type="number" class="input-event" name="max_capacity" id="max_capacity"
-                    placeholder="Aforament Màxim" oninput="vaciarEntradas()">
-</div>
+                    <label for="max_capacity" class="label-event">Aforament màxim</label>
+                    <input type="number" class="input-event" name="max_capacity" id="max_capacity"
+                        placeholder="Aforament Màxim" oninput="vaciarEntradas()">
+                </div>
                 <!-- Enllaç a vídeo promocional -->
                 <div class="divMaxCapacityVideo">
                     <label for="promo_video_link" class="label-event">Enllaç al video promocional</label>
-                <input type="url" class="input-event" name="promo_video_link" id="promo_video_link"
-                    placeholder="Enllaç a Vídeo Promocional">
+                    <input type="url" class="input-event" name="promo_video_link" id="promo_video_link"
+                        placeholder="Enllaç a Vídeo Promocional">
                 </div>
             </div>
 
@@ -108,20 +107,20 @@
                 <div class="div-informacion-principal ticket-input">
                     <div class="titulosEntradas">
                         <label>Tipus entrada</label>
-                    <input type="text" class="input-event" name="entry_type_name[]" required
-                        placeholder="Nom del tipus d'entrada">
+                        <input type="text" class="input-event" name="entry_type_name[]" required
+                            placeholder="Nom del tipus d'entrada">
                     </div>
                     <div class="titulosEntradas">
                         <label>Preu entrada</label>
-                    <input type="number" class="input-event" name="entry_type_price[]" placeholder="Preu" step="0.01"
-                        required>
+                        <input type="number" class="input-event" name="entry_type_price[]" placeholder="Preu"
+                            step="0.01" required>
                     </div>
                     <div class="titulosEntradas">
                         <label>Quantitat</label>
-                    <input type="number" class="input-event" name="entry_type_quantity[]" id="entry_type_quantity"
-                        placeholder="Quantitat" required min="0" oninput="actualizarMaxEntradas()">
+                        <input type="number" class="input-event" name="entry_type_quantity[]" id="entry_type_quantity"
+                            placeholder="Quantitat" required min="0" oninput="actualizarMaxEntradas()">
                     </div>
-                   
+
                     <button type="button" class="eliminar-linea" style="display: none;"
                         onclick="eliminarEntrada(this)">Eliminar</button>
 
@@ -194,7 +193,8 @@
     </div>
 
     <div id="overlay" class="overlay" onclick="cerrarModalDireccion()"></div>
-
+@endsection
+@push('scripts')
     <script>
         document.getElementById('abrir-modal-direccion').addEventListener('click', function() {
             document.getElementById('overlay').style.display = 'block';
@@ -234,11 +234,11 @@
             });
         }
 
-        function vaciarEntradas(){
+        function vaciarEntradas() {
             const entradasInputs = Array.from(document.querySelectorAll("#entry_type_quantity"));
 
             entradasInputs.forEach(input => {
-                    input.value = 0;
+                input.value = 0;
             });
 
             actualizarMaxEntradas();
@@ -397,4 +397,4 @@
 
         }
     </script>
-@endsection
+@endpush
