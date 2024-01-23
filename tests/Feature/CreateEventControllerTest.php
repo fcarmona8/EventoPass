@@ -4,17 +4,22 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\CreateEventController;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Models\Venue;
+use App\Models\Event;
+use App\Models\User;
 use Mockery;
 
 class CreateEventControllerTest extends TestCase
 {
      use RefreshDatabase;
+     use WithoutMiddleware;
 
     public function setUp(): void
     {
@@ -23,6 +28,7 @@ class CreateEventControllerTest extends TestCase
         $this->artisan('db:seed', ['--class' => 'Database\\Seeders\\Test\\DatabaseSeeder']);
     }
 
+    /** @test */
     public function testCreate()
     {
         $categories = Category::factory()->count(2)->create();
@@ -40,87 +46,66 @@ class CreateEventControllerTest extends TestCase
         $this->assertArrayHasKey('categories', $response->getData());
     }
 
-    // public function testStore()
-    // {
-    //     $this->refreshDatabase();
+    /** @test */
+    public function event_is_successfully_created()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
 
-    //     $category = Category::factory()->create();
-    //     $venue = Venue::factory()->create();
+        $category = Category::factory()->create();
+        $venue = Venue::factory()->create(['user_id' => $user->id]);
 
-    //     $request = new \Illuminate\Http\Request([
-    //         'title' => 'Evento de prueba',
-    //         'selector-options-categoria' => '1',
-    //         'description' => 'Descripción del evento',
-    //         'event_datetime' => '2024-02-01 20:00:00',
-    //         'event_image' => 'path/to/image.jpg',
-    //         'max_capacity' => 100,
-    //         'promo_video_link' => 'https://example.com/video',
-    //         'event_hidden' => false,
-    //         'selector-options' => '1',
-    //         'entry_type_name' => ['General', 'VIP'],
-    //         'entry_type_price' => [100, 200],
-    //         'entry_type_quantity' => [50, 50],
-    //         'additional_images' => ['path/to/additional1.jpg', 'path/to/additional2.jpg'],
-    //     ]);
+        $response = $this->post(route('promotor.storeEvent'), [
+            'title' => 'Test Event',
+            'description' => 'This is a test event',
+            'event_datetime' => now()->addWeek()->format('Y-m-d H:i:s'),
+            'event_image' => UploadedFile::fake()->image('event.jpg'),
+            'selector-options-categoria' => (string)$category->id,
+            'max_capacity' => 100,
+            'promo_video_link' => 'http://example.com/video',
+            'event_hidden' => false,
+            'selector-options' => $venue->id,
+        ]);
 
-    //     Auth::shouldReceive('id')->andReturn(1);
+        $response->assertRedirect('/promotor/create-event');
+        $this->assertDatabaseHas('events', ['name' => 'Test Event']);
+    }
 
-    //     $mockCategory = Mockery::mock(Category::class);
-    //     $mockCategory->shouldReceive('find')->andReturn(new Category());
+    /** @test */
+    public function only_authenticated_users_can_create_events()
+    {
+        $response = $this->post(route('promotor.storeEvent'), [
+        ]);
 
-    //     $mockVenue = Mockery::mock(Venue::class);
-    //     $mockVenue->shouldReceive('find')->andReturn(new Venue());
+        $response->assertRedirect('/');
+    }
 
-    //     $this->app->instance(Category::class, $mockCategory);
-    //     $this->app->instance(Venue::class, $mockVenue);
+    /** @test */
+    public function testStoreWithInvalidData()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
 
-    //     Storage::shouldReceive('disk')
-    //         ->once()
-    //         ->with('public')
-    //         ->andReturnSelf()
-    //         ->shouldReceive('makeDirectory')
-    //         ->once()
-    //         ->andReturn(true);
+        $response = $this->post(route('promotor.storeEvent'), [
+        ]);
 
-    //     $controller = new CreateEventController();
-    //     $response = $controller->store($request);
+        $response->assertSessionHasErrors();
+    }
 
-    //     $response = $this->post(route('promotor.storeEvent'), $data);
-    //     $response->assertRedirect(route('promotor.createEvent'));
-    //     $response->assertSessionHas('success', 'Evento, sesión y tickets creados con éxito');
-    // }
+    /** @test */
+    public function testStoreVenue()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
 
-    // public function testStoreVenue()
-    // {
-    //     $this->refreshDatabase();
+        $response = $this->post(route('promotor.createVenue'), [
+            'nova_provincia' => 'Barcelona',
+            'nova_ciutat' => 'Barcelona',
+            'codi_postal' => '08001',
+            'nom_local' => 'Local de Prueba',
+            'capacitat_local' => 100,
+        ]);
 
-    //     $request = new \Illuminate\Http\Request([
-    //         'nova_provincia' => 'Provincia Test',
-    //         'nova_ciutat' => 'Ciudad Test',
-    //         'codi_postal' => '12345',
-    //         'nom_local' => 'Local Test',
-    //         'capacitat_local' => 100,
-    //     ]);
-
-    //     $user = User::factory()->create();
-    //     Auth::shouldReceive('id')->andReturn($user->id);
-
-    //     $controller = new CreateEventController();
-    //     $response = $controller->storeVenue($request);
-
-    //     $responseData = $response->getData(true);
-    //     $this->assertEquals(200, $response->getStatusCode());
-    //     $this->assertEquals('Dirección guardada correctamente', $responseData['message']);
-    //     $this->assertIsArray($responseData['addresses']);
-
-    //     $this->assertDatabaseHas('venues', [
-    //         'province' => 'Provincia Test',
-    //         'city' => 'Ciudad Test',
-    //         'postal_code' => '12345',
-    //         'venue_name' => 'Local Test',
-    //         'capacity' => 100,
-    //         'user_id' => $user->id
-    //     ]);
-    // }
-
+        $response->assertJson(['message' => 'Dirección guardada correctamente']);
+    }
 }
