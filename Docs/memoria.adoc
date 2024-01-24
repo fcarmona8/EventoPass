@@ -220,7 +220,7 @@ DB_USERNAME=postgres
 DB_PASSWORD=1234
 ----
 
-Tabe podem obrir el docker fent -> sudo docker-compose up -d
+També podem obrir el docker fent -> sudo docker-compose up -d
 
 En el fitxer docker-compose escribim:
 
@@ -238,17 +238,6 @@ services:
       POSTGRES_DB: basededatos
     ports:
       - "5555:5432"
-
-  migrador:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    depends_on:
-      - mi_postgres
-    volumes:
-      - ./EventoPass:/app
-    working_dir: /app
-    command: sh -c "php artisan migrate"
 ----
 
 
