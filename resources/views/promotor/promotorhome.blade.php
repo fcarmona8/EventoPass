@@ -145,24 +145,23 @@
             document.getElementById('editEventModal').style.display = 'none';
         }
 
+        function resaltarCampoVacio(campo) {
+            campo.style.border = "1px solid red";
+        }
+
+        function quitarResaltadoCampos() {
+            const camposObligatorios = ['eventName', 'eventDesc', 'eventAddress', 'eventVid'];
+            camposObligatorios.forEach(campoId => {
+                const campo = document.getElementById(campoId);
+                campo.style.border = "";
+            });
+        }
+
+
         function saveEvent() {
 
             const camposObligatorios = ['eventName', 'eventDesc', 'eventAddress', 'eventVid'];
 
-            // Función para resaltar campo vacío
-            function resaltarCampoVacio(campo) {
-                campo.style.border = "1px solid red";
-            }
-
-            // Función para quitar resaltado de campos
-            function quitarResaltadoCampos() {
-                camposObligatorios.forEach(campoId => {
-                    const campo = document.getElementById(campoId);
-                    campo.style.border = "";
-                });
-            }
-
-            // Validación de campos requeridos
             const campoVacioEncontrado = false;
             camposObligatorios.forEach(campoId => {
                 const campo = document.getElementById(campoId);

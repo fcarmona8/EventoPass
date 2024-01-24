@@ -120,13 +120,12 @@
                     <div class="primaryDetail secondaryDetail">
                         <label for="nominal_entries" class="switch">Entrades Nominals:
                             <input type="checkbox" class="input-event" name="nominal_entries" id="nominal_entries">
-                            <span class="slider round"></span>
+                            <span class="slider round sliderSesion"></span>
                         </label>
                     </div>
                 </div>
 
-                <button type="button" class="btn btn-primary" id="guardar-adreca"
-                    onclick="guardarSesion()">Guardar</button>
+                <button type="submit" class="btn btn-primary" id="guardar-adreca">Guardar</button>
                 <button type="button" class="btn btn-secondary" id="cerrar-modal-direccion">Tancar</button>
 
             </form>
@@ -293,90 +292,43 @@
             });
         }
 
-        function resaltarCampos() {
-            let camposRequeridos = ['nova_data', 'max_capacity_session', 'precio_entradas', 'nombre-entradas-sesion',
-                'entry_type_quantity_sesion'
-            ];
-
-            // Función para resaltar campo vacío
-            function resaltarCampoVacio(campo) {
+        function resaltarCampoVacio(campo) {
                 campo.style.border = "1px solid red";
             }
 
-            // Validación de campos requeridos
+        function resaltarCampos() {
+            let camposRequeridos = ['nova_data', 'max_capacity_session', 'precio_entradas', 'nombre-entradas-sesion',
+                'entry_type_quantity_sesion'
+            ];            
+
             let campoVacioEncontrado = false;
             camposRequeridos.forEach(campoId => {
                 let campo = document.getElementById(campoId);
                 if (campo.value === "") {
                     resaltarCampoVacio(campo);
                     campoVacioEncontrado = true;
+                    
                 } else {
                     campo.style.border = "1px solid black";
                 }
             });
 
-
+            console.log(campoVacioEncontrado);
             return campoVacioEncontrado;
+            
         }
 
-        function guardarSesion() {
+        document.getElementById("formularioSession").addEventListener("submit", function(e) {
 
-            if (!resaltarCampos()) {
+            e.preventDefault();
+
+            let camposVacios = resaltarCampos();
+
+            if (!camposVacios) {
                 quitarResaltadoCampos();
-
-                const formData = new FormData(document.getElementById("formularioSession"));
-                fetch("{{ route('promotorsessionslist.storeSession', ['id' => $event_id]) }}", {
-                        method: "POST",
-                        body: formData,
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        const seccionSesiones = document.getElementById('listSessions');
-                        if (data.sessions) {
-                            seccionSesiones.innerHTML = data.sessions.map(session => {
-                                const date = new Date(session.date_time);
-                                const year = date.getFullYear();
-                                const month = String(date.getMonth() + 1).padStart(2,
-                                    '0');
-                                const day = String(date.getDate()).padStart(2,
-                                    '0');
-                                const hours = String(date.getHours()).padStart(2,
-                                    '0');
-                                const minutes = String(date.getMinutes()).padStart(2,
-                                    '0');
-
-                                const formattedDate = `${year}/${month}/${day}, ${hours}:${minutes}`;
-                                return (`<div class="card cardHomePromotor">
-                                    @if ($session->event->main_image)
-                                        <img src="/storage/${session.event.main_image}" alt="${session.event.name}">
-                                        onerror="this.onerror=null; this.src='https://picsum.photos/200'">
-                                    @else
-                                        <img src="https://picsum.photos/2000" alt="{{ $session->event->name }}">
-                                    @endif
-                                    <div class="sessionCont">
-                                        <p>Data: ${(formattedDate)}</p>
-                                        <p>Ventas: ${ session.sold_tickets } / ${ session.max_capacity }</p>
-                                        <div class="divBoton">
-                                            <span class="card-price card-info card-sessions">Detalls</span>
-                                            <span class="card-price card-info card-sessions">Editar</span>
-                                            <span class="card-price card-info card-sessions">Entrades</span>
-                                        </div>
-                                    </div>
-                                </div>`);
-                            }).join('');
-
-                        }
-
-
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
-
-                cerrarModalDireccion();
-
+                this.submit();
             };
 
-        }
+        });
     </script>
 @endpush

@@ -260,9 +260,10 @@
 
 #agregar-entrada {
     background-color: inherit;
-    font-size: 20px;
+    font-size: 16px;
     color: rgb(49, 49, 49);
     margin-right: auto;
+    padding-left: 0;
 }
 
 .icono-plus {
@@ -487,8 +488,8 @@ input:checked+.slider:before {
 
     .slider {
         top: 4px;
-        left: 182px;
-        right: -178px;
+        left: 217px;
+        right: -213px;
         bottom: -4px;
     }
 
