@@ -23,40 +23,35 @@
     <header>
         @auth
             <div id="mobile-menu-div"><button class="fa fa-user menu-mobile" onclick="toggleSidebar()"></button></div>
-            <div class="container">
-                <div class="sidebar" id="sidebar">
-                    <div class="user-info">
-                        <div class="usuari">
-                            <p class="user-name">Usuari: {{ Auth::user()->name }}</p>
+            <div class="sidebar" id="sidebar">
+                <div class="user-info">
+                    <div class="usuari">
+                        <p class="user-name">Usuari: {{ Auth::user()->name }}</p>
+                    </div>
 
-                            <!-- Formulario de Logout -->
+                    <div class="user-menu">
+                        @if (Auth::user()->role->name == 'administrador')
+                            <li><a href="{{ route('ruta.admin') }}">Taulell d'administració</a></li>
+                        @endif
+
+                        @if (Auth::user()->role->name == 'promotor')
+                            <li><a href="{{ route('promotorhome') }}">Home Promotor</a></li>
+                            <li><a href="{{ route('promotor.createEvent') }}">Crear Esdeveniment</a></li>
+                            <li><a href="{{ route('promotorsessionslist') }}">Veure totes les sessions</a></li>
+                        @else
+                            <li><a href="{{ route('login') }}">Accés Promotors</a></li>
+                        @endif
+                        <li><a href="{{ route('user.profile') }}">Perfil d'Usuari</a></li>
+                        <div class="logout-div">
+                            <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                                @csrf
+                                <button type="submit" class="logout-button">
+                                    <span class="logout-button-text">Tancar Sessió</span>
+                                    <i class="fa fa-sign-out-alt"
+                                        style="font-size: 18px; color:#E00F00; margin-left:10px"></i>
+                                </button>
+                            </form>
                         </div>
-
-                        <div class="user-menu">
-                            @if (Auth::user()->role->name == 'administrador')
-                                <li><a href="{{ route('ruta.admin') }}">Taulell d'administració</a></li>
-                            @endif
-
-                            @if (Auth::user()->role->name == 'promotor')
-                                <li><a href="{{ route('promotorhome') }}">Home Promotor</a></li>
-                                <li><a href="{{ route('promotor.createEvent') }}">Crear Esdeveniment</a></li>
-                                <li><a href="{{ route('promotorsessionslist') }}">Veure totes les sessions</a></li>
-                            @else
-                                <li><a href="{{ route('login') }}">Accés Promotors</a></li>
-                            @endif
-                            <li><a href="{{ route('user.profile') }}">Perfil d'Usuari</a></li>
-                            <div class="logout-div">
-                                <form action="{{ route('logout') }}" method="POST" style="display: inline;">
-                                    @csrf
-                                    <button type="submit" class="logout-button">
-                                        <span class="logout-button-text">Tancar Sessió</span>
-                                        <i class="fa fa-sign-out-alt"
-                                            style="font-size: 18px; color:#E00F00; margin-left:10px"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -90,13 +85,13 @@
 
         function showToast(msg) {
             let toast = document.createElement("div");
-            
+
             if (msg.includes('error') || msg.includes('Error')) {
                 msg = `<svg class="errorIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/></svg>
                         ${msg}`
                 toast.classList.add("error");
             }
-            if (msg.includes('Invalid') || msg.includes('invalid')) {
+            if (msg.includes('Invalid') || msg.includes('invalid')) {
                 toast.classList.add("invalid");
             } else {
                 msg = `<svg class="successIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>

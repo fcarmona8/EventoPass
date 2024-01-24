@@ -6,7 +6,7 @@
         <div class="listSessions" id="listSessions">
             @foreach ($sessions as $session)
                 <div class="card cardHomePromotor">
-                    @if ($event->main_image)
+                    @if ($session->event->main_image)
                         <img src="{{ asset('storage/' . $session->event->main_image) }}" alt="{{ $session->event->name }}"
                             onerror="this.onerror=null; this.src='https://picsum.photos/200'">
                     @else
@@ -39,7 +39,7 @@
                                 <img src="https://picsum.photos/2000" alt="{{ $session->event->name }}">
                             @endif
                             <div class="sessionCont">
-                                <p>Data: {{ \Carbon\Carbon::parse($session->date_time)->format('Y-m-d, H:i') }}</p>
+                                <p>Data: {{ \Carbon\Carbon::parse($event->event_date)->format('d/m/Y, H:i') }}</p>
                                 <p>Ventas: {{ $session->sold_tickets }} / {{ $session->max_capacity }}</p>
                                 <div class="divBoton">
                                     <span class="card-price card-info card-sessions">Detalls</span>
@@ -345,9 +345,9 @@
                                 const minutes = String(date.getMinutes()).padStart(2,
                                     '0');
 
-                                const formattedDate = `${year}-${month}-${day}, ${hours}:${minutes}`;
+                                const formattedDate = `${year}/${month}/${day}, ${hours}:${minutes}`;
                                 return (`<div class="card cardHomePromotor">
-                                    @if ($event->main_image)
+                                    @if ($session->event->main_image)
                                         <img src="/storage/${session.event.main_image}" alt="${session.event.name}">
                                         onerror="this.onerror=null; this.src='https://picsum.photos/200'">
                                     @else

@@ -14,7 +14,7 @@
                     <h3 id="event-name-{{ $event->id }}">{{ Str::limit($event->name, $limit = 55, $end = '...') }}</h3>
                     <p id="event-description-{{ $event->id }}" class="description">{{ $event->description }}</p>
                     <p>Proxima data: <span
-                            id="event-date-{{ $event->id }}">{{ \Carbon\Carbon::parse($event->event_date)->format('Y-M-D , H:i') }}</span>
+                            id="event-date-{{ $event->id }}">{{ \Carbon\Carbon::parse($event->event_date)->format('d/m/Y, H:i') }}</span>
                     </p>
                     <p>Proxima ubicació: <span id="event-location-{{ $event->id }}">{{ $event->venue->city }},
                             {{ $event->venue->venue_name }}</span></p>
