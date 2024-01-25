@@ -129,26 +129,31 @@ class ResultatsPageTest extends TestCase
         }
     }
 
-    public function testResultatsPageDisplaysEventsWithCorrectCheckCategory(){
+    public function testResultatsPageDisplaysEventsWithCorrectCheckCategory()
+    {
         $category = 190;
-
+    
         // Simular una búsqueda con filtro
         $response = $this->get("/resultats?filtro=recinto&search=a&categoria={$category}");
         $response->assertStatus(200);
-
+    
         // Verificar que la página contiene eventos que cumplen con el filtro
         $q = Event::with(['category', 'venue', 'sessions.purchases.tickets.type'])
-          ->whereIn('category_id', function ($q) use ($category) {
-            $q->select('id')
-                ->from('categories')
-                ->where('name', 'LIKE', "{$category}");
-        });
-
-            $events = $q->orderBy('event_date')->take(env('PAGINATION_LIMIT'));
-
+            ->whereIn('category_id', function ($q) use ($category) {
+                $q->select('id')
+                    ->from('categories')
+                    ->where('name', 'LIKE', "{$category}")
+                    ->where('hidden', '=', 'false');
+            });
+    
+        $events = $q->orderBy('event_date')->take(env('PAGINATION_LIMIT'));
+    
         foreach ($events as $event) {
             $response->assertSee(e($event->name));
             $response->assertSee(e($event->description));
+            $response->assertSee(e($event->category_id));
         }
     }
+    
+
 }
