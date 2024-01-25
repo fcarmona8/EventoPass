@@ -1,88 +1,78 @@
+@charset "UTF-8";
+/* Estilos para tarjetas de sesiones */
 .session-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: var(--titulos);
-    border-radius: 8px;
-    overflow: hidden;
-    margin: 1rem;
-    border: 1px solid var(--destacados-enlaces);
-}
-
-.session-card img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--titulos);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1rem;
+  border: 1px solid var(--destacados-enlaces); }
 
 img {
-    max-width: 100%;
-    border-style: none;
-}
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  max-width: 100%;
+  border-style: none; }
 
-.session-card h3, .session-card p {
-    margin: 0.5rem;
-}
+h3,
+p {
+  margin: 0.5rem; }
 
-.session-card p {
-    margin: 0.5rem;
-    font-size: 0.9rem;
-}
+p {
+  font-size: 0.9rem; }
 
-.listSessions{
+/* Estilos para la lista de sesiones */
+.listSessions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100%, auto));
+  gap: 20px;
+  padding: 1%;
+  width: 100%; }
+
+/* Estilos para encabezado h2 */
+h2 {
+  text-align: center;
+  word-break: break-all;
+  padding-top: 25px; }
+
+/* Estilos para la lista de eventos */
+.listEvents {
+  display: flex;
+  justify-content: center;
+  flex-direction: column; }
+
+/* Estilos para el contenedor de sesiones */
+.sessionCont {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding: 5%; }
+
+/* Estilos para botones */
+.divBoton {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2% 0%;
+  justify-content: center;
+  margin: 10%; }
+
+/* Ajustes para tarjetas de sesiones en pantallas más grandes */
+.card-sessions {
+  margin-left: 0%; }
+
+/* Ajustes para tarjetas de sesiones en pantallas más grandes */
+@media (min-width: 600px) {
+  .session-card {
+    flex-direction: row;
+    max-width: 700px; }
+  .session-card img {
+    width: 50%; }
+  .listSessions {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100%, auto));
+    grid-template-columns: repeat(auto-fill, minmax(32%, auto));
     gap: 20px;
     padding: 1%;
-    width: 100%;
-}
-
-h2{
-    text-align: center;
-    word-break: break-all;
-    padding-top: 25px;
-}
-
-.listEvents{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.sessionCont{
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    padding: 5%;
-}
-
-.divBoton{
-    display: flex;
-    flex-wrap: wrap;
-    padding: 2% 0%;
-    justify-content: center;
-    margin: 10%;
-}
-
-.card-sessions{
-    margin-left: 0%;
-}
-
-@media (min-width: 600px){
-    .session-card {
-        flex-direction: row;
-        max-width: 700px;
-    }
-
-    .session-card img {
-        width: 50%;
-    }
-
-    .listSessions{
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(32%, auto));
-        gap: 20px;
-        padding: 1%;
-        width: 100%;
-    }
-}
+    width: 100%; } }
