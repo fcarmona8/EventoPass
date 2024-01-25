@@ -67,7 +67,7 @@ class CreateEventControllerTest extends TestCase
             'selector-options' => $venue->id,
         ]);
 
-        $response->assertRedirect('/promotor/create-event');
+        $response->assertRedirect('/promotor/promotorhome');
         $this->assertDatabaseHas('events', ['name' => 'Test Event']);
     }
 
@@ -108,4 +108,22 @@ class CreateEventControllerTest extends TestCase
 
         $response->assertJson(['message' => 'Dirección guardada correctamente']);
     }
+
+    /** @test */
+    public function store_venue_with_exception()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $response = $this->post(route('promotor.createVenue'), [
+            'nova_provincia' => null,
+            'nova_ciutat' => 'Barcelona',
+            'codi_postal' => '08001',
+            'nom_local' => 'Local de Prueba',
+            'capacitat_local' => 100,
+        ]);
+
+        $response->assertSessionHasErrors(['error']);
+    }
+
 }

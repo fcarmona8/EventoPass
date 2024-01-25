@@ -64,9 +64,6 @@ class PromotorSessionsListController extends Controller{
 
         }
 
-        
-
-
         return view('promotor/promotorSessionsList', compact('sessions', 'events', 'isSpecificEvent', 
                                             'event_id', 'primeraSesion', 'ticketsPrimeraSesion'));
     }
