@@ -487,10 +487,10 @@ input:checked+.slider:before {
     }
 
     .slider {
-        top: 4px;
+        top: 7px;
         left: 217px;
         right: -213px;
-        bottom: -4px;
+        bottom: -7px;
     }
 
     .ticket-input {
