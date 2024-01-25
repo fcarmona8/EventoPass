@@ -5,6 +5,9 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\User;
+use App\Models\Role;
+use Illuminate\Support\Facades\Log;
+
 
 class LoginControllerTest extends TestCase
 {
@@ -103,5 +106,99 @@ class LoginControllerTest extends TestCase
 
         $response->assertSessionHasErrors('email');
         $this->assertGuest();
+    }
+
+    // Redirección si el usuario con rol de promotor ya está logueado.
+    public function testPromotorIsRedirectedToPromotorHomeIfLoggedIn()
+    {
+        $promotor = User::factory()->create();
+
+        $response = $this->actingAs($promotor)->get('/login');
+        $response->assertRedirect('/');
+    }
+
+    // Redirección si el usuario con rol de administrador ya está logueado.
+    public function testAdminIsRedirectedToAdminRouteIfLoggedIn()
+    {
+        $admin = User::factory()->create();
+
+        $response = $this->actingAs($admin)->get('/login');
+        $response->assertRedirect('/');
+    }
+
+    // Inicio de sesión exitoso como administrador
+    public function testAdminLoginRedirectsToAdminRoute()
+    {
+        $adminRoleId = Role::where('name', 'administrador')->first()->id;
+
+        $admin = User::factory()->create([
+            'email' => 'admin@test.com',
+            'password' => bcrypt('adminpassword'),
+            'role_id' => $adminRoleId
+        ]);
+
+        $response = $this->post('/login', [
+            'email' => 'admin@test.com',
+            'password' => 'adminpassword',
+        ]);
+
+        $response->assertRedirect('/admin/home');
+    }
+
+    // Inicio de sesión exitoso como promotor
+    public function testPromotorLoginRedirectsToPromotorHome()
+    {
+        $promotor = User::factory()->create([
+            'email' => 'promotor@test.com',
+            'password' => bcrypt('promotorpassword'),
+        ]);
+
+        $response = $this->post('/login', [
+            'email' => 'promotor@test.com',
+            'password' => 'promotorpassword',
+        ]);
+
+        $response->assertRedirect('/');
+    }
+
+    public function testPromotorIsRedirectedToPromotorHomeWhenAccessingLoginForm()
+    {
+
+        $promotorRoleId = Role::where('name', 'promotor')->first()->id;
+        $promotor = User::factory()->create([
+            'role_id' => $promotorRoleId
+        ]);
+
+        $response = $this->actingAs($promotor)->get('/login');
+        $response->assertRedirect('/promotor/promotorhome');
+    }
+
+    public function testAdminIsRedirectedToAdminRouteWhenAccessingLoginForm()
+    {
+        $adminRoleId = Role::where('name', 'administrador')->first()->id;
+        $admin = User::factory()->create([
+            'role_id' => $adminRoleId
+        ]);
+
+        $response = $this->actingAs($admin)->get('/login');
+        $response->assertRedirect('/admin/home');
+    }
+
+    public function testUserWithNoSpecificRoleIsRedirectedToIntended()
+    {
+        $user = User::factory()->create([
+            'email' => 'genericuser@test.com',
+            'password' => bcrypt('password'),
+        ]);
+
+        $response = $this->actingAs($user)->get('/promotor/promotorhome');
+        $response->assertRedirect('/login');
+
+        $response = $this->post('/login', [
+            'email' => 'genericuser@test.com',
+            'password' => 'password',
+        ]);
+
+        $response->assertRedirect('/promotor/promotorhome');
     }
 }

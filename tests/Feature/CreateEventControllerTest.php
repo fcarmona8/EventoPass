@@ -67,7 +67,7 @@ class CreateEventControllerTest extends TestCase
             'selector-options' => $venue->id,
         ]);
 
-        $response->assertRedirect('/promotor/create-event');
+        $response->assertRedirect('/promotor/promotorhome');
         $this->assertDatabaseHas('events', ['name' => 'Test Event']);
     }
 
