@@ -43,7 +43,7 @@ img{
 
 .events{
     display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(32%, auto));
+        grid-template-columns: repeat(auto-fill, minmax(400px, auto));
         padding: 1%;
         width: 100%;
 }

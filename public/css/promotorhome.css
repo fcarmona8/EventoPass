@@ -6,6 +6,11 @@
     width: 100%;
 }
 
+.cardHomePromotor{
+    pointer-events: none;
+    height: 210px;
+}
+
 .card-editEvent{
     color: white;
     display: flex;

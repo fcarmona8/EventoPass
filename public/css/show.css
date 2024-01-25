@@ -1,6 +1,8 @@
 /* Estilos básicos aplicados para dispositivos móviles */
 .container {
     padding: 20px;
+    background: white;
+    
 }
 
 .slider-frame {
@@ -27,10 +29,18 @@
 }
 
 .venue-details {
-    background-color: var(--elementos-secundarios);
     padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 2%;
+    margin-bottom: 30px;
+    border-bottom: 5px solid var(--principal);
+}
+
+.eventDetailList{
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+.h2-showevent{
+    text-align: start;
 }
 
 /* Estilos para FullCalendar */
@@ -222,10 +232,9 @@ letter-spacing: 0.05em;
 }
 
 .divDescEvent{
-    border-radius: 10px;
-    border: 5px solid var(--principal);
+    border-bottom: 5px solid var(--principal);
     margin-bottom: 2%;
-    margin-top: 1%;
+    margin-top: 60PX;
     padding: 2%;
     display: flex;
     justify-content: center;
@@ -255,6 +264,10 @@ letter-spacing: 0.05em;
     .container {
     max-width: 800px;
     margin: auto;
+    background: white;
+    box-shadow: 0 0 20px rgb(0, 0, 0, 0.3);
+    margin-top: 50px;
+
     }
     .fc .fc-toolbar {
         display: flex;

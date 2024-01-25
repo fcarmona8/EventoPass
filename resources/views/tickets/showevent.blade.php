@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="container">
-        <h1>{{ $event->name }}</h1>
 
         <!-- Carrusel de fotografías -->
         <div class="slider-frame">
@@ -31,30 +30,28 @@
             </ul>
         </div>
 
-
+        <h1>{{ $event->name }}</h1>
         <!-- Descripción del evento -->
-        <h1>Descripció:</h1>
         <div class="divDescEvent">
             <p class="pDescEvent">{{ $event->description }}</p>
         </div>
 
         <!-- Datos del local -->
         <div class="venue-details">
-            <h3 class="pUbiEvento">Detalles del Local</h3>
-            <p class="pUbiEvento">Nombre: {{ $event->venue->venue_name }}</p>
-            <p  class="pUbiEvento">Ubicación: {{ $event->venue->city }}, {{ $event->venue->province }}</p>
-            <p  class="pUbiEvento">Fecha del Evento: {{ \Carbon\Carbon::parse($event->event_date)->format('Y-M-D , H:i') }}</p>
+            <h2 class="h2-showevent">Detalles del Local</h2>
+            <li class="eventDetailList"><span >Nom del local: {{ $event->venue->venue_name }}</span></li>
+            <li class="eventDetailList"><span>Ubicació: {{ $event->venue->city }}, {{ $event->venue->province }}</span></li>
+            <li class="eventDetailList"><span>Primera sessió: {{ \Carbon\Carbon::parse($event->event_date)->format('d/m/Y, H:i') }}</span></li>
             <!-- Mapa de Google Maps -->
             <div id="map" style="height: 400px;"></div>
         </div>
-
         <div id="sessionDetails" style="display: none;">
             <h3 class="h3Color">Sesiones para la Fecha Seleccionada:</h3>
             <ul id="sessionList"></ul>
         </div>
 
         <div id="totalPriceContainer" style="display: none;">
-            <h3 class="h3Color">Precio Total: <span id="totalPrice">0</span> $</h3>
+            <h3 class="h3Color">Precio Total: <span id="totalPrice">0</span> €</h3>
         </div>
         <div class="dvBotonCompra">
             <button id="buyButton" class="btn btn-primary btnCompra" style="display: none;">Comprar</button>
@@ -136,7 +133,7 @@
                 ticketTypes.forEach(ticketType => {
                     const ticketItem = document.createElement('li');
                     ticketItem.textContent =
-                        `${ticketType.name}: $${ticketType.price} (${ticketType.available_tickets} disponibles)`;
+                        `${ticketType.name}: ${ticketType.price} € (${ticketType.available_tickets} disponibles)`;
 
                     const inputQuantity = document.createElement('input');
                     inputQuantity.type = 'number';
