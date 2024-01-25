@@ -160,7 +160,7 @@
 
         function saveEvent() {
 
-            const camposObligatorios = ['eventName', 'eventDesc', 'eventAddress', 'eventVid'];
+            const camposObligatorios = ['eventName', 'eventDesc', 'eventAddress'];
 
             const campoVacioEncontrado = false;
             camposObligatorios.forEach(campoId => {

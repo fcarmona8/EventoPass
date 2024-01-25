@@ -35,6 +35,7 @@
     flex-wrap: wrap;
     padding: 2% 0%;
     justify-content: center;
+    margin-top: auto;
 }
 
 .btnSessions{

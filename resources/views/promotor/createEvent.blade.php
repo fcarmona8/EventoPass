@@ -1,4 +1,3 @@
-<!-- resources/views/tickets/createEvent.blade.php -->
 @extends('layouts.app')
 
 @section('content')

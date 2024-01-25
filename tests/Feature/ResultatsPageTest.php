@@ -15,7 +15,8 @@ class ResultatsPageTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->seed();
+
+        $this->artisan('db:seed', ['--class' => 'Database\\Seeders\\Test\\DatabaseSeeder']);
     }
 
     public function testResultatsPageDisplaysEventsWithCorrectLowestTicketPrice()
