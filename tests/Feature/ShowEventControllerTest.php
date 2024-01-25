@@ -13,8 +13,7 @@ use App\Models\Ticket;
 class ShowEventControllerTest extends TestCase
 {
     use RefreshDatabase;
-
-   public function setUp(): void
+    public function setUp(): void
    {
        parent::setUp();
 

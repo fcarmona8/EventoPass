@@ -151,7 +151,7 @@ class PromotorSessionsListController extends Controller{
                             return $session;
                         });
     
-            return response()->json(['message' => 'Sesion guardada correctamente', 'sessions' => $existingSessions]);
+            return redirect()->route('promotorsessionslist', ['id' => $event_id])->with('success', 'Sesión creada con éxito');
         } catch (\Exception $e) {
             Log::error('Error en el proceso de almacenamiento de la sesión: ' . $e->getMessage());
             return back()->withErrors(['error' => 'Error al guardar la sesión.']);

@@ -13,9 +13,23 @@
     grid-area: 1 / 1 / 1 / span 2;
 }
 
+#guardar-sesion {
+    border-radius: 20px;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 150px;
+    color: #fff;
+}
+
 #div-crear-sesion{
     overflow-x: scroll;
     max-height: 650px;
+}
+
+.sliderSesion{
+    left: 182px;
+    right: -179px;
 }
 
 
@@ -32,7 +46,7 @@
     background-color: inherit;
     text-decoration: underline;
     right: -16px;
-    top: 109px;
+    top: 115px;
 }
 
 .nueva-linea{
@@ -64,6 +78,11 @@
 @media (min-width: 768px){
     #eliminar-entrada-session {
         right: -16px;
-        top: 109px;
+        top: 90px;
+    }
+
+    .sliderSesion {
+        left: 217px;
+        right: -213px;
     }
 }
