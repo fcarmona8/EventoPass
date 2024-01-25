@@ -14,7 +14,7 @@
                     <h3 id="event-name-{{ $event->id }}">{{ Str::limit($event->name, $limit = 55, $end = '...') }}</h3>
                     <p id="event-description-{{ $event->id }}" class="description">{{ $event->description }}</p>
                     <p>Proxima data: <span
-                            id="event-date-{{ $event->id }}">{{ \Carbon\Carbon::parse($event->event_date)->format('Y-M-D , H:i') }}</span>
+                            id="event-date-{{ $event->id }}">{{ \Carbon\Carbon::parse($event->event_date)->format('d/m/Y, H:i') }}</span>
                     </p>
                     <p>Proxima ubicació: <span id="event-location-{{ $event->id }}">{{ $event->venue->city }},
                             {{ $event->venue->venue_name }}</span></p>
@@ -92,6 +92,8 @@
         <span class="close-btn" onclick="closeAlert()">Cerrar</span>
     </div>
 
+    <div id="toastBox"></div>
+
     {{ $events->links('vendor.pagination.bootstrap-4') }}
 @endsection
 
@@ -108,6 +110,14 @@
                 const eventHidden = this.getAttribute('eventHidden');
                 openEditEventModal(eventName, eventDesc, eventAddress, eventVid, eventId, eventHidden);
             });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var successMessage = "{{ session('success') }}";
+
+            if (successMessage) {
+                showToast('Event creat correctament');
+            }
         });
 
         // Función para abrir el modal y prellenar el nombre del evento si es necesario
@@ -135,24 +145,23 @@
             document.getElementById('editEventModal').style.display = 'none';
         }
 
+        function resaltarCampoVacio(campo) {
+            campo.style.border = "1px solid red";
+        }
+
+        function quitarResaltadoCampos() {
+            const camposObligatorios = ['eventName', 'eventDesc', 'eventAddress', 'eventVid'];
+            camposObligatorios.forEach(campoId => {
+                const campo = document.getElementById(campoId);
+                campo.style.border = "";
+            });
+        }
+
+
         function saveEvent() {
 
             const camposObligatorios = ['eventName', 'eventDesc', 'eventAddress'];
 
-            // Función para resaltar campo vacío
-            function resaltarCampoVacio(campo) {
-                campo.style.border = "1px solid red";
-            }
-
-            // Función para quitar resaltado de campos
-            function quitarResaltadoCampos() {
-                camposObligatorios.forEach(campoId => {
-                    const campo = document.getElementById(campoId);
-                    campo.style.border = "";
-                });
-            }
-
-            // Validación de campos requeridos
             const campoVacioEncontrado = false;
             camposObligatorios.forEach(campoId => {
                 const campo = document.getElementById(campoId);
