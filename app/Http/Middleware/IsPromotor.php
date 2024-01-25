@@ -16,8 +16,14 @@ class IsPromotor
      */
     public function handle(Request $request, Closure $next)
     {
-        // Verificar si el usuario está autenticado y si tiene el rol de promotor
-        if (!Auth::check() || Auth::user()->role->name != 'promotor') {
+        // Verificar si el usuario está autenticado
+        if (!Auth::check()) {
+            return redirect('login');
+        }
+
+        // Verificar si el usuario tiene un rol y si es promotor
+        $user = Auth::user();
+        if (!$user->role || $user->role->name != 'promotor') {
             return redirect('login');
         }
 

@@ -16,6 +16,13 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
+        // Verificar si el usuario está autenticado
+        if (!Auth::check()) {
+            return redirect('login');
+        }
+
+        // Verificar si el usuario tiene un rol y si es administrador
+        $user = Auth::user();
         if (Auth::user() && Auth::user()->role->name == 'administrador') {
             return $next($request);
         }
