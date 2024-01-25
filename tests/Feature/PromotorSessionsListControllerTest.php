@@ -54,8 +54,9 @@ class PromotorSessionsListControllerTest extends TestCase
             'entry_type_quantity' => [50],
         ]);
 
-        $response->assertStatus(200);
-        $response->assertJson(['message' => 'Sesion guardada correctamente']);
+        $response->assertStatus(302);
+        $response->assertRedirect(route('promotorsessionslist', ['id' => $event->id]));
+        $response->assertSessionHas('success', 'Sesión creada con éxito'); 
     }
 
 }
