@@ -3,11 +3,17 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "compile:sass": "node-sass resources/sass/home.scss public/css/home.css && node-sass resources/sass/crear-sesion.scss public/css/crear-sesion.css"
+
+
+
+        
     },
     "devDependencies": {
         "axios": "^1.6.1",
         "laravel-vite-plugin": "^0.8.0",
+        "node-sass": "^9.0.0",
         "vite": "^4.0.0"
     },
     "dependencies": {
