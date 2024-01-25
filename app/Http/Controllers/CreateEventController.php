@@ -160,7 +160,7 @@ class CreateEventController extends Controller
                 }
             }
 
-            return redirect()->route('promotor.createEvent')->with('success', 'Evento, sesión y tickets creados con éxito');
+            return redirect()->route('promotorhome')->with('success', 'Evento, sesión y tickets creados con éxito');
         } catch (\Exception $e) {
             Log::error('Error en el proceso de almacenamiento del evento, sesión y tickets: ' . $e->getMessage());
             return back()->withErrors(['error' => 'Error al guardar el evento, sesión y tickets.']);

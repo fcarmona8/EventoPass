@@ -2,7 +2,6 @@
 
 @section('content')
     <h2 class="titol-crear-event">Crear Esdeveniment</h2>
-
     <form class="event-create" method="post" action="{{ route('promotor.storeEvent') }}" enctype="multipart/form-data">
         @csrf
 
@@ -106,17 +105,17 @@
             <div class="div-event ticket-type" id="entradas-container">
                 <div class="div-informacion-principal ticket-input">
                     <div class="titulosEntradas">
-                        <label>Tipus entrada</label>
+                        <label class="label-event">Tipus entrada</label>
                         <input type="text" class="input-event" name="entry_type_name[]" required
                             placeholder="Nom del tipus d'entrada">
                     </div>
                     <div class="titulosEntradas">
-                        <label>Preu entrada</label>
+                        <label class="label-event">Preu entrada</label>
                         <input type="number" class="input-event" name="entry_type_price[]" placeholder="Preu"
                             step="0.01" required>
                     </div>
                     <div class="titulosEntradas">
-                        <label>Quantitat</label>
+                        <label class="label-event">Quantitat</label>
                         <input type="number" class="input-event" name="entry_type_quantity[]" id="entry_type_quantity"
                             placeholder="Quantitat" required min="0" oninput="actualizarMaxEntradas()">
                     </div>
@@ -192,8 +191,11 @@
         </div>
     </div>
 
+    <div id="toastBox"></div>
+
     <div id="overlay" class="overlay" onclick="cerrarModalDireccion()"></div>
 @endsection
+
 @push('scripts')
     <script>
         document.getElementById('abrir-modal-direccion').addEventListener('click', function() {
@@ -253,6 +255,10 @@
                 const select = selector.children[0];
                 const dropDown = document.createElement('ul');
                 dropDown.className = "selector-options select-categoria-desktop ";
+
+                if (selector.querySelector('#adreces-select')) {
+                    dropDown.classList.add("select-direcciones");
+                }
 
                 [...select.children].forEach(option => {
                     const dropDownOption = document.createElement('li');
@@ -332,25 +338,19 @@
             document.getElementById('nueva-direccion-modal').style.display = 'none';
         }
 
+        function quitarResaltadoCampos() {
+            let camposRequeridos = ['nova_provincia', 'nova_ciutat', 'codi_postal', 'nom_local', 'capacitat_local'];
+            camposRequeridos.forEach(campoId => {
+                let campo = document.getElementById(campoId);
+                campo.style.border = "";
+            });
+        }
+
         function guardarNovaAdreca() {
 
             let camposRequeridos = ['nova_provincia', 'nova_ciutat', 'codi_postal', 'nom_local', 'capacitat_local'];
             const contenedorAdreca = document.getElementById('label-adreca');
 
-            // Función para resaltar campo vacío
-            function resaltarCampoVacio(campo) {
-                campo.style.border = "1px solid red";
-            }
-
-            // Función para quitar resaltado de campos
-            function quitarResaltadoCampos() {
-                camposRequeridos.forEach(campoId => {
-                    let campo = document.getElementById(campoId);
-                    campo.style.border = "";
-                });
-            }
-
-            // Validación de campos requeridos
             let campoVacioEncontrado = false;
             camposRequeridos.forEach(campoId => {
                 let campo = document.getElementById(campoId);
@@ -384,9 +384,13 @@
                                 select.appendChild(option);
                             });
                         }
+
+                        showToast('Direcció creada correctament');
+
                     })
                     .catch(error => {
                         console.error(error);
+                        showToast('Error al crear la direcció');
                     });
 
                 contenedorAdreca.style.display = 'block';
