@@ -3,14 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ResultatsController;
+use App\Http\Controllers\ShowEventController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\TicketsPDFController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\CreateEventController;
 use App\Http\Controllers\PromotorHomeController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\PromotorSessionsListController;
-use App\Http\Controllers\ShowEventController;
 use App\Http\Controllers\ComentarioController;
 
 
@@ -88,4 +89,8 @@ Route::get('password/reset/{token}', [ResetPasswordController::class, 'showReset
 
 // Procesar el restablecimiento de contraseña
 Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+
+// Generar PDF
+Route::get('/a', [TicketsPDFController::class, 'generatePdf']);
+
 
