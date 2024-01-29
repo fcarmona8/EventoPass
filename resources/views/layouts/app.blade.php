@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="{{ asset('css/crear-sesion.css') }}">
     <link rel="stylesheet" href="{{ asset('css/show.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sesion-list.css') }}">
-    <link href="{{ asset('css/pagination.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/comentarios.css') }}">
     <title>@yield('title')</title>
 </head>
 

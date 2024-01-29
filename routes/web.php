@@ -11,6 +11,7 @@ use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\PromotorSessionsListController;
 use App\Http\Controllers\ShowEventController;
+use App\Http\Controllers\ComentarioController;
 
 
 // Página principal
@@ -56,6 +57,8 @@ Route::post('/promotor/create-venue', [CreateEventController::class, 'storeVenue
 Route::get('/tickets/buytickets', function () {
     return view('tickets.buytickets');
 })->name('tickets.buytickets');
+
+Route::get('/tickets/comentario', [ComentarioController::class, 'index'])->name('tickets.comentarios');
 
 // Home Administradores
 Route::get('/admin/home', function () {
