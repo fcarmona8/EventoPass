@@ -276,6 +276,15 @@ Hem de donar permisos a la carpeta de logs amb aquestes dos comandes -> chmod -R
 
 I hem de fer un link simbòlic entre storag/app i publiv amb -> php artisan storage:link
 
+== Instal·lació del DomPDF
+
+Primer instal·lem el paquet DomPdf amb el composer --> composer require barryvdh/laravel-dompdf
+
+En l'arxiu config/app.php a l'apartat de 'provaiders' fiquem la següent línia --> Barryvdh\DomPDF\ServiceProvider::class
+
+I publiquem el paquet per a poder modificar-lo --> php artisan vendor:publish --provider="Barryvdh\DomPDF\ServiceProvider"
+
+
 == Línies Futures
 Plantejaments sobre l'evolució futura del projecte.
 
