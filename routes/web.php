@@ -61,6 +61,8 @@ Route::get('/tickets/buytickets', function () {
 
 Route::get('/tickets/comentario', [ComentarioController::class, 'index'])->name('tickets.comentarios');
 
+Route::post('/tickets/comentario', [ComentarioController::class, 'store'])->name('tickets.comentarios');
+
 // Home Administradores
 Route::get('/admin/home', function () {
     return view('admin.home');

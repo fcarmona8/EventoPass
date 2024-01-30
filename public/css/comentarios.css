@@ -223,6 +223,14 @@ label[for="five-star-rating-2"] {
 
 .starInput {
     border: none !important;
+    position: static !important;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.stars-wrapper label {
+    margin: 0;
+    padding: 0;
 }
 
 .contenedorCrearComentario section {
@@ -284,4 +292,42 @@ input[class="super-sad"]:focus+.iconosComentarios {
 .contenedorPuntuacionIconos{
     display: flex;
     justify-content: center;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+
+@media (min-width: 768px) {
+    
+    .contenedorCrearComentario {
+        background-color: white;
+        height: min-content;
+        margin: 50px auto 50px auto;
+        width: 70%;
+        padding-bottom: 40px;
+        padding-top: 40px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .formCrearComentario {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        width: 80%;
+    }
+
+    .formCrearComentario input{
+        width: auto;
+    }
+
+
+
+    .smileyRatingLabel{
+        margin-top: 0px !important;
+    }
+
 }
