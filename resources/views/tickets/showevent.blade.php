@@ -39,9 +39,11 @@
         <!-- Datos del local -->
         <div class="venue-details">
             <h2 class="h2-showevent">Detalles del Local</h2>
-            <li class="eventDetailList"><span >Nom del local: {{ $event->venue->venue_name }}</span></li>
-            <li class="eventDetailList"><span>Ubicació: {{ $event->venue->city }}, {{ $event->venue->province }}</span></li>
-            <li class="eventDetailList"><span>Primera sessió: {{ \Carbon\Carbon::parse($event->event_date)->format('d/m/Y, H:i') }}</span></li>
+            <li class="eventDetailList"><span>Nom del local: {{ $event->venue->venue_name }}</span></li>
+            <li class="eventDetailList"><span>Ubicació: {{ $event->venue->city }}, {{ $event->venue->province }}</span>
+            </li>
+            <li class="eventDetailList"><span>Primera sessió:
+                    {{ \Carbon\Carbon::parse($event->event_date)->format('d/m/Y, H:i') }}</span></li>
             <!-- Mapa de Google Maps -->
             <div id="map" style="height: 400px;"></div>
         </div>
@@ -54,7 +56,14 @@
             <h3 class="h3Color">Precio Total: <span id="totalPrice">0</span> €</h3>
         </div>
         <div class="dvBotonCompra">
-            <button id="buyButton" class="btn btn-primary btnCompra" style="display: none;">Comprar</button>
+            <form action="{{ route('tickets.purchaseconfirm') }}" method="POST">
+                @csrf
+                <input type="hidden" name="eventId" value="{{ $event->id }}">
+                <input type="hidden" name="totalPrice" id="totalPriceInput" value="0">
+                <input type="hidden" name="ticketData" id="ticketDataInput" value="{}">
+                <button type="submit" id="buyButton" class="btn btn-primary btnCompra"
+                    style="display: none;">Comprar</button>
+            </form>
         </div>
         <div class="card-body">
             <div id='calendar'></div>
@@ -141,7 +150,7 @@
                     inputQuantity.max = ticketType.available_tickets;
                     inputQuantity.value = 0;
                     inputQuantity.classList.add('inputQuantity');
-                    inputQuantity.addEventListener('change', function() {
+                    inputQuantity.addEventListener('input', function() {
                         selectedTickets[ticketType.id] = parseInt(inputQuantity.value);
                         recalculateTotalPrice(ticketTypes);
                     });
@@ -150,67 +159,36 @@
                     sessionList.appendChild(ticketItem);
                 });
 
-                document.getElementById('totalPriceContainer').style.display = 'block';
+                const buyButton = document.getElementById('buyButton');
+                buyButton.style.display = 'block';
+
+                recalculateTotalPrice(ticketTypes);
             }
 
             function recalculateTotalPrice(ticketTypes) {
-                const totalPriceElement = document.getElementById('totalPrice');
-                let total = 0;
-                let anyTicketsSelected = false;
-
-                ticketTypes.forEach(ticketType => {
-                    const quantity = selectedTickets[ticketType.id] || 0;
-                    total += quantity * ticketType.price;
-                    if (quantity > 0) {
-                        anyTicketsSelected = true;
+                let totalPrice = 0;
+                for (const ticketType of ticketTypes) {
+                    if (selectedTickets[ticketType.id] > 0) {
+                        totalPrice += selectedTickets[ticketType.id] * ticketType.price;
                     }
-                });
-
-                totalPriceElement.textContent = total.toFixed(2);
-
-                // Actualizar la visibilidad del botón de compra
-                const buyButton = document.getElementById('buyButton');
-                if (anyTicketsSelected) {
-                    buyButton.style.display = 'block';
-                } else {
-                    buyButton.style.display = 'none';
                 }
+
+                const totalPriceContainer = document.getElementById('totalPriceContainer');
+                const totalPriceElement = document.getElementById('totalPrice');
+                totalPriceElement.textContent = totalPrice.toFixed(2);
+                totalPriceContainer.style.display = 'block';
+
+                const totalPriceInput = document.getElementById('totalPriceInput');
+                totalPriceInput.value = totalPrice.toFixed(2);
+
+                const ticketDataInput = document.getElementById('ticketDataInput');
+                ticketDataInput.value = JSON.stringify(selectedTickets);
             }
 
             function clearSessionsDisplay() {
                 const sessionList = document.getElementById('sessionList');
                 sessionList.innerHTML = '';
                 document.getElementById('sessionDetails').style.display = 'none';
-                document.getElementById('totalPrice').textContent = '0.00';
-                document.getElementById('totalPriceContainer').style.display = 'none';
-
-                // Ocultar el botón de compra
-                document.getElementById('buyButton').style.display = 'none';
             }
-
-            document.addEventListener('DOMContentLoaded', function() {
-                const imagesCount = document.querySelectorAll('.slider-frame li').length;
-                const sliderUl = document.querySelector('.slider-frame ul');
-
-                if (imagesCount > 0) {
-                    // Ajustar el ancho del contenedor UL
-                    sliderUl.style.width = `${imagesCount * 100}%`;
-
-                    // Calcular los keyframes
-                    const percentagePerImage = 100 / imagesCount;
-                    let keyframes = '';
-
-                    for (let i = 0; i < imagesCount; i++) {
-                        keyframes += `
-                    ${i * percentagePerImage * 2}% {margin-left: ${-100 * i}%}
-                    ${(i * percentagePerImage * 2) + percentagePerImage}% {margin-left: ${-100 * i}%}`;
-                    }
-
-                    const styleSheet = document.createElement('style');
-                    styleSheet.type = 'text/css';
-                    styleSheet.innerText = `@keyframes slide { ${keyframes} }`;
-                    document.head.appendChild(styleSheet);
-                }
-            });
         </script>
     @endpush

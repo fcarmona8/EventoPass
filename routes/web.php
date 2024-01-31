@@ -2,15 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RedsysController;
 use App\Http\Controllers\ResultatsController;
+use App\Http\Controllers\ShowEventController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\CreateEventController;
 use App\Http\Controllers\PromotorHomeController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\ConfirmPurchaseController;
 use App\Http\Controllers\PromotorSessionsListController;
-use App\Http\Controllers\ShowEventController;
 
 
 // Página principal
@@ -36,6 +38,12 @@ Route::get('/tickets/aboutus', function () {
 Route::get('/tickets/legalnotice', function () {
     return view('tickets.legalnotice');
 })->name('tickets.legalnotice');
+
+Route::post('/tickets/confirmpurchase', [ConfirmPurchaseController::class, 'showConfirmPurchase'])->name('tickets.purchaseconfirm');
+
+Route::post('/tickets/process-purchase', [ConfirmPurchaseController::class, 'processPurchase'])->name('tickets.processPurchase');
+
+Route::view('/payment/response', 'payment.response')->name('payment.response');
 
 // Mostrar Evento
 Route::get('/tickets/showevent/{id}', [ShowEventController::class, 'show'])->name('tickets.showevent');

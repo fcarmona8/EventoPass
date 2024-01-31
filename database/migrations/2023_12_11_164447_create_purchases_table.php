@@ -10,11 +10,13 @@ class CreatePurchasesTable extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('session_id');
+            $table->string("name");
+            $table->string("dni");
+            $table->integer("phone");
+            $table->string('email')->unique();
             $table->decimal('total_price', 8, 2);
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users');
         });
         
     }
