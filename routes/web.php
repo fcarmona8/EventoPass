@@ -44,6 +44,8 @@ Route::post('/tickets/purchaseconfirm', [ConfirmPurchaseController::class, 'show
 
 Route::post('/tickets/save-purchase-data', [ConfirmPurchaseController::class, 'savePurchaseData'])->name('tickets.savePurchaseData');
 
+Route::view('/ok', 'payment.response')->name('payment.response.ok');
+
 Route::view('/payment/response', 'payment.response')->name('payment.response');
 
 // Mostrar Evento
