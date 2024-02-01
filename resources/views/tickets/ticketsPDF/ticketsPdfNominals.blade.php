@@ -48,20 +48,21 @@ html {
 }
 
 .divInfoEntrada,
-.divInfoSessio, {
+.divInfoSessio,
+.divInfoPersonal {
     display: table-cell;
     box-sizing: border-box;
     padding: 0% 2%;
-    width: 50%;
+    width: 33.33%;
     text-align: center;
 }
 
-.linea {
+.linea,
+.linea2 {
     display: table-cell;
     position: relative;
     border-left: 7px solid white;
     height: 10%;
-    border-right: 1000px;
 }
 
 .dadesEntrades {
@@ -114,6 +115,13 @@ html {
                     <p> Data: 14/07/2024 </p>
                     <p> Hora: 15:00 </p>
                     <p> Direcció: Torrent del Batlle, 10 08225 Terrassa Barcelona </p>
+                </div>
+                <div class="linea2"></div>
+                <div class="divInfoPersonal">
+                    <h3> Informació personal </h3>
+                    <p> Nom: Guiu Puigantell Jordan </p>
+                    <p> DNI: 123456789C </p>
+                    <p> Telèfon: 232233321 </p>
                 </div>
             </div>
         </div>

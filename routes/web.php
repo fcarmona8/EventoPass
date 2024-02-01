@@ -87,7 +87,13 @@ Route::get('password/reset/{token}', [ResetPasswordController::class, 'showReset
 // Procesar el restablecimiento de contraseña
 Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 
+// Generar PDF Nominal
+Route::get('/a', [TicketsPDFController::class, 'generatePdfNominal']);
+
 // Generar PDF
-Route::get('/a', [TicketsPDFController::class, 'generatePdf']);
+Route::get('/hola', [TicketsPDFController::class, 'generatePdf']);
+
+// Descargar PDF
+Route::get('/b/{nombrePdf}', [TicketsPDFController::class, 'descargarPDF']);
 
 
