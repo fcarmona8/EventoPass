@@ -19,6 +19,7 @@ class CreateEventsTable extends Migration
             $table->timestamp('event_date')->nullable();
             $table->string('video_link', 255)->nullable();
             $table->boolean('hidden')->default(false);
+            $table->boolean('nominal')->default(false);
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('venue_id')->references('id')->on('venues');

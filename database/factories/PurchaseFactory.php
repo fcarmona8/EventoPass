@@ -2,10 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
 use App\Models\Session;
 use App\Models\Purchase;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class PurchaseFactory extends Factory
 {
@@ -13,12 +13,14 @@ class PurchaseFactory extends Factory
 
     public function definition()
     {
-        $userIds = User::pluck('id')->toArray();
         $sessionIds = Session::pluck('id')->toArray();
 
         return [
-            'user_id' => $userIds[array_rand($userIds)],
-            'session_id' => $sessionIds[array_rand($sessionIds)],
+            'session_id' => $this->faker->randomElement($sessionIds),
+            'name' => $this->faker->name,
+            'dni' => $this->faker->numerify('#########'),
+            'phone' => $this->faker->numerify('#########'), 
+            'email' => $this->faker->unique()->safeEmail,
             'total_price' => $this->faker->randomFloat(2, 10, 500),
         ];
     }
