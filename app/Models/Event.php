@@ -40,6 +40,16 @@ class Event extends Model
     {
         return $this->hasMany(EventImage::class);
     }
+
+    public function comentarios()
+    {
+        return $this->hasMany(Comentario::class);
+    }
+
+    public function obtenerComentarios()
+    {
+        return $this->comentarios()->orderBy('created_at', 'desc')->get();
+    }
     
     public function lowestTicketPrice()
     {
