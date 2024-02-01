@@ -66,11 +66,16 @@
                 </div>
             @endif
 
-            <button type="submit" class="btn btn-primary">Continuar</button>
+            <button type="button" id="continue-button" class="btn btn-primary">Continuar</button>
         </form>
 
         {{-- Mensaje de Respuesta del Formulario --}}
         <div id="form-response"></div>
+
+        {{-- Inserta el formulario de Redsys --}}
+        <div class="redsys-form">
+            {!! $form !!}
+        </div>
     </div>
 @endsection
 

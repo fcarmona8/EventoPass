@@ -39,7 +39,7 @@ Route::get('/tickets/legalnotice', function () {
     return view('tickets.legalnotice');
 })->name('tickets.legalnotice');
 
-Route::post('/tickets/confirmpurchase', [ConfirmPurchaseController::class, 'showConfirmPurchase'])->name('tickets.purchaseconfirm');
+Route::post('/tickets/purchaseconfirm', [ConfirmPurchaseController::class, 'showConfirmPurchase'])->name('tickets.purchaseconfirm');
 
 Route::post('/tickets/process-purchase', [ConfirmPurchaseController::class, 'processPurchase'])->name('tickets.processPurchase');
 
