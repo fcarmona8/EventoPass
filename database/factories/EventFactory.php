@@ -60,6 +60,7 @@ class EventFactory extends Factory
 
         $eventData = [
             'name' => $eventNames[$eventCounter % count($eventNames)],
+            'nominal' => 0,
             'description' => $descriptions[$eventCounter % count($descriptions)],
             'venue_id' => Venue::inRandomOrder()->first()->id ?? Venue::factory(),
             'user_id' => User::inRandomOrder()->first()->id ?? User::factory(),

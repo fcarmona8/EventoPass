@@ -10,12 +10,7 @@ class Purchase extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'session_id', 'total_price'];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    protected $fillable = ['session_id', 'total_price', 'name', 'email', 'dni', 'phone'];
 
     public function tickets()
     {
