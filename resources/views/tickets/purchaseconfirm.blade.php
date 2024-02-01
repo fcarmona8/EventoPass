@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        #btn_submit {
+            display: none;
+        }
+    </style>
+
     <div class="container">
         <h2>Confirmación de Compra</h2>
 
@@ -121,19 +127,15 @@
         }, 1000);
 
         document.getElementById('purchase-form').addEventListener('submit', function(e) {
-            e.preventDefault(); // Previene el envío normal del formulario
+            e.preventDefault();
+            const formData = new FormData(this);
 
-            // Obtén los datos del formulario
-            var formData = new FormData(this);
-
-            // Convierte el array ticketData en un objeto JSON
-            var ticketDataObject = {};
+            const ticketDataObject = {};
             @foreach ($ticketData as $ticketTypeId => $quantity)
                 ticketDataObject[{{ $ticketTypeId }}] = {{ $quantity }};
             @endforeach
             formData.set('ticketData', JSON.stringify(ticketDataObject));
 
-            // Envía los datos a tu endpoint de Laravel usando fetch o XMLHttpRequest
             fetch('{{ route('tickets.savePurchaseData') }}', {
                     method: 'POST',
                     body: formData,
@@ -145,11 +147,8 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        // Aquí puedes redirigir al usuario o abrir el formulario de Redsys directamente
-                        // Por ejemplo, si Redsys requiere enviar el formulario, puedes hacer:
                         document.querySelector('.redsys-form form').submit();
                     } else {
-                        // Manejar el caso de error
                         console.error(data.message);
                     }
                 })

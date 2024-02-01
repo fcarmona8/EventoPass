@@ -124,4 +124,14 @@ class ConfirmPurchaseController extends Controller
             return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
         }
     }
+
+    public function ok(Request $request)
+    {
+        // Asignar el estado 'success' directamente
+        $response['status'] = 'success';
+
+        // Redirigir a la vista 'payment.response', enviando $message, $decode, y $response
+        return view('payment.response', compact('response'));
+    }
+
 }
