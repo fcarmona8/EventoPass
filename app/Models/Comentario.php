@@ -25,17 +25,4 @@ class Comentario extends Model
         return $this->belongsTo(Evento::class);
     }
 
-    // Función para obtener todos los comentarios de un evento específico
-    public static function comentariosPorEvento($event_id)
-    {
-        try {
-            return Comentario::where('evento_id', $event_id)->get();
-        } catch (\Exception $e) {
-            Log::error('Error en la función comentariosPorEvento', [
-                'event_id' => $event_id,
-                'error_message' => $e->getMessage()
-            ]);
-        }
-    }
-
 }

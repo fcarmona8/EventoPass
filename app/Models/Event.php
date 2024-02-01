@@ -48,7 +48,7 @@ class Event extends Model
 
     public function obtenerComentarios()
     {
-        return $this->comentarios;
+        return $this->comentarios()->orderBy('created_at', 'desc')->get();
     }
     
     public function lowestTicketPrice()
