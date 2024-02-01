@@ -41,7 +41,7 @@ Route::get('/tickets/legalnotice', function () {
 
 Route::post('/tickets/purchaseconfirm', [ConfirmPurchaseController::class, 'showConfirmPurchase'])->name('tickets.purchaseconfirm');
 
-Route::post('/tickets/process-purchase', [ConfirmPurchaseController::class, 'processPurchase'])->name('tickets.processPurchase');
+Route::post('/tickets/save-purchase-data', [ConfirmPurchaseController::class, 'savePurchaseData'])->name('tickets.savePurchaseData');
 
 Route::view('/payment/response', 'payment.response')->name('payment.response');
 

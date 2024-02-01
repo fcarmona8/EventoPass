@@ -18,7 +18,7 @@
         </div>
 
         {{-- Formulario de Datos Personales --}}
-        <form id="purchase-form" action="{{ route('tickets.processPurchase') }}" method="POST">
+        <form id="purchase-form" action="{{ route('tickets.savePurchaseData') }}" method="POST">
             @csrf
             <input type="hidden" name="eventId" value="{{ $event->id }}">
             <input type="hidden" name="totalPrice" value="{{ $totalPrice }}">
@@ -66,7 +66,11 @@
                 </div>
             @endif
 
-            <button type="button" id="continue-button" class="btn btn-primary">Continuar</button>
+            <input type="hidden" name="ticketData" id="ticketData" value=''>
+
+            <!-- Asegúrate de que tu botón sea de tipo "submit" -->
+            <button type="submit" id="continue-button" class="btn btn-primary">Continuar</button>
+
         </form>
 
         {{-- Mensaje de Respuesta del Formulario --}}
@@ -115,5 +119,41 @@
                 window.location.href = `/tickets/showevent/${eventId}`;
             }
         }, 1000);
+
+        document.getElementById('purchase-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Previene el envío normal del formulario
+
+            // Obtén los datos del formulario
+            var formData = new FormData(this);
+
+            // Convierte el array ticketData en un objeto JSON
+            var ticketDataObject = {};
+            @foreach ($ticketData as $ticketTypeId => $quantity)
+                ticketDataObject[{{ $ticketTypeId }}] = {{ $quantity }};
+            @endforeach
+            formData.set('ticketData', JSON.stringify(ticketDataObject));
+
+            // Envía los datos a tu endpoint de Laravel usando fetch o XMLHttpRequest
+            fetch('{{ route('tickets.savePurchaseData') }}', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Aquí puedes redirigir al usuario o abrir el formulario de Redsys directamente
+                        // Por ejemplo, si Redsys requiere enviar el formulario, puedes hacer:
+                        document.querySelector('.redsys-form form').submit();
+                    } else {
+                        // Manejar el caso de error
+                        console.error(data.message);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
     </script>
 @endpush

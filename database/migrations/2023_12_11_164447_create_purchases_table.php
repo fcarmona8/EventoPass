@@ -14,7 +14,7 @@ class CreatePurchasesTable extends Migration
             $table->string("name");
             $table->string("dni");
             $table->integer("phone");
-            $table->string('email')->unique();
+            $table->string('email');
             $table->decimal('total_price', 8, 2);
             $table->timestamps();
         });
