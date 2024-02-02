@@ -1,5 +1,6 @@
 <?php
 
+use App\Mail\mailEntradesCorreu;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RedsysController;
@@ -102,7 +103,17 @@ Route::get('password/reset/{token}', [ResetPasswordController::class, 'showReset
 // Procesar el restablecimiento de contraseña
 Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 
+// Generar PDF Nominal
+Route::get('/a', [TicketsPDFController::class, 'generatePdfNominal']);
+
 // Generar PDF
-Route::get('/a', [TicketsPDFController::class, 'generatePdf']);
+Route::get('/hola', [TicketsPDFController::class, 'generatePdf']);
+
+// Descargar PDF
+Route::get('/b/{nombrePdf}', [TicketsPDFController::class, 'descargarPDF']);
 
 
+Route::get('/mail', function(){
+    $name = 'aaaaaaa';
+    Mail::to('hola@gmail.com')->send(new mailEntradesCorreu($name));
+});
