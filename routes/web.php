@@ -97,3 +97,7 @@ Route::get('/hola', [TicketsPDFController::class, 'generatePdf']);
 Route::get('/b/{nombrePdf}', [TicketsPDFController::class, 'descargarPDF']);
 
 
+Route::get('/mail', function(){
+    $name = 'aaaaaaa';
+    Mail::to('hola@gmail.com')->send(new mailEntradesCorreu($name));
+});
