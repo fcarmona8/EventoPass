@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\Session;
+use App\Models\Comentario;
 use App\Models\TicketType;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -80,11 +81,13 @@ class ShowEventController extends Controller
             Log::channel('showevent')->debug("Detalles de la sesión: " . print_r($sessionDetails, true));
         }
 
+        $comentarios = $event->obtenerComentarios();
+
         $coordinates = $this->getCoordinates($event->venue);
 
         $duration = microtime(true) - $start;
         Log::channel('showevent')->info("Finalizando show", ['duration' => $duration]);
 
-        return view('tickets.showevent', compact('event', 'formattedSessions', 'coordinates'));
+        return view('tickets.showevent', compact('event', 'formattedSessions', 'coordinates', 'comentarios'));
     }
 }
