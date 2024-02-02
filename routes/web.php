@@ -113,10 +113,11 @@ Route::get('/hola', [TicketsPDFController::class, 'generatePdf']);
 // Descargar PDF
 Route::get('/b/{nombrePdf}', [TicketsPDFController::class, 'descargarPDF']);
 
+// enviar mail con enlace para descargar entradas
 Route::get('/mail/entrades', [MailController::class, 'enviarEntrades']);
-
 
 /* Route::get('/mail', function(){
     $name = 'aaaaaaa';
     Mail::to('hola@gmail.com')->send(new mailEntradesCorreu($name, $nombreEvento));
 }); */
+
