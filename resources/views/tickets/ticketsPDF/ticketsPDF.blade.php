@@ -87,7 +87,12 @@ html {
 </head>
 
 <body>
-    @for ($i = 1; $i <= $nEntrades; $i++)
+    @php
+        $session = Session::get('a');
+        $entrada = 0;
+    @endphp
+    @for ($i = 1; $i <= $session['nEntrades']; $i++)
+    @php $entrada++; @endphp
     <div class="pdf">
         <div class="header">
             <table style="width: 100%;">
@@ -105,8 +110,8 @@ html {
             <div class="infoContainer">
                 <div class="divInfoEntrada">
                     <h3> Informació entrada </h3>
-                    <p> Tipus: Normal </p>
-                    <p> Preu: 10€ </p>
+                       <p> Tipus: {{ $session['ticketName'.$entrada] }} </p>                     
+                    <p> Preu: {{ $session['ticketNameEur'.$entrada] }} </p>
                 </div>
                 <div class="linea"></div>
                 <div class="divInfoSessio">
@@ -124,6 +129,12 @@ html {
             <img src="data:image/png;base64, {{ $qrCode }}" alt="Código QR">
         </div>
     </div>
+    @if ($session['ticketNameNum'.$entrada] > 1)
+                        @php 
+                            $session['ticketNameNum'.$entrada] = $session['ticketNameNum'.$entrada]-1;
+                            $entrada = $entrada -1; 
+                        @endphp
+                       @endif
     @endfor
 </body>
 

@@ -4,16 +4,16 @@ namespace App\Http\Controllers;
 
 require_once base_path('app/redsysHMAC256_API_PHP_7.0.0/apiRedsys.php');
 
+use Exception;
 use App\Models\Event;
 use App\Models\Ticket;
-use App\Models\Session;
+use GuzzleHttp\Client;
 use App\Models\Purchase;
 use App\Models\TicketType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Exception;
-use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 
 class ConfirmPurchaseController extends Controller
 {
@@ -31,6 +31,7 @@ class ConfirmPurchaseController extends Controller
 
         $areTicketsNominal = $event->nominal;
         Log::info('Valor de $areTicketsNominal: ' . $areTicketsNominal);
+        
 
         return view('tickets.purchaseconfirm', compact('eventId', 'event', 'totalPrice', 'ticketTypes', 'ticketData', 'areTicketsNominal'));
     }
@@ -72,6 +73,8 @@ class ConfirmPurchaseController extends Controller
         $params = $redsys->createMerchantParameters();
         $signature = $redsys->createMerchantSignature('sq7HjrUOBfKmC576ILgskD5srU870gJ7');
         
+        Session::put('a', $request->all());
+
         // Pasar los datos a la vista
         return view('payment.paymentform', compact('params', 'signature'));
     }

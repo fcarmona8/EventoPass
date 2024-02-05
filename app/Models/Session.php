@@ -41,4 +41,16 @@ class Session extends Model
         }
     }
 
+    public function scopeSessionEvent(Builder $query, $session_id){
+        try {
+            
+            return $query->where('id', '=', "$session_id");
+        } catch (\Exception $e) {
+            Log::error('Error en la función scopeUserEvent en el modelo Event', [
+                'id' => $session_id,
+                'error_message' => $e->getMessage()
+            ]);
+        }
+    }
+
 }
