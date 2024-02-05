@@ -18,9 +18,9 @@
         {{-- Detalles del Evento --}}
         <div class="event-details">
             <h3>{{ $event->name }}</h3>
-            <p>Fecha: {{ \Carbon\Carbon::parse($event->event_date)->format('d/m/Y') }}</p>
-            <p>Hora: {{ \Carbon\Carbon::parse($event->event_date)->format('H:i') }}</p>
-            <p>Precio Total: €{{ $totalPrice }}</p>
+            <p>Fecha: {{ head(explode(' ', $sessio->date_time)) }}</p>
+            <p>Hora: {{ implode(' ', array_slice(explode(' ', $sessio->date_time), 1)) }}</p>
+            <p>Precio Total: €{{ $totalPrice }}</p>            
         </div>
 
         {{-- Formulario de Datos Personales --}}
@@ -32,17 +32,17 @@
             @if ($areTicketsNominal)
                 {{-- Campos para cada asistente cuando es nominal --}}
                 @foreach ($ticketData as $ticketTypeId => $quantity)
-                    @for ($i = 0; $i < $quantity; $i++)
+                    @for ($i = 1; $i <= $quantity; $i++)
                         <div class="attendee-details">
-                            <h4>Detalles del Asistente {{ $i + 1 }}</h4>
+                            <h4>Detalles del Asistente {{ $i }}</h4>
                             <p>Tipo de entrada: {{ $ticketTypes[$ticketTypeId]->name }}</p>
                             <p>Precio individual: €{{ $ticketTypes[$ticketTypeId]->price }}</p>
                             <input type="text" name="attendee[{{ $ticketTypeId }}][{{ $i }}][name]"
-                                placeholder="Nombre Asistente {{ $i + 1 }}" required>
+                                placeholder="Nombre Asistente {{ $i }}" required>
                             <input type="text" name="attendee[{{ $ticketTypeId }}][{{ $i }}][dni]"
-                                placeholder="DNI Asistente {{ $i + 1 }}" required>
+                                placeholder="DNI Asistente {{ $i }}" required>
                             <input type="text" name="attendee[{{ $ticketTypeId }}][{{ $i }}][phone]"
-                                placeholder="Teléfono Asistente {{ $i + 1 }}" required>
+                                placeholder="Teléfono Asistente {{ $i }}" required>
                         </div>
                     @endfor
                 @endforeach
@@ -51,12 +51,27 @@
                 <div class="non-nominal-details">
                     <h4>Detalles de la Compra (No Nominal)</h4>
                     <p>Número total de entradas: {{ array_sum($ticketData) }}</p>
+                    <input type="hidden" name="nEntrades" value= {{ array_sum($ticketData) }}>
+                    @php
+                    $pos = 1;
+                    @endphp
                     @foreach ($ticketData as $ticketTypeId => $quantity)
                         @php
                             $ticketType = $ticketTypes->firstWhere('id', $ticketTypeId);
                         @endphp
                         @if ($ticketType)
                             <p>{{ $ticketType->name }}: {{ $quantity }}</p>
+                            <input type="hidden" name="ticketName{{$pos}}" value={{$ticketType->name}}>
+                            <input type="hidden" name="ticketNameNum{{$pos}}" value = {{$quantity}}>
+                            <input type="hidden" name="ticketNameEur{{$pos}}" value = {{$ticketType->price}}>
+                            <input type="hidden" name="horaSession" value={{ implode(' ', array_slice(explode(' ', $sessio->date_time), 1)) }}>
+                            <input type="hidden" name="fechaSession" value={{ head(explode(' ', $sessio->date_time)) }}>
+                            <input type="hidden" name="eventName" value = {{$event->name}}>
+                            <input type="hidden" name="sessionId" value = {{$sessio->id}}>
+
+                            @php
+                            $pos++;
+                            @endphp
                         @else
                             <p>Tipo de entrada desconocido: ID {{ $ticketTypeId }}</p>
                         @endif
@@ -74,7 +89,6 @@
 
             <input type="hidden" name="ticketData" id="ticketData" value=''>
 
-            <!-- Asegúrate de que tu botón sea de tipo "submit" -->
             <button type="submit" id="continue-button" class="btn btn-primary">Continuar</button>
 
         </form>

@@ -4,16 +4,18 @@ namespace App\Http\Controllers;
 
 require_once base_path('app/redsysHMAC256_API_PHP_7.0.0/apiRedsys.php');
 
+use Exception;
 use App\Models\Event;
+use App\Models\Venue;
 use App\Models\Ticket;
+use GuzzleHttp\Client;
 use App\Models\Session;
 use App\Models\Purchase;
 use App\Models\TicketType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Exception;
-use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session as sessionLaravel;
 
 class ConfirmPurchaseController extends Controller
 {
@@ -23,6 +25,8 @@ class ConfirmPurchaseController extends Controller
         $sessionId = $request->input('sessionId');
         $totalPrice = $request->input('totalPrice');
         $ticketData = json_decode($request->input('ticketData'), true);
+
+        $sessio = Session::where('id', $sessionId)->first();
 
         $event = Event::with('venue')->find($eventId);
         $ticketTypes = TicketType::findMany(array_keys($ticketData));
@@ -40,7 +44,7 @@ class ConfirmPurchaseController extends Controller
         $areTicketsNominal = $event->nominal;
         Log::info('Valor de $areTicketsNominal: ', ['areTicketsNominal' => $areTicketsNominal]);
 
-        return view('tickets.purchaseconfirm', compact('eventId', 'event', 'totalPrice', 'ticketTypes', 'ticketData', 'areTicketsNominal'));
+        return view('tickets.purchaseconfirm', compact('eventId', 'event', 'totalPrice', 'ticketTypes', 'ticketData', 'areTicketsNominal', 'sessio'));
     }
 
     public function createPayment(Request $request)
@@ -48,6 +52,14 @@ class ConfirmPurchaseController extends Controller
         // Aquí debes implementar la lógica para recoger los datos de la compra
         $totalPrice = $request->input('totalPrice'); 
         $eventId = $request->input('eventId');
+
+        $eventVenueid = Event::find($eventId);
+
+        $eventubi = Venue::searchByVenueId($eventVenueid->venue_id)->value('venue_name');
+        $eventubi = $eventubi . ', ' . Venue::searchByVenueId($eventVenueid->venue_id)->value('city');
+        $eventubi = $eventubi . ', ' . Venue::searchByVenueId($eventVenueid->venue_id)->value('province');
+        $eventubi = $eventubi . ', ' . Venue::searchByVenueId($eventVenueid->venue_id)->value('postal_code');
+
         
         // Convertir el precio a la forma que Redsys espera (sin decimales, como entero)
         $amount = (int)($totalPrice * 100);
@@ -80,6 +92,9 @@ class ConfirmPurchaseController extends Controller
         $params = $redsys->createMerchantParameters();
         $signature = $redsys->createMerchantSignature('sq7HjrUOBfKmC576ILgskD5srU870gJ7');
         
+        $request->merge(['eventubi' => $eventubi]);
+        sessionLaravel::put('a', $request->all());
+
         // Pasar los datos a la vista
         return view('payment.paymentform', compact('params', 'signature'));
     }
