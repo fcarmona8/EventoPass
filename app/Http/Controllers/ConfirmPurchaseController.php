@@ -20,17 +20,25 @@ class ConfirmPurchaseController extends Controller
     public function showConfirmPurchase(Request $request)
     {
         $eventId = $request->input('eventId');
+        $sessionId = $request->input('sessionId');
         $totalPrice = $request->input('totalPrice');
         $ticketData = json_decode($request->input('ticketData'), true);
 
         $event = Event::with('venue')->find($eventId);
         $ticketTypes = TicketType::findMany(array_keys($ticketData));
+        $session = Session::find($sessionId);
+
+        Log::info('Session: ', ['sessionId' => $sessionId]);
+
+        if (!$session) {
+            return redirect()->back()->with('error', 'La sesión seleccionada no existe.');
+        }
 
         Log::info('TicketData: ', $ticketData);
         Log::info('TicketTypes: ', $ticketTypes->toArray());
 
         $areTicketsNominal = $event->nominal;
-        Log::info('Valor de $areTicketsNominal: ' . $areTicketsNominal);
+        Log::info('Valor de $areTicketsNominal: ', ['areTicketsNominal' => $areTicketsNominal]);
 
         return view('tickets.purchaseconfirm', compact('eventId', 'event', 'totalPrice', 'ticketTypes', 'ticketData', 'areTicketsNominal'));
     }
