@@ -24,7 +24,7 @@
         </div>
 
         {{-- Formulario de Datos Personales --}}
-        <form id="purchase-form" action="{{ route('tickets.savePurchaseData') }}" method="POST">
+        <form id="purchase-form" action="{{ route('tickets.createPayment') }}" method="POST">
             @csrf
             <input type="hidden" name="eventId" value="{{ $event->id }}">
             <input type="hidden" name="totalPrice" value="{{ $totalPrice }}">
@@ -78,14 +78,6 @@
             <button type="submit" id="continue-button" class="btn btn-primary">Continuar</button>
 
         </form>
-
-        {{-- Mensaje de Respuesta del Formulario --}}
-        <div id="form-response"></div>
-
-        {{-- Inserta el formulario de Redsys --}}
-        <div class="redsys-form">
-            {!! $form !!}
-        </div>
     </div>
 @endsection
 
@@ -125,34 +117,5 @@
                 window.location.href = `/tickets/showevent/${eventId}`;
             }
         }, 1000);
-
-        document.getElementById('purchase-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(this);
-
-            const ticketDataObject = {};
-            @foreach ($ticketData as $ticketTypeId => $quantity)
-                ticketDataObject[{{ $ticketTypeId }}] = {{ $quantity }};
-            @endforeach
-            formData.set('ticketData', JSON.stringify(ticketDataObject));
-
-            fetch('{{ route('tickets.savePurchaseData') }}', {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                        'Accept': 'application/json',
-                    },
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        document.querySelector('.redsys-form form').submit();
-                    } else {
-                        console.error(data.message);
-                    }
-                })
-                .catch(error => console.error('Error:', error));
-        });
     </script>
 @endpush
