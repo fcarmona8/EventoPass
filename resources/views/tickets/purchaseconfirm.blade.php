@@ -18,9 +18,9 @@
         {{-- Detalles del Evento --}}
         <div class="event-details">
             <h3>{{ $event->name }}</h3>
-            <p>Fecha: {{ \Carbon\Carbon::parse($event->event_date)->format('d/m/Y') }}</p>
-            <p>Hora: {{ \Carbon\Carbon::parse($event->event_date)->format('H:i') }}</p>
-            <p>Precio Total: €{{ $totalPrice }}</p>
+            <p>Fecha: {{ head(explode(' ', $sessio->date_time)) }}</p>
+            <p>Hora: {{ implode(' ', array_slice(explode(' ', $sessio->date_time), 1)) }}</p>
+            <p>Precio Total: €{{ $totalPrice }}</p>            
         </div>
 
         {{-- Formulario de Datos Personales --}}
@@ -64,6 +64,11 @@
                             <input type="hidden" name="ticketName{{$pos}}" value={{$ticketType->name}}>
                             <input type="hidden" name="ticketNameNum{{$pos}}" value = {{$quantity}}>
                             <input type="hidden" name="ticketNameEur{{$pos}}" value = {{$ticketType->price}}>
+                            <input type="hidden" name="horaSession" value={{ implode(' ', array_slice(explode(' ', $sessio->date_time), 1)) }}>
+                            <input type="hidden" name="fechaSession" value={{ head(explode(' ', $sessio->date_time)) }}>
+                            <input type="hidden" name="eventName" value = {{$event->name}}>
+                            <input type="hidden" name="sessionId" value = {{$sessio->id}}>
+
                             @php
                             $pos++;
                             @endphp

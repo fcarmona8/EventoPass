@@ -101,7 +101,7 @@ html {
                         <img src="{{ public_path('logo/logo.png') }}" class="logoPDF">
                     </td>
                     <td>
-                        <h1 class="pdfh1">Evento en pdf con titulo</h1>
+                        <h1 class="pdfh1">{{$session['eventName']}}</h1>
                     </td>
                 </tr>
             </table>
@@ -116,9 +116,9 @@ html {
                 <div class="linea"></div>
                 <div class="divInfoSessio">
                     <h3> Informació sessió </h3>
-                    <p> Data: 14/07/2024 </p>
-                    <p> Hora: 15:00 </p>
-                    <p> Direcció: Torrent del Batlle, 10 08225 Terrassa Barcelona </p>
+                    <p> Data: {{ $session['fechaSession'] }} </p>
+                    <p> Hora: {{ $session['horaSession'] }} </p>
+                    <p> Direcció: {{ $session['eventubi'] }} </p>
                 </div>
             </div>
         </div>

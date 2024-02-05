@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Purchase;
 
 require_once base_path('app/RedsysHMAC256_API_PHP_7.0.0/apiRedsys.php');
 
@@ -8,6 +9,8 @@ use RedsysAPI;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\TicketsPDFController;
+use Illuminate\Support\Facades\Session as sessionLaravel;
 
 class PaymentController extends Controller
 {
@@ -61,9 +64,19 @@ class PaymentController extends Controller
 
             // Decodificar y verificar los parámetros de salida de Redsys
             $decodedResponseParams = json_decode(base64_decode($responseData['Ds_MerchantParameters']), true);
-            dd($request = Session::get('a'));
+            
 
             if (isset($decodedResponseParams['Ds_Response']) && (int)$decodedResponseParams['Ds_Response'] <= 99) {
+
+                $ticketsPDFController = new TicketsPDFController();
+                $ticketsPDFController->generatePdf();
+
+                $session = sessionLaravel::get('a');
+
+                $compra = new Purchase;
+                $compra->generarCompra($session['sessionId'],$session['totalPrice'],$session['buyerName'],$session['buyerEmail'],$session['buyerDNI'],$session['buyerPhone']);
+
+                dd($request = Session::get('a'));
                 // Operación autorizada
                 return view('payment.success');
             } else {
