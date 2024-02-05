@@ -38,23 +38,23 @@ class ConfirmPurchaseController extends Controller
     public function createPayment(Request $request)
     {
         // Aquí debes implementar la lógica para recoger los datos de la compra
-        $totalPrice = $request->input('totalPrice'); // Asegúrate de que este dato se pasa correctamente
+        $totalPrice = $request->input('totalPrice'); 
         $eventId = $request->input('eventId');
         
         // Convertir el precio a la forma que Redsys espera (sin decimales, como entero)
-        $amount = (int)($totalPrice * 100); // Ej: 100.00€ se convierte en 10000
+        $amount = (int)($totalPrice * 100);
         
         // Datos de la transacción
-        $order = time(); // ID de pedido único
-        $merchantCode = '999008881'; // Código FUC asignado por el banco
-        $currency = '978'; // Código de moneda (978 para Euros)
-        $transactionType = '0'; // Tipo de transacción, 0 para autorización
+        $order = time();
+        $merchantCode = '999008881';
+        $currency = '978';
+        $transactionType = '0'; 
         $terminal = '1';
-        $merchantURL = ''; // URL a la que Redsys enviará las respuestas de las transacciones
+        $merchantURL = '';
         $authCode = '123456';
         
         // Cargar la clase RedsysAPI
-        $redsys = new \RedsysAPI; // Asegúrate de usar el namespace correcto
+        $redsys = new \RedsysAPI;
         
         // Establecer parámetros
         $redsys->setParameter("DS_MERCHANT_AMOUNT", $amount);
