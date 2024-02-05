@@ -1,11 +1,15 @@
 <?php
 
+use App\Http\Controllers\MailController;
+use App\Mail\mailEntradesCorreu;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RedsysController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ResultatsController;
 use App\Http\Controllers\ShowEventController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\TicketsPDFController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\CreateEventController;
@@ -14,7 +18,6 @@ use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ConfirmPurchaseController;
 use App\Http\Controllers\PromotorSessionsListController;
-use App\Http\Controllers\ComentarioController;
 
 
 // Página principal
@@ -43,9 +46,13 @@ Route::get('/tickets/legalnotice', function () {
 
 Route::post('/tickets/purchaseconfirm', [ConfirmPurchaseController::class, 'showConfirmPurchase'])->name('tickets.purchaseconfirm');
 
-Route::post('/tickets/save-purchase-data', [ConfirmPurchaseController::class, 'savePurchaseData'])->name('tickets.savePurchaseData');
+Route::post('/tickets/create-payment', [ConfirmPurchaseController::class, 'createPayment'])->name('tickets.createPayment');
 
-Route::view('/ok', 'payment.response')->name('payment.response.ok');
+Route::post('/process-payment', [PaymentController::class, 'processPayment'])->name('processPayment');
+
+Route::post('/initiate-payment', [PaymentController::class, 'initiatePayment'])->name('initiatePayment');
+
+Route::match(['get', 'post'], '/payment/response', 'PaymentController@handlePaymentResponse')->name('payment.response');
 
 Route::view('/payment/response', 'payment.response')->name('payment.response');
 
@@ -102,7 +109,20 @@ Route::get('password/reset/{token}', [ResetPasswordController::class, 'showReset
 // Procesar el restablecimiento de contraseña
 Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 
-// Generar PDF
-Route::get('/a', [TicketsPDFController::class, 'generatePdf']);
+// Generar PDF Nominal
+Route::get('/a', [TicketsPDFController::class, 'generatePdfNominal']);
 
+// Generar PDF
+Route::get('/hola', [TicketsPDFController::class, 'generatePdf']);
+
+// Descargar PDF
+Route::get('/b/{nombrePdf}', [TicketsPDFController::class, 'descargarPDF']);
+
+// enviar mail con enlace para descargar entradas
+Route::get('/mail/entrades', [MailController::class, 'enviarEntrades']);
+
+/* Route::get('/mail', function(){
+    $name = 'aaaaaaa';
+    Mail::to('hola@gmail.com')->send(new mailEntradesCorreu($name, $nombreEvento));
+}); */
 
