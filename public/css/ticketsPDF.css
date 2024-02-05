@@ -16,7 +16,7 @@ body, html{
 .header{
     display: flex;
     margin: 2% 0%;
-    background-color: var(--principal);;
+    background-color: blue;
     width: 90%;
     justify-items: center;
     align-items: center;
