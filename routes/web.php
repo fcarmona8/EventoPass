@@ -5,9 +5,11 @@ use App\Mail\mailEntradesCorreu;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RedsysController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ResultatsController;
 use App\Http\Controllers\ShowEventController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\TicketsPDFController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\CreateEventController;
@@ -16,7 +18,6 @@ use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ConfirmPurchaseController;
 use App\Http\Controllers\PromotorSessionsListController;
-use App\Http\Controllers\ComentarioController;
 
 
 // Página principal
@@ -45,9 +46,13 @@ Route::get('/tickets/legalnotice', function () {
 
 Route::post('/tickets/purchaseconfirm', [ConfirmPurchaseController::class, 'showConfirmPurchase'])->name('tickets.purchaseconfirm');
 
-Route::post('/tickets/save-purchase-data', [ConfirmPurchaseController::class, 'savePurchaseData'])->name('tickets.savePurchaseData');
+Route::post('/tickets/create-payment', [ConfirmPurchaseController::class, 'createPayment'])->name('tickets.createPayment');
 
-Route::view('/ok', 'payment.response')->name('payment.response.ok');
+Route::post('/process-payment', [PaymentController::class, 'processPayment'])->name('processPayment');
+
+Route::post('/initiate-payment', [PaymentController::class, 'initiatePayment'])->name('initiatePayment');
+
+Route::match(['get', 'post'], '/payment/response', 'PaymentController@handlePaymentResponse')->name('payment.response');
 
 Route::view('/payment/response', 'payment.response')->name('payment.response');
 
