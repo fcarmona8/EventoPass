@@ -74,7 +74,7 @@ class PaymentController extends Controller
                 $session = sessionLaravel::get('a');
 
                 $compra = new Purchase;
-                $compra->generarCompra($session['sessionId'],$session['totalPrice'],$session['buyerName'],$session['buyerEmail'],$session['buyerDNI'],$session['buyerPhone']);
+                $compra->generarCompra($session['sessionId'],$session['totalPrice'],$session['buyerName'],$session['buyerEmail'],$session['buyerDNI'],$session['buyerPhone'],$session['nEntrades']);
 
                 dd($request = Session::get('a'));
                 // Operación autorizada
