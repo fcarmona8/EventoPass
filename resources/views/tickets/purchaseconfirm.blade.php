@@ -9,7 +9,7 @@
 
     <div class="container">
         <h2 id="titulo-confirmacion-compra">Confirmación de Compra</h2>
-        <div class="flexRow">
+        <div class="contenedorDetalles">
             <div class="detalles-compra">
 
                 {{-- Detalles del Evento --}}
@@ -53,7 +53,7 @@
                                     $ticketType = $ticketTypes->firstWhere('id', $ticketTypeId);
                                 @endphp
                                 @if ($ticketType)
-                                    <li class="lista-entradas-compra">&mdash; &nbsp; {{ $ticketType->name }}: {{ $quantity }} <span class="precio-entrada-compra">{{ $ticketType->price }} €</span></li>
+                                    <li class="lista-entradas-compra">&#8226; &nbsp; {{ $ticketType->name }}<span class="precio-entrada-compra">{{ $ticketType->price }} € x {{ $quantity }} </span></li>
                                 @else
                                     <p>Tipo de entrada desconocido: ID {{ $ticketTypeId }}</p>
                                 @endif
