@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Session as LaravelSession;
 use Illuminate\Support\Facades\Storage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -54,7 +55,10 @@ class TicketsPDFController extends Controller
 
         $pdf = PDF::loadView('tickets.ticketsPDF.ticketsPdf', $data);
 
-        $storagePath = 'public/pdfs/a.pdf';
+        $session =  LaravelSession::get('a');
+        $pdfName = $session['buyerDNI'] . $session['eventId'];
+
+        $storagePath = 'public/pdfs/'.$pdfName .'.pdf';
 
         Storage::put($storagePath, $pdf->output());
         

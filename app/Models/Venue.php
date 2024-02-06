@@ -21,5 +21,12 @@ class Venue extends Model
     
     public function events() { return $this->hasMany(Event::class); }
 
+    public function scopeSearchByVenueId($query, $venueId)
+    {
+        return $query->where('id', $venueId);
+    }
+
+
+
 }
 
