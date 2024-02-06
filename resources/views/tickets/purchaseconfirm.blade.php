@@ -48,7 +48,6 @@
                         {{-- Cuando no es nominal, mostrar cantidad total de entradas y tipo --}}
                         <div class="non-nominal-details">
                             <h3 class="h3-detalles-compra h3-detalles-precio">Detalles de la Compra <br>(No Nominal)</h3>
-                            <p>Número total de entradas: {{ array_sum($ticketData) }}</p>
                             <input type="hidden" name="nEntrades" value={{ array_sum($ticketData) }}>
                             @php
                                 $pos = 1;
