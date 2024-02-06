@@ -25,7 +25,7 @@
   color: #000000; }
 
 p {
-  font-size: 12px; }
+  font-size: 16px; }
 
 @media (min-width: 768px) {
   .pagination {
@@ -36,4 +36,4 @@ p {
   .pagination li a {
     font-size: 16px; }
   p {
-    font-size: 14px; } }
+    font-size: 16px; } }
