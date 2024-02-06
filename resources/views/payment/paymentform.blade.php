@@ -2,17 +2,17 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h2>Pago Seguro con Redsys</h2>
-        <form name="redsysForm" action="{{ route('initiatePayment') }}" method="POST">
+    <div class="container contenedorPago">
+        <h2 class="titulo-pagina-pago">Pago Seguro con Redsys</h2>
+        <form class="formularioPago" name="redsysForm" action="{{ route('initiatePayment') }}" method="POST">
             @csrf
-            <input type="text" name="creditCard" placeholder="Número de Tarjeta" required>
+            <input type="text" class="numeroTarjeta" name="creditCard" placeholder="Número de Tarjeta" required>
             <input type="text" name="expirationDate" placeholder="Fecha de Vencimiento (MM/AA)" id="fechaTarjeta" required>
             <input type="text" name="CVV" placeholder="CVV" maxlength="4" required >
             <input type="hidden" name="Ds_SignatureVersion" value="HMAC_SHA256_V1">
             <input type="hidden" name="Ds_MerchantParameters" value="{{ $params }}">
             <input type="hidden" name="Ds_Signature" value="{{ $signature }}">
-            <button type="submit">Proceder al pago</button>
+            <button type="submit" class="botonPago">Proceder al pago</button>
         </form>
     </div>
 @endsection
