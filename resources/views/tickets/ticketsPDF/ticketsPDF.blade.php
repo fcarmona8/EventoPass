@@ -123,7 +123,7 @@ html {
             </div>
         </div>
         <div class="dadesEntrades">
-            <p style="padding: 1% 2%"> Identificador entrada: 12345 </p>
+            <p style="padding: 1% 2%"> Identificador entrada: {{ $session['ticketName'.$entrada] }}.{{$entrada}}.{{ $session['buyerDNI'].$entrada }} </p>
         </div>
          <div class="qr">
             <img src="data:image/png;base64, {{ $qrCode }}" alt="Código QR">

@@ -9,12 +9,11 @@ use Illuminate\Support\Facades\Mail;
 class MailController extends Controller{
 
 
-    public function enviarEntrades(){
+    public static function enviarEntrades($correu, $namePdf, $nameEvent){
 
-        $name = "http://127.0.0.1:8000/b/a.pdf";
-        $nombreEvento = "Evento 5";
+        $name = "http://127.0.0.1:8000/entrades/".$namePdf.".pdf";
 
-        Mail::to('hola@gmail.com')->send(new mailEntradesCorreu($name, $nombreEvento));
+        Mail::to($correu)->send(new mailEntradesCorreu($name, $nameEvent));
     }
 
 

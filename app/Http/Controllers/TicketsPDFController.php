@@ -47,16 +47,13 @@ class TicketsPDFController extends Controller
         $base64QrCode = base64_encode($qrCodeImage);
 
         $data = [
-            'title' => 'a',
-            'content' => 'a',
-            'nEntrades' => 2,
             'qrCode' => $base64QrCode
         ];
 
         $pdf = PDF::loadView('tickets.ticketsPDF.ticketsPdf', $data);
 
         $session =  LaravelSession::get('a');
-        $pdfName = $session['buyerDNI'] . $session['eventId'];
+        $pdfName = $session['buyerDNI'] . $session['sessionId'];
 
         $storagePath = 'public/pdfs/'.$pdfName .'.pdf';
 
@@ -72,9 +69,6 @@ class TicketsPDFController extends Controller
         $base64QrCode = base64_encode($qrCodeImage);
 
         $data = [
-            'title' => 'a',
-            'content' => 'a',
-            'nEntrades' => 10,
             'qrCode' => $base64QrCode
         ];
 
@@ -82,7 +76,7 @@ class TicketsPDFController extends Controller
 
         $pdf = PDF::loadView('tickets.ticketsPDF.ticketsPdfNominals', $data);
 
-        $storagePath = 'public/pdfs/a.pdf';
+        $storagePath = 'public/pdfs/z.pdf';
 
         Storage::put($storagePath, $pdf->output());
 
