@@ -16,7 +16,7 @@ class mailEntradesCorreu extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(private $name, private $nombreEvento)
+    public function __construct(private $name, private $nombreEvento, private $event)
     {
         //
     }
@@ -38,7 +38,8 @@ class mailEntradesCorreu extends Mailable
     {
         return new Content(
             view: 'emails.mailEntradesCorreu',
-            with: ['name' => $this->name]
+            with: ['name' => $this->name,
+            'event' => $this->event]
         );
     }
 

@@ -81,8 +81,8 @@ class PaymentController extends Controller
 
                 $compra = new Purchase;
                 $compra->generarCompra($session['sessionId'],$session['totalPrice'],$session['buyerName'],$session['buyerEmail'],$session['buyerDNI'],$session['buyerPhone'],$session['nEntrades']);
-                MailController::enviarEntrades($session['buyerEmail'],$session['buyerDNI'].$session['sessionId'],$session['eventName']);
-                dd($request = Session::get('a'));
+                MailController::enviarEntrades($session['buyerEmail'],$session['buyerDNI'].$session['sessionId'],$session['eventName'],$session['eventId']);
+                //dd($request = Session::get('a'));
                 // Operación autorizada
                 return view('payment.response');
             } else {
