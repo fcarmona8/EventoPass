@@ -62,6 +62,7 @@
                         @if ($ticketType)
                             <p>{{ $ticketType->name }}: {{ $quantity }}</p>
                             <input type="hidden" name="ticketName{{$pos}}" value={{$ticketType->name}}>
+                            <input type="hidden" name="ticketNameId{{$pos}}" value={{$ticketType->id}}>
                             <input type="hidden" name="ticketNameNum{{$pos}}" value = {{$quantity}}>
                             <input type="hidden" name="ticketNameEur{{$pos}}" value = {{$ticketType->price}}>
                             <input type="hidden" name="horaSession" value={{ implode(' ', array_slice(explode(' ', $sessio->date_time), 1)) }}>

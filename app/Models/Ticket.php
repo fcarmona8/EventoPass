@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Ticket extends Model
 {
@@ -25,5 +26,30 @@ class Ticket extends Model
     public function session()
     {
         return $this->belongsTo(Session::class);
+    }
+
+
+    public static function buyTicket($session_id, $type_id, $purchase_id, $cantidad){
+
+        DB::table('tickets')
+        ->where('session_id', '=', $session_id)
+        ->where('type_id', '=', $type_id)
+        ->whereNull('purchase_id') 
+        ->take($cantidad) 
+        ->update(['purchase_id' => $purchase_id]);
+
+    }
+
+    public static function restarNTickets($idTicket, $cantidad){
+
+        $currentAvailableTickets = DB::table('ticket_types')
+            ->where('id', '=', $idTicket)
+            ->value('available_tickets');
+
+        $newAvailableTickets = $currentAvailableTickets - $cantidad;
+
+        DB::table('ticket_types')
+            ->where('id', '=', $idTicket)
+            ->update(['available_tickets' => $newAvailableTickets]);
     }
 }
