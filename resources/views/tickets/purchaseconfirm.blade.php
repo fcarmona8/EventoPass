@@ -30,11 +30,12 @@
             <input type="hidden" name="totalPrice" value="{{ $totalPrice }}">
 
             @if ($areTicketsNominal)
-                {{-- Campos para cada asistente cuando es nominal --}}
+                {{-- Campos para cada asistente cuando es nominal
                 @foreach ($ticketData as $ticketTypeId => $quantity)
                     @for ($i = 1; $i <= $quantity; $i++)
                         <div class="attendee-details">
                             <h4>Detalles del Asistente {{ $i }}</h4>
+                            @php dd($ticketTypes); @endphp
                             <p>Tipo de entrada: {{ $ticketTypes[$ticketTypeId]->name }}</p>
                             <p>Precio individual: €{{ $ticketTypes[$ticketTypeId]->price }}</p>
                             <input type="text" name="attendee[{{ $ticketTypeId }}][{{ $i }}][name]"
@@ -45,13 +46,41 @@
                                 placeholder="Teléfono Asistente {{ $i }}" required>
                         </div>
                     @endfor
+                @endforeach --}}
+                @php $nEntrada = 1; @endphp
+                <input type="hidden" name="nEntrades" value= {{ array_sum($ticketData) }}>
+                <input type="hidden" name="nominals?" value= {{true}}>
+                @foreach ( $ticketTypes as $ticket)
+                        @php $quantity = $ticketData[$ticket->id]; @endphp
+                        @for ($i=1; $i <= $quantity; $i++)
+                            
+                        
+                <div class="attendee-details">
+                    <h4>Detalles del Asistente {{ $nEntrada }}</h4>
+                    <p>Tipo de entrada: {{ $ticket->name }}</p>
+                    <p>Precio individual: €{{ $ticket->price }}</p>
+                    <input type="text" name="name{{$nEntrada}}"
+                        placeholder="Nombre Asistente {{ $nEntrada }}" required>
+                    <input type="text" name="dni{{$nEntrada}}"
+                        placeholder="DNI Asistente {{ $nEntrada }}" required>
+                    <input type="text" name="phone{{$nEntrada}}"
+                        placeholder="Teléfono Asistente {{ $nEntrada }}" required>
+                    <input type="hidden" name="ticketName{{$nEntrada}}" value={{$ticket->name}}>
+                    <input type="hidden" name="ticketNameId{{$nEntrada}}" value={{$ticket->id}}>
+                    <input type="hidden" name="ticketNameNum{{$nEntrada}}" value = {{$quantity}}>
+                    <input type="hidden" name="ticketNameEur{{$nEntrada}}" value = {{$ticket->price}}>
+                </div>                    
+                @php $nEntrada++; @endphp
+                @endfor
                 @endforeach
+
             @else
                 {{-- Cuando no es nominal, mostrar cantidad total de entradas y tipo --}}
                 <div class="non-nominal-details">
                     <h4>Detalles de la Compra (No Nominal)</h4>
                     <p>Número total de entradas: {{ array_sum($ticketData) }}</p>
                     <input type="hidden" name="nEntrades" value= {{ array_sum($ticketData) }}>
+                    <input type="hidden" name="nominals?" value= {{false}}>
                     @php
                     $pos = 1;
                     @endphp
@@ -61,14 +90,10 @@
                         @endphp
                         @if ($ticketType)
                             <p>{{ $ticketType->name }}: {{ $quantity }}</p>
-                            <input type="hidden" name="ticketName{{$pos}}" value={{$ticketType->name}}>
-                            <input type="hidden" name="ticketNameId{{$pos}}" value={{$ticketType->id}}>
+                            <input type="hidden" name="ticketName{{$pos}}" value = {{$ticketType->name}}>
+                            <input type="hidden" name="ticketNameId{{$pos}}" value = {{$ticketType->id}}>
                             <input type="hidden" name="ticketNameNum{{$pos}}" value = {{$quantity}}>
                             <input type="hidden" name="ticketNameEur{{$pos}}" value = {{$ticketType->price}}>
-                            <input type="hidden" name="horaSession" value={{ implode(' ', array_slice(explode(' ', $sessio->date_time), 1)) }}>
-                            <input type="hidden" name="fechaSession" value={{ head(explode(' ', $sessio->date_time)) }}>
-                            <input type="hidden" name="eventName" value = {{$event->name}}>
-                            <input type="hidden" name="sessionId" value = {{$sessio->id}}>
 
                             @php
                             $pos++;
@@ -78,15 +103,19 @@
                         @endif
                     @endforeach
                 </div>
-
+            @endif
                 <div class="buyer-details">
                     <h4>Datos del Comprador</h4>
                     <input type="text" name="buyerName" placeholder="Nombre del Comprador" required>
                     <input type="text" name="buyerDNI" placeholder="DNI del Comprador" required>
                     <input type="text" name="buyerPhone" placeholder="Teléfono del Comprador" required>
                     <input type="email" name="buyerEmail" placeholder="Correo Electrónico del Comprador" required>
+                    <input type="hidden" name="horaSession" value={{ implode(' ', array_slice(explode(' ', $sessio->date_time), 1)) }}>
+                    <input type="hidden" name="fechaSession" value={{ head(explode(' ', $sessio->date_time)) }}>
+                    <input type="hidden" name="eventName" value = {{$event->name}}>
+                    <input type="hidden" name="sessionId" value = {{$sessio->id}}>
                 </div>
-            @endif
+            
 
             <input type="hidden" name="ticketData" id="ticketData" value=''>
 
