@@ -169,18 +169,23 @@
                 @csrf
                 <h2>Nova Adreça</h2>
                 <!-- Formulario para crear nova adreça -->
+                <label class="labelDireccion" for="nova_provincia">Provincia:</label>
                 <input class="input-event input-adreca" type="text" name="nova_provincia" id="nova_provincia"
                     placeholder="Provincia" required>
 
+                <label class="labelDireccion" for="nova_ciutat">Ciutat:</label>
                 <input class="input-event input-adreca" type="text" name="nova_ciutat" id="nova_ciutat"
                     placeholder="Ciutat" required>
 
+                <label class="labelDireccion" for="codi_postal">Codi Postal:</label>
                 <input class="input-event input-adreca" type="number" name="codi_postal" id="codi_postal"
                     placeholder="Codi Postal"required>
 
+                <label class="labelDireccion" for="nom_local">Nom del local:</label>
                 <input class="input-event input-adreca" type="text" name="nom_local" id="nom_local"
                     placeholder="Nom del local" required>
 
+                <label class="labelDireccion" class="labelDireccion"l for="capacitat_local">Capacitat del local:</label>
                 <input class="input-event input-adreca" type="number" name="capacitat_local" id="capacitat_local"
                     placeholder="Capacitat del local" required>
 

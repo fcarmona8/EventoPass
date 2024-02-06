@@ -84,14 +84,14 @@ class PaymentController extends Controller
                 MailController::enviarEntrades($session['buyerEmail'],$session['buyerDNI'].$session['sessionId'],$session['eventName']);
                 dd($request = Session::get('a'));
                 // Operación autorizada
-                return view('payment.success');
+                return view('payment.response');
             } else {
                 // Operación rechazada o fallida
-                return view('payment.error', ['error' => 'Transacción rechazada o fallida.']);
+                return view('payment.response', ['error' => 'Transacción rechazada o fallida.']);
             }
         } else {
             // Error al conectar con Redsys
-            return view('payment.error', ['error' => 'Error al conectar con el sistema de pago.']);
+            return view('payment.response', ['error' => 'Error al conectar con el sistema de pago.']);
         }
     }
 }

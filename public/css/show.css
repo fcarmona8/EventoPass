@@ -282,7 +282,7 @@
   font-size: 100%;
 }
 
-.contenedorComentarios{
+.contenedorComentarios {
   margin-bottom: 100px;
   padding: 10px;
 }
@@ -295,55 +295,56 @@
   margin: 20px auto;
 }
 
-.tituloComentario{
+.tituloComentario {
   font-size: 16px;
   margin-bottom: 20px;
 }
 
-.usuarioComentario{
+.usuarioComentario {
   margin: 0;
 }
 
-.usuarioComentario, .textoComentario{
+.usuarioComentario,
+.textoComentario {
   font-size: 16px
 }
 
-.textoComentario{
+.textoComentario {
   margin-top: 20px;
   margin-bottom: 30px;
 }
 
-.contenedorPuntuacionUsuario{
+.contenedorPuntuacionUsuario {
   display: flex;
   flex-direction: column;
   margin: 10px 8px;
   align-items: center;
 }
 
-.puntuacionUsuario{
+.puntuacionUsuario {
   display: flex;
   align-items: center;
   margin-top: 10px;
 }
 
-.stars{
+.stars {
   margin-left: 14px;
   vertical-align: -1px;
   margin-top: 2px;
 }
 
-.separadorComentario{
+.separadorComentario {
   border: 0.5px solid #e4e4e4;
 }
 
-.noComentarios{
+.noComentarios {
   width: 100%;
   display: flex;
   justify-content: center;
   margin-top: 50px;
 }
 
-.fechaComentario{
+.fechaComentario {
   margin: 0px 8px;
   font-size: 14px;
 }
@@ -378,7 +379,7 @@
     margin: 5% 0%;
   }
 
-  .contenedorPuntuacionUsuario{
+  .contenedorPuntuacionUsuario {
     display: flex;
     flex-direction: row;
     margin-left: 8px;
@@ -395,15 +396,16 @@
     margin-right: auto;
   }
 
-  .puntuacionUsuario{
+  .puntuacionUsuario {
     display: flex;
     flex-direction: row;
     margin-left: 36px;
     margin-top: 0px;
   }
 
-  .stars{
+  .stars {
     margin-left: 14px;
     margin-top: 4px;
   }
+
 }

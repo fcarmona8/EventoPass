@@ -8,12 +8,18 @@
     </style>
 
     <div class="container">
-        <h2>Confirmación de Compra</h2>
-
-        {{-- Temporizador --}}
         <div id="timer" class="timer">
-            10:00
+            Tiempo para finalizar la compra: 10:00
         </div>
+        <h2 id="titulo-confirmacion-compra">Confirmación de Compra</h2>
+        <div class="contenedorDetalles">
+            <div class="detalles-compra">
+                {{-- Detalles del Evento --}}
+                <div class="event-details">
+                    <h3 class="h3-detalles-compra">{{ $event->name }}</h3>
+                    <p>Fecha: {{ head(explode(' ', $sessio->date_time)) }}</p>
+                    <p>Hora: {{ implode(' ', array_slice(explode(' ', $sessio->date_time), 1)) }}</p>
+                </div>
 
         {{-- Detalles del Evento --}}
         <div class="event-details">
@@ -95,8 +101,31 @@
                             <input type="hidden" name="ticketNameNum{{$pos}}" value = {{$quantity}}>
                             <input type="hidden" name="ticketNameEur{{$pos}}" value = {{$ticketType->price}}>
 
+                    @if ($areTicketsNominal)
+                        {{-- Campos para cada asistente cuando es nominal --}}
+                        @foreach ($ticketData as $ticketTypeId => $quantity)
+                            @for ($i = 1; $i <= $quantity; $i++)
+                                <div class="attendee-details">
+                                    <h4>Detalles del Asistente {{ $i }}</h4>
+                                    <p>Tipo de entrada: {{ $ticketTypes[$ticketTypeId]->name }}</p>
+                                    <p>Precio individual: €{{ $ticketTypes[$ticketTypeId]->price }}</p>
+                                    <input type="text" name="attendee[{{ $ticketTypeId }}][{{ $i }}][name]"
+                                        placeholder="Nombre Asistente {{ $i }}" required>
+                                    <input type="text" name="attendee[{{ $ticketTypeId }}][{{ $i }}][dni]"
+                                        placeholder="DNI Asistente {{ $i }}" required>
+                                    <input type="text" name="attendee[{{ $ticketTypeId }}][{{ $i }}][phone]"
+                                        placeholder="Teléfono Asistente {{ $i }}" required>
+                                </div>
+                            @endfor
+                        @endforeach
+                    @else
+                        {{-- Cuando no es nominal, mostrar cantidad total de entradas y tipo --}}
+                        <div class="non-nominal-details">
+                            <h3 class="h3-detalles-compra h3-detalles-precio">Detalles de la Compra <br>(No Nominal)</h3>
+                            <p>Número total de entradas: {{ array_sum($ticketData) }}</p>
+                            <input type="hidden" name="nEntrades" value={{ array_sum($ticketData) }}>
                             @php
-                            $pos++;
+                                $pos = 1;
                             @endphp
                         @else
                             <p>Tipo de entrada desconocido: ID {{ $ticketTypeId }}</p>
@@ -119,10 +148,15 @@
 
             <input type="hidden" name="ticketData" id="ticketData" value=''>
 
-            <button type="submit" id="continue-button" class="btn btn-primary">Continuar</button>
 
-        </form>
+
+            </form>
+
+        </div>
+        {{-- Temporizador --}}
+
     </div>
+
 @endsection
 
 @push('scripts')
@@ -138,7 +172,7 @@
             const minutes = Math.floor(timer / 60);
             const seconds = timer % 60;
             timerElement.textContent =
-                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                `Tiempo para finalizar la compra: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
             const countdownElement = document.getElementById('countdown');
 
             if (countdownElement) {

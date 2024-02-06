@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{ asset('css/sesion-list.css') }}">
     <link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
     <link rel="stylesheet" href="{{ asset('css/comentarios.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/compra-tickets.css') }}">
     <title>@yield('title')</title>
 </head>
 
