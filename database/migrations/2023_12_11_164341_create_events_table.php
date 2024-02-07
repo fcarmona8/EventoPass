@@ -12,7 +12,7 @@ class CreateEventsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name', 255);
             $table->text('description');
-            $table->string('main_image', 255)->nullable();
+            $table->unsignedBigInteger('main_image_id')->nullable();
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('venue_id');
             $table->unsignedBigInteger('user_id')->nullable();
@@ -21,11 +21,12 @@ class CreateEventsTable extends Migration
             $table->boolean('hidden')->default(false);
             $table->boolean('nominal')->default(false);
             $table->timestamps();
+
+            // Define las relaciones con otras tablas
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('venue_id')->references('id')->on('venues');
             $table->foreign('user_id')->references('id')->on('users');
         });
-        
     }
 
     public function down()

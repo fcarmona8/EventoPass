@@ -284,6 +284,248 @@ En l'arxiu config/app.php a l'apartat de 'provaiders' fiquem la següent línia 
 
 I publiquem el paquet per a poder modificar-lo --> php artisan vendor:publish --provider="Barryvdh\DomPDF\ServiceProvider"
 
+== Descripció General de l'API
+L'API de Gestió d'Imatges permet la càrrega, optimització i gestió d'imatges. Aquesta API és accessible a través de la base URL `http://localhost:8080/api/V1` i està dissenyada per oferir una forma eficient de manejar imatges en aplicacions web i mòbils.
+
+=== Informació General
+- *Títol:* Image Management API
+- *Descripció:* API per a la càrrega, optimització, i gestió d'imatges.
+- *Versió:* 1.0.0
+
+=== Servidors
+- URL: http://localhost:8080/api/V1
+- Descripció: URL base de l'API
+
+== Rutes de l'API
+
+=== Operacions sobre Imatges `/images`
+
+==== GET
+.Llista totes les imatges.
+* Resum: Retorna una llista de totes les imatges disponibles.
+* Respostes:
+** `200`: Llista d'imatges obtinguda amb èxit.
++
+.Content-type: `application/json`
++
+.Esquema:
++
+[source,json]
+----
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "example": 1
+      },
+      "name": {
+        "type": "string",
+        "example": "image.jpg"
+      }
+    }
+  }
+}
+----
+
+==== POST
+.Carrega una nova imatge i crea les seves versions optimitzades.
+* Resum: Permet la càrrega d'una nova imatge.
+* RequestBody: Requerit, `multipart/form-data`.
+* Respostes:
+** `201`: Imatge carregada i optimitzada correctament.
+** `400`: Sol·licitud invàlida.
+** `415`: Tipus de mitjà no suportat.
+** `500`: Error intern del servidor.
+
+=== Operacions sobre una Imatge Específica `/images/{id}`
+
+==== GET
+.Obté una imatge específica pel seu ID.
+* Resum: Retorna una imatge específica.
+* Paràmetres: `id` - El ID de la imatge a obtenir.
+* Respostes:
+** `200`: Imatge obtinguda amb èxit.
+** `404`: Imatge no trobada.
+
+==== DELETE
+.Elimina una imatge específica i les seves versions optimitzades.
+* Resum: Elimina la imatge especificada pel ID.
+* Paràmetres: `id` - El ID de la imatge a eliminar.
+* Respostes:
+** `204`: Imatge eliminada amb èxit.
+** `404`: Imatge no trobada.
+
+==== POST
+.Actualitza una imatge específica i les seves versions optimitzades.
+* Resum: Actualitza la imatge especificada pel ID.
+* RequestBody: Requerit, `multipart/form-data`.
+* Respostes:
+** `200`: Imatge actualitzada amb èxit.
+** `400`: Sol·licitud invàlida.
+** `404`: Imatge no trobada.
+** `415`: Tipus de mitjà no suportat.
+** `500`: Error intern del servidor.
+
+=== Operacions sobre Imatges Optimitzades `/optimized-images/{image_id}/{version}`
+
+==== GET
+.Obté una versió optimitzada específica d'una imatge.
+* Resum: Retorna una versió optimitzada de la imatge.
+* Paràmetres:
+** `image_id` - El ID de la imatge.
+** `version` - La versió de la imatge optimitzada a obtenir (small, medium, large).
+* Respostes:
+** `200`: Versió optimitzada de la imatge obtinguda amb èxit.
+** `404`: Imatge no trobada.
+** `500`: Error intern del servidor.
+
+----
+openapi: 3.0.0
+info:
+  title: Image Management API
+  description: API para la carga, optimización, y gestión de imágenes.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api/V1
+    description: API base URL
+paths:
+  /images:
+    get:
+      summary: Lista todas las imágenes
+      responses:
+        '200':
+          description: Lista de imágenes obtenida con éxito
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: image.jpg
+    post:
+      summary: Carga una nueva imagen y crea sus versiones optimizadas
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  description: Archivo de imagen para cargar.
+              required:
+                - image
+      responses:
+        '201':
+          description: Imagen cargada y optimizada correctamente
+        '400':
+          description: Solicitud inválida
+        '415':
+          description: Tipo de medio no soportado
+        '500':
+          description: Error interno del servidor
+  /images/{id}:
+    get:
+      summary: Obtiene una imagen específica por su ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: El ID de la imagen a obtener.
+      responses:
+        '200':
+          description: Imagen obtenida con éxito
+        '404':
+          description: Imagen no encontrada
+    delete:
+      summary: Elimina una imagen específica y sus versiones optimizadas
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: El ID de la imagen a eliminar.
+      responses:
+        '204':
+          description: Imagen eliminada con éxito
+        '404':
+          description: Imagen no encontrada
+    post:
+      summary: Actualiza una imagen específica y sus versiones optimizadas
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: El ID de la imagen a actualizar.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  description: Archivo de imagen para actualizar.
+              required:
+                - image
+      responses:
+        '200':
+          description: Imagen actualizada con éxito
+        '400':
+          description: Solicitud inválida
+        '404':
+          description: Imagen no encontrada
+        '415':
+          description: Tipo de medio no soportado
+        '500':
+          description: Error interno del servidor
+  /optimized-images/{image_id}/{version}:
+    get:
+      summary: Obtiene una versión optimizada específica de una imagen
+      parameters:
+        - in: path
+          name: image_id
+          required: true
+          schema:
+            type: integer
+          description: El ID de la imagen.
+        - in: path
+          name: version
+          required: true
+          schema:
+            type: string
+            enum:
+              - small
+              - medium
+              - large
+          description: La versión de la imagen optimizada a obtener.
+      responses:
+        '200':
+          description: Versión optimizada de la imagen obtenida con éxito
+        '404':
+          description: Imagen no encontrada
+        '500':
+          description: Error interno del servidor
+
+----
 
 == Línies Futures
 Plantejaments sobre l'evolució futura del projecte.
