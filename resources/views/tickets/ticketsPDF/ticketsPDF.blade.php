@@ -123,8 +123,14 @@ html {
             </div>
         </div>
         <div class="dadesEntrades">
-            <p style="padding: 1% 2%"> Identificador entrada: {{ $session['ticketName'.$entrada] }}.{{$entrada}}.{{ $session['buyerDNI'].$entrada }} </p>
-        </div>
+            <p style="padding: 1% 2%">
+                Identificador entrada: 
+                @php 
+                    $hash = hash('sha256', $i . $session['ticketName'.$entrada] . $session['sessionId'] . $i . $session['buyerDNI'].$entrada . $i); 
+                    echo $hash;
+                @endphp 
+            </p>
+                </div>
          <div class="qr">
             <img src="data:image/png;base64, {{ $qrCode }}" alt="Código QR">
         </div>

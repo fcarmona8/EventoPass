@@ -2,6 +2,9 @@
 
 namespace App\Http;
 
+use App\Mail\mailRecordatorioEvento;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -67,4 +70,5 @@ class Kernel extends HttpKernel
         'isPromotor' => \App\Http\Middleware\IsPromotor::class,
         'isAdmin' => \App\Http\Middleware\IsAdmin::class,
     ];
+
 }
