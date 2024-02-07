@@ -116,7 +116,7 @@ Route::get('/a', [TicketsPDFController::class, 'generatePdfNominal']);
 Route::get('/hola', [TicketsPDFController::class, 'generatePdf']);
 
 // Descargar PDF
-Route::get('/b/{nombrePdf}', [TicketsPDFController::class, 'descargarPDF']);
+Route::get('/entrades/{nombrePdf}', [TicketsPDFController::class, 'descargarPDF']);
 
 // enviar mail con enlace para descargar entradas
 Route::get('/mail/entrades', [MailController::class, 'enviarEntrades']);

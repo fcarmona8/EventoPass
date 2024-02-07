@@ -49,6 +49,7 @@
                         <div class="non-nominal-details">
                             <h3 class="h3-detalles-compra h3-detalles-precio">Detalles de la Compra <br>(No Nominal)</h3>
                             <input type="hidden" name="nEntrades" value={{ array_sum($ticketData) }}>
+                            <input type="hidden" name="nominals?" value= {{false}}>
                             @php
                                 $pos = 1;
                             @endphp
