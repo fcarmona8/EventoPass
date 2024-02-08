@@ -8,9 +8,9 @@
                 <div class="card cardHomePromotor">
                     @if ($session->event->main_image)
                         <img src="{{ asset('storage/' . $session->event->main_image) }}" alt="{{ $session->event->name }}"
-                            onerror="this.onerror=null; this.src='https://picsum.photos/200'">
+                            onerror="this.onerror=null; this.src='https://picsum.photos/200'" loading="lazy">
                     @else
-                        <img src="https://picsum.photos/2000" alt="{{ $session->event->name }}">
+                        <img src="https://picsum.photos/2000" alt="{{ $session->event->name }}" loading="lazy">
                     @endif
                     <div class="sessionCont">
                         <p>Data: {{ \Carbon\Carbon::parse($session->date_time)->format('Y-m-d, H:i') }}</p>
@@ -34,9 +34,9 @@
                             @if ($event->main_image)
                                 <img src="{{ asset('storage/' . $session->event->main_image) }}"
                                     alt="{{ $session->event->name }}"
-                                    onerror="this.onerror=null; this.src='https://picsum.photos/200'">
+                                    onerror="this.onerror=null; this.src='https://picsum.photos/200'" loading="lazy">
                             @else
-                                <img src="https://picsum.photos/2000" alt="{{ $session->event->name }}">
+                                <img src="https://picsum.photos/2000" alt="{{ $session->event->name }}" loading="lazy">
                             @endif
                             <div class="sessionCont">
                                 <p>Data: {{ \Carbon\Carbon::parse($event->event_date)->format('d/m/Y, H:i') }}</p>
