@@ -16,12 +16,12 @@ class mailRecordatorioEvento extends Mailable
     /**
      * Create a new message instance.
      *
-     * @param  string  $fecha
+     * @param  string  $namePDF
      * @return void
      */
-    public function __construct($fecha)
+    public function __construct(private $namePDF)
     {
-        $this->fecha = $fecha;
+        $this->namePDF = $namePDF;
     }
 
     /**
@@ -31,8 +31,8 @@ class mailRecordatorioEvento extends Mailable
      */
     public function build()
     {
-        return $this->subject('Mail Recordatorio Evento')
-                    ->view('view.name')
-                    ->with(['fecha' => $this->fecha]);
+        return $this->subject('Recordatorio Evento')
+                    ->view('emails.mailRecordatorioEvento')
+                    ->with(['namePDF' => $this->namePDF]);
     }
 }

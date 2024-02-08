@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session as LaravelSession;
 use Illuminate\Support\Facades\Storage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
+
 class TicketsPDFController extends Controller
 {
 
@@ -21,10 +22,14 @@ class TicketsPDFController extends Controller
 
         $pdf = PDF::loadView('tickets.ticketsPDF.ticketsPdf', $data);
 
-        $session =  LaravelSession::get('a');
+        $session =  LaravelSession::get('datosCompra');
         $pdfName = $session['buyerDNI'] . $session['sessionId'];
 
         $storagePath = 'public/pdfs/'.$pdfName .'.pdf';
+
+        $session['namePDF'] = $pdfName.'.pdf';
+
+        LaravelSession::put('datosCompra', $session);
 
         Storage::put($storagePath, $pdf->output());
         

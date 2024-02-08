@@ -13,7 +13,7 @@ class Purchase extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['session_id', 'total_price', 'name', 'email', 'dni', 'phone'];
+    protected $fillable = ['session_id', 'total_price', 'name', 'email', 'dni', 'phone', 'ticketsPDF'];
 
     public function tickets()
     {
@@ -21,7 +21,7 @@ class Purchase extends Model
     }
 
 
-    public function generarCompra($session_id, $total_price, $name, $email, $dni, $phone, $nTickets)
+    public function generarCompra($session_id, $total_price, $name, $email, $dni, $phone, $nTickets, $namePDF)
     {
         DB::beginTransaction();
 
@@ -33,7 +33,9 @@ class Purchase extends Model
             'email' => $email,
             'dni' => $dni,
             'phone' => $phone,
+            'ticketsPDF' => $namePDF
         ]);
+
 
         $purchase_id = $purchase->id;
 
@@ -50,7 +52,7 @@ class Purchase extends Model
 
     public static function nEntrades()
     {
-        $session = sessionLaravel::get('a');
+        $session = sessionLaravel::get('datosCompra');
         $tickets = [];
 
         foreach ($session as $key => $value) {

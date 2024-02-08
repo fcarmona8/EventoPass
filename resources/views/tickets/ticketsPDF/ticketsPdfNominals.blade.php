@@ -89,7 +89,7 @@ html {
 
 <body>
     @php
-        $session = Session::get('a');
+        $session = Session::get('datosCompra');
         $entrada = 0;
     @endphp
     @for ($i = 1; $i <= $session['nEntrades']; $i++)
@@ -99,7 +99,7 @@ html {
             <table style="width: 100%;">
                 <tr>
                     <td style="width: 150px;">
-                        <img src="{{ public_path('logo/logo.png') }}" class="logoPDF">
+                        <img src="{{ public_path('logo/logo.png') }}" class="logoPDF" loading="lazy">
                     </td>
                     <td>
                         <h1 class="pdfh1">{{$session['eventName']}}</h1>
@@ -112,7 +112,7 @@ html {
                 <div class="divInfoEntrada">
                     <h3> Informació entrada </h3>
                        <p> Tipus: {{ $session['ticketName'.$entrada] }} </p>                     
-                    <p> Preu: {{ $session['ticketNameEur'.$entrada] }} </p>
+                    <p> Preu: {{ $session['ticketNameEur'.$entrada] }} €</p>
                 </div>
                 <div class="linea"></div>
                 <div class="divInfoSessio">
@@ -131,10 +131,13 @@ html {
             </div>
         </div>
         <div class="dadesEntrades">
-            <p style="padding: 1% 2%"> Identificador entrada: {{$entrada}}{{ $session['dni'.$entrada] }}{{$session['sessionId']}}{{$entrada}}{{ $session['phone'.$entrada] }}{{$entrada}}  </p>
+            <p style="padding: 1% 2%">
+                Identificador entrada: 
+                {{ hash('sha256', $entrada . $session['dni'.$entrada] . $session['sessionId'] . $entrada . $session['phone'.$entrada] . $entrada) }}
+            </p>
         </div>
          <div class="qr">
-            <img src="data:image/png;base64, {{ $qrCode }}" alt="Código QR">
+            <img src="data:image/png;base64, {{ $qrCode }}" alt="Código QR" loading="lazy">
         </div>
     </div>
     @endfor

@@ -2,9 +2,9 @@
     <div class="card">
         @if ($event->main_image)
             <img src="{{ asset('storage/' . $event->main_image) }}" alt="{{ $event->name }}"
-                onerror="this.onerror=null; this.src='https://picsum.photos/200'">
+                onerror="this.onerror=null; this.src='https://picsum.photos/200'" loading="lazy">
         @else
-            <img src="https://picsum.photos/2000" alt="{{ $event->name }}">
+            <img src="https://picsum.photos/2000" alt="{{ $event->name }}" loading="lazy">
         @endif
         <div class="card-content">
             <h3>{{ Str::limit($event->name, $limit = 55, $end = '...') }}</h3>
