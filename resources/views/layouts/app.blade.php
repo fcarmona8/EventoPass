@@ -63,7 +63,7 @@
 
         <h1 id="title">EventoPass</h1>
         <a href="{{ route('home') }}">
-            <img id="logo" src="{{ asset('logo/logo.png') }}" alt="Logo de la Aplicación">
+            <img id="logo" src="{{ asset('logo/logo.png') }}" alt="Logo de la Aplicación" loading="lazy">
         </a>
     </header>
 

@@ -68,7 +68,7 @@ class PaymentController extends Controller
 
             if (isset($decodedResponseParams['Ds_Response']) && (int)$decodedResponseParams['Ds_Response'] <= 99) {
 
-                $session = sessionLaravel::get('a');
+                $session = sessionLaravel::get('datosCompra');
                 $ticketsPDFController = new TicketsPDFController();
 
                 if($session['nominals?']){
@@ -78,11 +78,11 @@ class PaymentController extends Controller
                 }
                 
                 
-
+                $session = sessionLaravel::get('datosCompra');
                 $compra = new Purchase;
-                $compra->generarCompra($session['sessionId'],$session['totalPrice'],$session['buyerName'],$session['buyerEmail'],$session['buyerDNI'],$session['buyerPhone'],$session['nEntrades']);
+                $compra->generarCompra($session['sessionId'],$session['totalPrice'],$session['buyerName'],$session['buyerEmail'],$session['buyerDNI'],$session['buyerPhone'],$session['nEntrades'],$session['namePDF']);
                 MailController::enviarEntrades($session['buyerEmail'],$session['buyerDNI'].$session['sessionId'],$session['eventName'],$session['eventId']);
-                //dd($request = Session::get('a'));
+
                 // Operación autorizada
                 return view('payment.response');
             } else {
