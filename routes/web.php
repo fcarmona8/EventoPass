@@ -76,9 +76,9 @@ Route::get('/tickets/buytickets', function () {
     return view('tickets.buytickets');
 })->name('tickets.buytickets');
 
-Route::get('/tickets/comentario', [ComentarioController::class, 'index'])->name('tickets.comentarios');
+Route::get('tickets/comentarios/{token}/{compra}/{evento}', [ComentarioController::class, 'index'])->name('tickets.crearComentario');
 
-Route::post('/tickets/comentario', [ComentarioController::class, 'store'])->name('tickets.comentarios');
+Route::post('/tickets/comentario/', [ComentarioController::class, 'store'])->name('tickets.guardarComentario');
 
 // Home Administradores
 Route::get('/admin/home', function () {
