@@ -48,7 +48,7 @@ class programarComentarioEvento extends Command
 
                 $token = substr($token, 0, 32);
     
-                $url = route('tickets.crearComentario', ['token' => $token, 'compra' => $compra->id, 'evento' => $eventoId]);
+                $url = env('url') . '/tickets/comentarios/' . $token . '/' . $compra->id . '/' . $eventoId;
 
                 Mail::to($compra['email'])->send(new mailComentarioEvento($url));
             }
