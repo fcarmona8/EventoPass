@@ -10,9 +10,7 @@ use Illuminate\Queue\SerializesModels;
 class mailRecordatorioEvento extends Mailable
 {
     use Queueable, SerializesModels;
-
-    public $fecha;
-
+    
     /**
      * Create a new message instance.
      *
@@ -31,8 +29,10 @@ class mailRecordatorioEvento extends Mailable
      */
     public function build()
     {
+        $entrades = env('url') . "/entrades/" . $this->namePDF;
         return $this->subject('Recordatorio Evento')
                     ->view('emails.mailRecordatorioEvento')
-                    ->with(['namePDF' => $this->namePDF]);
+                    ->with(['entrades' => $entrades]);
+
     }
 }
