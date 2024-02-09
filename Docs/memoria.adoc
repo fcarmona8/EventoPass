@@ -193,6 +193,16 @@ Instal·lem l'apache2 -> sudo apt install apache2
 
 I el podem engegar -> sudo systemctl enable apache2
 
+=== Preparació del servidor:
+
+Primer de tot fem un clone el nostre repositori de git en la ruta /var/www/html --> sudo git clone https://git.copernic.cat/gpuigantell/gr04-puigantell-carmona-perez.git
+
+Ara instal·lem les dependències del composer -> sudo composer install
+
+Copiem el fitxer .env.example amb el nom .env -> sudo cp .env.example .env
+
+I creem la key del Artisan -> sudo php artisan key:generate
+
 === Creació del docker:
 Instal·lem les dependencies del Docker -> sudo apt install apt-transport-https ca-certificates curl gnupg lsb-release
 
@@ -204,25 +214,25 @@ Fem un update -> sudo apt update
 
 Instal·lem el Docker CE -> sudo apt install docker-ce docker-ce-cli containerd.io
 
-Ara descarguem l'imatge del Postgres -> docker pull postgres:latest
+Ara descarreguem la imatge del Postgres -> docker pull postgres:latest
 
 Creem el contenidor -> docker run -d --name mi_postgres -e POSTGRES_PASSWORD=mi_contraseña -e POSTGRES_USER=mi_usuario -e POSTGRES_DB=mi_basededatos -v nombre_del_volumen:/var/lib/postgresql/data -p 5432:5432 postgres:latest
 
-.En el teu fitxer .env, edita les següents líneas per a conectarte a PostgreSQL:
+En el teu fitxer .env, edita les següents línies per a conectar-te a PostgreSQL:
 
 [source,ini]
 ----
 DB_CONNECTION=pgsql
 DB_HOST=127.0.0.1
 DB_PORT=5432
-DB_DATABASE=baseDeDatos
+DB_DATABASE=basededatos
 DB_USERNAME=postgres
 DB_PASSWORD=1234
 ----
 
-També podem obrir el docker fent -> sudo docker-compose up -d
+Dins de l'arrel del projecte creem el fitxer docker-compose.yml -> sudo docker-compose.yml
 
-En el fitxer docker-compose escribim:
+En el fitxer docker-compose escrivim:
 
 [source,yaml]
 ----
@@ -238,25 +248,28 @@ services:
       POSTGRES_DB: basededatos
     ports:
       - "5555:5432"
+    restart: always
+
 ----
 
+També podem obrir el docker fent a l'arrel del projecte -> sudo docker-compose up -d
 
-=== Obrir servidor web:
+=== Configuració de servidor web:
 
-Fiquem el nostre projecte a /var/www/html
+Si no el tenim ja posem el nostre projecte a /var/www/html
 
 Creem un fitxer de configuració del apache2 -> /etc/apache2/sites-available/nom.conf
 
-Configures el fitxer amb les teves rutes i ips:
+Configurem el fitxer amb les nostres rutes i ips:
 
 [source,apache]
 ----
 <VirtualHost *:80>
     ServerAdmin webmaster@tudominio.com
     ServerName tudominio.com
-    DocumentRoot /var/www/html/tudominio/public
+    DocumentRoot /var/www/html/elteuprojecte/public
 
-    <Directory /var/www/html/tudominio>
+    <Directory /var/www/html/elteuprojecte>
         Options Indexes FollowSymLinks
         AllowOverride All
         Require all granted
@@ -272,9 +285,9 @@ Per ultim reiniciem el servei apache2 -> sudo systemctl restart apache2
 == Documentació de Permisos
 Descripció detallada dels permisos necessaris per a components, programes, contenidors, etc.
 
-Hem de donar permisos a la carpeta de logs amb aquestes dos comandes -> chmod -R 775 storage i chown -R www-data:www-data logs
+Hem de donar permisos a la carpeta de logs i framework amb aquestes dos comandes -> chmod -R 775 /var/www/html/elteuprojecte/storage/framework /var/www/html/elteuprojecte/storage/logs
 
-I hem de fer un link simbòlic entre storag/app i publiv amb -> php artisan storage:link
+I hem de fer un link simbòlic entre storage/app i public amb -> php artisan storage:link
 
 == Instal·lació del DomPDF
 
