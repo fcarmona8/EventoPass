@@ -37,7 +37,7 @@
 .linea-discontinua {
     width: 100%;
     height: 1px;
-    margin: 20px 0;
+    margin: 20px 0px 20px 10px;
     background: repeating-linear-gradient(90deg, black, black 10px, transparent 5px, transparent 20px);
 }
 
@@ -84,6 +84,46 @@
 }
 
 
+.formularioPago{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    width: 90%;
+    gap: 10px;
+    margin: 50px auto 30px auto;
+}
+
+.formularioPago input{
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid black;
+    font-size: 16px;
+}
+
+.numeroTarjeta{
+    grid-column: 1/3;
+}
+
+.botonPago{
+    grid-column: 1/3;
+    width: fit-content;
+    font-size: 16px;
+    margin-top: 16px;
+    padding: 10px 28px;
+    border-radius: 30px;
+    margin-left: auto;
+}
+
+.contenedorPago{
+    margin: 40px 20px;
+    background: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.titulo-pagina-pago{
+    font-size: 20px;
+}
 
 @media screen and (min-width: 601px) {
 
@@ -123,14 +163,6 @@
         margin: 8px;
     }
 
-
-    .linea-discontinua {
-        width: 100%;
-        height: 1px;
-        margin: 20px 0;
-        background: repeating-linear-gradient(90deg, black, black 10px, transparent 5px, transparent 20px);
-    }
-
     .h3-detalles-compra {
         font-size: 18px;
         margin-bottom: 30px;
@@ -168,5 +200,16 @@
         text-align: left;
     }
 
+    .formularioPago{
+        width: 65%;
+    }
+
+    .contenedorPago{
+        margin: 50px auto;
+    }
+
+    .titulo-pagina-pago{
+        font-size: 24px;
+    }
 
 }

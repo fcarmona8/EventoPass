@@ -8,8 +8,18 @@ use Illuminate\Support\Facades\Log;
 
 class ComentarioController extends Controller
 {
-    public function index() {
-        return view('/tickets/crearComentario');
+    public function index($token, $compraId, $eventoId) {
+
+        $tokenData = $compraId . '_' . $eventoId;
+        $tokenGenerado = hash('sha256', $tokenData);
+        $tokenGenerado = substr($tokenGenerado, 0, 32);
+
+        if ($tokenGenerado === $token) {
+            return view('tickets.crearComentario', ['eventoId' => $eventoId]);
+        } else {
+            return redirect('');
+        }
+        
     }
 
     public function store(Request $request)
@@ -22,12 +32,12 @@ class ComentarioController extends Controller
             'comentario' => 'required|string|max:300',
         ]);
 
-        $event_id = 1;
+        $event_id = $request['eventoId'];
 
         try {
             $comentario = new Comentario([
                 'nombre' => $request->input('nombre'),
-                'event_id' => 1,
+                'event_id' => $event_id,
                 'smileyRating' => $request->input('smileyRating'),
                 'puntuacion' => $request->input('reviewRating'),
                 'titulo' => $request->input('titulo'),
@@ -36,7 +46,7 @@ class ComentarioController extends Controller
     
             $comentario->save();
 
-            Log::debug('Nuevo comentario guardado correctamente', ['id: ' => $comentario->id]);
+            Log::debug('Nuevo comentario guardado correctamente', ['id_comentario: ' => $comentario->id, 'id_evento' => $event_id]);
 
             return redirect('')->with('success', 'Comentario enviado con éxito.');
 

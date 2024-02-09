@@ -2,10 +2,11 @@
 
 @section('content')
     <div class="contenedorCrearComentario">
-        <form class="formCrearComentario" action="{{ route('tickets.comentarios') }}" method="post" id="formCrearComentario">
+        <form class="formCrearComentario" action="{{ route('tickets.guardarComentario') }}" method="post" id="formCrearComentario">
             @csrf
             <h1 class="tituloEnviarComentario">Enviar un comentari</h1>
             <label for="nombre">Nom:</label>
+            <input type="hidden" name="eventoId" value="{{ $eventoId }}">
             <input type="text" name="nombre" id="nombre" maxlength="25"/><br>
 
             <label for="caretes">Què t'ha semblat l'esdeveniment:</label>

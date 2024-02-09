@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Purchase;
 
-require_once base_path('app/RedsysHMAC256_API_PHP_7.0.0/apiRedsys.php');
+require_once base_path('app/redsysHMAC256_API_PHP_7.0.0/apiRedsys.php');
 
 use RedsysAPI;
 use Illuminate\Http\Request;
