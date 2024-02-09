@@ -252,8 +252,8 @@
 }
 
 .btnCompra {
-  margin-bottom: 2%;
-  width: 75%;
+  margin-bottom: 35px;
+  padding: 0.5rem 1.5rem;
 }
 
 .divDescEvent {

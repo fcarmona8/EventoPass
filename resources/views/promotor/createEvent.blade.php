@@ -153,7 +153,8 @@
             </div>
             <div class="primaryDetail secondaryDetail">
                 <label for="nominal_entries" class="switch">Entrades Nominals:
-                    <input type="checkbox" class="input-event" name="nominal_entries" id="nominal_entries">
+                    <input type="hidden" name="nominal_entries" value="0">
+                    <input type="checkbox" class="input-event" name="nominal_entries" id="nominal_entries" value="1">
                     <span class="slider round"></span>
                 </label>
             </div>
