@@ -116,14 +116,6 @@
                         </label>
                     </div>
                 </div>
-                <div class="div-event extraInfoContainer" id="entradas-nominales-sesion">
-                    <div class="primaryDetail secondaryDetail">
-                        <label for="nominal_entries" class="switch">Entrades Nominals:
-                            <input type="checkbox" class="input-event" name="nominal_entries" id="nominal_entries">
-                            <span class="slider round sliderSesion"></span>
-                        </label>
-                    </div>
-                </div>
 
                 <button type="submit" class="btn btn-primary" id="guardar-adreca">Guardar</button>
                 <button type="button" class="btn btn-secondary" id="cerrar-modal-direccion">Tancar</button>
