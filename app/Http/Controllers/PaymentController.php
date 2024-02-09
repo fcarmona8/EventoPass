@@ -16,6 +16,7 @@ class PaymentController extends Controller
 {
     public function initiatePayment(Request $request)
     {
+        
         $validated = $request->validate([
             'creditCard' => 'required|numeric',
             'expirationDate' => 'required',
@@ -42,7 +43,7 @@ class PaymentController extends Controller
             $redsysAPI->setParameter($key, $value);
         }
         $modifiedParams = $redsysAPI->createMerchantParameters();
-
+        
         // Generar una nueva firma con los parámetros modificados
         $signature = $redsysAPI->createMerchantSignature(env('REDSYS_SECRET_KEY'));
 
@@ -65,7 +66,6 @@ class PaymentController extends Controller
             // Decodificar y verificar los parámetros de salida de Redsys
             $decodedResponseParams = json_decode(base64_decode($responseData['Ds_MerchantParameters']), true);
             
-
             if (isset($decodedResponseParams['Ds_Response']) && (int)$decodedResponseParams['Ds_Response'] <= 99) {
 
                 $session = sessionLaravel::get('datosCompra');
@@ -81,6 +81,7 @@ class PaymentController extends Controller
                 $session = sessionLaravel::get('datosCompra');
                 $compra = new Purchase;
                 $compra->generarCompra($session['sessionId'],$session['totalPrice'],$session['buyerName'],$session['buyerEmail'],$session['buyerDNI'],$session['buyerPhone'],$session['nEntrades'],$session['namePDF']);
+
                 MailController::enviarEntrades($session['buyerEmail'],$session['buyerDNI'].$session['sessionId'],$session['eventName'],$session['eventId']);
 
                 // Operación autorizada
