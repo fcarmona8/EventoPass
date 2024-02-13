@@ -1,6 +1,6 @@
 <a class="card-link" href="{{ route('tickets.showevent', ['id' => $event->id]) }}">
     <div class="card">
-        <picture>
+        <picture class="contenedorImagen">
             <source media="(max-width: 799px)" srcset="http://localhost:8080{{ $event->optimizedImageSmallUrl() }}">
             <source media="(min-width: 800px)" srcset="http://localhost:8080{{ $event->optimizedImageMediumUrl() }}">
             <img src="http://localhost:8080{{ $event->optimizedImageLargeUrl() }}" alt="{{ $event->name }}"
