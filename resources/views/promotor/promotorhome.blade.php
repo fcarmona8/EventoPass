@@ -119,7 +119,7 @@
         });
 
         document.addEventListener('DOMContentLoaded', function() {
-            var successMessage = "{{ session('success') }}";
+            const successMessage = "{{ session('success') }}";
 
             if (successMessage) {
                 showToast('Event creat correctament');

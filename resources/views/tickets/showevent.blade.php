@@ -182,8 +182,6 @@
                 document.getElementById('sessionDetails').style.display = 'block';
             }
 
-
-
             function displayTicketTypes(ticketTypes) {
                 const sessionList = document.getElementById('sessionList');
                 sessionList.innerHTML = '';
