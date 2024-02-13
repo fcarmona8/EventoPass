@@ -1,0 +1,93 @@
+[2024-01-15 14:48:20] local.INFO: Mostrando formulario de login  
+[2024-01-15 14:48:40] local.INFO: Inicio de solicitud de login {"request_params":{"email":"promotor1@test.com"}} 
+[2024-01-15 14:48:41] local.INFO: Login exitoso {"user_id":1,"role":"promotor"} 
+[2024-01-16 14:45:36] local.INFO: Mostrando formulario de login  
+[2024-01-16 14:45:46] local.INFO: Inicio de solicitud de login {"request_params":{"email":"promotor1@test.com"}} 
+[2024-01-16 14:45:47] local.INFO: Login exitoso {"user_id":1,"role":"promotor"} 
+[2024-01-16 19:40:23] local.INFO: Mostrando formulario de login  
+[2024-01-16 19:40:30] local.INFO: Inicio de solicitud de login {"request_params":{"email":"promotor1@test.com"}} 
+[2024-01-16 19:40:30] local.INFO: Login exitoso {"user_id":1,"role":"promotor"} 
+[2024-01-17 14:44:30] local.INFO: Mostrando formulario de login  
+[2024-01-17 14:44:37] local.INFO: Inicio de solicitud de login {"request_params":{"email":"promotor1@test.com"}} 
+[2024-01-17 14:44:37] local.INFO: Login exitoso {"user_id":1,"role":"promotor"} 
+[2024-01-18 14:41:47] local.INFO: Mostrando formulario de login  
+[2024-01-18 14:41:56] local.INFO: Inicio de solicitud de login {"request_params":{"email":"promotor1@test.com"}} 
+[2024-01-18 14:41:57] local.INFO: Login exitoso {"user_id":1,"role":"promotor"} 
+[2024-01-19 14:46:39] local.INFO: Mostrando formulario de login  
+[2024-01-19 14:46:46] local.INFO: Inicio de solicitud de login {"email":"promotor1@test.com"} 
+[2024-01-19 14:46:46] local.INFO: Login exitoso {"user_id":1,"email":"promotor1@test.com"} 
+[2024-01-19 14:46:46] local.INFO: Fin de solicitud de login exitosa {"duration":0.2933168411254883} 
+[2024-01-20 12:31:00] local.INFO: Mostrando formulario de login  
+[2024-01-20 12:31:09] local.INFO: Inicio de solicitud de login {"email":"promotor1@test.com"} 
+[2024-01-20 12:31:09] local.INFO: Login exitoso {"user_id":1,"email":"promotor1@test.com"} 
+[2024-01-20 12:31:09] local.INFO: Fin de solicitud de login exitosa {"duration":0.32801008224487305} 
+[2024-01-21 10:50:43] local.INFO: Mostrando formulario de login  
+[2024-01-21 10:50:50] local.INFO: Inicio de solicitud de login {"email":"promotor1@test.com"} 
+[2024-01-21 10:50:50] local.INFO: Login exitoso {"user_id":1,"email":"promotor1@test.com"} 
+[2024-01-21 10:50:50] local.INFO: Fin de solicitud de login exitosa {"duration":0.29418396949768066} 
+[2024-01-22 08:05:29] local.INFO: Mostrando formulario de login  
+[2024-01-22 08:05:35] local.INFO: Inicio de solicitud de login {"email":"promotor1@test.com"} 
+[2024-01-22 08:05:36] local.INFO: Login exitoso {"user_id":1,"email":"promotor1@test.com"} 
+[2024-01-22 08:05:36] local.INFO: Fin de solicitud de login exitosa {"duration":0.2861628532409668} 
+[2024-01-22 14:48:48] local.INFO: Mostrando formulario de login  
+[2024-01-22 14:48:53] local.INFO: Inicio de solicitud de login {"email":"promotor1@test.com"} 
+[2024-01-22 14:48:53] local.WARNING: Credenciales de login incorrectas {"email":"promotor1@test.com"} 
+[2024-01-22 14:48:53] local.INFO: Mostrando formulario de login  
+[2024-01-22 14:50:01] local.INFO: Inicio de solicitud de login {"email":"promotor1@test.com"} 
+[2024-01-22 14:50:01] local.INFO: Login exitoso {"user_id":1,"email":"promotor1@test.com"} 
+[2024-01-22 14:50:01] local.INFO: Fin de solicitud de login exitosa {"duration":0.3246181011199951} 
+[2024-01-23 16:00:43] local.INFO: Mostrando formulario de login  
+[2024-01-23 16:00:49] local.INFO: Inicio de solicitud de login {"email":"promotor1@test.com"} 
+[2024-01-23 16:00:49] local.INFO: Login exitoso {"user_id":1,"email":"promotor1@test.com"} 
+[2024-01-23 16:00:49] local.INFO: Fin de solicitud de login exitosa {"duration":0.26943492889404297} 
+[2024-01-24 15:15:01] local.INFO: Mostrando formulario de login  
+[2024-01-24 15:15:09] local.INFO: Inicio de solicitud de login {"email":"promotor1@test.com"} 
+[2024-01-24 15:15:10] local.INFO: Login exitoso {"user_id":1,"email":"promotor1@test.com"} 
+[2024-01-24 15:15:10] local.INFO: Fin de solicitud de login exitosa {"duration":0.33800220489501953} 
+[2024-01-25 09:19:24] local.INFO: Mostrando formulario de login  
+[2024-01-25 09:19:33] local.INFO: Inicio de solicitud de login {"email":"promotor1@test.com"} 
+[2024-01-25 09:19:33] local.INFO: Login exitoso {"user_id":1,"email":"promotor1@test.com"} 
+[2024-01-25 09:19:33] local.INFO: Fin de solicitud de login exitosa {"duration":0.3441498279571533} 
+[2024-01-26 14:44:42] local.INFO: Mostrando formulario de login  
+[2024-01-26 14:44:51] local.INFO: Inicio de solicitud de login {"email":"promotor1@test.com"} 
+[2024-01-26 14:44:51] local.INFO: Login exitoso {"user_id":1,"email":"promotor1@test.com"} 
+[2024-01-26 14:44:51] local.INFO: Fin de solicitud de login exitosa {"duration":0.3267209529876709} 
+[2024-01-29 15:18:55] local.INFO: Mostrando formulario de login  
+[2024-01-29 15:19:06] local.INFO: Inicio de solicitud de login {"email":"promotor1@test.com"} 
+[2024-01-29 15:19:07] local.INFO: Login exitoso {"user_id":1,"email":"promotor1@test.com"} 
+[2024-01-29 15:19:07] local.INFO: Fin de solicitud de login exitosa {"duration":0.328624963760376} 
+[2024-02-01 15:29:34] local.INFO: Mostrando formulario de login  
+[2024-02-01 15:29:42] local.INFO: Inicio de solicitud de login {"email":"promotor1@test.com"} 
+[2024-02-01 15:29:42] local.INFO: Login exitoso {"user_id":1,"email":"promotor1@test.com"} 
+[2024-02-01 15:29:42] local.INFO: Fin de solicitud de login exitosa {"duration":0.3376040458679199} 
+[2024-02-05 15:08:32] local.INFO: Mostrando formulario de login  
+[2024-02-05 15:08:40] local.INFO: Inicio de solicitud de login {"email":"promotor1@test.com"} 
+[2024-02-05 15:08:40] local.INFO: Login exitoso {"user_id":1,"email":"promotor1@test.com"} 
+[2024-02-05 15:08:40] local.INFO: Fin de solicitud de login exitosa {"duration":0.33011579513549805} 
+[2024-02-06 14:50:04] local.INFO: Mostrando formulario de login  
+[2024-02-06 14:50:11] local.INFO: Inicio de solicitud de login {"email":"promotor1@test.com"} 
+[2024-02-06 14:50:11] local.INFO: Login exitoso {"user_id":1,"email":"promotor1@test.com"} 
+[2024-02-06 14:50:11] local.INFO: Fin de solicitud de login exitosa {"duration":0.3401978015899658} 
+[2024-02-07 14:43:28] local.INFO: Mostrando formulario de login  
+[2024-02-07 14:43:35] local.INFO: Inicio de solicitud de login {"email":"promotor1@test.com"} 
+[2024-02-07 14:43:35] local.WARNING: Credenciales de login incorrectas {"email":"promotor1@test.com"} 
+[2024-02-07 14:43:35] local.INFO: Mostrando formulario de login  
+[2024-02-07 14:43:43] local.INFO: Inicio de solicitud de login {"email":"promotor1@test.com"} 
+[2024-02-07 14:43:43] local.INFO: Login exitoso {"user_id":1,"email":"promotor1@test.com"} 
+[2024-02-07 14:43:43] local.INFO: Fin de solicitud de login exitosa {"duration":0.2838561534881592} 
+[2024-02-08 17:04:10] local.INFO: Mostrando formulario de login  
+[2024-02-08 17:04:16] local.INFO: Inicio de solicitud de login {"email":"promotor1@test.com"} 
+[2024-02-08 17:04:16] local.INFO: Login exitoso {"user_id":1,"email":"promotor1@test.com"} 
+[2024-02-08 17:04:16] local.INFO: Fin de solicitud de login exitosa {"duration":0.29833483695983887} 
+[2024-02-09 15:04:23] local.INFO: Mostrando formulario de login  
+[2024-02-09 15:04:29] local.INFO: Inicio de solicitud de login {"email":"promotor1@test.com"} 
+[2024-02-09 15:04:29] local.INFO: Login exitoso {"user_id":1,"email":"promotor1@test.com"} 
+[2024-02-09 15:04:29] local.INFO: Fin de solicitud de login exitosa {"duration":0.2765369415283203} 
+[2024-02-10 19:32:34] local.INFO: Mostrando formulario de login  
+[2024-02-10 19:32:47] local.INFO: Inicio de solicitud de login {"email":"promotor1@test.com"} 
+[2024-02-10 19:32:48] local.INFO: Login exitoso {"user_id":1,"email":"promotor1@test.com"} 
+[2024-02-10 19:32:48] local.INFO: Fin de solicitud de login exitosa {"duration":0.29123902320861816} 
+[2024-02-13 15:15:06] local.INFO: Mostrando formulario de login  
+[2024-02-13 15:15:12] local.INFO: Inicio de solicitud de login {"email":"promotor1@test.com"} 
+[2024-02-13 15:15:13] local.INFO: Login exitoso {"user_id":1,"email":"promotor1@test.com"} 
+[2024-02-13 15:15:13] local.INFO: Fin de solicitud de login exitosa {"duration":0.2947728633880615} 

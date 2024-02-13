@@ -60,6 +60,10 @@ label {
   text-decoration: none;
 }
 
+.contenedorImagen{
+  display: flex;
+}
+
 .card img {
   width: 150px;
   height: auto;
