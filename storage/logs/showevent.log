@@ -1,0 +1,434 @@
+[2024-02-13 18:16:59] local.INFO: Iniciando show {"id":"17"} 
+[2024-02-13 18:16:59] local.INFO: Evento encontrado: Array
+(
+    [id] => 17
+    [name] => Evento 17
+    [description] => Descripción 17
+    [main_image_id] => 114
+    [category_id] => 6
+    [venue_id] => 1
+    [user_id] => 4
+    [event_date] => 2021-01-17 00:00:00
+    [video_link] => 
+    [hidden] => 
+    [nominal] => 
+    [created_at] => 2024-02-13T16:51:05.000000Z
+    [updated_at] => 2024-02-13T16:51:05.000000Z
+    [images] => Array
+        (
+        )
+
+    [venue] => Array
+        (
+            [id] => 1
+            [province] => Wyoming
+            [city] => South Freidamouth
+            [postal_code] => 56303-1905
+            [venue_name] => Centro de Eventos
+            [capacity] => 394
+            [user_id] => 1
+            [created_at] => 2024-02-13T16:50:20.000000Z
+            [updated_at] => 2024-02-13T16:50:20.000000Z
+        )
+
+)
+  
+[2024-02-13 18:16:59] local.INFO: Sesiones encontradas para el evento: Array
+(
+)
+  
+[2024-02-13 18:16:59] local.INFO: Iniciando getCoordinates {"venue":{"App\\Models\\Venue":{"id":1,"province":"Wyoming","city":"South Freidamouth","postal_code":"56303-1905","venue_name":"Centro de Eventos","capacity":394,"user_id":1,"created_at":"2024-02-13T16:50:20.000000Z","updated_at":"2024-02-13T16:50:20.000000Z"}}} 
+[2024-02-13 18:16:59] local.DEBUG: URL de solicitud de la API de Google Maps: https://maps.googleapis.com/maps/api/geocode/json?address=Wyoming%2C+South+Freidamouth%2C+56303-1905&key=AIzaSyCbSv4bCYfNwXa_MXnzon8gG2kK_1MpoZw  
+[2024-02-13 18:17:00] local.DEBUG: Respuesta cruda de la API de Google Maps: stdClass Object
+(
+    [error_message] => You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started
+    [results] => Array
+        (
+        )
+
+    [status] => REQUEST_DENIED
+)
+  
+[2024-02-13 18:17:00] local.ERROR: No se encontraron coordenadas para la dirección dada. Respuesta de la API: stdClass Object
+(
+    [error_message] => You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started
+    [results] => Array
+        (
+        )
+
+    [status] => REQUEST_DENIED
+)
+  
+[2024-02-13 18:17:00] local.INFO: Finalizando show {"duration":0.31275415420532227} 
+[2024-02-13 18:19:49] local.INFO: Iniciando show {"id":"17"} 
+[2024-02-13 18:19:49] local.INFO: Evento encontrado: Array
+(
+    [id] => 17
+    [name] => Evento 17
+    [description] => Descripción 17
+    [main_image_id] => 114
+    [category_id] => 6
+    [venue_id] => 1
+    [user_id] => 4
+    [event_date] => 2021-01-17 00:00:00
+    [video_link] => 
+    [hidden] => 
+    [nominal] => 
+    [created_at] => 2024-02-13T16:51:05.000000Z
+    [updated_at] => 2024-02-13T16:51:05.000000Z
+    [images] => Array
+        (
+        )
+
+    [venue] => Array
+        (
+            [id] => 1
+            [province] => Wyoming
+            [city] => South Freidamouth
+            [postal_code] => 56303-1905
+            [venue_name] => Centro de Eventos
+            [capacity] => 394
+            [user_id] => 1
+            [created_at] => 2024-02-13T16:50:20.000000Z
+            [updated_at] => 2024-02-13T16:50:20.000000Z
+        )
+
+)
+  
+[2024-02-13 18:19:49] local.INFO: Sesiones encontradas para el evento: Array
+(
+)
+  
+[2024-02-13 18:19:49] local.INFO: Iniciando getCoordinates {"venue":{"App\\Models\\Venue":{"id":1,"province":"Wyoming","city":"South Freidamouth","postal_code":"56303-1905","venue_name":"Centro de Eventos","capacity":394,"user_id":1,"created_at":"2024-02-13T16:50:20.000000Z","updated_at":"2024-02-13T16:50:20.000000Z"}}} 
+[2024-02-13 18:19:49] local.DEBUG: URL de solicitud de la API de Google Maps: https://maps.googleapis.com/maps/api/geocode/json?address=Wyoming%2C+South+Freidamouth%2C+56303-1905&key=AIzaSyCbSv4bCYfNwXa_MXnzon8gG2kK_1MpoZw  
+[2024-02-13 18:19:49] local.DEBUG: Respuesta cruda de la API de Google Maps: stdClass Object
+(
+    [error_message] => You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started
+    [results] => Array
+        (
+        )
+
+    [status] => REQUEST_DENIED
+)
+  
+[2024-02-13 18:19:49] local.ERROR: No se encontraron coordenadas para la dirección dada. Respuesta de la API: stdClass Object
+(
+    [error_message] => You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started
+    [results] => Array
+        (
+        )
+
+    [status] => REQUEST_DENIED
+)
+  
+[2024-02-13 18:19:49] local.INFO: Finalizando show {"duration":0.288287878036499} 
+[2024-02-13 18:21:49] local.INFO: Iniciando show {"id":"17"} 
+[2024-02-13 18:21:49] local.INFO: Evento encontrado: Array
+(
+    [id] => 17
+    [name] => Evento 17
+    [description] => Descripción 17
+    [main_image_id] => 114
+    [category_id] => 6
+    [venue_id] => 1
+    [user_id] => 4
+    [event_date] => 2021-01-17 00:00:00
+    [video_link] => 
+    [hidden] => 
+    [nominal] => 
+    [created_at] => 2024-02-13T16:51:05.000000Z
+    [updated_at] => 2024-02-13T16:51:05.000000Z
+    [images] => Array
+        (
+        )
+
+    [venue] => Array
+        (
+            [id] => 1
+            [province] => Wyoming
+            [city] => South Freidamouth
+            [postal_code] => 56303-1905
+            [venue_name] => Centro de Eventos
+            [capacity] => 394
+            [user_id] => 1
+            [created_at] => 2024-02-13T16:50:20.000000Z
+            [updated_at] => 2024-02-13T16:50:20.000000Z
+        )
+
+)
+  
+[2024-02-13 18:21:49] local.INFO: Sesiones encontradas para el evento: Array
+(
+)
+  
+[2024-02-13 18:21:49] local.INFO: Iniciando getCoordinates {"venue":{"App\\Models\\Venue":{"id":1,"province":"Wyoming","city":"South Freidamouth","postal_code":"56303-1905","venue_name":"Centro de Eventos","capacity":394,"user_id":1,"created_at":"2024-02-13T16:50:20.000000Z","updated_at":"2024-02-13T16:50:20.000000Z"}}} 
+[2024-02-13 18:21:49] local.DEBUG: URL de solicitud de la API de Google Maps: https://maps.googleapis.com/maps/api/geocode/json?address=Wyoming%2C+South+Freidamouth%2C+56303-1905&key=AIzaSyCbSv4bCYfNwXa_MXnzon8gG2kK_1MpoZw  
+[2024-02-13 18:21:49] local.DEBUG: Respuesta cruda de la API de Google Maps: stdClass Object
+(
+    [error_message] => You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started
+    [results] => Array
+        (
+        )
+
+    [status] => REQUEST_DENIED
+)
+  
+[2024-02-13 18:21:49] local.ERROR: No se encontraron coordenadas para la dirección dada. Respuesta de la API: stdClass Object
+(
+    [error_message] => You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started
+    [results] => Array
+        (
+        )
+
+    [status] => REQUEST_DENIED
+)
+  
+[2024-02-13 18:21:49] local.INFO: Finalizando show {"duration":0.2517220973968506} 
+[2024-02-13 18:22:34] local.INFO: Iniciando show {"id":"17"} 
+[2024-02-13 18:22:34] local.INFO: Evento encontrado: Array
+(
+    [id] => 17
+    [name] => Evento 17
+    [description] => Descripción 17
+    [main_image_id] => 114
+    [category_id] => 6
+    [venue_id] => 1
+    [user_id] => 4
+    [event_date] => 2021-01-17 00:00:00
+    [video_link] => 
+    [hidden] => 
+    [nominal] => 
+    [created_at] => 2024-02-13T16:51:05.000000Z
+    [updated_at] => 2024-02-13T16:51:05.000000Z
+    [images] => Array
+        (
+        )
+
+    [venue] => Array
+        (
+            [id] => 1
+            [province] => Wyoming
+            [city] => South Freidamouth
+            [postal_code] => 56303-1905
+            [venue_name] => Centro de Eventos
+            [capacity] => 394
+            [user_id] => 1
+            [created_at] => 2024-02-13T16:50:20.000000Z
+            [updated_at] => 2024-02-13T16:50:20.000000Z
+        )
+
+)
+  
+[2024-02-13 18:22:34] local.INFO: Sesiones encontradas para el evento: Array
+(
+)
+  
+[2024-02-13 18:22:34] local.INFO: Iniciando getCoordinates {"venue":{"App\\Models\\Venue":{"id":1,"province":"Wyoming","city":"South Freidamouth","postal_code":"56303-1905","venue_name":"Centro de Eventos","capacity":394,"user_id":1,"created_at":"2024-02-13T16:50:20.000000Z","updated_at":"2024-02-13T16:50:20.000000Z"}}} 
+[2024-02-13 18:22:34] local.DEBUG: URL de solicitud de la API de Google Maps: https://maps.googleapis.com/maps/api/geocode/json?address=Wyoming%2C+South+Freidamouth%2C+56303-1905&key=AIzaSyCbSv4bCYfNwXa_MXnzon8gG2kK_1MpoZw  
+[2024-02-13 18:22:34] local.DEBUG: Respuesta cruda de la API de Google Maps: stdClass Object
+(
+    [error_message] => You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started
+    [results] => Array
+        (
+        )
+
+    [status] => REQUEST_DENIED
+)
+  
+[2024-02-13 18:22:34] local.ERROR: No se encontraron coordenadas para la dirección dada. Respuesta de la API: stdClass Object
+(
+    [error_message] => You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started
+    [results] => Array
+        (
+        )
+
+    [status] => REQUEST_DENIED
+)
+  
+[2024-02-13 18:22:34] local.INFO: Finalizando show {"duration":0.20327520370483398} 
+[2024-02-13 18:23:10] local.INFO: Iniciando show {"id":"17"} 
+[2024-02-13 18:23:10] local.INFO: Evento encontrado: Array
+(
+    [id] => 17
+    [name] => Evento 17
+    [description] => Descripción 17
+    [main_image_id] => 114
+    [category_id] => 6
+    [venue_id] => 1
+    [user_id] => 4
+    [event_date] => 2021-01-17 00:00:00
+    [video_link] => 
+    [hidden] => 
+    [nominal] => 
+    [created_at] => 2024-02-13T16:51:05.000000Z
+    [updated_at] => 2024-02-13T16:51:05.000000Z
+    [images] => Array
+        (
+        )
+
+    [venue] => Array
+        (
+            [id] => 1
+            [province] => Wyoming
+            [city] => South Freidamouth
+            [postal_code] => 56303-1905
+            [venue_name] => Centro de Eventos
+            [capacity] => 394
+            [user_id] => 1
+            [created_at] => 2024-02-13T16:50:20.000000Z
+            [updated_at] => 2024-02-13T16:50:20.000000Z
+        )
+
+)
+  
+[2024-02-13 18:23:10] local.INFO: Sesiones encontradas para el evento: Array
+(
+)
+  
+[2024-02-13 18:23:10] local.INFO: Iniciando getCoordinates {"venue":{"App\\Models\\Venue":{"id":1,"province":"Wyoming","city":"South Freidamouth","postal_code":"56303-1905","venue_name":"Centro de Eventos","capacity":394,"user_id":1,"created_at":"2024-02-13T16:50:20.000000Z","updated_at":"2024-02-13T16:50:20.000000Z"}}} 
+[2024-02-13 18:23:10] local.DEBUG: URL de solicitud de la API de Google Maps: https://maps.googleapis.com/maps/api/geocode/json?address=Wyoming%2C+South+Freidamouth%2C+56303-1905&key=AIzaSyCbSv4bCYfNwXa_MXnzon8gG2kK_1MpoZw  
+[2024-02-13 18:23:10] local.DEBUG: Respuesta cruda de la API de Google Maps: stdClass Object
+(
+    [error_message] => You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started
+    [results] => Array
+        (
+        )
+
+    [status] => REQUEST_DENIED
+)
+  
+[2024-02-13 18:23:10] local.ERROR: No se encontraron coordenadas para la dirección dada. Respuesta de la API: stdClass Object
+(
+    [error_message] => You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started
+    [results] => Array
+        (
+        )
+
+    [status] => REQUEST_DENIED
+)
+  
+[2024-02-13 18:23:10] local.INFO: Finalizando show {"duration":0.20157504081726074} 
+[2024-02-13 18:24:20] local.INFO: Iniciando show {"id":"17"} 
+[2024-02-13 18:24:20] local.INFO: Evento encontrado: Array
+(
+    [id] => 17
+    [name] => Evento 17
+    [description] => Descripción 17
+    [main_image_id] => 114
+    [category_id] => 6
+    [venue_id] => 1
+    [user_id] => 4
+    [event_date] => 2021-01-17 00:00:00
+    [video_link] => 
+    [hidden] => 
+    [nominal] => 
+    [created_at] => 2024-02-13T16:51:05.000000Z
+    [updated_at] => 2024-02-13T16:51:05.000000Z
+    [images] => Array
+        (
+        )
+
+    [venue] => Array
+        (
+            [id] => 1
+            [province] => Wyoming
+            [city] => South Freidamouth
+            [postal_code] => 56303-1905
+            [venue_name] => Centro de Eventos
+            [capacity] => 394
+            [user_id] => 1
+            [created_at] => 2024-02-13T16:50:20.000000Z
+            [updated_at] => 2024-02-13T16:50:20.000000Z
+        )
+
+)
+  
+[2024-02-13 18:24:20] local.INFO: Sesiones encontradas para el evento: Array
+(
+)
+  
+[2024-02-13 18:24:20] local.INFO: Iniciando getCoordinates {"venue":{"App\\Models\\Venue":{"id":1,"province":"Wyoming","city":"South Freidamouth","postal_code":"56303-1905","venue_name":"Centro de Eventos","capacity":394,"user_id":1,"created_at":"2024-02-13T16:50:20.000000Z","updated_at":"2024-02-13T16:50:20.000000Z"}}} 
+[2024-02-13 18:24:20] local.DEBUG: URL de solicitud de la API de Google Maps: https://maps.googleapis.com/maps/api/geocode/json?address=Wyoming%2C+South+Freidamouth%2C+56303-1905&key=AIzaSyCbSv4bCYfNwXa_MXnzon8gG2kK_1MpoZw  
+[2024-02-13 18:24:20] local.DEBUG: Respuesta cruda de la API de Google Maps: stdClass Object
+(
+    [error_message] => You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started
+    [results] => Array
+        (
+        )
+
+    [status] => REQUEST_DENIED
+)
+  
+[2024-02-13 18:24:20] local.ERROR: No se encontraron coordenadas para la dirección dada. Respuesta de la API: stdClass Object
+(
+    [error_message] => You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started
+    [results] => Array
+        (
+        )
+
+    [status] => REQUEST_DENIED
+)
+  
+[2024-02-13 18:24:20] local.INFO: Finalizando show {"duration":0.22405481338500977} 
+[2024-02-13 18:24:29] local.INFO: Iniciando show {"id":"17"} 
+[2024-02-13 18:24:29] local.INFO: Evento encontrado: Array
+(
+    [id] => 17
+    [name] => Evento 17
+    [description] => Descripción 17
+    [main_image_id] => 114
+    [category_id] => 6
+    [venue_id] => 1
+    [user_id] => 4
+    [event_date] => 2021-01-17 00:00:00
+    [video_link] => 
+    [hidden] => 
+    [nominal] => 
+    [created_at] => 2024-02-13T16:51:05.000000Z
+    [updated_at] => 2024-02-13T16:51:05.000000Z
+    [images] => Array
+        (
+        )
+
+    [venue] => Array
+        (
+            [id] => 1
+            [province] => Wyoming
+            [city] => South Freidamouth
+            [postal_code] => 56303-1905
+            [venue_name] => Centro de Eventos
+            [capacity] => 394
+            [user_id] => 1
+            [created_at] => 2024-02-13T16:50:20.000000Z
+            [updated_at] => 2024-02-13T16:50:20.000000Z
+        )
+
+)
+  
+[2024-02-13 18:24:29] local.INFO: Sesiones encontradas para el evento: Array
+(
+)
+  
+[2024-02-13 18:24:29] local.INFO: Iniciando getCoordinates {"venue":{"App\\Models\\Venue":{"id":1,"province":"Wyoming","city":"South Freidamouth","postal_code":"56303-1905","venue_name":"Centro de Eventos","capacity":394,"user_id":1,"created_at":"2024-02-13T16:50:20.000000Z","updated_at":"2024-02-13T16:50:20.000000Z"}}} 
+[2024-02-13 18:24:29] local.DEBUG: URL de solicitud de la API de Google Maps: https://maps.googleapis.com/maps/api/geocode/json?address=Wyoming%2C+South+Freidamouth%2C+56303-1905&key=AIzaSyCbSv4bCYfNwXa_MXnzon8gG2kK_1MpoZw  
+[2024-02-13 18:24:29] local.DEBUG: Respuesta cruda de la API de Google Maps: stdClass Object
+(
+    [error_message] => You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started
+    [results] => Array
+        (
+        )
+
+    [status] => REQUEST_DENIED
+)
+  
+[2024-02-13 18:24:29] local.ERROR: No se encontraron coordenadas para la dirección dada. Respuesta de la API: stdClass Object
+(
+    [error_message] => You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started
+    [results] => Array
+        (
+        )
+
+    [status] => REQUEST_DENIED
+)
+  
+[2024-02-13 18:24:29] local.INFO: Finalizando show {"duration":0.19529104232788086} 

@@ -6,9 +6,15 @@
         <div class="listSessions" id="listSessions">
             @foreach ($sessions as $session)
                 <div class="card cardHomePromotor">
-                    @if ($session->event->main_image)
-                        <img src="{{ asset('storage/' . $session->event->main_image) }}" alt="{{ $session->event->name }}"
-                            onerror="this.onerror=null; this.src='https://picsum.photos/200'" loading="lazy">
+                    @if ($session->event->main_image_id)
+                        <picture>
+                            <source media="(max-width: 799px)"
+                                srcset="http://localhost:8080{{ $event->optimizedImageSmallUrl() }}">
+                            <source media="(min-width: 800px) and (max-width: 1023px)"
+                                srcset="http://localhost:8080{{ $event->optimizedImageMediumUrl() }}">
+                            <img src="http://localhost:8080{{ $event->optimizedImageLargeUrl() }}" alt="{{ $event->name }}"
+                                loading="lazy" onerror="this.onerror=null; this.src='https://picsum.photos/200'">
+                        </picture>
                     @else
                         <img src="https://picsum.photos/2000" alt="{{ $session->event->name }}" loading="lazy">
                     @endif
@@ -31,10 +37,16 @@
                 <div class="listSessions">
                     @foreach ($event->sessions as $session)
                         <div class="card cardHomePromotor">
-                            @if ($event->main_image)
-                                <img src="{{ asset('storage/' . $session->event->main_image) }}"
-                                    alt="{{ $session->event->name }}"
-                                    onerror="this.onerror=null; this.src='https://picsum.photos/200'" loading="lazy">
+                            @if ($event->main_image_id)
+                                <picture>
+                                    <source media="(max-width: 799px)"
+                                        srcset="http://localhost:8080{{ $event->optimizedImageSmallUrl() }}">
+                                    <source media="(min-width: 800px) and (max-width: 1023px)"
+                                        srcset="http://localhost:8080{{ $event->optimizedImageMediumUrl() }}">
+                                    <img src="http://localhost:8080{{ $event->optimizedImageLargeUrl() }}"
+                                        alt="{{ $event->name }}" loading="lazy"
+                                        onerror="this.onerror=null; this.src='https://picsum.photos/200'">
+                                </picture>
                             @else
                                 <img src="https://picsum.photos/2000" alt="{{ $session->event->name }}" loading="lazy">
                             @endif
@@ -285,13 +297,13 @@
         }
 
         function resaltarCampoVacio(campo) {
-                campo.style.border = "1px solid red";
-            }
+            campo.style.border = "1px solid red";
+        }
 
         function resaltarCampos() {
             let camposRequeridos = ['nova_data', 'max_capacity_session', 'precio_entradas', 'nombre-entradas-sesion',
                 'entry_type_quantity_sesion'
-            ];            
+            ];
 
             let campoVacioEncontrado = false;
             camposRequeridos.forEach(campoId => {
@@ -299,7 +311,7 @@
                 if (campo.value === "") {
                     resaltarCampoVacio(campo);
                     campoVacioEncontrado = true;
-                    
+
                 } else {
                     campo.style.border = "1px solid black";
                 }
@@ -307,7 +319,7 @@
 
             console.log(campoVacioEncontrado);
             return campoVacioEncontrado;
-            
+
         }
 
         document.getElementById("formularioSession").addEventListener("submit", function(e) {
