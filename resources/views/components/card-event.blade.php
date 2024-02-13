@@ -2,9 +2,10 @@
     <div class="card">
         <picture class="contenedorImagen">
             <source media="(max-width: 799px)" srcset="http://localhost:8080{{ $event->optimizedImageSmallUrl() }}">
-            <source media="(min-width: 800px)" srcset="http://localhost:8080{{ $event->optimizedImageMediumUrl() }}">
-            <img src="http://localhost:8080{{ $event->optimizedImageLargeUrl() }}" alt="{{ $event->name }}"
-                loading="lazy">
+            <source media="(min-width: 800px) and (max-width: 1023px)"
+                srcset="http://localhost:8080{{ $event->optimizedImageMediumUrl() }}">
+            <img src="http://localhost:8080{{ $event->optimizedImageLargeUrl() }}" alt="{{ $event->name }}" loading="lazy"
+                onerror="this.onerror=null; this.src='https://picsum.photos/200'">
         </picture>
         <div class="card-content">
             <h3>{{ Str::limit($event->name, $limit = 55, $end = '...') }}</h3>

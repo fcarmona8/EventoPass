@@ -6,25 +6,31 @@
         <!-- Carrusel de fotografías -->
         <div class="slider-frame">
             <ul>
-                @if ($event->main_image)
+                <!-- Verifica si hay una imagen principal -->
+                @if ($event->main_image_id)
                     <li>
-                        @if ($event->main_image)
-                            <img src="{{ asset('storage/' . $event->main_image) }}" alt="{{ $event->name }}"
-                                onerror="this.onerror=null; this.src='https://picsum.photos/200'" loading="lazy">
-                        @else
-                            <img src="https://picsum.photos/2000" alt="{{ $event->name }}" loading="lazy">
-                        @endif
+                        <picture>
+                            <source media="(max-width: 799px)"
+                                srcset="http://localhost:8080{{ $event->optimizedImageSmallUrl() }}">
+                            <source media="(min-width: 800px) and (max-width: 1023px)"
+                                srcset="http://localhost:8080{{ $event->optimizedImageMediumUrl() }}">
+                            <img src="http://localhost:8080{{ $event->optimizedImageLargeUrl() }}" alt="{{ $event->name }}"
+                                loading="lazy" onerror="this.onerror=null; this.src='https://picsum.photos/200'">
+                        </picture>
                     </li>
                 @endif
 
                 @foreach ($event->images as $index => $image)
                     <li>
-                        @if ($event->main_image)
-                            <img src="{{ asset('storage/' . $event->main_image) }}" alt="{{ $event->name }}"
-                                onerror="this.onerror=null; this.src='https://picsum.photos/200'" loading="lazy">
-                        @else
-                            <img src="https://picsum.photos/2000" alt="{{ $event->name }}" loading="lazy">
-                        @endif
+                        <picture>
+                            <source media="(max-width: 799px)"
+                                srcset="http://localhost:8080/api/V1/optimized-images/{{ $image->image_id }}/small">
+                            <source media="(min-width: 800px) and (max-width: 1023px)"
+                                srcset="http://localhost:8080/api/V1/optimized-images/{{ $image->image_id }}/medium">
+                            <img src="http://localhost:8080/api/V1/optimized-images/{{ $image->image_id }}/large"
+                                alt="{{ $event->name }}" loading="lazy"
+                                onerror="this.onerror=null; this.src='https://picsum.photos/200'">
+                        </picture>
                     </li>
                 @endforeach
             </ul>
