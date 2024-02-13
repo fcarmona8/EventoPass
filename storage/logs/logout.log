@@ -1,0 +1,8 @@
+[2024-02-13 15:19:09] testing.INFO: Inicio del proceso de cierre de sesión {"user_id":1} 
+[2024-02-13 15:19:09] testing.INFO: Sesión cerrada con éxito {"user_id":null,"duration":0.0012881755828857422} 
+[2024-02-13 15:19:10] testing.INFO: Inicio del proceso de cierre de sesión {"user_id":null} 
+[2024-02-13 15:19:10] testing.INFO: Sesión cerrada con éxito {"user_id":null,"duration":0.0010268688201904297} 
+[2024-02-13 15:19:11] testing.INFO: Inicio del proceso de cierre de sesión {"user_id":1} 
+[2024-02-13 15:19:11] testing.INFO: Sesión cerrada con éxito {"user_id":null,"duration":0.0008230209350585938} 
+[2024-02-13 15:19:12] testing.INFO: Inicio del proceso de cierre de sesión {"user_id":1} 
+[2024-02-13 15:19:12] testing.INFO: Sesión cerrada con éxito {"user_id":null,"duration":0.0007681846618652344} 
