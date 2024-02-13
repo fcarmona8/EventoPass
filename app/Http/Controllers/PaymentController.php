@@ -65,7 +65,7 @@ class PaymentController extends Controller
 
             // Decodificar y verificar los parámetros de salida de Redsys
             $decodedResponseParams = json_decode(base64_decode($responseData['Ds_MerchantParameters']), true);
-            
+
             if (isset($decodedResponseParams['Ds_Response']) && (int)$decodedResponseParams['Ds_Response'] <= 99) {
 
                 $session = sessionLaravel::get('datosCompra');
@@ -88,7 +88,7 @@ class PaymentController extends Controller
                 return view('payment.response');
             } else {
                 // Operación rechazada o fallida
-                return view('payment.response', ['error' => 'Transacción rechazada o fallida.']);
+                return view('payment.errorResponse', ['error' => 'Transacción rechazada o fallida.']);
             }
         } else {
             // Error al conectar con Redsys
