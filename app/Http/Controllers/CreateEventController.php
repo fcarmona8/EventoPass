@@ -9,9 +9,10 @@ use App\Models\Venue;
 use App\Models\Session;
 use App\Models\TicketType;
 use App\Models\Ticket;
+use App\Models\EventImage;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
 
 class CreateEventController extends Controller
 {
@@ -40,7 +41,6 @@ class CreateEventController extends Controller
                 'max_capacity' => 'required|integer|min:1',
                 'promo_video_link' => 'nullable|url',
                 'event_hidden' => 'sometimes|boolean',
-                'nominal_entries' => 'sometimes|boolean',
                 'selector-options' => 'required|integer',
                 'entry_type_name.*' => 'required|string',
                 'entry_type_price.*' => 'required|numeric',
@@ -73,34 +73,34 @@ class CreateEventController extends Controller
                 'venue_id' => $venue->id,
                 'video_link' => $validatedData['promo_video_link'] ?? null,
                 'hidden' => $validatedData['event_hidden'] ?? false,
-                'nominal' => $validatedData['nominal_entries'] ?? false,
                 'user_id' => $user_id,
             ]);
             
             $event->save();
             Log::info('Evento guardado con éxito: ' . $event->id);
 
-            // Crear directorio base para el evento
-            $eventDirectory = 'event_' . $event->id;
-            Storage::disk('public')->makeDirectory($eventDirectory);
-
-            // Guardar imagen principal en subcarpeta 'main_image'
-            if ($request->hasFile('event_image')) {
-                $image = $request->file('event_image');
-                $imagePath = $image->storeAs($eventDirectory . '/main_image', time().'_'.$image->getClientOriginalName(), 'public');
-                $event->main_image = $imagePath;
+            // Subir y guardar imagen principal
+            $mainImageResponse = $this->uploadImageToApi($request->file('event_image'));
+            if ($mainImageResponse->successful()) {
+                $event->main_image_id = $mainImageResponse->json()['imageId'];
                 $event->save();
-                Log::info('Imagen principal del evento almacenada: ' . $imagePath);
+            } else {
+                Log::error('Error al subir la imagen principal: ' . $mainImageResponse->body());
             }
 
-            // Guardar imágenes adicionales en subcarpeta 'event_images'
+            // Subir y guardar imágenes adicionales (si existen)
             if ($request->hasFile('additional_images')) {
-                foreach ($request->file('additional_images') as $image) {
-                    $additionalImagePath = $image->store($eventDirectory . '/event_images', 'public');
-                    $event->images()->create([
-                        'image_url' => $additionalImagePath,
-                        'is_main' => false,
-                    ]);
+                foreach ($request->file('additional_images') as $additionalImage) {
+                    $additionalImageResponse = $this->uploadImageToApi($additionalImage);
+                    if ($additionalImageResponse->successful()) {
+                        EventImage::create([
+                            'event_id' => $event->id,
+                            'image_id' => $additionalImageResponse->json()['imageId'],
+                            'is_main' => false,
+                        ]);
+                    } else {
+                        Log::error('Error al subir imagen adicional: ' . $additionalImageResponse->body());
+                    }
                 }
             }
 
@@ -203,5 +203,15 @@ class CreateEventController extends Controller
             Log::error('Error en el proceso de almacenamiento de la dirección: ' . $e->getMessage());
             return back()->withErrors(['error' => 'Error al guardar la dirección.']);
         }
+    }
+
+    private function uploadImageToApi($imageFile)
+    {
+        return Http::withHeaders([
+            'Accept' => 'application/json',
+            'APP-TOKEN' => env('TIQUETS_APP_TOKEN'),
+        ])->attach(
+            'image', $imageFile->get(), $imageFile->getClientOriginalName()
+        )->post('http://localhost:8080/api/V1/images');
     }
 }

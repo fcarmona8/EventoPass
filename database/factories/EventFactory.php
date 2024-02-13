@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Venue;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use GuzzleHttp\Client;
 
 class EventFactory extends Factory
 {
@@ -14,6 +15,25 @@ class EventFactory extends Factory
 
     public function definition()
     {
+        $client = new Client();
+
+        // Suponiendo que la API espera una solicitud POST con un campo 'image'
+        $response = $client->request('POST', 'http://localhost:8080/api/V1/images', [
+            'headers' => [
+                'Accept' => 'application/json',
+                'APP-TOKEN' => env('TIQUETS_APP_TOKEN'),
+            ],
+            'multipart' => [
+                [
+                    'name'     => 'image',
+                    'contents' => fopen(storage_path('app/public/images/5729286.jpg'), 'r'),
+                ],
+            ],
+        ]);
+
+        $data = json_decode($response->getBody()->getContents(), true);
+        $imageId = $data['imageId'];
+
         static $eventCounter = 0;
         $eventNames = ["Evento 1", "Evento 2", "Evento 3",
                        "Evento 4", "Evento 5", "Evento 6",
@@ -65,7 +85,7 @@ class EventFactory extends Factory
             'venue_id' => Venue::inRandomOrder()->first()->id ?? Venue::factory(),
             'user_id' => User::inRandomOrder()->first()->id ?? User::factory(),
             'category_id' => Category::inRandomOrder()->first()->id ?? Category::factory(),
-            'main_image' => $images[$eventCounter % count($images)],
+            'main_image_id' => $imageId,
             'event_date' => $dates[$eventCounter % count($dates)]
         ];
 

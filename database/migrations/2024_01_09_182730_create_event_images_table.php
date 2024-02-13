@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('event_images', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('event_id');
-            $table->string('image_url');
+            $table->string('image_id');
             $table->boolean('is_main')->default(false);
             $table->foreign('event_id')->references('id')->on('events');
             $table->timestamps();
