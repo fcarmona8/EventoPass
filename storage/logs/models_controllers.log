@@ -87,3 +87,563 @@
 [2024-02-13 11:35:08] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":31} 
 [2024-02-13 11:35:08] local.INFO: Llamada al método sessions {"event_id":31} 
 [2024-02-13 11:35:08] local.INFO: Precio más bajo encontrado {"event_id":31,"lowestPrice":"10.00"} 
+[2024-02-13 14:56:56] local.INFO: Llamada al método venue {"event_id":20} 
+[2024-02-13 14:56:56] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":20} 
+[2024-02-13 14:56:56] local.INFO: Llamada al método sessions {"event_id":20} 
+[2024-02-13 14:56:56] local.INFO: Precio más bajo encontrado {"event_id":20,"lowestPrice":null} 
+[2024-02-13 14:56:56] local.INFO: Llamada al método venue {"event_id":21} 
+[2024-02-13 14:56:56] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":21} 
+[2024-02-13 14:56:56] local.INFO: Llamada al método sessions {"event_id":21} 
+[2024-02-13 14:56:56] local.INFO: Precio más bajo encontrado {"event_id":21,"lowestPrice":"67.09"} 
+[2024-02-13 14:56:56] local.INFO: Llamada al método venue {"event_id":22} 
+[2024-02-13 14:56:56] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":22} 
+[2024-02-13 14:56:56] local.INFO: Llamada al método sessions {"event_id":22} 
+[2024-02-13 14:56:56] local.INFO: Precio más bajo encontrado {"event_id":22,"lowestPrice":null} 
+[2024-02-13 14:56:56] local.INFO: Llamada al método venue {"event_id":30} 
+[2024-02-13 14:56:56] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":30} 
+[2024-02-13 14:56:56] local.INFO: Llamada al método sessions {"event_id":30} 
+[2024-02-13 14:56:56] local.INFO: Precio más bajo encontrado {"event_id":30,"lowestPrice":"62.51"} 
+[2024-02-13 14:56:56] local.INFO: Llamada al método venue {"event_id":7} 
+[2024-02-13 14:56:56] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":7} 
+[2024-02-13 14:56:56] local.INFO: Llamada al método sessions {"event_id":7} 
+[2024-02-13 14:56:56] local.INFO: Precio más bajo encontrado {"event_id":7,"lowestPrice":"15.62"} 
+[2024-02-13 14:56:56] local.INFO: Llamada al método venue {"event_id":23} 
+[2024-02-13 14:56:56] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":23} 
+[2024-02-13 14:56:56] local.INFO: Llamada al método sessions {"event_id":23} 
+[2024-02-13 14:56:56] local.INFO: Precio más bajo encontrado {"event_id":23,"lowestPrice":null} 
+[2024-02-13 14:56:56] local.INFO: Llamada al método venue {"event_id":2} 
+[2024-02-13 14:56:56] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":2} 
+[2024-02-13 14:56:56] local.INFO: Llamada al método sessions {"event_id":2} 
+[2024-02-13 14:56:56] local.INFO: Precio más bajo encontrado {"event_id":2,"lowestPrice":"62.51"} 
+[2024-02-13 14:56:56] local.INFO: Llamada al método venue {"event_id":9} 
+[2024-02-13 14:56:56] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":9} 
+[2024-02-13 14:56:56] local.INFO: Llamada al método sessions {"event_id":9} 
+[2024-02-13 14:56:56] local.INFO: Precio más bajo encontrado {"event_id":9,"lowestPrice":"15.62"} 
+[2024-02-13 14:56:56] local.INFO: Llamada al método venue {"event_id":18} 
+[2024-02-13 14:56:56] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":18} 
+[2024-02-13 14:56:56] local.INFO: Llamada al método sessions {"event_id":18} 
+[2024-02-13 14:56:56] local.INFO: Precio más bajo encontrado {"event_id":18,"lowestPrice":null} 
+[2024-02-13 14:56:56] local.INFO: Llamada al método venue {"event_id":28} 
+[2024-02-13 14:56:56] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":28} 
+[2024-02-13 14:56:56] local.INFO: Llamada al método sessions {"event_id":28} 
+[2024-02-13 14:56:56] local.INFO: Precio más bajo encontrado {"event_id":28,"lowestPrice":"15.62"} 
+[2024-02-13 14:56:56] local.INFO: Llamada al método venue {"event_id":31} 
+[2024-02-13 14:56:56] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":31} 
+[2024-02-13 14:56:56] local.INFO: Llamada al método sessions {"event_id":31} 
+[2024-02-13 14:56:56] local.INFO: Precio más bajo encontrado {"event_id":31,"lowestPrice":"10.00"} 
+[2024-02-13 15:06:08] local.INFO: Llamada al método venue {"event_id":20} 
+[2024-02-13 15:06:08] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":20} 
+[2024-02-13 15:06:08] local.INFO: Llamada al método sessions {"event_id":20} 
+[2024-02-13 15:06:08] local.INFO: Precio más bajo encontrado {"event_id":20,"lowestPrice":null} 
+[2024-02-13 15:06:08] local.INFO: Llamada al método venue {"event_id":21} 
+[2024-02-13 15:06:08] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":21} 
+[2024-02-13 15:06:08] local.INFO: Llamada al método sessions {"event_id":21} 
+[2024-02-13 15:06:08] local.INFO: Precio más bajo encontrado {"event_id":21,"lowestPrice":"67.09"} 
+[2024-02-13 15:06:08] local.INFO: Llamada al método venue {"event_id":22} 
+[2024-02-13 15:06:08] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":22} 
+[2024-02-13 15:06:08] local.INFO: Llamada al método sessions {"event_id":22} 
+[2024-02-13 15:06:08] local.INFO: Precio más bajo encontrado {"event_id":22,"lowestPrice":null} 
+[2024-02-13 15:06:08] local.INFO: Llamada al método venue {"event_id":30} 
+[2024-02-13 15:06:08] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":30} 
+[2024-02-13 15:06:08] local.INFO: Llamada al método sessions {"event_id":30} 
+[2024-02-13 15:06:08] local.INFO: Precio más bajo encontrado {"event_id":30,"lowestPrice":"62.51"} 
+[2024-02-13 15:06:08] local.INFO: Llamada al método venue {"event_id":7} 
+[2024-02-13 15:06:08] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":7} 
+[2024-02-13 15:06:08] local.INFO: Llamada al método sessions {"event_id":7} 
+[2024-02-13 15:06:08] local.INFO: Precio más bajo encontrado {"event_id":7,"lowestPrice":"15.62"} 
+[2024-02-13 15:06:08] local.INFO: Llamada al método venue {"event_id":23} 
+[2024-02-13 15:06:08] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":23} 
+[2024-02-13 15:06:08] local.INFO: Llamada al método sessions {"event_id":23} 
+[2024-02-13 15:06:08] local.INFO: Precio más bajo encontrado {"event_id":23,"lowestPrice":null} 
+[2024-02-13 15:06:08] local.INFO: Llamada al método venue {"event_id":2} 
+[2024-02-13 15:06:08] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":2} 
+[2024-02-13 15:06:08] local.INFO: Llamada al método sessions {"event_id":2} 
+[2024-02-13 15:06:08] local.INFO: Precio más bajo encontrado {"event_id":2,"lowestPrice":"62.51"} 
+[2024-02-13 15:06:08] local.INFO: Llamada al método venue {"event_id":9} 
+[2024-02-13 15:06:08] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":9} 
+[2024-02-13 15:06:08] local.INFO: Llamada al método sessions {"event_id":9} 
+[2024-02-13 15:06:08] local.INFO: Precio más bajo encontrado {"event_id":9,"lowestPrice":"15.62"} 
+[2024-02-13 15:06:08] local.INFO: Llamada al método venue {"event_id":18} 
+[2024-02-13 15:06:08] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":18} 
+[2024-02-13 15:06:08] local.INFO: Llamada al método sessions {"event_id":18} 
+[2024-02-13 15:06:08] local.INFO: Precio más bajo encontrado {"event_id":18,"lowestPrice":null} 
+[2024-02-13 15:06:08] local.INFO: Llamada al método venue {"event_id":28} 
+[2024-02-13 15:06:08] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":28} 
+[2024-02-13 15:06:08] local.INFO: Llamada al método sessions {"event_id":28} 
+[2024-02-13 15:06:08] local.INFO: Precio más bajo encontrado {"event_id":28,"lowestPrice":"15.62"} 
+[2024-02-13 15:06:08] local.INFO: Llamada al método venue {"event_id":31} 
+[2024-02-13 15:06:08] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":31} 
+[2024-02-13 15:06:08] local.INFO: Llamada al método sessions {"event_id":31} 
+[2024-02-13 15:06:08] local.INFO: Precio más bajo encontrado {"event_id":31,"lowestPrice":"10.00"} 
+[2024-02-13 15:17:13] local.INFO: Llamada al método venue {"event_id":20} 
+[2024-02-13 15:17:13] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":20} 
+[2024-02-13 15:17:13] local.INFO: Llamada al método sessions {"event_id":20} 
+[2024-02-13 15:17:13] local.INFO: Precio más bajo encontrado {"event_id":20,"lowestPrice":null} 
+[2024-02-13 15:17:13] local.INFO: Llamada al método venue {"event_id":21} 
+[2024-02-13 15:17:13] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":21} 
+[2024-02-13 15:17:13] local.INFO: Llamada al método sessions {"event_id":21} 
+[2024-02-13 15:17:13] local.INFO: Precio más bajo encontrado {"event_id":21,"lowestPrice":"67.09"} 
+[2024-02-13 15:17:13] local.INFO: Llamada al método venue {"event_id":22} 
+[2024-02-13 15:17:13] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":22} 
+[2024-02-13 15:17:13] local.INFO: Llamada al método sessions {"event_id":22} 
+[2024-02-13 15:17:13] local.INFO: Precio más bajo encontrado {"event_id":22,"lowestPrice":null} 
+[2024-02-13 15:17:13] local.INFO: Llamada al método venue {"event_id":30} 
+[2024-02-13 15:17:13] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":30} 
+[2024-02-13 15:17:13] local.INFO: Llamada al método sessions {"event_id":30} 
+[2024-02-13 15:17:13] local.INFO: Precio más bajo encontrado {"event_id":30,"lowestPrice":"62.51"} 
+[2024-02-13 15:17:13] local.INFO: Llamada al método venue {"event_id":7} 
+[2024-02-13 15:17:13] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":7} 
+[2024-02-13 15:17:13] local.INFO: Llamada al método sessions {"event_id":7} 
+[2024-02-13 15:17:13] local.INFO: Precio más bajo encontrado {"event_id":7,"lowestPrice":"15.62"} 
+[2024-02-13 15:17:13] local.INFO: Llamada al método venue {"event_id":23} 
+[2024-02-13 15:17:13] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":23} 
+[2024-02-13 15:17:13] local.INFO: Llamada al método sessions {"event_id":23} 
+[2024-02-13 15:17:13] local.INFO: Precio más bajo encontrado {"event_id":23,"lowestPrice":null} 
+[2024-02-13 15:17:13] local.INFO: Llamada al método venue {"event_id":2} 
+[2024-02-13 15:17:13] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":2} 
+[2024-02-13 15:17:13] local.INFO: Llamada al método sessions {"event_id":2} 
+[2024-02-13 15:17:13] local.INFO: Precio más bajo encontrado {"event_id":2,"lowestPrice":"62.51"} 
+[2024-02-13 15:17:13] local.INFO: Llamada al método venue {"event_id":9} 
+[2024-02-13 15:17:13] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":9} 
+[2024-02-13 15:17:13] local.INFO: Llamada al método sessions {"event_id":9} 
+[2024-02-13 15:17:13] local.INFO: Precio más bajo encontrado {"event_id":9,"lowestPrice":"15.62"} 
+[2024-02-13 15:17:13] local.INFO: Llamada al método venue {"event_id":18} 
+[2024-02-13 15:17:13] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":18} 
+[2024-02-13 15:17:13] local.INFO: Llamada al método sessions {"event_id":18} 
+[2024-02-13 15:17:13] local.INFO: Precio más bajo encontrado {"event_id":18,"lowestPrice":null} 
+[2024-02-13 15:17:13] local.INFO: Llamada al método venue {"event_id":28} 
+[2024-02-13 15:17:13] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":28} 
+[2024-02-13 15:17:13] local.INFO: Llamada al método sessions {"event_id":28} 
+[2024-02-13 15:17:13] local.INFO: Precio más bajo encontrado {"event_id":28,"lowestPrice":"15.62"} 
+[2024-02-13 15:17:13] local.INFO: Llamada al método venue {"event_id":31} 
+[2024-02-13 15:17:13] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":31} 
+[2024-02-13 15:17:13] local.INFO: Llamada al método sessions {"event_id":31} 
+[2024-02-13 15:17:13] local.INFO: Precio más bajo encontrado {"event_id":31,"lowestPrice":"10.00"} 
+[2024-02-13 15:19:26] local.INFO: Llamada al método venue {"event_id":20} 
+[2024-02-13 15:19:26] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":20} 
+[2024-02-13 15:19:26] local.INFO: Llamada al método sessions {"event_id":20} 
+[2024-02-13 15:19:26] local.INFO: Precio más bajo encontrado {"event_id":20,"lowestPrice":null} 
+[2024-02-13 15:19:26] local.INFO: Llamada al método venue {"event_id":21} 
+[2024-02-13 15:19:26] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":21} 
+[2024-02-13 15:19:26] local.INFO: Llamada al método sessions {"event_id":21} 
+[2024-02-13 15:19:26] local.INFO: Precio más bajo encontrado {"event_id":21,"lowestPrice":"67.09"} 
+[2024-02-13 15:19:26] local.INFO: Llamada al método venue {"event_id":22} 
+[2024-02-13 15:19:26] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":22} 
+[2024-02-13 15:19:26] local.INFO: Llamada al método sessions {"event_id":22} 
+[2024-02-13 15:19:26] local.INFO: Precio más bajo encontrado {"event_id":22,"lowestPrice":null} 
+[2024-02-13 15:19:26] local.INFO: Llamada al método venue {"event_id":30} 
+[2024-02-13 15:19:26] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":30} 
+[2024-02-13 15:19:26] local.INFO: Llamada al método sessions {"event_id":30} 
+[2024-02-13 15:19:26] local.INFO: Precio más bajo encontrado {"event_id":30,"lowestPrice":"62.51"} 
+[2024-02-13 15:19:26] local.INFO: Llamada al método venue {"event_id":7} 
+[2024-02-13 15:19:26] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":7} 
+[2024-02-13 15:19:26] local.INFO: Llamada al método sessions {"event_id":7} 
+[2024-02-13 15:19:26] local.INFO: Precio más bajo encontrado {"event_id":7,"lowestPrice":"15.62"} 
+[2024-02-13 15:19:26] local.INFO: Llamada al método venue {"event_id":23} 
+[2024-02-13 15:19:26] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":23} 
+[2024-02-13 15:19:26] local.INFO: Llamada al método sessions {"event_id":23} 
+[2024-02-13 15:19:26] local.INFO: Precio más bajo encontrado {"event_id":23,"lowestPrice":null} 
+[2024-02-13 15:19:26] local.INFO: Llamada al método venue {"event_id":2} 
+[2024-02-13 15:19:26] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":2} 
+[2024-02-13 15:19:26] local.INFO: Llamada al método sessions {"event_id":2} 
+[2024-02-13 15:19:26] local.INFO: Precio más bajo encontrado {"event_id":2,"lowestPrice":"62.51"} 
+[2024-02-13 15:19:26] local.INFO: Llamada al método venue {"event_id":9} 
+[2024-02-13 15:19:26] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":9} 
+[2024-02-13 15:19:26] local.INFO: Llamada al método sessions {"event_id":9} 
+[2024-02-13 15:19:26] local.INFO: Precio más bajo encontrado {"event_id":9,"lowestPrice":"15.62"} 
+[2024-02-13 15:19:26] local.INFO: Llamada al método venue {"event_id":18} 
+[2024-02-13 15:19:26] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":18} 
+[2024-02-13 15:19:26] local.INFO: Llamada al método sessions {"event_id":18} 
+[2024-02-13 15:19:26] local.INFO: Precio más bajo encontrado {"event_id":18,"lowestPrice":null} 
+[2024-02-13 15:19:26] local.INFO: Llamada al método venue {"event_id":28} 
+[2024-02-13 15:19:26] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":28} 
+[2024-02-13 15:19:26] local.INFO: Llamada al método sessions {"event_id":28} 
+[2024-02-13 15:19:26] local.INFO: Precio más bajo encontrado {"event_id":28,"lowestPrice":"15.62"} 
+[2024-02-13 15:19:26] local.INFO: Llamada al método venue {"event_id":31} 
+[2024-02-13 15:19:26] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":31} 
+[2024-02-13 15:19:26] local.INFO: Llamada al método sessions {"event_id":31} 
+[2024-02-13 15:19:26] local.INFO: Precio más bajo encontrado {"event_id":31,"lowestPrice":"10.00"} 
+[2024-02-13 15:19:52] local.INFO: Llamada al método venue {"event_id":20} 
+[2024-02-13 15:19:52] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":20} 
+[2024-02-13 15:19:52] local.INFO: Llamada al método sessions {"event_id":20} 
+[2024-02-13 15:19:52] local.INFO: Precio más bajo encontrado {"event_id":20,"lowestPrice":null} 
+[2024-02-13 15:19:52] local.INFO: Llamada al método venue {"event_id":21} 
+[2024-02-13 15:19:52] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":21} 
+[2024-02-13 15:19:52] local.INFO: Llamada al método sessions {"event_id":21} 
+[2024-02-13 15:19:52] local.INFO: Precio más bajo encontrado {"event_id":21,"lowestPrice":"67.09"} 
+[2024-02-13 15:19:52] local.INFO: Llamada al método venue {"event_id":22} 
+[2024-02-13 15:19:52] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":22} 
+[2024-02-13 15:19:52] local.INFO: Llamada al método sessions {"event_id":22} 
+[2024-02-13 15:19:52] local.INFO: Precio más bajo encontrado {"event_id":22,"lowestPrice":null} 
+[2024-02-13 15:19:52] local.INFO: Llamada al método venue {"event_id":30} 
+[2024-02-13 15:19:52] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":30} 
+[2024-02-13 15:19:52] local.INFO: Llamada al método sessions {"event_id":30} 
+[2024-02-13 15:19:52] local.INFO: Precio más bajo encontrado {"event_id":30,"lowestPrice":"62.51"} 
+[2024-02-13 15:19:52] local.INFO: Llamada al método venue {"event_id":7} 
+[2024-02-13 15:19:52] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":7} 
+[2024-02-13 15:19:52] local.INFO: Llamada al método sessions {"event_id":7} 
+[2024-02-13 15:19:52] local.INFO: Precio más bajo encontrado {"event_id":7,"lowestPrice":"15.62"} 
+[2024-02-13 15:19:52] local.INFO: Llamada al método venue {"event_id":23} 
+[2024-02-13 15:19:52] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":23} 
+[2024-02-13 15:19:52] local.INFO: Llamada al método sessions {"event_id":23} 
+[2024-02-13 15:19:52] local.INFO: Precio más bajo encontrado {"event_id":23,"lowestPrice":null} 
+[2024-02-13 15:19:52] local.INFO: Llamada al método venue {"event_id":2} 
+[2024-02-13 15:19:52] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":2} 
+[2024-02-13 15:19:52] local.INFO: Llamada al método sessions {"event_id":2} 
+[2024-02-13 15:19:52] local.INFO: Precio más bajo encontrado {"event_id":2,"lowestPrice":"62.51"} 
+[2024-02-13 15:19:52] local.INFO: Llamada al método venue {"event_id":9} 
+[2024-02-13 15:19:52] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":9} 
+[2024-02-13 15:19:52] local.INFO: Llamada al método sessions {"event_id":9} 
+[2024-02-13 15:19:52] local.INFO: Precio más bajo encontrado {"event_id":9,"lowestPrice":"15.62"} 
+[2024-02-13 15:19:52] local.INFO: Llamada al método venue {"event_id":18} 
+[2024-02-13 15:19:52] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":18} 
+[2024-02-13 15:19:52] local.INFO: Llamada al método sessions {"event_id":18} 
+[2024-02-13 15:19:52] local.INFO: Precio más bajo encontrado {"event_id":18,"lowestPrice":null} 
+[2024-02-13 15:19:52] local.INFO: Llamada al método venue {"event_id":28} 
+[2024-02-13 15:19:52] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":28} 
+[2024-02-13 15:19:52] local.INFO: Llamada al método sessions {"event_id":28} 
+[2024-02-13 15:19:52] local.INFO: Precio más bajo encontrado {"event_id":28,"lowestPrice":"15.62"} 
+[2024-02-13 15:19:52] local.INFO: Llamada al método venue {"event_id":31} 
+[2024-02-13 15:19:52] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":31} 
+[2024-02-13 15:19:52] local.INFO: Llamada al método sessions {"event_id":31} 
+[2024-02-13 15:19:52] local.INFO: Precio más bajo encontrado {"event_id":31,"lowestPrice":"10.00"} 
+[2024-02-13 15:25:04] local.INFO: Llamada al método venue {"event_id":20} 
+[2024-02-13 15:25:04] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":20} 
+[2024-02-13 15:25:04] local.INFO: Llamada al método sessions {"event_id":20} 
+[2024-02-13 15:25:04] local.INFO: Precio más bajo encontrado {"event_id":20,"lowestPrice":null} 
+[2024-02-13 15:25:04] local.INFO: Llamada al método venue {"event_id":21} 
+[2024-02-13 15:25:04] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":21} 
+[2024-02-13 15:25:04] local.INFO: Llamada al método sessions {"event_id":21} 
+[2024-02-13 15:25:04] local.INFO: Precio más bajo encontrado {"event_id":21,"lowestPrice":"67.09"} 
+[2024-02-13 15:25:04] local.INFO: Llamada al método venue {"event_id":22} 
+[2024-02-13 15:25:04] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":22} 
+[2024-02-13 15:25:04] local.INFO: Llamada al método sessions {"event_id":22} 
+[2024-02-13 15:25:04] local.INFO: Precio más bajo encontrado {"event_id":22,"lowestPrice":null} 
+[2024-02-13 15:25:04] local.INFO: Llamada al método venue {"event_id":30} 
+[2024-02-13 15:25:04] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":30} 
+[2024-02-13 15:25:04] local.INFO: Llamada al método sessions {"event_id":30} 
+[2024-02-13 15:25:04] local.INFO: Precio más bajo encontrado {"event_id":30,"lowestPrice":"62.51"} 
+[2024-02-13 15:25:04] local.INFO: Llamada al método venue {"event_id":7} 
+[2024-02-13 15:25:04] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":7} 
+[2024-02-13 15:25:04] local.INFO: Llamada al método sessions {"event_id":7} 
+[2024-02-13 15:25:04] local.INFO: Precio más bajo encontrado {"event_id":7,"lowestPrice":"15.62"} 
+[2024-02-13 15:25:04] local.INFO: Llamada al método venue {"event_id":23} 
+[2024-02-13 15:25:04] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":23} 
+[2024-02-13 15:25:04] local.INFO: Llamada al método sessions {"event_id":23} 
+[2024-02-13 15:25:04] local.INFO: Precio más bajo encontrado {"event_id":23,"lowestPrice":null} 
+[2024-02-13 15:25:04] local.INFO: Llamada al método venue {"event_id":2} 
+[2024-02-13 15:25:04] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":2} 
+[2024-02-13 15:25:04] local.INFO: Llamada al método sessions {"event_id":2} 
+[2024-02-13 15:25:04] local.INFO: Precio más bajo encontrado {"event_id":2,"lowestPrice":"62.51"} 
+[2024-02-13 15:25:04] local.INFO: Llamada al método venue {"event_id":9} 
+[2024-02-13 15:25:04] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":9} 
+[2024-02-13 15:25:04] local.INFO: Llamada al método sessions {"event_id":9} 
+[2024-02-13 15:25:04] local.INFO: Precio más bajo encontrado {"event_id":9,"lowestPrice":"15.62"} 
+[2024-02-13 15:25:04] local.INFO: Llamada al método venue {"event_id":18} 
+[2024-02-13 15:25:04] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":18} 
+[2024-02-13 15:25:04] local.INFO: Llamada al método sessions {"event_id":18} 
+[2024-02-13 15:25:04] local.INFO: Precio más bajo encontrado {"event_id":18,"lowestPrice":null} 
+[2024-02-13 15:25:04] local.INFO: Llamada al método venue {"event_id":28} 
+[2024-02-13 15:25:04] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":28} 
+[2024-02-13 15:25:04] local.INFO: Llamada al método sessions {"event_id":28} 
+[2024-02-13 15:25:04] local.INFO: Precio más bajo encontrado {"event_id":28,"lowestPrice":"15.62"} 
+[2024-02-13 15:25:04] local.INFO: Llamada al método venue {"event_id":31} 
+[2024-02-13 15:25:04] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":31} 
+[2024-02-13 15:25:04] local.INFO: Llamada al método sessions {"event_id":31} 
+[2024-02-13 15:25:04] local.INFO: Precio más bajo encontrado {"event_id":31,"lowestPrice":"10.00"} 
+[2024-02-13 15:38:23] local.INFO: Llamada al método venue {"event_id":20} 
+[2024-02-13 15:38:23] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":20} 
+[2024-02-13 15:38:23] local.INFO: Llamada al método sessions {"event_id":20} 
+[2024-02-13 15:38:23] local.INFO: Precio más bajo encontrado {"event_id":20,"lowestPrice":null} 
+[2024-02-13 15:38:23] local.INFO: Llamada al método venue {"event_id":21} 
+[2024-02-13 15:38:23] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":21} 
+[2024-02-13 15:38:23] local.INFO: Llamada al método sessions {"event_id":21} 
+[2024-02-13 15:38:23] local.INFO: Precio más bajo encontrado {"event_id":21,"lowestPrice":"67.09"} 
+[2024-02-13 15:38:23] local.INFO: Llamada al método venue {"event_id":22} 
+[2024-02-13 15:38:23] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":22} 
+[2024-02-13 15:38:23] local.INFO: Llamada al método sessions {"event_id":22} 
+[2024-02-13 15:38:23] local.INFO: Precio más bajo encontrado {"event_id":22,"lowestPrice":null} 
+[2024-02-13 15:38:23] local.INFO: Llamada al método venue {"event_id":30} 
+[2024-02-13 15:38:23] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":30} 
+[2024-02-13 15:38:23] local.INFO: Llamada al método sessions {"event_id":30} 
+[2024-02-13 15:38:23] local.INFO: Precio más bajo encontrado {"event_id":30,"lowestPrice":"62.51"} 
+[2024-02-13 15:38:23] local.INFO: Llamada al método venue {"event_id":7} 
+[2024-02-13 15:38:23] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":7} 
+[2024-02-13 15:38:23] local.INFO: Llamada al método sessions {"event_id":7} 
+[2024-02-13 15:38:23] local.INFO: Precio más bajo encontrado {"event_id":7,"lowestPrice":"15.62"} 
+[2024-02-13 15:38:23] local.INFO: Llamada al método venue {"event_id":23} 
+[2024-02-13 15:38:23] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":23} 
+[2024-02-13 15:38:23] local.INFO: Llamada al método sessions {"event_id":23} 
+[2024-02-13 15:38:23] local.INFO: Precio más bajo encontrado {"event_id":23,"lowestPrice":null} 
+[2024-02-13 15:38:23] local.INFO: Llamada al método venue {"event_id":2} 
+[2024-02-13 15:38:23] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":2} 
+[2024-02-13 15:38:23] local.INFO: Llamada al método sessions {"event_id":2} 
+[2024-02-13 15:38:23] local.INFO: Precio más bajo encontrado {"event_id":2,"lowestPrice":"62.51"} 
+[2024-02-13 15:38:23] local.INFO: Llamada al método venue {"event_id":9} 
+[2024-02-13 15:38:23] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":9} 
+[2024-02-13 15:38:23] local.INFO: Llamada al método sessions {"event_id":9} 
+[2024-02-13 15:38:23] local.INFO: Precio más bajo encontrado {"event_id":9,"lowestPrice":"15.62"} 
+[2024-02-13 15:38:23] local.INFO: Llamada al método venue {"event_id":18} 
+[2024-02-13 15:38:23] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":18} 
+[2024-02-13 15:38:23] local.INFO: Llamada al método sessions {"event_id":18} 
+[2024-02-13 15:38:23] local.INFO: Precio más bajo encontrado {"event_id":18,"lowestPrice":null} 
+[2024-02-13 15:38:23] local.INFO: Llamada al método venue {"event_id":28} 
+[2024-02-13 15:38:23] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":28} 
+[2024-02-13 15:38:23] local.INFO: Llamada al método sessions {"event_id":28} 
+[2024-02-13 15:38:23] local.INFO: Precio más bajo encontrado {"event_id":28,"lowestPrice":"15.62"} 
+[2024-02-13 15:38:23] local.INFO: Llamada al método venue {"event_id":31} 
+[2024-02-13 15:38:23] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":31} 
+[2024-02-13 15:38:23] local.INFO: Llamada al método sessions {"event_id":31} 
+[2024-02-13 15:38:23] local.INFO: Precio más bajo encontrado {"event_id":31,"lowestPrice":"10.00"} 
+[2024-02-13 15:39:05] local.INFO: Llamada al método venue {"event_id":24} 
+[2024-02-13 15:39:05] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":24} 
+[2024-02-13 15:39:05] local.INFO: Llamada al método sessions {"event_id":24} 
+[2024-02-13 15:39:05] local.INFO: Precio más bajo encontrado {"event_id":24,"lowestPrice":null} 
+[2024-02-13 15:39:05] local.INFO: Llamada al método venue {"event_id":12} 
+[2024-02-13 15:39:05] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":12} 
+[2024-02-13 15:39:05] local.INFO: Llamada al método sessions {"event_id":12} 
+[2024-02-13 15:39:05] local.INFO: Precio más bajo encontrado {"event_id":12,"lowestPrice":"15.62"} 
+[2024-02-13 15:39:05] local.INFO: Llamada al método venue {"event_id":27} 
+[2024-02-13 15:39:05] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":27} 
+[2024-02-13 15:39:05] local.INFO: Llamada al método sessions {"event_id":27} 
+[2024-02-13 15:39:05] local.INFO: Precio más bajo encontrado {"event_id":27,"lowestPrice":"15.62"} 
+[2024-02-13 15:39:05] local.INFO: Llamada al método venue {"event_id":10} 
+[2024-02-13 15:39:05] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":10} 
+[2024-02-13 15:39:05] local.INFO: Llamada al método sessions {"event_id":10} 
+[2024-02-13 15:39:05] local.INFO: Precio más bajo encontrado {"event_id":10,"lowestPrice":"62.51"} 
+[2024-02-13 15:39:12] local.INFO: Llamada al método venue {"event_id":20} 
+[2024-02-13 15:39:12] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":20} 
+[2024-02-13 15:39:12] local.INFO: Llamada al método sessions {"event_id":20} 
+[2024-02-13 15:39:12] local.INFO: Precio más bajo encontrado {"event_id":20,"lowestPrice":null} 
+[2024-02-13 15:39:12] local.INFO: Llamada al método venue {"event_id":21} 
+[2024-02-13 15:39:12] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":21} 
+[2024-02-13 15:39:12] local.INFO: Llamada al método sessions {"event_id":21} 
+[2024-02-13 15:39:12] local.INFO: Precio más bajo encontrado {"event_id":21,"lowestPrice":"67.09"} 
+[2024-02-13 15:39:12] local.INFO: Llamada al método venue {"event_id":22} 
+[2024-02-13 15:39:12] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":22} 
+[2024-02-13 15:39:12] local.INFO: Llamada al método sessions {"event_id":22} 
+[2024-02-13 15:39:12] local.INFO: Precio más bajo encontrado {"event_id":22,"lowestPrice":null} 
+[2024-02-13 15:39:12] local.INFO: Llamada al método venue {"event_id":30} 
+[2024-02-13 15:39:12] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":30} 
+[2024-02-13 15:39:12] local.INFO: Llamada al método sessions {"event_id":30} 
+[2024-02-13 15:39:12] local.INFO: Precio más bajo encontrado {"event_id":30,"lowestPrice":"62.51"} 
+[2024-02-13 15:39:12] local.INFO: Llamada al método venue {"event_id":7} 
+[2024-02-13 15:39:12] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":7} 
+[2024-02-13 15:39:12] local.INFO: Llamada al método sessions {"event_id":7} 
+[2024-02-13 15:39:12] local.INFO: Precio más bajo encontrado {"event_id":7,"lowestPrice":"15.62"} 
+[2024-02-13 15:39:12] local.INFO: Llamada al método venue {"event_id":23} 
+[2024-02-13 15:39:12] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":23} 
+[2024-02-13 15:39:12] local.INFO: Llamada al método sessions {"event_id":23} 
+[2024-02-13 15:39:12] local.INFO: Precio más bajo encontrado {"event_id":23,"lowestPrice":null} 
+[2024-02-13 15:39:12] local.INFO: Llamada al método venue {"event_id":2} 
+[2024-02-13 15:39:12] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":2} 
+[2024-02-13 15:39:12] local.INFO: Llamada al método sessions {"event_id":2} 
+[2024-02-13 15:39:12] local.INFO: Precio más bajo encontrado {"event_id":2,"lowestPrice":"62.51"} 
+[2024-02-13 15:39:12] local.INFO: Llamada al método venue {"event_id":9} 
+[2024-02-13 15:39:12] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":9} 
+[2024-02-13 15:39:12] local.INFO: Llamada al método sessions {"event_id":9} 
+[2024-02-13 15:39:12] local.INFO: Precio más bajo encontrado {"event_id":9,"lowestPrice":"15.62"} 
+[2024-02-13 15:39:12] local.INFO: Llamada al método venue {"event_id":18} 
+[2024-02-13 15:39:12] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":18} 
+[2024-02-13 15:39:12] local.INFO: Llamada al método sessions {"event_id":18} 
+[2024-02-13 15:39:12] local.INFO: Precio más bajo encontrado {"event_id":18,"lowestPrice":null} 
+[2024-02-13 15:39:12] local.INFO: Llamada al método venue {"event_id":28} 
+[2024-02-13 15:39:12] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":28} 
+[2024-02-13 15:39:12] local.INFO: Llamada al método sessions {"event_id":28} 
+[2024-02-13 15:39:12] local.INFO: Precio más bajo encontrado {"event_id":28,"lowestPrice":"15.62"} 
+[2024-02-13 15:39:12] local.INFO: Llamada al método venue {"event_id":31} 
+[2024-02-13 15:39:12] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":31} 
+[2024-02-13 15:39:12] local.INFO: Llamada al método sessions {"event_id":31} 
+[2024-02-13 15:39:12] local.INFO: Precio más bajo encontrado {"event_id":31,"lowestPrice":"10.00"} 
+[2024-02-13 15:45:59] local.INFO: Llamada al método venue {"event_id":20} 
+[2024-02-13 15:45:59] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":20} 
+[2024-02-13 15:45:59] local.INFO: Llamada al método sessions {"event_id":20} 
+[2024-02-13 15:45:59] local.INFO: Precio más bajo encontrado {"event_id":20,"lowestPrice":null} 
+[2024-02-13 15:45:59] local.INFO: Llamada al método venue {"event_id":21} 
+[2024-02-13 15:45:59] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":21} 
+[2024-02-13 15:45:59] local.INFO: Llamada al método sessions {"event_id":21} 
+[2024-02-13 15:45:59] local.INFO: Precio más bajo encontrado {"event_id":21,"lowestPrice":"67.09"} 
+[2024-02-13 15:45:59] local.INFO: Llamada al método venue {"event_id":22} 
+[2024-02-13 15:45:59] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":22} 
+[2024-02-13 15:45:59] local.INFO: Llamada al método sessions {"event_id":22} 
+[2024-02-13 15:45:59] local.INFO: Precio más bajo encontrado {"event_id":22,"lowestPrice":null} 
+[2024-02-13 15:45:59] local.INFO: Llamada al método venue {"event_id":30} 
+[2024-02-13 15:45:59] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":30} 
+[2024-02-13 15:45:59] local.INFO: Llamada al método sessions {"event_id":30} 
+[2024-02-13 15:45:59] local.INFO: Precio más bajo encontrado {"event_id":30,"lowestPrice":"62.51"} 
+[2024-02-13 15:45:59] local.INFO: Llamada al método venue {"event_id":7} 
+[2024-02-13 15:45:59] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":7} 
+[2024-02-13 15:45:59] local.INFO: Llamada al método sessions {"event_id":7} 
+[2024-02-13 15:45:59] local.INFO: Precio más bajo encontrado {"event_id":7,"lowestPrice":"15.62"} 
+[2024-02-13 15:45:59] local.INFO: Llamada al método venue {"event_id":23} 
+[2024-02-13 15:45:59] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":23} 
+[2024-02-13 15:45:59] local.INFO: Llamada al método sessions {"event_id":23} 
+[2024-02-13 15:45:59] local.INFO: Precio más bajo encontrado {"event_id":23,"lowestPrice":null} 
+[2024-02-13 15:45:59] local.INFO: Llamada al método venue {"event_id":2} 
+[2024-02-13 15:45:59] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":2} 
+[2024-02-13 15:45:59] local.INFO: Llamada al método sessions {"event_id":2} 
+[2024-02-13 15:45:59] local.INFO: Precio más bajo encontrado {"event_id":2,"lowestPrice":"62.51"} 
+[2024-02-13 15:45:59] local.INFO: Llamada al método venue {"event_id":9} 
+[2024-02-13 15:45:59] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":9} 
+[2024-02-13 15:45:59] local.INFO: Llamada al método sessions {"event_id":9} 
+[2024-02-13 15:45:59] local.INFO: Precio más bajo encontrado {"event_id":9,"lowestPrice":"15.62"} 
+[2024-02-13 15:45:59] local.INFO: Llamada al método venue {"event_id":18} 
+[2024-02-13 15:45:59] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":18} 
+[2024-02-13 15:45:59] local.INFO: Llamada al método sessions {"event_id":18} 
+[2024-02-13 15:45:59] local.INFO: Precio más bajo encontrado {"event_id":18,"lowestPrice":null} 
+[2024-02-13 15:45:59] local.INFO: Llamada al método venue {"event_id":28} 
+[2024-02-13 15:45:59] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":28} 
+[2024-02-13 15:45:59] local.INFO: Llamada al método sessions {"event_id":28} 
+[2024-02-13 15:45:59] local.INFO: Precio más bajo encontrado {"event_id":28,"lowestPrice":"15.62"} 
+[2024-02-13 15:45:59] local.INFO: Llamada al método venue {"event_id":31} 
+[2024-02-13 15:45:59] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":31} 
+[2024-02-13 15:45:59] local.INFO: Llamada al método sessions {"event_id":31} 
+[2024-02-13 15:45:59] local.INFO: Precio más bajo encontrado {"event_id":31,"lowestPrice":"10.00"} 
+[2024-02-13 15:46:11] local.INFO: Llamada al método venue {"event_id":20} 
+[2024-02-13 15:46:11] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":20} 
+[2024-02-13 15:46:11] local.INFO: Llamada al método sessions {"event_id":20} 
+[2024-02-13 15:46:11] local.INFO: Precio más bajo encontrado {"event_id":20,"lowestPrice":null} 
+[2024-02-13 15:46:11] local.INFO: Llamada al método venue {"event_id":21} 
+[2024-02-13 15:46:11] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":21} 
+[2024-02-13 15:46:11] local.INFO: Llamada al método sessions {"event_id":21} 
+[2024-02-13 15:46:11] local.INFO: Precio más bajo encontrado {"event_id":21,"lowestPrice":"67.09"} 
+[2024-02-13 15:46:11] local.INFO: Llamada al método venue {"event_id":22} 
+[2024-02-13 15:46:11] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":22} 
+[2024-02-13 15:46:11] local.INFO: Llamada al método sessions {"event_id":22} 
+[2024-02-13 15:46:11] local.INFO: Precio más bajo encontrado {"event_id":22,"lowestPrice":null} 
+[2024-02-13 15:46:11] local.INFO: Llamada al método venue {"event_id":30} 
+[2024-02-13 15:46:11] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":30} 
+[2024-02-13 15:46:11] local.INFO: Llamada al método sessions {"event_id":30} 
+[2024-02-13 15:46:11] local.INFO: Precio más bajo encontrado {"event_id":30,"lowestPrice":"62.51"} 
+[2024-02-13 15:46:11] local.INFO: Llamada al método venue {"event_id":7} 
+[2024-02-13 15:46:11] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":7} 
+[2024-02-13 15:46:11] local.INFO: Llamada al método sessions {"event_id":7} 
+[2024-02-13 15:46:11] local.INFO: Precio más bajo encontrado {"event_id":7,"lowestPrice":"15.62"} 
+[2024-02-13 15:46:11] local.INFO: Llamada al método venue {"event_id":23} 
+[2024-02-13 15:46:11] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":23} 
+[2024-02-13 15:46:11] local.INFO: Llamada al método sessions {"event_id":23} 
+[2024-02-13 15:46:11] local.INFO: Precio más bajo encontrado {"event_id":23,"lowestPrice":null} 
+[2024-02-13 15:46:11] local.INFO: Llamada al método venue {"event_id":2} 
+[2024-02-13 15:46:11] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":2} 
+[2024-02-13 15:46:12] local.INFO: Llamada al método sessions {"event_id":2} 
+[2024-02-13 15:46:12] local.INFO: Precio más bajo encontrado {"event_id":2,"lowestPrice":"62.51"} 
+[2024-02-13 15:46:12] local.INFO: Llamada al método venue {"event_id":9} 
+[2024-02-13 15:46:12] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":9} 
+[2024-02-13 15:46:12] local.INFO: Llamada al método sessions {"event_id":9} 
+[2024-02-13 15:46:12] local.INFO: Precio más bajo encontrado {"event_id":9,"lowestPrice":"15.62"} 
+[2024-02-13 15:46:12] local.INFO: Llamada al método venue {"event_id":18} 
+[2024-02-13 15:46:12] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":18} 
+[2024-02-13 15:46:12] local.INFO: Llamada al método sessions {"event_id":18} 
+[2024-02-13 15:46:12] local.INFO: Precio más bajo encontrado {"event_id":18,"lowestPrice":null} 
+[2024-02-13 15:46:12] local.INFO: Llamada al método venue {"event_id":28} 
+[2024-02-13 15:46:12] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":28} 
+[2024-02-13 15:46:12] local.INFO: Llamada al método sessions {"event_id":28} 
+[2024-02-13 15:46:12] local.INFO: Precio más bajo encontrado {"event_id":28,"lowestPrice":"15.62"} 
+[2024-02-13 15:46:12] local.INFO: Llamada al método venue {"event_id":31} 
+[2024-02-13 15:46:12] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":31} 
+[2024-02-13 15:46:12] local.INFO: Llamada al método sessions {"event_id":31} 
+[2024-02-13 15:46:12] local.INFO: Precio más bajo encontrado {"event_id":31,"lowestPrice":"10.00"} 
+[2024-02-13 15:47:04] local.INFO: Llamada al método venue {"event_id":20} 
+[2024-02-13 15:47:04] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":20} 
+[2024-02-13 15:47:04] local.INFO: Llamada al método sessions {"event_id":20} 
+[2024-02-13 15:47:04] local.INFO: Precio más bajo encontrado {"event_id":20,"lowestPrice":null} 
+[2024-02-13 15:47:04] local.INFO: Llamada al método venue {"event_id":21} 
+[2024-02-13 15:47:04] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":21} 
+[2024-02-13 15:47:04] local.INFO: Llamada al método sessions {"event_id":21} 
+[2024-02-13 15:47:04] local.INFO: Precio más bajo encontrado {"event_id":21,"lowestPrice":"67.09"} 
+[2024-02-13 15:47:04] local.INFO: Llamada al método venue {"event_id":22} 
+[2024-02-13 15:47:04] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":22} 
+[2024-02-13 15:47:04] local.INFO: Llamada al método sessions {"event_id":22} 
+[2024-02-13 15:47:04] local.INFO: Precio más bajo encontrado {"event_id":22,"lowestPrice":null} 
+[2024-02-13 15:47:04] local.INFO: Llamada al método venue {"event_id":30} 
+[2024-02-13 15:47:04] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":30} 
+[2024-02-13 15:47:04] local.INFO: Llamada al método sessions {"event_id":30} 
+[2024-02-13 15:47:04] local.INFO: Precio más bajo encontrado {"event_id":30,"lowestPrice":"62.51"} 
+[2024-02-13 15:47:04] local.INFO: Llamada al método venue {"event_id":7} 
+[2024-02-13 15:47:04] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":7} 
+[2024-02-13 15:47:04] local.INFO: Llamada al método sessions {"event_id":7} 
+[2024-02-13 15:47:04] local.INFO: Precio más bajo encontrado {"event_id":7,"lowestPrice":"15.62"} 
+[2024-02-13 15:47:04] local.INFO: Llamada al método venue {"event_id":23} 
+[2024-02-13 15:47:04] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":23} 
+[2024-02-13 15:47:04] local.INFO: Llamada al método sessions {"event_id":23} 
+[2024-02-13 15:47:04] local.INFO: Precio más bajo encontrado {"event_id":23,"lowestPrice":null} 
+[2024-02-13 15:47:04] local.INFO: Llamada al método venue {"event_id":2} 
+[2024-02-13 15:47:04] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":2} 
+[2024-02-13 15:47:04] local.INFO: Llamada al método sessions {"event_id":2} 
+[2024-02-13 15:47:04] local.INFO: Precio más bajo encontrado {"event_id":2,"lowestPrice":"62.51"} 
+[2024-02-13 15:47:04] local.INFO: Llamada al método venue {"event_id":9} 
+[2024-02-13 15:47:04] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":9} 
+[2024-02-13 15:47:04] local.INFO: Llamada al método sessions {"event_id":9} 
+[2024-02-13 15:47:04] local.INFO: Precio más bajo encontrado {"event_id":9,"lowestPrice":"15.62"} 
+[2024-02-13 15:47:04] local.INFO: Llamada al método venue {"event_id":18} 
+[2024-02-13 15:47:04] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":18} 
+[2024-02-13 15:47:04] local.INFO: Llamada al método sessions {"event_id":18} 
+[2024-02-13 15:47:04] local.INFO: Precio más bajo encontrado {"event_id":18,"lowestPrice":null} 
+[2024-02-13 15:47:04] local.INFO: Llamada al método venue {"event_id":28} 
+[2024-02-13 15:47:04] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":28} 
+[2024-02-13 15:47:04] local.INFO: Llamada al método sessions {"event_id":28} 
+[2024-02-13 15:47:04] local.INFO: Precio más bajo encontrado {"event_id":28,"lowestPrice":"15.62"} 
+[2024-02-13 15:47:04] local.INFO: Llamada al método venue {"event_id":31} 
+[2024-02-13 15:47:04] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":31} 
+[2024-02-13 15:47:04] local.INFO: Llamada al método sessions {"event_id":31} 
+[2024-02-13 15:47:04] local.INFO: Precio más bajo encontrado {"event_id":31,"lowestPrice":"10.00"} 
+[2024-02-13 15:47:55] local.INFO: Llamada al método venue {"event_id":20} 
+[2024-02-13 15:47:55] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":20} 
+[2024-02-13 15:47:55] local.INFO: Llamada al método sessions {"event_id":20} 
+[2024-02-13 15:47:55] local.INFO: Precio más bajo encontrado {"event_id":20,"lowestPrice":null} 
+[2024-02-13 15:47:55] local.INFO: Llamada al método venue {"event_id":21} 
+[2024-02-13 15:47:55] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":21} 
+[2024-02-13 15:47:55] local.INFO: Llamada al método sessions {"event_id":21} 
+[2024-02-13 15:47:55] local.INFO: Precio más bajo encontrado {"event_id":21,"lowestPrice":"67.09"} 
+[2024-02-13 15:47:55] local.INFO: Llamada al método venue {"event_id":22} 
+[2024-02-13 15:47:55] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":22} 
+[2024-02-13 15:47:55] local.INFO: Llamada al método sessions {"event_id":22} 
+[2024-02-13 15:47:55] local.INFO: Precio más bajo encontrado {"event_id":22,"lowestPrice":null} 
+[2024-02-13 15:47:55] local.INFO: Llamada al método venue {"event_id":30} 
+[2024-02-13 15:47:55] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":30} 
+[2024-02-13 15:47:55] local.INFO: Llamada al método sessions {"event_id":30} 
+[2024-02-13 15:47:55] local.INFO: Precio más bajo encontrado {"event_id":30,"lowestPrice":"62.51"} 
+[2024-02-13 15:47:55] local.INFO: Llamada al método venue {"event_id":7} 
+[2024-02-13 15:47:55] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":7} 
+[2024-02-13 15:47:55] local.INFO: Llamada al método sessions {"event_id":7} 
+[2024-02-13 15:47:55] local.INFO: Precio más bajo encontrado {"event_id":7,"lowestPrice":"15.62"} 
+[2024-02-13 15:47:55] local.INFO: Llamada al método venue {"event_id":23} 
+[2024-02-13 15:47:55] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":23} 
+[2024-02-13 15:47:55] local.INFO: Llamada al método sessions {"event_id":23} 
+[2024-02-13 15:47:55] local.INFO: Precio más bajo encontrado {"event_id":23,"lowestPrice":null} 
+[2024-02-13 15:47:55] local.INFO: Llamada al método venue {"event_id":2} 
+[2024-02-13 15:47:55] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":2} 
+[2024-02-13 15:47:55] local.INFO: Llamada al método sessions {"event_id":2} 
+[2024-02-13 15:47:55] local.INFO: Precio más bajo encontrado {"event_id":2,"lowestPrice":"62.51"} 
+[2024-02-13 15:47:55] local.INFO: Llamada al método venue {"event_id":9} 
+[2024-02-13 15:47:55] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":9} 
+[2024-02-13 15:47:55] local.INFO: Llamada al método sessions {"event_id":9} 
+[2024-02-13 15:47:55] local.INFO: Precio más bajo encontrado {"event_id":9,"lowestPrice":"15.62"} 
+[2024-02-13 15:47:55] local.INFO: Llamada al método venue {"event_id":18} 
+[2024-02-13 15:47:55] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":18} 
+[2024-02-13 15:47:55] local.INFO: Llamada al método sessions {"event_id":18} 
+[2024-02-13 15:47:55] local.INFO: Precio más bajo encontrado {"event_id":18,"lowestPrice":null} 
+[2024-02-13 15:47:55] local.INFO: Llamada al método venue {"event_id":28} 
+[2024-02-13 15:47:55] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":28} 
+[2024-02-13 15:47:55] local.INFO: Llamada al método sessions {"event_id":28} 
+[2024-02-13 15:47:55] local.INFO: Precio más bajo encontrado {"event_id":28,"lowestPrice":"15.62"} 
+[2024-02-13 15:47:55] local.INFO: Llamada al método venue {"event_id":31} 
+[2024-02-13 15:47:55] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":31} 
+[2024-02-13 15:47:55] local.INFO: Llamada al método sessions {"event_id":31} 
+[2024-02-13 15:47:55] local.INFO: Precio más bajo encontrado {"event_id":31,"lowestPrice":"10.00"} 
+[2024-02-13 15:49:34] local.INFO: Llamada al método category {"event_id":null} 
+[2024-02-13 15:49:34] local.INFO: Llamada al método venue {"event_id":null} 
+[2024-02-13 15:49:34] local.INFO: Llamada al método sessions {"event_id":null} 
+[2024-02-13 15:49:34] local.INFO: Consulta completada en ResultatsController@index {"selectedFiltro":"","searchTerm":"","eventsPerPage":"4"} 
+[2024-02-13 15:49:34] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":20} 
+[2024-02-13 15:49:34] local.INFO: Llamada al método sessions {"event_id":20} 
+[2024-02-13 15:49:34] local.INFO: Precio más bajo encontrado {"event_id":20,"lowestPrice":null} 
+[2024-02-13 15:49:34] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":21} 
+[2024-02-13 15:49:34] local.INFO: Llamada al método sessions {"event_id":21} 
+[2024-02-13 15:49:34] local.INFO: Precio más bajo encontrado {"event_id":21,"lowestPrice":"67.09"} 
+[2024-02-13 15:49:34] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":22} 
+[2024-02-13 15:49:34] local.INFO: Llamada al método sessions {"event_id":22} 
+[2024-02-13 15:49:34] local.INFO: Precio más bajo encontrado {"event_id":22,"lowestPrice":null} 
+[2024-02-13 15:49:34] local.INFO: Iniciando cálculo del precio más bajo para el evento {"event_id":30} 
+[2024-02-13 15:49:34] local.INFO: Llamada al método sessions {"event_id":30} 
+[2024-02-13 15:49:34] local.INFO: Precio más bajo encontrado {"event_id":30,"lowestPrice":"62.51"} 
