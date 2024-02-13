@@ -1,0 +1,57 @@
+[2024-01-30 15:07:16] local.INFO: Inicio de solicitud a ResultatsController@index  
+[2024-01-30 15:07:16] local.INFO: Procesamiento parcial en ResultatsController@index {"duration":0.017843008041381836} 
+[2024-01-30 15:07:16] local.INFO: Fin de solicitud a ResultatsController@index {"duration":0.02496504783630371} 
+[2024-01-30 15:07:20] local.INFO: Inicio de solicitud a ResultatsController@index  
+[2024-01-30 15:07:20] local.INFO: Procesamiento parcial en ResultatsController@index {"duration":0.012057065963745117} 
+[2024-01-30 15:07:20] local.INFO: Fin de solicitud a ResultatsController@index {"duration":0.022444963455200195} 
+[2024-01-30 15:07:26] local.INFO: Inicio de solicitud a ResultatsController@index  
+[2024-01-30 15:07:26] local.INFO: Procesamiento parcial en ResultatsController@index {"duration":0.01397705078125} 
+[2024-01-30 15:07:26] local.INFO: Fin de solicitud a ResultatsController@index {"duration":0.02402806282043457} 
+[2024-01-30 16:32:19] local.INFO: Inicio de solicitud a ResultatsController@index  
+[2024-01-30 16:32:19] local.INFO: Procesamiento parcial en ResultatsController@index {"duration":0.01749110221862793} 
+[2024-01-30 16:32:19] local.INFO: Fin de solicitud a ResultatsController@index {"duration":0.02679300308227539} 
+[2024-01-30 16:37:22] local.INFO: Inicio de solicitud a ResultatsController@index  
+[2024-01-30 16:37:22] local.INFO: Procesamiento parcial en ResultatsController@index {"duration":0.04450201988220215} 
+[2024-01-30 16:37:22] local.INFO: Fin de solicitud a ResultatsController@index {"duration":0.05720400810241699} 
+[2024-02-01 16:01:56] local.INFO: Inicio de solicitud a ResultatsController@index  
+[2024-02-01 16:01:56] local.INFO: Procesamiento parcial en ResultatsController@index {"duration":0.01888298988342285} 
+[2024-02-01 16:01:56] local.INFO: Fin de solicitud a ResultatsController@index {"duration":0.03462815284729004} 
+[2024-02-01 16:44:07] local.INFO: Inicio de solicitud a ResultatsController@index  
+[2024-02-01 16:44:07] local.INFO: Procesamiento parcial en ResultatsController@index {"duration":0.00905299186706543} 
+[2024-02-01 16:44:07] local.INFO: Fin de solicitud a ResultatsController@index {"duration":0.014724016189575195} 
+[2024-02-01 16:44:16] local.INFO: Inicio de solicitud a ResultatsController@index  
+[2024-02-01 16:44:16] local.INFO: Procesamiento parcial en ResultatsController@index {"duration":0.02542591094970703} 
+[2024-02-01 16:44:16] local.INFO: Fin de solicitud a ResultatsController@index {"duration":0.0446629524230957} 
+[2024-02-05 15:08:16] local.INFO: Inicio de solicitud a ResultatsController@index  
+[2024-02-05 15:08:16] local.INFO: Procesamiento parcial en ResultatsController@index {"duration":0.0109100341796875} 
+[2024-02-05 15:08:16] local.INFO: Fin de solicitud a ResultatsController@index {"duration":0.028576135635375977} 
+[2024-02-06 14:56:07] local.INFO: Inicio de solicitud a ResultatsController@index  
+[2024-02-06 14:56:07] local.INFO: Procesamiento parcial en ResultatsController@index {"duration":0.01711893081665039} 
+[2024-02-06 14:56:07] local.INFO: Fin de solicitud a ResultatsController@index {"duration":0.0317530632019043} 
+[2024-02-06 14:56:34] local.INFO: Inicio de solicitud a ResultatsController@index  
+[2024-02-06 14:56:34] local.INFO: Procesamiento parcial en ResultatsController@index {"duration":0.014988899230957031} 
+[2024-02-06 14:56:34] local.INFO: Fin de solicitud a ResultatsController@index {"duration":0.03321480751037598} 
+[2024-02-06 14:57:47] local.INFO: Inicio de solicitud a ResultatsController@index  
+[2024-02-06 14:57:47] local.INFO: Procesamiento parcial en ResultatsController@index {"duration":0.013808965682983398} 
+[2024-02-06 14:57:47] local.INFO: Fin de solicitud a ResultatsController@index {"duration":0.027779817581176758} 
+[2024-02-07 14:57:50] local.INFO: Inicio de solicitud a ResultatsController@index  
+[2024-02-07 14:57:50] local.INFO: Procesamiento parcial en ResultatsController@index {"duration":0.010738134384155273} 
+[2024-02-07 14:57:50] local.INFO: Fin de solicitud a ResultatsController@index {"duration":0.015645980834960938} 
+[2024-02-07 14:57:53] local.INFO: Inicio de solicitud a ResultatsController@index  
+[2024-02-07 14:57:53] local.INFO: Procesamiento parcial en ResultatsController@index {"duration":0.01482701301574707} 
+[2024-02-07 14:57:53] local.INFO: Fin de solicitud a ResultatsController@index {"duration":0.029335975646972656} 
+[2024-02-08 17:03:52] local.INFO: Inicio de solicitud a ResultatsController@index  
+[2024-02-08 17:03:52] local.INFO: Procesamiento parcial en ResultatsController@index {"duration":0.015465974807739258} 
+[2024-02-08 17:03:52] local.INFO: Fin de solicitud a ResultatsController@index {"duration":0.035501956939697266} 
+[2024-02-08 17:09:54] local.INFO: Inicio de solicitud a ResultatsController@index  
+[2024-02-08 17:09:54] local.INFO: Procesamiento parcial en ResultatsController@index {"duration":0.01752495765686035} 
+[2024-02-08 17:09:54] local.INFO: Fin de solicitud a ResultatsController@index {"duration":0.035056114196777344} 
+[2024-02-09 15:05:01] local.INFO: Inicio de solicitud a ResultatsController@index  
+[2024-02-09 15:05:01] local.INFO: Procesamiento parcial en ResultatsController@index {"duration":0.012771844863891602} 
+[2024-02-09 15:05:01] local.INFO: Fin de solicitud a ResultatsController@index {"duration":0.0326998233795166} 
+[2024-02-09 15:25:43] local.INFO: Inicio de solicitud a ResultatsController@index  
+[2024-02-09 15:25:43] local.INFO: Procesamiento parcial en ResultatsController@index {"duration":0.013810157775878906} 
+[2024-02-09 15:25:43] local.INFO: Fin de solicitud a ResultatsController@index {"duration":0.028728008270263672} 
+[2024-02-09 15:27:47] local.INFO: Inicio de solicitud a ResultatsController@index  
+[2024-02-09 15:27:47] local.INFO: Procesamiento parcial en ResultatsController@index {"duration":0.015484094619750977} 
+[2024-02-09 15:27:47] local.INFO: Fin de solicitud a ResultatsController@index {"duration":0.025968074798583984} 
