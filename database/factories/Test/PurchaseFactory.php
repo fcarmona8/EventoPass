@@ -14,7 +14,10 @@ class PurchaseFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::factory(),
+            'name' => $this->faker->name,
+            'email' => $this->faker->email,
+            'dni' => $this->faker->randomNumber,
+            'phone' => $this->faker->randomNumber,
             'session_id' => Session::factory(),
             'total_price' => $this->faker->randomFloat(2, 100, 500),
         ];
