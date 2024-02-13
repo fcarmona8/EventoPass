@@ -193,6 +193,16 @@ Instal·lem l'apache2 -> sudo apt install apache2
 
 I el podem engegar -> sudo systemctl enable apache2
 
+=== Preparació del servidor:
+
+Primer de tot fem un clone el nostre repositori de git en la ruta /var/www/html --> sudo git clone https://git.copernic.cat/gpuigantell/gr04-puigantell-carmona-perez.git
+
+Ara instal·lem les dependències del composer -> sudo composer install
+
+Copiem el fitxer .env.example amb el nom .env -> sudo cp .env.example .env
+
+I creem la key del Artisan -> sudo php artisan key:generate
+
 === Creació del docker:
 Instal·lem les dependencies del Docker -> sudo apt install apt-transport-https ca-certificates curl gnupg lsb-release
 
@@ -204,25 +214,25 @@ Fem un update -> sudo apt update
 
 Instal·lem el Docker CE -> sudo apt install docker-ce docker-ce-cli containerd.io
 
-Ara descarguem l'imatge del Postgres -> docker pull postgres:latest
+Ara descarreguem la imatge del Postgres -> docker pull postgres:latest
 
 Creem el contenidor -> docker run -d --name mi_postgres -e POSTGRES_PASSWORD=mi_contraseña -e POSTGRES_USER=mi_usuario -e POSTGRES_DB=mi_basededatos -v nombre_del_volumen:/var/lib/postgresql/data -p 5432:5432 postgres:latest
 
-.En el teu fitxer .env, edita les següents líneas per a conectarte a PostgreSQL:
+En el teu fitxer .env, edita les següents línies per a conectar-te a PostgreSQL:
 
 [source,ini]
 ----
 DB_CONNECTION=pgsql
 DB_HOST=127.0.0.1
 DB_PORT=5432
-DB_DATABASE=baseDeDatos
+DB_DATABASE=basededatos
 DB_USERNAME=postgres
 DB_PASSWORD=1234
 ----
 
-També podem obrir el docker fent -> sudo docker-compose up -d
+Dins de l'arrel del projecte "EventoPass" creem el fitxer docker-compose.yml -> sudo docker-compose.yml
 
-En el fitxer docker-compose escribim:
+En el fitxer docker-compose escrivim:
 
 [source,yaml]
 ----
@@ -238,25 +248,28 @@ services:
       POSTGRES_DB: basededatos
     ports:
       - "5555:5432"
+    restart: always
+
 ----
 
+També podem obrir el docker executant a l'arrel del projecte "EventoPass" -> sudo docker-compose up -d
 
-=== Obrir servidor web:
+=== Configuració de servidor web:
 
-Fiquem el nostre projecte a /var/www/html
+Si no el tenim ja, posem el nostre projecte "EventoPass" a /var/www/html
 
 Creem un fitxer de configuració del apache2 -> /etc/apache2/sites-available/nom.conf
 
-Configures el fitxer amb les teves rutes i ips:
+Configurem el fitxer amb les nostres rutes i ips:
 
 [source,apache]
 ----
 <VirtualHost *:80>
     ServerAdmin webmaster@tudominio.com
     ServerName tudominio.com
-    DocumentRoot /var/www/html/tudominio/public
+    DocumentRoot /var/www/html/"EventoPass"/public
 
-    <Directory /var/www/html/tudominio>
+    <Directory /var/www/html/"EventoPass">
         Options Indexes FollowSymLinks
         AllowOverride All
         Require all granted
@@ -267,14 +280,14 @@ Configures el fitxer amb les teves rutes i ips:
 </VirtualHost>
 ----
 
-Per ultim reiniciem el servei apache2 -> sudo systemctl restart apache2
+Finalment, reiniciem el servei apache2 -> sudo systemctl restart apache2
 
 == Documentació de Permisos
 Descripció detallada dels permisos necessaris per a components, programes, contenidors, etc.
 
-Hem de donar permisos a la carpeta de logs amb aquestes dos comandes -> chmod -R 775 storage i chown -R www-data:www-data logs
+Hem de donar permisos a la carpeta de logs i framework amb aquestes dues comandes -> chmod -R 775 /var/www/html/"EventoPass"/storage/framework /var/www/html/"EventoPass"/storage/logs
 
-I hem de fer un link simbòlic entre storag/app i publiv amb -> php artisan storage:link
+I hem de fer un enllaç simbòlic entre storage/app i public amb -> php artisan storage:link
 
 == Instal·lació del DomPDF
 
@@ -284,6 +297,248 @@ En l'arxiu config/app.php a l'apartat de 'provaiders' fiquem la següent línia 
 
 I publiquem el paquet per a poder modificar-lo --> php artisan vendor:publish --provider="Barryvdh\DomPDF\ServiceProvider"
 
+== Descripció General de l'API
+L'API de Gestió d'Imatges permet la càrrega, optimització i gestió d'imatges. Aquesta API és accessible a través de la base URL `http://localhost:8080/api/V1` i està dissenyada per oferir una forma eficient de manejar imatges en aplicacions web i mòbils.
+
+=== Informació General
+- *Títol:* Image Management API
+- *Descripció:* API per a la càrrega, optimització, i gestió d'imatges.
+- *Versió:* 1.0.0
+
+=== Servidors
+- URL: http://localhost:8080/api/V1
+- Descripció: URL base de l'API
+
+== Rutes de l'API
+
+=== Operacions sobre Imatges `/images`
+
+==== GET
+.Llista totes les imatges.
+* Resum: Retorna una llista de totes les imatges disponibles.
+* Respostes:
+** `200`: Llista d'imatges obtinguda amb èxit.
++
+.Content-type: `application/json`
++
+.Esquema:
++
+[source,json]
+----
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "example": 1
+      },
+      "name": {
+        "type": "string",
+        "example": "image.jpg"
+      }
+    }
+  }
+}
+----
+
+==== POST
+.Carrega una nova imatge i crea les seves versions optimitzades.
+* Resum: Permet la càrrega d'una nova imatge.
+* RequestBody: Requerit, `multipart/form-data`.
+* Respostes:
+** `201`: Imatge carregada i optimitzada correctament.
+** `400`: Sol·licitud invàlida.
+** `415`: Tipus de mitjà no suportat.
+** `500`: Error intern del servidor.
+
+=== Operacions sobre una Imatge Específica `/images/{id}`
+
+==== GET
+.Obté una imatge específica pel seu ID.
+* Resum: Retorna una imatge específica.
+* Paràmetres: `id` - El ID de la imatge a obtenir.
+* Respostes:
+** `200`: Imatge obtinguda amb èxit.
+** `404`: Imatge no trobada.
+
+==== DELETE
+.Elimina una imatge específica i les seves versions optimitzades.
+* Resum: Elimina la imatge especificada pel ID.
+* Paràmetres: `id` - El ID de la imatge a eliminar.
+* Respostes:
+** `204`: Imatge eliminada amb èxit.
+** `404`: Imatge no trobada.
+
+==== POST
+.Actualitza una imatge específica i les seves versions optimitzades.
+* Resum: Actualitza la imatge especificada pel ID.
+* RequestBody: Requerit, `multipart/form-data`.
+* Respostes:
+** `200`: Imatge actualitzada amb èxit.
+** `400`: Sol·licitud invàlida.
+** `404`: Imatge no trobada.
+** `415`: Tipus de mitjà no suportat.
+** `500`: Error intern del servidor.
+
+=== Operacions sobre Imatges Optimitzades `/optimized-images/{image_id}/{version}`
+
+==== GET
+.Obté una versió optimitzada específica d'una imatge.
+* Resum: Retorna una versió optimitzada de la imatge.
+* Paràmetres:
+** `image_id` - El ID de la imatge.
+** `version` - La versió de la imatge optimitzada a obtenir (small, medium, large).
+* Respostes:
+** `200`: Versió optimitzada de la imatge obtinguda amb èxit.
+** `404`: Imatge no trobada.
+** `500`: Error intern del servidor.
+
+----
+openapi: 3.0.0
+info:
+  title: Image Management API
+  description: API para la carga, optimización, y gestión de imágenes.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api/V1
+    description: API base URL
+paths:
+  /images:
+    get:
+      summary: Lista todas las imágenes
+      responses:
+        '200':
+          description: Lista de imágenes obtenida con éxito
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: image.jpg
+    post:
+      summary: Carga una nueva imagen y crea sus versiones optimizadas
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  description: Archivo de imagen para cargar.
+              required:
+                - image
+      responses:
+        '201':
+          description: Imagen cargada y optimizada correctamente
+        '400':
+          description: Solicitud inválida
+        '415':
+          description: Tipo de medio no soportado
+        '500':
+          description: Error interno del servidor
+  /images/{id}:
+    get:
+      summary: Obtiene una imagen específica por su ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: El ID de la imagen a obtener.
+      responses:
+        '200':
+          description: Imagen obtenida con éxito
+        '404':
+          description: Imagen no encontrada
+    delete:
+      summary: Elimina una imagen específica y sus versiones optimizadas
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: El ID de la imagen a eliminar.
+      responses:
+        '204':
+          description: Imagen eliminada con éxito
+        '404':
+          description: Imagen no encontrada
+    post:
+      summary: Actualiza una imagen específica y sus versiones optimizadas
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: El ID de la imagen a actualizar.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  description: Archivo de imagen para actualizar.
+              required:
+                - image
+      responses:
+        '200':
+          description: Imagen actualizada con éxito
+        '400':
+          description: Solicitud inválida
+        '404':
+          description: Imagen no encontrada
+        '415':
+          description: Tipo de medio no soportado
+        '500':
+          description: Error interno del servidor
+  /optimized-images/{image_id}/{version}:
+    get:
+      summary: Obtiene una versión optimizada específica de una imagen
+      parameters:
+        - in: path
+          name: image_id
+          required: true
+          schema:
+            type: integer
+          description: El ID de la imagen.
+        - in: path
+          name: version
+          required: true
+          schema:
+            type: string
+            enum:
+              - small
+              - medium
+              - large
+          description: La versión de la imagen optimizada a obtener.
+      responses:
+        '200':
+          description: Versión optimizada de la imagen obtenida con éxito
+        '404':
+          description: Imagen no encontrada
+        '500':
+          description: Error interno del servidor
+
+----
 
 == Línies Futures
 Plantejaments sobre l'evolució futura del projecte.
