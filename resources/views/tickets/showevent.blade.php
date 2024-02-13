@@ -10,9 +10,9 @@
                     <li>
                         @if ($event->main_image)
                             <img src="{{ asset('storage/' . $event->main_image) }}" alt="{{ $event->name }}"
-                                onerror="this.onerror=null; this.src='https://picsum.photos/200'">
+                                onerror="this.onerror=null; this.src='https://picsum.photos/200'" loading="lazy">
                         @else
-                            <img src="https://picsum.photos/2000" alt="{{ $event->name }}">
+                            <img src="https://picsum.photos/2000" alt="{{ $event->name }}" loading="lazy">
                         @endif
                     </li>
                 @endif
@@ -21,9 +21,9 @@
                     <li>
                         @if ($event->main_image)
                             <img src="{{ asset('storage/' . $event->main_image) }}" alt="{{ $event->name }}"
-                                onerror="this.onerror=null; this.src='https://picsum.photos/200'">
+                                onerror="this.onerror=null; this.src='https://picsum.photos/200'" loading="lazy">
                         @else
-                            <img src="https://picsum.photos/2000" alt="{{ $event->name }}">
+                            <img src="https://picsum.photos/2000" alt="{{ $event->name }}" loading="lazy">
                         @endif
                     </li>
                 @endforeach
@@ -62,7 +62,7 @@
                 <input type="hidden" name="totalPrice" id="totalPriceInput" value="0">
                 <input type="hidden" name="ticketData" id="ticketDataInput" value="{}">
                 <input type="hidden" name="sessionId" id="sessionIdInput" value="">
-                <button type="submit" id="buyButton" class="btn btn-primary btnCompra"
+                <button type="submit" id="buyButton" class="btn btnCompra"
                     style="display: none;">Comprar</button>
             </form>
         </div>

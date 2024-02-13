@@ -8,57 +8,28 @@ use Illuminate\Support\Facades\Session as LaravelSession;
 use Illuminate\Support\Facades\Storage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
+
 class TicketsPDFController extends Controller
 {
-    public function generatePdfNo()
-    {
-         $data = [
-            'title' => 'a',
-            'content' => 'a'
-        ];
-
-
-        $pdf = PDF::loadView('tickets.ticketsPDF.ticketsPDF', $data);
-
-        //$pdfPath = 'pdfs/a.pdf';
-        //Storage::put($pdfPath, $pdf->output());
-        //return 'PDF guardado en la ruta: ' . $pdfPath;
-
-        return $pdf->download('a.pdf');
-
-        /*$title='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
-        $content = 'ªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªª';*/
-
-       //return view('tickets.ticketsPDF.ticketsPDF'); 
-    }
-
-    public function datosPDF(Request $request){
-
-
-        if($request->get('nominals') == true){
-            $this->generatePdfNominal($request);
-        }else{
-            $this->generatePdf($request);
-        }
-    }
 
     public function generatePdf(){
         $qrCodeImage = QrCode::size(300)->generate('https://copernic.cat/');
         $base64QrCode = base64_encode($qrCodeImage);
 
         $data = [
-            'title' => 'a',
-            'content' => 'a',
-            'nEntrades' => 2,
             'qrCode' => $base64QrCode
         ];
 
-        $pdf = PDF::loadView('tickets.ticketsPDF.ticketsPdf', $data);
+        $pdf = PDF::loadView('tickets.ticketsPDF.ticketsPDF', $data);
 
-        $session =  LaravelSession::get('a');
-        $pdfName = $session['buyerDNI'] . $session['eventId'];
+        $session =  LaravelSession::get('datosCompra');
+        $pdfName = $session['buyerDNI'] . $session['sessionId'];
 
         $storagePath = 'public/pdfs/'.$pdfName .'.pdf';
+
+        $session['namePDF'] = $pdfName.'.pdf';
+
+        LaravelSession::put('datosCompra', $session);
 
         Storage::put($storagePath, $pdf->output());
         
@@ -67,22 +38,23 @@ class TicketsPDFController extends Controller
 
     public function generatePdfNominal()
     {
-        // Generar el código QR y obtener la representación en base64
         $qrCodeImage = QrCode::size(300)->generate('https://copernic.cat/');
         $base64QrCode = base64_encode($qrCodeImage);
 
         $data = [
-            'title' => 'a',
-            'content' => 'a',
-            'nEntrades' => 10,
             'qrCode' => $base64QrCode
-        ];
-
-        
+        ];        
 
         $pdf = PDF::loadView('tickets.ticketsPDF.ticketsPdfNominals', $data);
 
-        $storagePath = 'public/pdfs/a.pdf';
+        $session =  LaravelSession::get('datosCompra');
+        $pdfName = $session['buyerDNI'] . $session['sessionId'];
+
+        $storagePath = 'public/pdfs/'.$pdfName .'.pdf';
+
+        $session['namePDF'] = $pdfName.'.pdf';
+
+        LaravelSession::put('datosCompra', $session);
 
         Storage::put($storagePath, $pdf->output());
 

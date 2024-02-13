@@ -420,6 +420,18 @@ input:checked+.slider:before {
     padding-top: 10px;
 }
 
+
+.labelDireccion{
+    padding: 5px;
+    margin-right: auto;
+    margin-top: 0px;
+    font-size: 18px;
+}
+
+
+
+
+
 @media (min-width: 768px) {
     .div-informacion-principal {
         width: 100%;
@@ -516,6 +528,10 @@ input:checked+.slider:before {
     #agregar-entrada {
         font-size: 16px;
 
+    }
+
+    .labelDireccion{
+        margin-top: 16px;
     }
 
 }

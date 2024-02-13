@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-require_once base_path('app/redsysHMAC256_API_PHP_7.0.0/apiRedsys.php');
+require_once base_path('app/redsysHMAC256_API_PHP_7.0.0/apiRedsys.php');    
 
 use Exception;
 use App\Models\Event;
@@ -97,10 +97,9 @@ class ConfirmPurchaseController extends Controller
             // Generar parámetros y firma
             $params = $redsys->createMerchantParameters();
             $signature = $redsys->createMerchantSignature('sq7HjrUOBfKmC576ILgskD5srU870gJ7');
-            
             $request->merge(['eventubi' => $eventubi]);
-            sessionLaravel::put('a', $request->all());
-
+            sessionLaravel::put('datosCompra', $request->all());
+            
             // Pasar los datos a la vista
             return view('payment.paymentform', compact('params', 'signature'));
         }
@@ -113,7 +112,7 @@ class ConfirmPurchaseController extends Controller
         $ticketsPDFController->generatePdf();
 
         // Recuperación de la sesión y datos de la compra
-        $session = sessionLaravel::get('a');
+        $session = sessionLaravel::get('datosCompra');
 
         // Registro de la compra en la base de datos
         $compra = new Purchase;
@@ -124,7 +123,8 @@ class ConfirmPurchaseController extends Controller
             $session['buyerEmail'],
             $session['buyerDNI'],
             $session['buyerPhone'],
-            $session['nEntrades']
+            $session['nEntrades'],
+            $session['namePDF']
         );
 
         // Operación autorizada, redirigir al usuario a la página de éxito

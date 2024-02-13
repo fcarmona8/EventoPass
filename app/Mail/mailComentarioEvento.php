@@ -9,16 +9,18 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class mailEntradesCorreu extends Mailable
+class mailComentarioEvento extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(private $name, private $nombreEvento, private $event)
+    public $url, $eventoId, $token;
+
+    public function __construct($url)
     {
-        //
+        $this->url = $url;
     }
 
     /**
@@ -27,20 +29,17 @@ class mailEntradesCorreu extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Entradas evento: ' . $this->nombreEvento,
+            subject: 'Mail Comentario Evento',
         );
     }
 
     /**
      * Get the message content definition.
      */
-    public function content(): Content
+    public function build()
     {
-        return new Content(
-            view: 'emails.mailEntradesCorreu',
-            with: ['name' => $this->name,
-            'event' => $this->event]
-        );
+        return $this->view('emails.mailComentarioEvento')
+                    ->with(['url' => $this->url]);
     }
 
     /**

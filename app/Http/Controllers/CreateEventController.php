@@ -40,6 +40,7 @@ class CreateEventController extends Controller
                 'max_capacity' => 'required|integer|min:1',
                 'promo_video_link' => 'nullable|url',
                 'event_hidden' => 'sometimes|boolean',
+                'nominal_entries' => 'sometimes|boolean',
                 'selector-options' => 'required|integer',
                 'entry_type_name.*' => 'required|string',
                 'entry_type_price.*' => 'required|numeric',
@@ -72,6 +73,7 @@ class CreateEventController extends Controller
                 'venue_id' => $venue->id,
                 'video_link' => $validatedData['promo_video_link'] ?? null,
                 'hidden' => $validatedData['event_hidden'] ?? false,
+                'nominal' => $validatedData['nominal_entries'] ?? false,
                 'user_id' => $user_id,
             ]);
             

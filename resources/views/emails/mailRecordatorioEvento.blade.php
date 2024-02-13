@@ -31,11 +31,9 @@
 <body>
     <p style="font-size: 16px;">Hola,</p>
     
-    <p style="font-size: 16px;">Aquí tienes tus entradas:</p>
+    <p style="font-size: 16px;">Recuerda las entradas para tu evento de Mañana</p>
 
-    <p style="font-size: 16px;"><a href="{{$name}}" target="_blank">Descargar el entradas en PDF</a></p>
-
-    <p style="font-size: 16px;"><a href="{{$event}}" target="_blank">Ver evento</p></a>
+    <p style="font-size: 16px;"><a href="{{$entrades}}" target="_blank">Descargar el entradas en PDF</a></p>
 
     <p style="font-size: 16px;">Gracias</p>
 </body>

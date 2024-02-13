@@ -16,6 +16,7 @@ class CreatePurchasesTable extends Migration
             $table->integer("phone");
             $table->string('email');
             $table->decimal('total_price', 8, 2);
+            $table->string("ticketsPDF")->nullable();
             $table->timestamps();
         });
         

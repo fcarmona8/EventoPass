@@ -88,16 +88,21 @@ html {
 </head>
 
 <body>
-    @for ($i = 1; $i <= $nEntrades; $i++)
+    @php
+        $session = Session::get('datosCompra');
+        $entrada = 0;
+    @endphp
+    @for ($i = 1; $i <= $session['nEntrades']; $i++)
+    @php $entrada++; @endphp
     <div class="pdf">
         <div class="header">
             <table style="width: 100%;">
                 <tr>
                     <td style="width: 150px;">
-                        <img src="{{ public_path('logo/logo.png') }}" class="logoPDF">
+                        <img src="{{ public_path('logo/logo.png') }}" class="logoPDF" loading="lazy">
                     </td>
                     <td>
-                        <h1 class="pdfh1">Evento en pdf con titulo</h1>
+                        <h1 class="pdfh1">{{$session['eventName']}}</h1>
                     </td>
                 </tr>
             </table>
@@ -106,30 +111,33 @@ html {
             <div class="infoContainer">
                 <div class="divInfoEntrada">
                     <h3> Informació entrada </h3>
-                    <p> Tipus: Normal </p>
-                    <p> Preu: 10€ </p>
+                       <p> Tipus: {{ $session['ticketName'.$entrada] }} </p>                     
+                    <p> Preu: {{ $session['ticketNameEur'.$entrada] }} €</p>
                 </div>
                 <div class="linea"></div>
                 <div class="divInfoSessio">
                     <h3> Informació sessió </h3>
-                    <p> Data: 14/07/2024 </p>
-                    <p> Hora: 15:00 </p>
-                    <p> Direcció: Torrent del Batlle, 10 08225 Terrassa Barcelona </p>
+                    <p> Data: {{ $session['fechaSession'] }} </p>
+                    <p> Hora: {{ $session['horaSession'] }} </p>
+                    <p> Direcció: {{ $session['eventubi'] }} </p>
                 </div>
                 <div class="linea2"></div>
                 <div class="divInfoPersonal">
                     <h3> Informació personal </h3>
-                    <p> Nom: Guiu Puigantell Jordan </p>
-                    <p> DNI: 123456789C </p>
-                    <p> Telèfon: 232233321 </p>
+                    <p> Nom: {{ $session['name'.$entrada] }} </p>
+                    <p> DNI: {{ $session['dni'.$entrada] }} </p>
+                    <p> Telèfon: {{ $session['phone'.$entrada] }} </p>
                 </div>
             </div>
         </div>
         <div class="dadesEntrades">
-            <p style="padding: 1% 2%"> Identificador entrada: 12345 </p>
+            <p style="padding: 1% 2%">
+                Identificador entrada: 
+                {{ hash('sha256', $entrada . $session['dni'.$entrada] . $session['sessionId'] . $entrada . $session['phone'.$entrada] . $entrada) }}
+            </p>
         </div>
          <div class="qr">
-            <img src="data:image/png;base64, {{ $qrCode }}" alt="Código QR">
+            <img src="data:image/png;base64, {{ $qrCode }}" alt="Código QR" loading="lazy">
         </div>
     </div>
     @endfor

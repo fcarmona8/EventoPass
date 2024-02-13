@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Mail\mailEntradesCorreu;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Artisan;
 
 
 class MailController extends Controller{
 
 
-    public function enviarEntrades(){
+    public static function enviarEntrades($correu, $namePdf, $nameEvent, $eventId){
+        $url = env('url');
+        $name = $url."/entrades/".$namePdf.".pdf";
 
-        $name = "http://127.0.0.1:8000/b/a.pdf";
-        $nombreEvento = "Evento 5";
+        $event = $url."/tickets/showevent/".$eventId;
 
-        Mail::to('hola@gmail.com')->send(new mailEntradesCorreu($name, $nombreEvento));
+        Mail::to($correu)->send(new mailEntradesCorreu($name, $nameEvent, $event));
     }
 
 
