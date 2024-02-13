@@ -119,6 +119,7 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
+
                 const calendarEl = document.getElementById('calendar');
                 const calendar = new FullCalendar.Calendar(calendarEl, {
                     initialView: 'dayGridMonth',
@@ -161,6 +162,8 @@
                 });
             });
 
+            let inputEntradas;
+
             const selectedTickets = {};
 
             function displaySessions(sessions) {
@@ -179,6 +182,8 @@
                 document.getElementById('sessionDetails').style.display = 'block';
             }
 
+
+
             function displayTicketTypes(ticketTypes) {
                 const sessionList = document.getElementById('sessionList');
                 sessionList.innerHTML = '';
@@ -195,12 +200,16 @@
                     inputQuantity.value = 0;
                     inputQuantity.classList.add('inputQuantity');
                     inputQuantity.addEventListener('input', function() {
+                        if (inputQuantity.value > parseInt(inputQuantity.max)) {
+                            inputQuantity.value = parseInt(inputQuantity.max)
+                        }
                         selectedTickets[ticketType.id] = parseInt(inputQuantity.value);
                         recalculateTotalPrice(ticketTypes);
                     });
 
                     ticketItem.appendChild(inputQuantity);
                     sessionList.appendChild(ticketItem);
+                    inputEntradas = document.querySelectorAll('.inputQuantity');
                 });
 
                 const buyButton = document.getElementById('buyButton');

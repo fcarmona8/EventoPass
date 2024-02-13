@@ -29,7 +29,7 @@
                             eventDesc="{{ $event->description }}" eventAddress="{{ $event->venue->id }}"
                             eventVid="{{ $event->video_link }}" eventHidden="{{ $event->hidden }}">Editar event</span>
                         <a class="card-link" href="{{ route('promotorsessionslist', ['id' => $event->id]) }}">
-                            <span class="card-price card-info">Sessións</span>
+                            <span class="card-price card-info">Sessions</span>
                         </a>
                     </div>
                 </div>
