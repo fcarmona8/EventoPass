@@ -1,0 +1,2 @@
+[2024-02-13 11:35:07] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-13 11:35:08] local.INFO: Fin de solicitud a HomeController@index {"duration":0.08747315406799316} 
