@@ -4,7 +4,7 @@
     <div class="homepromotor">
         @foreach ($events as $event)
             <div class="card cardHomePromotor" id="event-card-{{ $event->id }}">
-                @if ($event->main_image)
+                @if ($event->main_image_id)
                     <img src="{{ asset('storage/' . $event->main_image) }}" alt="{{ $event->name }}"
                         onerror="this.onerror=null; this.src='https://picsum.photos/200'" loading="lazy">
                 @else

@@ -109,7 +109,7 @@ image::images/DiagramaE-R.png[Diagrama d'Entitat-Relació,800,600]
 === Taula: Event_Images
 * `id`: Clau primària, bigint.
 * `event_id`: Clau forana a `events`, bigint.
-* `image_url`: URL de la imatge.
+* `image_id`: URL de la imatge.
 * `is_main`: Imatge principal, boolean, default false.
 * `created_at`: Data de creació, timestamp.
 * `updated_at`: Data d'actualització, timestamp.

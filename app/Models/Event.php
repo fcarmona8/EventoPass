@@ -11,7 +11,7 @@ class Event extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['name', 'description', 'category_id', 'venue_id', 'main_image', 'event_date', 'max_capacity', 'video_link', 'hidden', 'nominal', 'user_id'];
+    protected $fillable = ['name', 'description', 'category_id', 'venue_id', 'main_image_id', 'event_date', 'max_capacity', 'video_link', 'hidden', 'nominal', 'user_id'];
 
     protected $dates = ['event_date'];
 
@@ -111,5 +111,30 @@ class Event extends Model
             ]);
         }
     }
+
+    public function optimizedImageSmallUrl()
+    {
+        if (!$this->main_image_id) {
+            return null;
+        }
+        return "/api/V1/optimized-images/{$this->main_image_id}/small";
+    }
+
+    public function optimizedImageMediumUrl()
+    {
+        if (!$this->main_image_id) {
+            return null;
+        }
+        return "/api/V1/optimized-images/{$this->main_image_id}/medium";
+    }
+
+    public function optimizedImageLargeUrl()
+    {
+        if (!$this->main_image_id) {
+            return null;
+        }
+        return "/api/V1/optimized-images/{$this->main_image_id}/large";
+    }
+
     
 }

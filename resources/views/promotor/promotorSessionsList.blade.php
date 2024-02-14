@@ -6,7 +6,7 @@
         <div class="listSessions" id="listSessions">
             @foreach ($sessions as $session)
                 <div class="card cardHomePromotor">
-                    @if ($session->event->main_image)
+                    @if ($session->event->main_image_id)
                         <img src="{{ asset('storage/' . $session->event->main_image) }}" alt="{{ $session->event->name }}"
                             onerror="this.onerror=null; this.src='https://picsum.photos/200'" loading="lazy">
                     @else
@@ -31,7 +31,7 @@
                 <div class="listSessions">
                     @foreach ($event->sessions as $session)
                         <div class="card cardHomePromotor">
-                            @if ($event->main_image)
+                            @if ($event->main_image_id)
                                 <img src="{{ asset('storage/' . $session->event->main_image) }}"
                                     alt="{{ $session->event->name }}"
                                     onerror="this.onerror=null; this.src='https://picsum.photos/200'" loading="lazy">
