@@ -154,3 +154,5 @@
 [2024-02-13 17:15:51] local.INFO: Fin de solicitud a HomeController@index {"duration":0.0511629581451416} 
 [2024-02-13 17:17:06] local.INFO: Inicio de solicitud a HomeController@index  
 [2024-02-13 17:17:06] local.INFO: Fin de solicitud a HomeController@index {"duration":0.028371095657348633} 
+[2024-02-14 16:56:48] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-14 16:56:48] local.INFO: Fin de solicitud a HomeController@index {"duration":0.01914215087890625} 

@@ -2,12 +2,13 @@
 
 @section('content')
     <div class="contenedorCrearComentario">
-        <form class="formCrearComentario" action="{{ route('tickets.guardarComentario') }}" method="post" id="formCrearComentario">
+        <form class="formCrearComentario" action="{{ route('tickets.guardarComentario') }}" method="post"
+            id="formCrearComentario">
             @csrf
             <h1 class="tituloEnviarComentario">Enviar un comentari</h1>
             <label for="nombre">Nom:</label>
             <input type="hidden" name="eventoId" value="{{ $eventoId }}">
-            <input type="text" name="nombre" id="nombre" maxlength="25"/><br>
+            <input type="text" name="nombre" id="nombre" maxlength="25" /><br>
 
             <label for="caretes">Què t'ha semblat l'esdeveniment:</label>
             <div class="contenedorPuntuacionIconos">
@@ -53,7 +54,8 @@
                     <fieldset>
                         <div class="stars-wrapper">
                             <div class="star-container">
-                                <input class="starInput" id="1-star-rating" type="radio" name="reviewRating" value="1">
+                                <input class="starInput" id="1-star-rating" type="radio" name="reviewRating"
+                                    value="1">
                                 <label for="1-star-rating">1 Star</label>
                                 <div class="fake-star">
                                     <svg viewBox="0 0 20 20" width="30" height="30">
@@ -62,7 +64,8 @@
                                 </div>
                             </div>
                             <div class="star-container">
-                                <input class="starInput" id="2-star-rating" type="radio" name="reviewRating" value="2">
+                                <input class="starInput" id="2-star-rating" type="radio" name="reviewRating"
+                                    value="2">
                                 <label for="2-star-rating">2 Stars</label>
                                 <div class="fake-star">
                                     <svg viewBox="0 0 20 20" width="30" height="30">
@@ -71,7 +74,8 @@
                                 </div>
                             </div>
                             <div class="star-container">
-                                <input class="starInput" id="3-star-rating" type="radio" name="reviewRating" value="3">
+                                <input class="starInput" id="3-star-rating" type="radio" name="reviewRating"
+                                    value="3">
                                 <label for="3-star-rating">3 Stars</label>
                                 <div class="fake-star">
                                     <svg viewBox="0 0 20 20" width="30" height="30">
@@ -80,7 +84,8 @@
                                 </div>
                             </div>
                             <div class="star-container">
-                                <input class="starInput" id="4-star-rating" type="radio" name="reviewRating" value="4">
+                                <input class="starInput" id="4-star-rating" type="radio" name="reviewRating"
+                                    value="4">
                                 <label for="4-star-rating">4 Stars</label>
                                 <div class="fake-star">
                                     <svg viewBox="0 0 20 20" width="30" height="30">
@@ -89,7 +94,8 @@
                                 </div>
                             </div>
                             <div class="star-container">
-                                <input class="starInput" id="5-star-rating" type="radio" name="reviewRating" value="5">
+                                <input class="starInput" id="5-star-rating" type="radio" name="reviewRating"
+                                    value="5">
                                 <label for="5-star-rating">5 Stars</label>
                                 <div class="fake-star">
                                     <svg viewBox="0 0 20 20" width="30" height="30">
@@ -142,7 +148,7 @@
             </section>
 
             <label for="titulo">Títol del comentari:</label>
-            <input type="text" name="titulo" id="titulo" maxlength="50"/><br>
+            <input type="text" name="titulo" id="titulo" maxlength="50" /><br>
 
             <label for="comentario">Comentari:</label>
             <textarea name="comentario" id="comentario"></textarea><br>
@@ -184,41 +190,39 @@
             }
         };
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const formComentario = document.getElementById('formCrearComentario');
+        const formComentario = document.getElementById('formCrearComentario');
 
-            if (formComentario) {
-                formComentario.addEventListener('submit', function(event) {
+        if (formComentario) {
+            formComentario.addEventListener('submit', function(event) {
 
-                    // Verificar si los campos están vacíos y mostrar mensajes de error
-                    if (!nombreField.value.trim()) {
-                        event.preventDefault();
-                        nombreField.style.border = '1px solid red';
-                        addErrorMessage(nombreField, 'Campo requerido');
-                    } else {
-                        nombreField.style.border = '';
-                        removeErrorMessage(nombreField);
-                    }
+                // Verificar si los campos están vacíos y mostrar mensajes de error
+                if (!nombreField.value.trim()) {
+                    event.preventDefault();
+                    nombreField.style.border = '1px solid red';
+                    addErrorMessage(nombreField, 'Campo requerido');
+                } else {
+                    nombreField.style.border = '';
+                    removeErrorMessage(nombreField);
+                }
 
-                    if (!tituloField.value.trim()) {
-                        event.preventDefault();
-                        tituloField.style.border = '1px solid red';
-                        addErrorMessage(tituloField, 'Campo requerido');
-                    } else {
-                        tituloField.style.border = '';
-                        removeErrorMessage(tituloField);
-                    }
+                if (!tituloField.value.trim()) {
+                    event.preventDefault();
+                    tituloField.style.border = '1px solid red';
+                    addErrorMessage(tituloField, 'Campo requerido');
+                } else {
+                    tituloField.style.border = '';
+                    removeErrorMessage(tituloField);
+                }
 
-                    if (!comentarioField.value.trim()) {
-                        event.preventDefault();
-                        comentarioField.style.border = '1px solid red';
-                        addErrorMessage(comentarioField, 'Campo requerido');
-                    } else {
-                        comentarioField.style.border = '';
-                        removeErrorMessage(comentarioField);
-                    }
-                });
-            }
-        });
+                if (!comentarioField.value.trim()) {
+                    event.preventDefault();
+                    comentarioField.style.border = '1px solid red';
+                    addErrorMessage(comentarioField, 'Campo requerido');
+                } else {
+                    comentarioField.style.border = '';
+                    removeErrorMessage(comentarioField);
+                }
+            });
+        }
     </script>
 @endpush
