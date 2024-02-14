@@ -1,0 +1,62 @@
+[2024-02-14 16:56:59] local.INFO: Iniciando show {"id":"21"} 
+[2024-02-14 16:56:59] local.INFO: Evento encontrado: Array
+(
+    [id] => 21
+    [name] => Evento 21
+    [description] => Descripción 21
+    [main_image_id] => 81
+    [category_id] => 7
+    [venue_id] => 10
+    [user_id] => 2
+    [event_date] => 2021-01-21 00:00:00
+    [video_link] => 
+    [hidden] => 
+    [nominal] => 
+    [created_at] => 2024-02-13T16:58:35.000000Z
+    [updated_at] => 2024-02-13T16:58:35.000000Z
+    [images] => Array
+        (
+        )
+
+    [venue] => Array
+        (
+            [id] => 10
+            [province] => Pennsylvania
+            [city] => Lake Dan
+            [postal_code] => 43635
+            [venue_name] => Recinto Ferial
+            [capacity] => 342
+            [user_id] => 4
+            [created_at] => 2024-02-13T16:58:32.000000Z
+            [updated_at] => 2024-02-13T16:58:32.000000Z
+        )
+
+)
+  
+[2024-02-14 16:56:59] local.INFO: Sesiones encontradas para el evento: Array
+(
+)
+  
+[2024-02-14 16:56:59] local.INFO: Iniciando getCoordinates {"venue":{"App\\Models\\Venue":{"id":10,"province":"Pennsylvania","city":"Lake Dan","postal_code":"43635","venue_name":"Recinto Ferial","capacity":342,"user_id":4,"created_at":"2024-02-13T16:58:32.000000Z","updated_at":"2024-02-13T16:58:32.000000Z"}}} 
+[2024-02-14 16:56:59] local.DEBUG: URL de solicitud de la API de Google Maps: https://maps.googleapis.com/maps/api/geocode/json?address=Pennsylvania%2C+Lake+Dan%2C+43635&key=AIzaSyCbSv4bCYfNwXa_MXnzon8gG2kK_1MpoZw  
+[2024-02-14 16:56:59] local.DEBUG: Respuesta cruda de la API de Google Maps: stdClass Object
+(
+    [error_message] => You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started
+    [results] => Array
+        (
+        )
+
+    [status] => REQUEST_DENIED
+)
+  
+[2024-02-14 16:56:59] local.ERROR: No se encontraron coordenadas para la dirección dada. Respuesta de la API: stdClass Object
+(
+    [error_message] => You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started
+    [results] => Array
+        (
+        )
+
+    [status] => REQUEST_DENIED
+)
+  
+[2024-02-14 16:56:59] local.INFO: Finalizando show {"duration":0.33545494079589844} 
