@@ -9,7 +9,7 @@ class EventImage extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['event_id', 'image_id', 'is_main'];
+    protected $fillable = ['event_id', 'image_url', 'is_main', 'image_id'];
 
     // Relación con el modelo Event
     public function event()

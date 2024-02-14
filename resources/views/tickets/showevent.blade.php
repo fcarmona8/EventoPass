@@ -6,25 +6,31 @@
         <!-- Carrusel de fotografías -->
         <div class="slider-frame">
             <ul>
+                <!-- Verifica si hay una imagen principal -->
                 @if ($event->main_image_id)
                     <li>
-                        @if ($event->main_image_id)
-                            <img src="{{ asset('storage/' . $event->main_image) }}" alt="{{ $event->name }}"
-                                onerror="this.onerror=null; this.src='https://picsum.photos/200'" loading="lazy">
-                        @else
-                            <img src="https://picsum.photos/2000" alt="{{ $event->name }}" loading="lazy">
-                        @endif
+                        <picture>
+                            <source media="(max-width: 799px)"
+                                srcset="http://localhost:8080{{ $event->optimizedImageSmallUrl() }}">
+                            <source media="(min-width: 800px) and (max-width: 1023px)"
+                                srcset="http://localhost:8080{{ $event->optimizedImageMediumUrl() }}">
+                            <img src="http://localhost:8080{{ $event->optimizedImageLargeUrl() }}" alt="{{ $event->name }}"
+                                loading="lazy" onerror="this.onerror=null; this.src='https://picsum.photos/200'">
+                        </picture>
                     </li>
                 @endif
 
                 @foreach ($event->images as $index => $image)
                     <li>
-                        @if ($event->main_image_id)
-                            <img src="{{ asset('storage/' . $event->main_image) }}" alt="{{ $event->name }}"
-                                onerror="this.onerror=null; this.src='https://picsum.photos/200'" loading="lazy">
-                        @else
-                            <img src="https://picsum.photos/2000" alt="{{ $event->name }}" loading="lazy">
-                        @endif
+                        <picture>
+                            <source media="(max-width: 799px)"
+                                srcset="http://localhost:8080/api/V1/optimized-images/{{ $image->image_id }}/small">
+                            <source media="(min-width: 800px) and (max-width: 1023px)"
+                                srcset="http://localhost:8080/api/V1/optimized-images/{{ $image->image_id }}/medium">
+                            <img src="http://localhost:8080/api/V1/optimized-images/{{ $image->image_id }}/large"
+                                alt="{{ $event->name }}" loading="lazy"
+                                onerror="this.onerror=null; this.src='https://picsum.photos/200'">
+                        </picture>
                     </li>
                 @endforeach
             </ul>
@@ -62,8 +68,7 @@
                 <input type="hidden" name="totalPrice" id="totalPriceInput" value="0">
                 <input type="hidden" name="ticketData" id="ticketDataInput" value="{}">
                 <input type="hidden" name="sessionId" id="sessionIdInput" value="">
-                <button type="submit" id="buyButton" class="btn btnCompra"
-                    style="display: none;">Comprar</button>
+                <button type="submit" id="buyButton" class="btn btnCompra" style="display: none;">Comprar</button>
             </form>
         </div>
         <div class="card-body">
@@ -114,6 +119,7 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
+
                 const calendarEl = document.getElementById('calendar');
                 const calendar = new FullCalendar.Calendar(calendarEl, {
                     initialView: 'dayGridMonth',
@@ -156,6 +162,8 @@
                 });
             });
 
+            let inputEntradas;
+
             const selectedTickets = {};
 
             function displaySessions(sessions) {
@@ -190,12 +198,16 @@
                     inputQuantity.value = 0;
                     inputQuantity.classList.add('inputQuantity');
                     inputQuantity.addEventListener('input', function() {
+                        if (inputQuantity.value > parseInt(inputQuantity.max)) {
+                            inputQuantity.value = parseInt(inputQuantity.max)
+                        }
                         selectedTickets[ticketType.id] = parseInt(inputQuantity.value);
                         recalculateTotalPrice(ticketTypes);
                     });
 
                     ticketItem.appendChild(inputQuantity);
                     sessionList.appendChild(ticketItem);
+                    inputEntradas = document.querySelectorAll('.inputQuantity');
                 });
 
                 const buyButton = document.getElementById('buyButton');

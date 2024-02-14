@@ -5,8 +5,14 @@
         @foreach ($events as $event)
             <div class="card cardHomePromotor" id="event-card-{{ $event->id }}">
                 @if ($event->main_image_id)
-                    <img src="{{ asset('storage/' . $event->main_image) }}" alt="{{ $event->name }}"
-                        onerror="this.onerror=null; this.src='https://picsum.photos/200'" loading="lazy">
+                    <picture>
+                        <source media="(max-width: 799px)"
+                            srcset="http://localhost:8080{{ $event->optimizedImageSmallUrl() }}">
+                        <source media="(min-width: 800px) and (max-width: 1023px)"
+                            srcset="http://localhost:8080{{ $event->optimizedImageMediumUrl() }}">
+                        <img src="http://localhost:8080{{ $event->optimizedImageLargeUrl() }}" alt="{{ $event->name }}"
+                            loading="lazy" onerror="this.onerror=null; this.src='https://picsum.photos/200'">
+                    </picture>
                 @else
                     <img src="https://picsum.photos/2000" alt="{{ $event->name }}" loading="lazy">
                 @endif
@@ -23,7 +29,7 @@
                             eventDesc="{{ $event->description }}" eventAddress="{{ $event->venue->id }}"
                             eventVid="{{ $event->video_link }}" eventHidden="{{ $event->hidden }}">Editar event</span>
                         <a class="card-link" href="{{ route('promotorsessionslist', ['id' => $event->id]) }}">
-                            <span class="card-price card-info">Sessións</span>
+                            <span class="card-price card-info">Sessions</span>
                         </a>
                     </div>
                 </div>
@@ -113,7 +119,7 @@
         });
 
         document.addEventListener('DOMContentLoaded', function() {
-            var successMessage = "{{ session('success') }}";
+            const successMessage = "{{ session('success') }}";
 
             if (successMessage) {
                 showToast('Event creat correctament');
