@@ -15,7 +15,7 @@ class EventImageFactory extends Factory
     {
         return [
             'event_id' => Event::factory(),
-            'image_url' => $this->faker->imageUrl(),
+            'image_id' => $this->faker->imageUrl(),
             'is_main' => $this->faker->boolean,
         ];
     }
