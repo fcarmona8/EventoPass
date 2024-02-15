@@ -1,3 +1,0 @@
-[2024-02-13 15:49:33] local.INFO: Inicio de solicitud a ResultatsController@index  
-[2024-02-13 15:49:33] local.INFO: Procesamiento parcial en ResultatsController@index {"duration":0.06899499893188477} 
-[2024-02-13 15:49:34] local.INFO: Fin de solicitud a ResultatsController@index {"duration":0.14305686950683594} 

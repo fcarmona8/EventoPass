@@ -45,7 +45,7 @@ class CreateEventController extends Controller
                 'entry_type_name.*' => 'required|string',
                 'entry_type_price.*' => 'required|numeric',
                 'entry_type_quantity.*' => 'required|integer',
-                'additional_images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'additional_images.*' => 'image|mimes:jpeg,png,jpg|max:2048',
             ]);
 
             Log::info('Datos del evento validados: ' . json_encode($validatedData));
@@ -93,9 +93,10 @@ class CreateEventController extends Controller
                 foreach ($request->file('additional_images') as $additionalImage) {
                     $additionalImageResponse = $this->uploadImageToApi($additionalImage);
                     if ($additionalImageResponse->successful()) {
+                        $imageId = $additionalImageResponse->json()['imageId'];
                         EventImage::create([
                             'event_id' => $event->id,
-                            'image_id' => $additionalImageResponse->json()['imageId'],
+                            'image_id' => $imageId,
                             'is_main' => false,
                         ]);
                     } else {

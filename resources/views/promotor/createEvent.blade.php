@@ -94,8 +94,9 @@
 
             <div class="div-additional-images">
                 <label for="additional_images" class="label-event">Imatges Adicionals:</label>
-                <input type="file" class="input-event" name="additional_images[]" id="additional_images" accept="image/*"
+                <input type="file" class="input-event" name="additional_images[]" id="additional_images" accept="image/jpeg, image/png, image/jpg"
                     multiple>
+                <ul id="preview"></ul>
             </div>
         </div>
 
