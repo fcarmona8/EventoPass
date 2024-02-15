@@ -26,7 +26,7 @@ class EventFactory extends Factory
             'multipart' => [
                 [
                     'name'     => 'image',
-                    'contents' => fopen(storage_path('app/public/images/imagen.png'), 'r'),
+                    'contents' => fopen(public_path('images\default.jpg'), 'r'),
                 ],
             ],
         ]);
