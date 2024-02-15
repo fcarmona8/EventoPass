@@ -15,3 +15,6 @@ GitLab: https://git.copernic.cat/gpuigantell/gr04-puigantell-carmona-perez
 = Isard
 
 Servidor de Guiu Puigantell, ip: 192.168.60.150
+
+= Links API
+Imatge: https://git.copernic.cat/aperez/image_management_api
