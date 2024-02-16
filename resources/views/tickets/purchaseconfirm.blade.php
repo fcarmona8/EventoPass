@@ -7,7 +7,7 @@
         }
     </style>
 
-    <div class="container">
+    <div class="containerShowEvent">
         <h2>Confirmación de Compra</h2>
 
         {{-- Temporizador --}}

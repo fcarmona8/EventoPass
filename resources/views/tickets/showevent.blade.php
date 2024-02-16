@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="containerShowEvent">
 
         <!-- Carrusel de fotografías -->
         <div class="slider-frame">
@@ -111,6 +111,7 @@
                 @endforeach
             @endif
         </div>
+    </div>
     @endsection
 
     @push('scripts')
