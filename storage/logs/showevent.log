@@ -1,0 +1,2107 @@
+[2024-02-16 16:41:07] local.INFO: Iniciando show {"id":"9"} 
+[2024-02-16 16:41:07] local.INFO: Evento encontrado: Array
+(
+    [id] => 9
+    [name] => Evento 9
+    [description] => Descripción 9
+    [main_image_id] => 69
+    [category_id] => 1
+    [venue_id] => 6
+    [user_id] => 1
+    [event_date] => 2021-01-09 00:00:00
+    [video_link] => 
+    [hidden] => 
+    [nominal] => 
+    [created_at] => 2024-02-13T16:58:35.000000Z
+    [updated_at] => 2024-02-13T16:58:35.000000Z
+    [images] => Array
+        (
+        )
+
+    [venue] => Array
+        (
+            [id] => 6
+            [province] => New Jersey
+            [city] => West Kathleen
+            [postal_code] => 99634-6174
+            [venue_name] => Estadio Municipal
+            [capacity] => 961
+            [user_id] => 3
+            [created_at] => 2024-02-13T16:58:32.000000Z
+            [updated_at] => 2024-02-13T16:58:32.000000Z
+        )
+
+)
+  
+[2024-02-16 16:41:07] local.INFO: Sesiones encontradas para el evento: Array
+(
+    [2024-02-28] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 59
+                    [event_id] => 9
+                    [date_time] => 2024-02-28 12:00:00
+                    [max_capacity] => 18
+                    [online_sale_end_time] => 2024-02-28 12:00:00
+                    [ticket_quantity] => 
+                    [named_tickets] => 
+                    [created_at] => 2024-02-16T16:01:03.000000Z
+                    [updated_at] => 2024-02-16T16:01:03.000000Z
+                )
+
+        )
+
+)
+  
+[2024-02-16 16:41:07] local.DEBUG: Detalles de la sesión: Array
+(
+    [date] => 2024-02-28
+    [count] => 1
+    [sessions] => Illuminate\Database\Eloquent\Collection Object
+        (
+            [items:protected] => Array
+                (
+                    [0] => App\Models\Session Object
+                        (
+                            [connection:protected] => pgsql
+                            [table:protected] => sessions
+                            [primaryKey:protected] => id
+                            [keyType:protected] => int
+                            [incrementing] => 1
+                            [with:protected] => Array
+                                (
+                                )
+
+                            [withCount:protected] => Array
+                                (
+                                )
+
+                            [preventsLazyLoading] => 
+                            [perPage:protected] => 15
+                            [exists] => 1
+                            [wasRecentlyCreated] => 
+                            [escapeWhenCastingToString:protected] => 
+                            [attributes:protected] => Array
+                                (
+                                    [id] => 59
+                                    [event_id] => 9
+                                    [date_time] => 2024-02-28 12:00:00
+                                    [max_capacity] => 18
+                                    [online_sale_end_time] => 2024-02-28 12:00:00
+                                    [ticket_quantity] => 
+                                    [named_tickets] => 
+                                    [created_at] => 2024-02-16 16:01:03
+                                    [updated_at] => 2024-02-16 16:01:03
+                                    [ticketTypes] => Illuminate\Database\Eloquent\Collection Object
+                                        (
+                                            [items:protected] => Array
+                                                (
+                                                    [0] => App\Models\TicketType Object
+                                                        (
+                                                            [connection:protected] => pgsql
+                                                            [table:protected] => ticket_types
+                                                            [primaryKey:protected] => id
+                                                            [keyType:protected] => int
+                                                            [incrementing] => 1
+                                                            [with:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [withCount:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [preventsLazyLoading] => 
+                                                            [perPage:protected] => 15
+                                                            [exists] => 1
+                                                            [wasRecentlyCreated] => 
+                                                            [escapeWhenCastingToString:protected] => 
+                                                            [attributes:protected] => Array
+                                                                (
+                                                                    [id] => 25
+                                                                    [name] => Platino
+                                                                    [price] => 23.01
+                                                                    [available_tickets] => 5
+                                                                    [created_at] => 2024-02-16 16:01:03
+                                                                    [updated_at] => 2024-02-16 16:01:03
+                                                                )
+
+                                                            [original:protected] => Array
+                                                                (
+                                                                    [id] => 25
+                                                                    [name] => Platino
+                                                                    [price] => 23.01
+                                                                    [available_tickets] => 5
+                                                                    [created_at] => 2024-02-16 16:01:03
+                                                                    [updated_at] => 2024-02-16 16:01:03
+                                                                )
+
+                                                            [changes:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [casts:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [classCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [attributeCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dateFormat:protected] => 
+                                                            [appends:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dispatchesEvents:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [observables:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [relations:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [touches:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [timestamps] => 1
+                                                            [usesUniqueIds] => 
+                                                            [hidden:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [visible:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [fillable:protected] => Array
+                                                                (
+                                                                    [0] => name
+                                                                    [1] => price
+                                                                    [2] => available_tickets
+                                                                )
+
+                                                            [guarded:protected] => Array
+                                                                (
+                                                                    [0] => *
+                                                                )
+
+                                                        )
+
+                                                    [1] => App\Models\TicketType Object
+                                                        (
+                                                            [connection:protected] => pgsql
+                                                            [table:protected] => ticket_types
+                                                            [primaryKey:protected] => id
+                                                            [keyType:protected] => int
+                                                            [incrementing] => 1
+                                                            [with:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [withCount:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [preventsLazyLoading] => 
+                                                            [perPage:protected] => 15
+                                                            [exists] => 1
+                                                            [wasRecentlyCreated] => 
+                                                            [escapeWhenCastingToString:protected] => 
+                                                            [attributes:protected] => Array
+                                                                (
+                                                                    [id] => 26
+                                                                    [name] => VIP
+                                                                    [price] => 151.42
+                                                                    [available_tickets] => 3
+                                                                    [created_at] => 2024-02-16 16:01:03
+                                                                    [updated_at] => 2024-02-16 16:01:03
+                                                                )
+
+                                                            [original:protected] => Array
+                                                                (
+                                                                    [id] => 26
+                                                                    [name] => VIP
+                                                                    [price] => 151.42
+                                                                    [available_tickets] => 3
+                                                                    [created_at] => 2024-02-16 16:01:03
+                                                                    [updated_at] => 2024-02-16 16:01:03
+                                                                )
+
+                                                            [changes:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [casts:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [classCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [attributeCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dateFormat:protected] => 
+                                                            [appends:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dispatchesEvents:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [observables:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [relations:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [touches:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [timestamps] => 1
+                                                            [usesUniqueIds] => 
+                                                            [hidden:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [visible:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [fillable:protected] => Array
+                                                                (
+                                                                    [0] => name
+                                                                    [1] => price
+                                                                    [2] => available_tickets
+                                                                )
+
+                                                            [guarded:protected] => Array
+                                                                (
+                                                                    [0] => *
+                                                                )
+
+                                                        )
+
+                                                    [2] => App\Models\TicketType Object
+                                                        (
+                                                            [connection:protected] => pgsql
+                                                            [table:protected] => ticket_types
+                                                            [primaryKey:protected] => id
+                                                            [keyType:protected] => int
+                                                            [incrementing] => 1
+                                                            [with:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [withCount:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [preventsLazyLoading] => 
+                                                            [perPage:protected] => 15
+                                                            [exists] => 1
+                                                            [wasRecentlyCreated] => 
+                                                            [escapeWhenCastingToString:protected] => 
+                                                            [attributes:protected] => Array
+                                                                (
+                                                                    [id] => 27
+                                                                    [name] => Bronze
+                                                                    [price] => 42.39
+                                                                    [available_tickets] => 4
+                                                                    [created_at] => 2024-02-16 16:01:03
+                                                                    [updated_at] => 2024-02-16 16:01:03
+                                                                )
+
+                                                            [original:protected] => Array
+                                                                (
+                                                                    [id] => 27
+                                                                    [name] => Bronze
+                                                                    [price] => 42.39
+                                                                    [available_tickets] => 4
+                                                                    [created_at] => 2024-02-16 16:01:03
+                                                                    [updated_at] => 2024-02-16 16:01:03
+                                                                )
+
+                                                            [changes:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [casts:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [classCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [attributeCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dateFormat:protected] => 
+                                                            [appends:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dispatchesEvents:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [observables:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [relations:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [touches:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [timestamps] => 1
+                                                            [usesUniqueIds] => 
+                                                            [hidden:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [visible:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [fillable:protected] => Array
+                                                                (
+                                                                    [0] => name
+                                                                    [1] => price
+                                                                    [2] => available_tickets
+                                                                )
+
+                                                            [guarded:protected] => Array
+                                                                (
+                                                                    [0] => *
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                            [escapeWhenCastingToString:protected] => 
+                                        )
+
+                                    [formattedDateTime] => 2024-02-28 12:00
+                                )
+
+                            [original:protected] => Array
+                                (
+                                    [id] => 59
+                                    [event_id] => 9
+                                    [date_time] => 2024-02-28 12:00:00
+                                    [max_capacity] => 18
+                                    [online_sale_end_time] => 2024-02-28 12:00:00
+                                    [ticket_quantity] => 
+                                    [named_tickets] => 
+                                    [created_at] => 2024-02-16 16:01:03
+                                    [updated_at] => 2024-02-16 16:01:03
+                                )
+
+                            [changes:protected] => Array
+                                (
+                                )
+
+                            [casts:protected] => Array
+                                (
+                                )
+
+                            [classCastCache:protected] => Array
+                                (
+                                )
+
+                            [attributeCastCache:protected] => Array
+                                (
+                                )
+
+                            [dateFormat:protected] => 
+                            [appends:protected] => Array
+                                (
+                                )
+
+                            [dispatchesEvents:protected] => Array
+                                (
+                                )
+
+                            [observables:protected] => Array
+                                (
+                                )
+
+                            [relations:protected] => Array
+                                (
+                                )
+
+                            [touches:protected] => Array
+                                (
+                                )
+
+                            [timestamps] => 1
+                            [usesUniqueIds] => 
+                            [hidden:protected] => Array
+                                (
+                                )
+
+                            [visible:protected] => Array
+                                (
+                                )
+
+                            [fillable:protected] => Array
+                                (
+                                    [0] => event_id
+                                    [1] => date_time
+                                    [2] => online_sale_end_time
+                                    [3] => ticket_quantity
+                                    [4] => named_tickets
+                                    [5] => max_capacity
+                                )
+
+                            [guarded:protected] => Array
+                                (
+                                    [0] => *
+                                )
+
+                        )
+
+                )
+
+            [escapeWhenCastingToString:protected] => 
+        )
+
+)
+  
+[2024-02-16 16:41:07] local.INFO: Iniciando getCoordinates {"venue":{"App\\Models\\Venue":{"id":6,"province":"New Jersey","city":"West Kathleen","postal_code":"99634-6174","venue_name":"Estadio Municipal","capacity":961,"user_id":3,"created_at":"2024-02-13T16:58:32.000000Z","updated_at":"2024-02-13T16:58:32.000000Z"}}} 
+[2024-02-16 16:41:07] local.DEBUG: URL de solicitud de la API de Google Maps: https://maps.googleapis.com/maps/api/geocode/json?address=New+Jersey%2C+West+Kathleen%2C+99634-6174&key=AIzaSyCbSv4bCYfNwXa_MXnzon8gG2kK_1MpoZw  
+[2024-02-16 16:41:11] local.DEBUG: Respuesta cruda de la API de Google Maps: stdClass Object
+(
+    [error_message] => You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started
+    [results] => Array
+        (
+        )
+
+    [status] => REQUEST_DENIED
+)
+  
+[2024-02-16 16:41:11] local.ERROR: No se encontraron coordenadas para la dirección dada. Respuesta de la API: stdClass Object
+(
+    [error_message] => You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started
+    [results] => Array
+        (
+        )
+
+    [status] => REQUEST_DENIED
+)
+  
+[2024-02-16 16:41:11] local.INFO: Finalizando show {"duration":3.272573947906494} 
+[2024-02-16 16:41:11] local.INFO: Iniciando show {"id":"9"} 
+[2024-02-16 16:41:11] local.INFO: Evento encontrado: Array
+(
+    [id] => 9
+    [name] => Evento 9
+    [description] => Descripción 9
+    [main_image_id] => 69
+    [category_id] => 1
+    [venue_id] => 6
+    [user_id] => 1
+    [event_date] => 2021-01-09 00:00:00
+    [video_link] => 
+    [hidden] => 
+    [nominal] => 
+    [created_at] => 2024-02-13T16:58:35.000000Z
+    [updated_at] => 2024-02-13T16:58:35.000000Z
+    [images] => Array
+        (
+        )
+
+    [venue] => Array
+        (
+            [id] => 6
+            [province] => New Jersey
+            [city] => West Kathleen
+            [postal_code] => 99634-6174
+            [venue_name] => Estadio Municipal
+            [capacity] => 961
+            [user_id] => 3
+            [created_at] => 2024-02-13T16:58:32.000000Z
+            [updated_at] => 2024-02-13T16:58:32.000000Z
+        )
+
+)
+  
+[2024-02-16 16:41:11] local.INFO: Sesiones encontradas para el evento: Array
+(
+    [2024-02-28] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 59
+                    [event_id] => 9
+                    [date_time] => 2024-02-28 12:00:00
+                    [max_capacity] => 18
+                    [online_sale_end_time] => 2024-02-28 12:00:00
+                    [ticket_quantity] => 
+                    [named_tickets] => 
+                    [created_at] => 2024-02-16T16:01:03.000000Z
+                    [updated_at] => 2024-02-16T16:01:03.000000Z
+                )
+
+        )
+
+)
+  
+[2024-02-16 16:41:11] local.DEBUG: Detalles de la sesión: Array
+(
+    [date] => 2024-02-28
+    [count] => 1
+    [sessions] => Illuminate\Database\Eloquent\Collection Object
+        (
+            [items:protected] => Array
+                (
+                    [0] => App\Models\Session Object
+                        (
+                            [connection:protected] => pgsql
+                            [table:protected] => sessions
+                            [primaryKey:protected] => id
+                            [keyType:protected] => int
+                            [incrementing] => 1
+                            [with:protected] => Array
+                                (
+                                )
+
+                            [withCount:protected] => Array
+                                (
+                                )
+
+                            [preventsLazyLoading] => 
+                            [perPage:protected] => 15
+                            [exists] => 1
+                            [wasRecentlyCreated] => 
+                            [escapeWhenCastingToString:protected] => 
+                            [attributes:protected] => Array
+                                (
+                                    [id] => 59
+                                    [event_id] => 9
+                                    [date_time] => 2024-02-28 12:00:00
+                                    [max_capacity] => 18
+                                    [online_sale_end_time] => 2024-02-28 12:00:00
+                                    [ticket_quantity] => 
+                                    [named_tickets] => 
+                                    [created_at] => 2024-02-16 16:01:03
+                                    [updated_at] => 2024-02-16 16:01:03
+                                    [ticketTypes] => Illuminate\Database\Eloquent\Collection Object
+                                        (
+                                            [items:protected] => Array
+                                                (
+                                                    [0] => App\Models\TicketType Object
+                                                        (
+                                                            [connection:protected] => pgsql
+                                                            [table:protected] => ticket_types
+                                                            [primaryKey:protected] => id
+                                                            [keyType:protected] => int
+                                                            [incrementing] => 1
+                                                            [with:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [withCount:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [preventsLazyLoading] => 
+                                                            [perPage:protected] => 15
+                                                            [exists] => 1
+                                                            [wasRecentlyCreated] => 
+                                                            [escapeWhenCastingToString:protected] => 
+                                                            [attributes:protected] => Array
+                                                                (
+                                                                    [id] => 25
+                                                                    [name] => Platino
+                                                                    [price] => 23.01
+                                                                    [available_tickets] => 5
+                                                                    [created_at] => 2024-02-16 16:01:03
+                                                                    [updated_at] => 2024-02-16 16:01:03
+                                                                )
+
+                                                            [original:protected] => Array
+                                                                (
+                                                                    [id] => 25
+                                                                    [name] => Platino
+                                                                    [price] => 23.01
+                                                                    [available_tickets] => 5
+                                                                    [created_at] => 2024-02-16 16:01:03
+                                                                    [updated_at] => 2024-02-16 16:01:03
+                                                                )
+
+                                                            [changes:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [casts:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [classCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [attributeCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dateFormat:protected] => 
+                                                            [appends:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dispatchesEvents:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [observables:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [relations:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [touches:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [timestamps] => 1
+                                                            [usesUniqueIds] => 
+                                                            [hidden:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [visible:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [fillable:protected] => Array
+                                                                (
+                                                                    [0] => name
+                                                                    [1] => price
+                                                                    [2] => available_tickets
+                                                                )
+
+                                                            [guarded:protected] => Array
+                                                                (
+                                                                    [0] => *
+                                                                )
+
+                                                        )
+
+                                                    [1] => App\Models\TicketType Object
+                                                        (
+                                                            [connection:protected] => pgsql
+                                                            [table:protected] => ticket_types
+                                                            [primaryKey:protected] => id
+                                                            [keyType:protected] => int
+                                                            [incrementing] => 1
+                                                            [with:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [withCount:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [preventsLazyLoading] => 
+                                                            [perPage:protected] => 15
+                                                            [exists] => 1
+                                                            [wasRecentlyCreated] => 
+                                                            [escapeWhenCastingToString:protected] => 
+                                                            [attributes:protected] => Array
+                                                                (
+                                                                    [id] => 26
+                                                                    [name] => VIP
+                                                                    [price] => 151.42
+                                                                    [available_tickets] => 3
+                                                                    [created_at] => 2024-02-16 16:01:03
+                                                                    [updated_at] => 2024-02-16 16:01:03
+                                                                )
+
+                                                            [original:protected] => Array
+                                                                (
+                                                                    [id] => 26
+                                                                    [name] => VIP
+                                                                    [price] => 151.42
+                                                                    [available_tickets] => 3
+                                                                    [created_at] => 2024-02-16 16:01:03
+                                                                    [updated_at] => 2024-02-16 16:01:03
+                                                                )
+
+                                                            [changes:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [casts:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [classCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [attributeCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dateFormat:protected] => 
+                                                            [appends:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dispatchesEvents:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [observables:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [relations:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [touches:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [timestamps] => 1
+                                                            [usesUniqueIds] => 
+                                                            [hidden:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [visible:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [fillable:protected] => Array
+                                                                (
+                                                                    [0] => name
+                                                                    [1] => price
+                                                                    [2] => available_tickets
+                                                                )
+
+                                                            [guarded:protected] => Array
+                                                                (
+                                                                    [0] => *
+                                                                )
+
+                                                        )
+
+                                                    [2] => App\Models\TicketType Object
+                                                        (
+                                                            [connection:protected] => pgsql
+                                                            [table:protected] => ticket_types
+                                                            [primaryKey:protected] => id
+                                                            [keyType:protected] => int
+                                                            [incrementing] => 1
+                                                            [with:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [withCount:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [preventsLazyLoading] => 
+                                                            [perPage:protected] => 15
+                                                            [exists] => 1
+                                                            [wasRecentlyCreated] => 
+                                                            [escapeWhenCastingToString:protected] => 
+                                                            [attributes:protected] => Array
+                                                                (
+                                                                    [id] => 27
+                                                                    [name] => Bronze
+                                                                    [price] => 42.39
+                                                                    [available_tickets] => 4
+                                                                    [created_at] => 2024-02-16 16:01:03
+                                                                    [updated_at] => 2024-02-16 16:01:03
+                                                                )
+
+                                                            [original:protected] => Array
+                                                                (
+                                                                    [id] => 27
+                                                                    [name] => Bronze
+                                                                    [price] => 42.39
+                                                                    [available_tickets] => 4
+                                                                    [created_at] => 2024-02-16 16:01:03
+                                                                    [updated_at] => 2024-02-16 16:01:03
+                                                                )
+
+                                                            [changes:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [casts:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [classCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [attributeCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dateFormat:protected] => 
+                                                            [appends:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dispatchesEvents:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [observables:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [relations:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [touches:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [timestamps] => 1
+                                                            [usesUniqueIds] => 
+                                                            [hidden:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [visible:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [fillable:protected] => Array
+                                                                (
+                                                                    [0] => name
+                                                                    [1] => price
+                                                                    [2] => available_tickets
+                                                                )
+
+                                                            [guarded:protected] => Array
+                                                                (
+                                                                    [0] => *
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                            [escapeWhenCastingToString:protected] => 
+                                        )
+
+                                    [formattedDateTime] => 2024-02-28 12:00
+                                )
+
+                            [original:protected] => Array
+                                (
+                                    [id] => 59
+                                    [event_id] => 9
+                                    [date_time] => 2024-02-28 12:00:00
+                                    [max_capacity] => 18
+                                    [online_sale_end_time] => 2024-02-28 12:00:00
+                                    [ticket_quantity] => 
+                                    [named_tickets] => 
+                                    [created_at] => 2024-02-16 16:01:03
+                                    [updated_at] => 2024-02-16 16:01:03
+                                )
+
+                            [changes:protected] => Array
+                                (
+                                )
+
+                            [casts:protected] => Array
+                                (
+                                )
+
+                            [classCastCache:protected] => Array
+                                (
+                                )
+
+                            [attributeCastCache:protected] => Array
+                                (
+                                )
+
+                            [dateFormat:protected] => 
+                            [appends:protected] => Array
+                                (
+                                )
+
+                            [dispatchesEvents:protected] => Array
+                                (
+                                )
+
+                            [observables:protected] => Array
+                                (
+                                )
+
+                            [relations:protected] => Array
+                                (
+                                )
+
+                            [touches:protected] => Array
+                                (
+                                )
+
+                            [timestamps] => 1
+                            [usesUniqueIds] => 
+                            [hidden:protected] => Array
+                                (
+                                )
+
+                            [visible:protected] => Array
+                                (
+                                )
+
+                            [fillable:protected] => Array
+                                (
+                                    [0] => event_id
+                                    [1] => date_time
+                                    [2] => online_sale_end_time
+                                    [3] => ticket_quantity
+                                    [4] => named_tickets
+                                    [5] => max_capacity
+                                )
+
+                            [guarded:protected] => Array
+                                (
+                                    [0] => *
+                                )
+
+                        )
+
+                )
+
+            [escapeWhenCastingToString:protected] => 
+        )
+
+)
+  
+[2024-02-16 16:41:11] local.INFO: Iniciando getCoordinates {"venue":{"App\\Models\\Venue":{"id":6,"province":"New Jersey","city":"West Kathleen","postal_code":"99634-6174","venue_name":"Estadio Municipal","capacity":961,"user_id":3,"created_at":"2024-02-13T16:58:32.000000Z","updated_at":"2024-02-13T16:58:32.000000Z"}}} 
+[2024-02-16 16:41:11] local.DEBUG: URL de solicitud de la API de Google Maps: https://maps.googleapis.com/maps/api/geocode/json?address=New+Jersey%2C+West+Kathleen%2C+99634-6174&key=AIzaSyCbSv4bCYfNwXa_MXnzon8gG2kK_1MpoZw  
+[2024-02-16 16:41:11] local.DEBUG: Respuesta cruda de la API de Google Maps: stdClass Object
+(
+    [error_message] => You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started
+    [results] => Array
+        (
+        )
+
+    [status] => REQUEST_DENIED
+)
+  
+[2024-02-16 16:41:11] local.ERROR: No se encontraron coordenadas para la dirección dada. Respuesta de la API: stdClass Object
+(
+    [error_message] => You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started
+    [results] => Array
+        (
+        )
+
+    [status] => REQUEST_DENIED
+)
+  
+[2024-02-16 16:41:11] local.INFO: Finalizando show {"duration":0.17654705047607422} 
+[2024-02-16 16:42:20] local.INFO: Iniciando show {"id":"9"} 
+[2024-02-16 16:42:20] local.INFO: Evento encontrado: Array
+(
+    [id] => 9
+    [name] => Evento 9
+    [description] => Descripción 9
+    [main_image_id] => 69
+    [category_id] => 1
+    [venue_id] => 6
+    [user_id] => 1
+    [event_date] => 2021-01-09 00:00:00
+    [video_link] => 
+    [hidden] => 
+    [nominal] => 
+    [created_at] => 2024-02-13T16:58:35.000000Z
+    [updated_at] => 2024-02-13T16:58:35.000000Z
+    [images] => Array
+        (
+        )
+
+    [venue] => Array
+        (
+            [id] => 6
+            [province] => New Jersey
+            [city] => West Kathleen
+            [postal_code] => 99634-6174
+            [venue_name] => Estadio Municipal
+            [capacity] => 961
+            [user_id] => 3
+            [created_at] => 2024-02-13T16:58:32.000000Z
+            [updated_at] => 2024-02-13T16:58:32.000000Z
+        )
+
+)
+  
+[2024-02-16 16:42:20] local.INFO: Sesiones encontradas para el evento: Array
+(
+    [2024-02-28] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 59
+                    [event_id] => 9
+                    [date_time] => 2024-02-28 12:00:00
+                    [max_capacity] => 18
+                    [online_sale_end_time] => 2024-02-28 12:00:00
+                    [ticket_quantity] => 
+                    [named_tickets] => 
+                    [created_at] => 2024-02-16T16:01:03.000000Z
+                    [updated_at] => 2024-02-16T16:01:03.000000Z
+                )
+
+        )
+
+    [2024-02-29] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 63
+                    [event_id] => 9
+                    [date_time] => 2024-02-29 12:00:00
+                    [max_capacity] => 18
+                    [online_sale_end_time] => 2024-02-29 12:00:00
+                    [ticket_quantity] => 
+                    [named_tickets] => 
+                    [created_at] => 2024-02-16T16:42:03.000000Z
+                    [updated_at] => 2024-02-16T16:42:03.000000Z
+                )
+
+        )
+
+)
+  
+[2024-02-16 16:42:20] local.DEBUG: Detalles de la sesión: Array
+(
+    [date] => 2024-02-28
+    [count] => 1
+    [sessions] => Illuminate\Database\Eloquent\Collection Object
+        (
+            [items:protected] => Array
+                (
+                    [0] => App\Models\Session Object
+                        (
+                            [connection:protected] => pgsql
+                            [table:protected] => sessions
+                            [primaryKey:protected] => id
+                            [keyType:protected] => int
+                            [incrementing] => 1
+                            [with:protected] => Array
+                                (
+                                )
+
+                            [withCount:protected] => Array
+                                (
+                                )
+
+                            [preventsLazyLoading] => 
+                            [perPage:protected] => 15
+                            [exists] => 1
+                            [wasRecentlyCreated] => 
+                            [escapeWhenCastingToString:protected] => 
+                            [attributes:protected] => Array
+                                (
+                                    [id] => 59
+                                    [event_id] => 9
+                                    [date_time] => 2024-02-28 12:00:00
+                                    [max_capacity] => 18
+                                    [online_sale_end_time] => 2024-02-28 12:00:00
+                                    [ticket_quantity] => 
+                                    [named_tickets] => 
+                                    [created_at] => 2024-02-16 16:01:03
+                                    [updated_at] => 2024-02-16 16:01:03
+                                    [ticketTypes] => Illuminate\Database\Eloquent\Collection Object
+                                        (
+                                            [items:protected] => Array
+                                                (
+                                                    [0] => App\Models\TicketType Object
+                                                        (
+                                                            [connection:protected] => pgsql
+                                                            [table:protected] => ticket_types
+                                                            [primaryKey:protected] => id
+                                                            [keyType:protected] => int
+                                                            [incrementing] => 1
+                                                            [with:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [withCount:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [preventsLazyLoading] => 
+                                                            [perPage:protected] => 15
+                                                            [exists] => 1
+                                                            [wasRecentlyCreated] => 
+                                                            [escapeWhenCastingToString:protected] => 
+                                                            [attributes:protected] => Array
+                                                                (
+                                                                    [id] => 25
+                                                                    [name] => Platino
+                                                                    [price] => 23.01
+                                                                    [available_tickets] => 5
+                                                                    [created_at] => 2024-02-16 16:01:03
+                                                                    [updated_at] => 2024-02-16 16:01:03
+                                                                )
+
+                                                            [original:protected] => Array
+                                                                (
+                                                                    [id] => 25
+                                                                    [name] => Platino
+                                                                    [price] => 23.01
+                                                                    [available_tickets] => 5
+                                                                    [created_at] => 2024-02-16 16:01:03
+                                                                    [updated_at] => 2024-02-16 16:01:03
+                                                                )
+
+                                                            [changes:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [casts:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [classCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [attributeCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dateFormat:protected] => 
+                                                            [appends:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dispatchesEvents:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [observables:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [relations:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [touches:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [timestamps] => 1
+                                                            [usesUniqueIds] => 
+                                                            [hidden:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [visible:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [fillable:protected] => Array
+                                                                (
+                                                                    [0] => name
+                                                                    [1] => price
+                                                                    [2] => available_tickets
+                                                                )
+
+                                                            [guarded:protected] => Array
+                                                                (
+                                                                    [0] => *
+                                                                )
+
+                                                        )
+
+                                                    [1] => App\Models\TicketType Object
+                                                        (
+                                                            [connection:protected] => pgsql
+                                                            [table:protected] => ticket_types
+                                                            [primaryKey:protected] => id
+                                                            [keyType:protected] => int
+                                                            [incrementing] => 1
+                                                            [with:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [withCount:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [preventsLazyLoading] => 
+                                                            [perPage:protected] => 15
+                                                            [exists] => 1
+                                                            [wasRecentlyCreated] => 
+                                                            [escapeWhenCastingToString:protected] => 
+                                                            [attributes:protected] => Array
+                                                                (
+                                                                    [id] => 26
+                                                                    [name] => VIP
+                                                                    [price] => 151.42
+                                                                    [available_tickets] => 3
+                                                                    [created_at] => 2024-02-16 16:01:03
+                                                                    [updated_at] => 2024-02-16 16:01:03
+                                                                )
+
+                                                            [original:protected] => Array
+                                                                (
+                                                                    [id] => 26
+                                                                    [name] => VIP
+                                                                    [price] => 151.42
+                                                                    [available_tickets] => 3
+                                                                    [created_at] => 2024-02-16 16:01:03
+                                                                    [updated_at] => 2024-02-16 16:01:03
+                                                                )
+
+                                                            [changes:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [casts:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [classCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [attributeCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dateFormat:protected] => 
+                                                            [appends:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dispatchesEvents:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [observables:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [relations:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [touches:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [timestamps] => 1
+                                                            [usesUniqueIds] => 
+                                                            [hidden:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [visible:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [fillable:protected] => Array
+                                                                (
+                                                                    [0] => name
+                                                                    [1] => price
+                                                                    [2] => available_tickets
+                                                                )
+
+                                                            [guarded:protected] => Array
+                                                                (
+                                                                    [0] => *
+                                                                )
+
+                                                        )
+
+                                                    [2] => App\Models\TicketType Object
+                                                        (
+                                                            [connection:protected] => pgsql
+                                                            [table:protected] => ticket_types
+                                                            [primaryKey:protected] => id
+                                                            [keyType:protected] => int
+                                                            [incrementing] => 1
+                                                            [with:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [withCount:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [preventsLazyLoading] => 
+                                                            [perPage:protected] => 15
+                                                            [exists] => 1
+                                                            [wasRecentlyCreated] => 
+                                                            [escapeWhenCastingToString:protected] => 
+                                                            [attributes:protected] => Array
+                                                                (
+                                                                    [id] => 27
+                                                                    [name] => Bronze
+                                                                    [price] => 42.39
+                                                                    [available_tickets] => 4
+                                                                    [created_at] => 2024-02-16 16:01:03
+                                                                    [updated_at] => 2024-02-16 16:01:03
+                                                                )
+
+                                                            [original:protected] => Array
+                                                                (
+                                                                    [id] => 27
+                                                                    [name] => Bronze
+                                                                    [price] => 42.39
+                                                                    [available_tickets] => 4
+                                                                    [created_at] => 2024-02-16 16:01:03
+                                                                    [updated_at] => 2024-02-16 16:01:03
+                                                                )
+
+                                                            [changes:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [casts:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [classCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [attributeCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dateFormat:protected] => 
+                                                            [appends:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dispatchesEvents:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [observables:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [relations:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [touches:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [timestamps] => 1
+                                                            [usesUniqueIds] => 
+                                                            [hidden:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [visible:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [fillable:protected] => Array
+                                                                (
+                                                                    [0] => name
+                                                                    [1] => price
+                                                                    [2] => available_tickets
+                                                                )
+
+                                                            [guarded:protected] => Array
+                                                                (
+                                                                    [0] => *
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                            [escapeWhenCastingToString:protected] => 
+                                        )
+
+                                    [formattedDateTime] => 2024-02-28 12:00
+                                )
+
+                            [original:protected] => Array
+                                (
+                                    [id] => 59
+                                    [event_id] => 9
+                                    [date_time] => 2024-02-28 12:00:00
+                                    [max_capacity] => 18
+                                    [online_sale_end_time] => 2024-02-28 12:00:00
+                                    [ticket_quantity] => 
+                                    [named_tickets] => 
+                                    [created_at] => 2024-02-16 16:01:03
+                                    [updated_at] => 2024-02-16 16:01:03
+                                )
+
+                            [changes:protected] => Array
+                                (
+                                )
+
+                            [casts:protected] => Array
+                                (
+                                )
+
+                            [classCastCache:protected] => Array
+                                (
+                                )
+
+                            [attributeCastCache:protected] => Array
+                                (
+                                )
+
+                            [dateFormat:protected] => 
+                            [appends:protected] => Array
+                                (
+                                )
+
+                            [dispatchesEvents:protected] => Array
+                                (
+                                )
+
+                            [observables:protected] => Array
+                                (
+                                )
+
+                            [relations:protected] => Array
+                                (
+                                )
+
+                            [touches:protected] => Array
+                                (
+                                )
+
+                            [timestamps] => 1
+                            [usesUniqueIds] => 
+                            [hidden:protected] => Array
+                                (
+                                )
+
+                            [visible:protected] => Array
+                                (
+                                )
+
+                            [fillable:protected] => Array
+                                (
+                                    [0] => event_id
+                                    [1] => date_time
+                                    [2] => online_sale_end_time
+                                    [3] => ticket_quantity
+                                    [4] => named_tickets
+                                    [5] => max_capacity
+                                )
+
+                            [guarded:protected] => Array
+                                (
+                                    [0] => *
+                                )
+
+                        )
+
+                )
+
+            [escapeWhenCastingToString:protected] => 
+        )
+
+)
+  
+[2024-02-16 16:42:20] local.DEBUG: Detalles de la sesión: Array
+(
+    [date] => 2024-02-29
+    [count] => 1
+    [sessions] => Illuminate\Database\Eloquent\Collection Object
+        (
+            [items:protected] => Array
+                (
+                    [0] => App\Models\Session Object
+                        (
+                            [connection:protected] => pgsql
+                            [table:protected] => sessions
+                            [primaryKey:protected] => id
+                            [keyType:protected] => int
+                            [incrementing] => 1
+                            [with:protected] => Array
+                                (
+                                )
+
+                            [withCount:protected] => Array
+                                (
+                                )
+
+                            [preventsLazyLoading] => 
+                            [perPage:protected] => 15
+                            [exists] => 1
+                            [wasRecentlyCreated] => 
+                            [escapeWhenCastingToString:protected] => 
+                            [attributes:protected] => Array
+                                (
+                                    [id] => 63
+                                    [event_id] => 9
+                                    [date_time] => 2024-02-29 12:00:00
+                                    [max_capacity] => 18
+                                    [online_sale_end_time] => 2024-02-29 12:00:00
+                                    [ticket_quantity] => 
+                                    [named_tickets] => 
+                                    [created_at] => 2024-02-16 16:42:03
+                                    [updated_at] => 2024-02-16 16:42:03
+                                    [ticketTypes] => Illuminate\Database\Eloquent\Collection Object
+                                        (
+                                            [items:protected] => Array
+                                                (
+                                                    [0] => App\Models\TicketType Object
+                                                        (
+                                                            [connection:protected] => pgsql
+                                                            [table:protected] => ticket_types
+                                                            [primaryKey:protected] => id
+                                                            [keyType:protected] => int
+                                                            [incrementing] => 1
+                                                            [with:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [withCount:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [preventsLazyLoading] => 
+                                                            [perPage:protected] => 15
+                                                            [exists] => 1
+                                                            [wasRecentlyCreated] => 
+                                                            [escapeWhenCastingToString:protected] => 
+                                                            [attributes:protected] => Array
+                                                                (
+                                                                    [id] => 39
+                                                                    [name] => Platino
+                                                                    [price] => 23.01
+                                                                    [available_tickets] => 5
+                                                                    [created_at] => 2024-02-16 16:42:03
+                                                                    [updated_at] => 2024-02-16 16:42:03
+                                                                )
+
+                                                            [original:protected] => Array
+                                                                (
+                                                                    [id] => 39
+                                                                    [name] => Platino
+                                                                    [price] => 23.01
+                                                                    [available_tickets] => 5
+                                                                    [created_at] => 2024-02-16 16:42:03
+                                                                    [updated_at] => 2024-02-16 16:42:03
+                                                                )
+
+                                                            [changes:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [casts:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [classCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [attributeCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dateFormat:protected] => 
+                                                            [appends:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dispatchesEvents:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [observables:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [relations:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [touches:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [timestamps] => 1
+                                                            [usesUniqueIds] => 
+                                                            [hidden:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [visible:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [fillable:protected] => Array
+                                                                (
+                                                                    [0] => name
+                                                                    [1] => price
+                                                                    [2] => available_tickets
+                                                                )
+
+                                                            [guarded:protected] => Array
+                                                                (
+                                                                    [0] => *
+                                                                )
+
+                                                        )
+
+                                                    [1] => App\Models\TicketType Object
+                                                        (
+                                                            [connection:protected] => pgsql
+                                                            [table:protected] => ticket_types
+                                                            [primaryKey:protected] => id
+                                                            [keyType:protected] => int
+                                                            [incrementing] => 1
+                                                            [with:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [withCount:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [preventsLazyLoading] => 
+                                                            [perPage:protected] => 15
+                                                            [exists] => 1
+                                                            [wasRecentlyCreated] => 
+                                                            [escapeWhenCastingToString:protected] => 
+                                                            [attributes:protected] => Array
+                                                                (
+                                                                    [id] => 40
+                                                                    [name] => 2534
+                                                                    [price] => 151.42
+                                                                    [available_tickets] => 3
+                                                                    [created_at] => 2024-02-16 16:42:03
+                                                                    [updated_at] => 2024-02-16 16:42:03
+                                                                )
+
+                                                            [original:protected] => Array
+                                                                (
+                                                                    [id] => 40
+                                                                    [name] => 2534
+                                                                    [price] => 151.42
+                                                                    [available_tickets] => 3
+                                                                    [created_at] => 2024-02-16 16:42:03
+                                                                    [updated_at] => 2024-02-16 16:42:03
+                                                                )
+
+                                                            [changes:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [casts:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [classCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [attributeCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dateFormat:protected] => 
+                                                            [appends:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dispatchesEvents:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [observables:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [relations:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [touches:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [timestamps] => 1
+                                                            [usesUniqueIds] => 
+                                                            [hidden:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [visible:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [fillable:protected] => Array
+                                                                (
+                                                                    [0] => name
+                                                                    [1] => price
+                                                                    [2] => available_tickets
+                                                                )
+
+                                                            [guarded:protected] => Array
+                                                                (
+                                                                    [0] => *
+                                                                )
+
+                                                        )
+
+                                                    [2] => App\Models\TicketType Object
+                                                        (
+                                                            [connection:protected] => pgsql
+                                                            [table:protected] => ticket_types
+                                                            [primaryKey:protected] => id
+                                                            [keyType:protected] => int
+                                                            [incrementing] => 1
+                                                            [with:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [withCount:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [preventsLazyLoading] => 
+                                                            [perPage:protected] => 15
+                                                            [exists] => 1
+                                                            [wasRecentlyCreated] => 
+                                                            [escapeWhenCastingToString:protected] => 
+                                                            [attributes:protected] => Array
+                                                                (
+                                                                    [id] => 41
+                                                                    [name] => ertertetr
+                                                                    [price] => 41.87
+                                                                    [available_tickets] => 4
+                                                                    [created_at] => 2024-02-16 16:42:03
+                                                                    [updated_at] => 2024-02-16 16:42:03
+                                                                )
+
+                                                            [original:protected] => Array
+                                                                (
+                                                                    [id] => 41
+                                                                    [name] => ertertetr
+                                                                    [price] => 41.87
+                                                                    [available_tickets] => 4
+                                                                    [created_at] => 2024-02-16 16:42:03
+                                                                    [updated_at] => 2024-02-16 16:42:03
+                                                                )
+
+                                                            [changes:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [casts:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [classCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [attributeCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dateFormat:protected] => 
+                                                            [appends:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dispatchesEvents:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [observables:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [relations:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [touches:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [timestamps] => 1
+                                                            [usesUniqueIds] => 
+                                                            [hidden:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [visible:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [fillable:protected] => Array
+                                                                (
+                                                                    [0] => name
+                                                                    [1] => price
+                                                                    [2] => available_tickets
+                                                                )
+
+                                                            [guarded:protected] => Array
+                                                                (
+                                                                    [0] => *
+                                                                )
+
+                                                        )
+
+                                                    [3] => App\Models\TicketType Object
+                                                        (
+                                                            [connection:protected] => pgsql
+                                                            [table:protected] => ticket_types
+                                                            [primaryKey:protected] => id
+                                                            [keyType:protected] => int
+                                                            [incrementing] => 1
+                                                            [with:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [withCount:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [preventsLazyLoading] => 
+                                                            [perPage:protected] => 15
+                                                            [exists] => 1
+                                                            [wasRecentlyCreated] => 
+                                                            [escapeWhenCastingToString:protected] => 
+                                                            [attributes:protected] => Array
+                                                                (
+                                                                    [id] => 42
+                                                                    [name] => 9
+                                                                    [price] => 9.00
+                                                                    [available_tickets] => 9
+                                                                    [created_at] => 2024-02-16 16:42:03
+                                                                    [updated_at] => 2024-02-16 16:42:03
+                                                                )
+
+                                                            [original:protected] => Array
+                                                                (
+                                                                    [id] => 42
+                                                                    [name] => 9
+                                                                    [price] => 9.00
+                                                                    [available_tickets] => 9
+                                                                    [created_at] => 2024-02-16 16:42:03
+                                                                    [updated_at] => 2024-02-16 16:42:03
+                                                                )
+
+                                                            [changes:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [casts:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [classCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [attributeCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dateFormat:protected] => 
+                                                            [appends:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dispatchesEvents:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [observables:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [relations:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [touches:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [timestamps] => 1
+                                                            [usesUniqueIds] => 
+                                                            [hidden:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [visible:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [fillable:protected] => Array
+                                                                (
+                                                                    [0] => name
+                                                                    [1] => price
+                                                                    [2] => available_tickets
+                                                                )
+
+                                                            [guarded:protected] => Array
+                                                                (
+                                                                    [0] => *
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                            [escapeWhenCastingToString:protected] => 
+                                        )
+
+                                    [formattedDateTime] => 2024-02-29 12:00
+                                )
+
+                            [original:protected] => Array
+                                (
+                                    [id] => 63
+                                    [event_id] => 9
+                                    [date_time] => 2024-02-29 12:00:00
+                                    [max_capacity] => 18
+                                    [online_sale_end_time] => 2024-02-29 12:00:00
+                                    [ticket_quantity] => 
+                                    [named_tickets] => 
+                                    [created_at] => 2024-02-16 16:42:03
+                                    [updated_at] => 2024-02-16 16:42:03
+                                )
+
+                            [changes:protected] => Array
+                                (
+                                )
+
+                            [casts:protected] => Array
+                                (
+                                )
+
+                            [classCastCache:protected] => Array
+                                (
+                                )
+
+                            [attributeCastCache:protected] => Array
+                                (
+                                )
+
+                            [dateFormat:protected] => 
+                            [appends:protected] => Array
+                                (
+                                )
+
+                            [dispatchesEvents:protected] => Array
+                                (
+                                )
+
+                            [observables:protected] => Array
+                                (
+                                )
+
+                            [relations:protected] => Array
+                                (
+                                )
+
+                            [touches:protected] => Array
+                                (
+                                )
+
+                            [timestamps] => 1
+                            [usesUniqueIds] => 
+                            [hidden:protected] => Array
+                                (
+                                )
+
+                            [visible:protected] => Array
+                                (
+                                )
+
+                            [fillable:protected] => Array
+                                (
+                                    [0] => event_id
+                                    [1] => date_time
+                                    [2] => online_sale_end_time
+                                    [3] => ticket_quantity
+                                    [4] => named_tickets
+                                    [5] => max_capacity
+                                )
+
+                            [guarded:protected] => Array
+                                (
+                                    [0] => *
+                                )
+
+                        )
+
+                )
+
+            [escapeWhenCastingToString:protected] => 
+        )
+
+)
+  
+[2024-02-16 16:42:20] local.INFO: Iniciando getCoordinates {"venue":{"App\\Models\\Venue":{"id":6,"province":"New Jersey","city":"West Kathleen","postal_code":"99634-6174","venue_name":"Estadio Municipal","capacity":961,"user_id":3,"created_at":"2024-02-13T16:58:32.000000Z","updated_at":"2024-02-13T16:58:32.000000Z"}}} 
+[2024-02-16 16:42:20] local.DEBUG: URL de solicitud de la API de Google Maps: https://maps.googleapis.com/maps/api/geocode/json?address=New+Jersey%2C+West+Kathleen%2C+99634-6174&key=AIzaSyCbSv4bCYfNwXa_MXnzon8gG2kK_1MpoZw  
+[2024-02-16 16:42:23] local.DEBUG: Respuesta cruda de la API de Google Maps: stdClass Object
+(
+    [error_message] => You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started
+    [results] => Array
+        (
+        )
+
+    [status] => REQUEST_DENIED
+)
+  
+[2024-02-16 16:42:23] local.ERROR: No se encontraron coordenadas para la dirección dada. Respuesta de la API: stdClass Object
+(
+    [error_message] => You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started
+    [results] => Array
+        (
+        )
+
+    [status] => REQUEST_DENIED
+)
+  
+[2024-02-16 16:42:23] local.INFO: Finalizando show {"duration":3.2817699909210205} 

@@ -12,8 +12,10 @@
                                 srcset="http://localhost:8080{{ $session->event->optimizedImageSmallUrl() }}">
                             <source media="(min-width: 800px) and (max-width: 1023px)"
                                 srcset="http://localhost:8080{{ $session->event->optimizedImageMediumUrl() }}">
-                            <img class="imagenSessionList" src="http://localhost:8080{{ $session->event->optimizedImageLargeUrl() }}" alt="{{ $session->event->name }}"
-                                loading="lazy" onerror="this.onerror=null; this.src='https://picsum.photos/200'">
+                            <img class="imagenSessionList"
+                                src="http://localhost:8080{{ $session->event->optimizedImageLargeUrl() }}"
+                                alt="{{ $session->event->name }}" loading="lazy"
+                                onerror="this.onerror=null; this.src='https://picsum.photos/200'">
                         </picture>
                     @else
                         <img src="https://picsum.photos/2000" alt="{{ $session->event->name }}" loading="lazy">
@@ -43,7 +45,8 @@
                                         srcset="http://localhost:8080{{ $event->optimizedImageSmallUrl() }}">
                                     <source media="(min-width: 800px) and (max-width: 1023px)"
                                         srcset="http://localhost:8080{{ $event->optimizedImageMediumUrl() }}">
-                                    <img class="imagenSessionList" src="http://localhost:8080{{ $event->optimizedImageLargeUrl() }}"
+                                    <img class="imagenSessionList"
+                                        src="http://localhost:8080{{ $event->optimizedImageLargeUrl() }}"
                                         alt="{{ $event->name }}" loading="lazy"
                                         onerror="this.onerror=null; this.src='https://picsum.photos/200'">
                                 </picture>
@@ -75,12 +78,14 @@
                 <!-- Formulario para crear nova adreça -->
 
                 @if ($primeraSesion)
+                    <label class="labelSesion" for="data_sesion">Data i hora</label>
                     <input type="datetime-local" class="input-event input-adreca" name="data_sesion" id="nova_data"
-                        value="{{ $primeraSesion->date_time }}" required>
+                        value="{{ $primeraSesion->date_time }}">
 
+                    <label class="labelSesion" for="max_capacity">Aforament màxim</label>
                     <input class="input-event input-adreca" type="number" name="max_capacity" id="max_capacity_session"
-                        placeholder="Aforament màxim" oninput="vaciarEntradas()" value="{{ $primeraSesion->max_capacity }}"
-                        required>
+                        placeholder="Aforament màxim" oninput="vaciarEntradas()"
+                        value="{{ $primeraSesion->max_capacity }}">
                 @endif
 
                 <hr class="separador-entradas-sesion">
@@ -91,16 +96,23 @@
                         @if ($ticketsPrimeraSesion)
                             @foreach ($ticketsPrimeraSesion as $index => $ticket)
                                 <div class="div-informacion-principal ticket-input" id="ticket-input">
-                                    <input type="text" class="input-event" name="entry_type_name[]"
-                                        id="nombre-entradas-sesion" required value="{{ $ticket->name }}"
+                                    <label class="labelSesion" for="entry_type_name[]" id="labelNombreEntradasSesion">Nom
+                                        del tipus d'entrada</label>
+                                    <input type="text" class="input-event inputNombreSesion" name="entry_type_name[]"
+                                        id="nombre-entradas-sesion-{{ $index }}" value="{{ $ticket->name }}"
                                         placeholder="Nom del tipus d'entrada">
 
+                                    <label class="labelSesion" for="entry_type_price[]"
+                                        id="labelNombrePrecioSesion">Preu</label>
                                     <input type="number" class="input-event" name="entry_type_price[]" placeholder="Preu"
-                                        id="precio_entradas" step="0.01" value="{{ $ticket->price }}" required>
+                                        id="precio_entradas-{{ $index }}" step="0.01"
+                                        value="{{ $ticket->price }}">
 
+                                    <label class="labelSesion" for="entry_type_quantity[]"
+                                        id="labelNombreCantidadSesion">Quantitat</label>
                                     <input type="number" class="input-event" name="entry_type_quantity[]"
-                                        id="entry_type_quantity_sesion" placeholder="Quantitat"
-                                        value="{{ $ticket->available_tickets }}" required min="0"
+                                        id="entry_type_quantity_sesion-{{ $index }}" placeholder="Quantitat"
+                                        value="{{ $ticket->available_tickets }}" min="0"
                                         oninput="actualizarMaxEntradas()">
 
                                     <button type="button" class="eliminar-linea" id="eliminar-entrada-session"
@@ -171,7 +183,7 @@
 
         function actualizarMaxEntradas() {
             const aforoMaximo = parseInt(document.getElementById("max_capacity_session").value);
-            const entradasInputs = Array.from(document.querySelectorAll("#entry_type_quantity_sesion"));
+            const entradasInputs = Array.from(document.querySelectorAll('[id^="' + 'entry_type_quantity_sesion' + '"]'));
 
             if (document.activeElement.value > parseInt(document.activeElement.max)) {
                 document.activeElement.value = parseInt(document.activeElement.max)
@@ -193,7 +205,7 @@
         }
 
         function vaciarEntradas() {
-            const entradasInputs = Array.from(document.querySelectorAll("#entry_type_quantity_sesion"));
+            const entradasInputs = Array.from(document.querySelectorAll('[id^="' + 'entry_type_quantity_sesion' + '"]'));
 
             entradasInputs.forEach(input => {
                 input.value = 0;
@@ -218,6 +230,7 @@
 
             nuevoTicketInput.querySelectorAll('input').forEach(function(input) {
                 input.value = '';
+                input.id = input.id + '-' + (contenedor.children.length + 1)
             });
 
             const separador = nuevoTicketInput.querySelector('hr');
@@ -285,10 +298,22 @@
             });
         }
 
-        function quitarResaltadoCampos() {
-            let camposRequeridos = ['nova_data', 'max_capacity_session', 'precio_entradas', 'nombre-entradas-sesion',
-                'entry_type_quantity_sesion'
-            ];
+        function addErrorMessage(field, message) {
+            const errorMessageId = field.id + '-error';
+            let errorMessage = document.getElementById(errorMessageId);
+
+            if (errorMessage) {
+                errorMessage.textContent = message;
+            } else {
+                errorMessage = document.createElement('span');
+                errorMessage.id = errorMessageId;
+                errorMessage.className = 'error-message';
+                errorMessage.textContent = message;
+                field.parentNode.insertBefore(errorMessage, field.nextSibling);
+            }
+        };
+
+        function quitarResaltadoCampos(camposRequeridos) {
 
             camposRequeridos.forEach(campoId => {
                 let campo = document.getElementById(campoId);
@@ -297,17 +322,36 @@
         }
 
         function resaltarCampoVacio(campo) {
-            campo.style.border = "1px solid red";
+            if (campo) {
+                campo.style.border = "1px solid red";
+            }
         }
 
         function resaltarCampos() {
-            let camposRequeridos = ['nova_data', 'max_capacity_session', 'precio_entradas', 'nombre-entradas-sesion',
-                'entry_type_quantity_sesion'
-            ];
 
-            let campoVacioEncontrado = false;
+            const contenedorCampos = document.getElementById('entradas-sesion')
+
+            let camposRequeridos = ['nova_data', 'max_capacity_session'];
+
+            let camposNombre = document.querySelectorAll('[id^="' + 'nombre-entradas-sesion' + '"]');
+            let camposPrecio = document.querySelectorAll('[id^="' + 'precio_entradas' + '"]');
+            let camposCantidad = document.querySelectorAll('[id^="' + 'entry_type_quantity_sesion' + '"]');
+
+            camposNombre = Array.from(camposNombre);
+            camposPrecio = Array.from(camposPrecio);
+            camposCantidad = Array.from(camposCantidad);
+
+            let campos = camposNombre.concat(camposPrecio, camposCantidad);
+
             camposRequeridos.forEach(campoId => {
                 let campo = document.getElementById(campoId);
+                if (!campos.includes(campo)) {
+                    campos.push(campo);
+                }
+            });
+
+            let campoVacioEncontrado = false;
+            campos.forEach(campo => {
                 if (campo.value === "") {
                     resaltarCampoVacio(campo);
                     campoVacioEncontrado = true;
@@ -317,7 +361,10 @@
                 }
             });
 
-            console.log(campoVacioEncontrado);
+            if (campoVacioEncontrado) {
+                addErrorMessage(contenedorCampos, '* Revisa los campos marcados')
+            }
+
             return campoVacioEncontrado;
 
         }
@@ -326,10 +373,22 @@
 
             e.preventDefault();
 
+            let camposRequeridos = ['nova_data', 'max_capacity_session'];
+
+            let camposNombre = document.querySelectorAll('[id^="' + 'nombre-entradas-sesion' + '"]');
+            let camposPrecio = document.querySelectorAll('[id^="' + 'precio_entradas' + '"]');
+            let camposCantidad = document.querySelectorAll('[id^="' + 'entry_type_quantity_sesion' + '"]');
+
+            camposNombre = Array.from(camposNombre);
+            camposPrecio = Array.from(camposPrecio);
+            camposCantidad = Array.from(camposCantidad);
+
+            let campos = camposNombre.concat(camposPrecio, camposCantidad, camposRequeridos)
+
             let camposVacios = resaltarCampos();
 
             if (!camposVacios) {
-                quitarResaltadoCampos();
+                quitarResaltadoCampos(campos);
                 this.submit();
             };
 
