@@ -110,5 +110,7 @@ class PromotorHomeController extends Controller {
             Log::error('Error al guardar el evento: ', ['exception' => $e->getMessage()]);
             return response()->json(['error' => 'Error al guardar el evento'], 500);
         }
-    }    
+
+    }   
+     
 }

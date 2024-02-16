@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
-use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
@@ -21,10 +22,11 @@ class HomeController extends Controller
             $categories = Category::pluck('name', 'id');
             $categories = ['todas' => 'Totes'] + $categories->toArray();
             
-            $events = collect();
+            $events = Event::eventosDisponibles()->get();
+
             $categories2 = Category::all();
             foreach ($categories2 as $category) {
-                $eventsCollection = $category->eventsWithLimit()->get();
+                $eventsCollection = $category->eventsWithLimit($events);
                 $events = $events->merge($eventsCollection);
             }
 

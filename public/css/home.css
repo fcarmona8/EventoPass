@@ -27,7 +27,7 @@ h1 {
 .BtnVerMas {
   width: 50%;
   font-size: 16px;
-  margin-top: 1%; }
+  margin-top: 30px; }
 
 @media (min-width: 768px) {
   .events {
@@ -35,3 +35,9 @@ h1 {
     grid-template-columns: repeat(auto-fill, minmax(480px, auto));
     padding: 1%;
     width: 100%; } }
+
+  .CategoriaVaciaTexto{
+    grid-column: 1 / 3;
+    margin: 0 auto;
+    margin-top: 50px;
+  }
