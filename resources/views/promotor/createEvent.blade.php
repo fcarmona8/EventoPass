@@ -2,9 +2,11 @@
 
 @section('content')
     <h2 class="titol-crear-event">Crear Esdeveniment</h2>
-    <form class="event-create" method="post" action="{{ route('promotor.storeEvent') }}" id="EventForm" enctype="multipart/form-data">
+    <form class="event-create" method="post" action="{{ route('promotor.storeEvent') }}" enctype="multipart/form-data">
         @csrf
+
         <h3 class="h3-event">Informacio Principal</h3>
+
         <div class="div-event">
             <!-- Títol de l’esdeveniment -->
             <div class="div-informacion-principal">
@@ -423,67 +425,6 @@
             }
 
             fechaInput.setAttribute('min', fechaActual);
-        });
-
-        let camposRequeridosEvent = ['nova_data', 'max_capacity_session', 'precio_entradas', 'nombre-entradas-sesion',
-            'entry_type_quantity_sesion'
-        ];
-
-        function quitarResaltadoCampos(camposRequeridos) {
-
-            camposRequeridos.forEach(campoId => {
-                let campo = document.getElementById(campoId);
-                campo.style.border = "";
-            });
-        }
-
-        function resaltarCampoVacio(campo) {
-            campo.style.border = "1px solid red";
-        }
-
-        function resaltarCampos(camposRequeridos) {
-
-            let campoVacioEncontrado = false;
-            camposRequeridos.forEach(campoId => {
-                let campo = document.getElementById(campoId);
-                if (campo.value === "") {
-                    resaltarCampoVacio(campo);
-                    campoVacioEncontrado = true;
-
-                } else {
-                    campo.style.border = "1px solid black";
-                }
-            });
-
-            console.log(campoVacioEncontrado);
-            return campoVacioEncontrado;
-
-        }
-
-        document.getElementById("EventForm").addEventListener("submit", function(e) {
-
-            e.preventDefault();
-
-            let camposVacios = resaltarCampos(camposRequeridos);
-
-            if (!camposVacios) {
-                quitarResaltadoCampos(camposRequeridos);
-                this.submit();
-            };
-
-        });
-
-        document.getElementById("formularioVenue").addEventListener("submit", function(e) {
-
-            e.preventDefault();
-
-            let camposVacios = resaltarCampos(camposRequeridos);
-
-            if (!camposVacios) {
-                quitarResaltadoCampos(camposRequeridos);
-                this.submit();
-            };
-
         });
     </script>
 @endpush
