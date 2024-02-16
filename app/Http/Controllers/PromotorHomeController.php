@@ -27,7 +27,24 @@ class PromotorHomeController extends Controller {
         $events = $query->orderBy('id')->paginate(env('PAGINATION_LIMIT_PROMOTOR', 10));
         Log::info('Eventos recuperados: ', ['events' => $events]);
 
-        return view('promotor/promotorhome', compact('events', 'existingAddresses'));
+        // Dades per a les metadades dinàmiques
+        $metaData = [
+            'title' => 'Gestiona els Teus Esdeveniments - EventoPass | Llistat d\'Esdeveniments',
+            'description' => 'Visualitza i edita els esdeveniments que has creat a EventoPass. Accedeix a les opcions d\'edició per a actualitzar la informació dels teus esdeveniments.',
+            'keywords' => 'EventoPass, gestió d\'esdeveniments, llistat d\'esdeveniments, editar esdeveniments, promotors d\'esdeveniments',
+            'ogType' => 'website',
+            'ogUrl' => request()->url(),
+            'ogTitle' => 'Gestiona els Teus Esdeveniments a EventoPass',
+            'ogDescription' => 'Com a promotor, accedeix al teu llistat d\'esdeveniments per a gestionar-los. Edita la informació dels esdeveniments per mantenir-los actualitzats.',
+            'ogImage' => asset('logo/logo.png'),
+            'twitterCard' => 'summary_large_image',
+            'twitterUrl' => request()->url(),
+            'twitterTitle' => 'Gestiona els Esdeveniments - EventoPass',
+            'twitterDescription' => 'Accedeix a les eines de gestió d\'EventoPass per a promotors i mantingues els teus esdeveniments sempre actualitzats.',
+            'twitterImage' => asset('logo/logo.png'),
+        ];
+
+        return view('promotor/promotorhome', compact('events', 'existingAddresses', 'metaData'));
     }
 
     public function edit(Request $request) {

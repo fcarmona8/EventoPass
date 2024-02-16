@@ -64,8 +64,25 @@ class PromotorSessionsListController extends Controller{
 
         }
 
+        // Dades per a les metadades dinàmiques
+        $metaData = [
+            'title' => 'Gestiona Sessions d\'Esdeveniments - EventoPass | Veure i Crear Sessions',
+            'description' => 'Accedeix al detall de sessions per als teus esdeveniments a EventoPass. Crea noves sessions per a ampliar l\'oferta d\'esdeveniments als teus assistents.',
+            'keywords' => 'EventoPass, sessions d\'esdeveniments, gestió de sessions, crear sessions, esdeveniments',
+            'ogType' => 'website',
+            'ogUrl' => request()->url(),
+            'ogTitle' => 'Gestiona i Crea Sessions per als Teus Esdeveniments a EventoPass',
+            'ogDescription' => 'Descobreix com gestionar eficaçment les sessions dels teus esdeveniments a EventoPass. Crea noves sessions per a atraure més assistents.',
+            'ogImage' => asset('logo/logo.png'),
+            'twitterCard' => 'summary_large_image',
+            'twitterUrl' => request()->url(),
+            'twitterTitle' => 'Gestiona Sessions d\'Esdeveniments - EventoPass',
+            'twitterDescription' => 'Administra les sessions dels teus esdeveniments fàcilment amb EventoPass. Afegeix noves sessions per a oferir més opcions als teus assistents.',
+            'twitterImage' => asset('logo/logo.png'),
+        ];
+
         return view('promotor/promotorSessionsList', compact('sessions', 'events', 'isSpecificEvent', 
-                                            'event_id', 'primeraSesion', 'ticketsPrimeraSesion'));
+                                            'event_id', 'primeraSesion', 'ticketsPrimeraSesion', 'metaData'));
     }
 
     public function storeSession(Request $request){
