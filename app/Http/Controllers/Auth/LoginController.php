@@ -43,7 +43,7 @@ class LoginController extends Controller
             'twitterImage' => asset('logo/logo.png'),
         ];
 
-        return view('auth.login', 'metaData');
+        return view('auth.login', compact('metaData'));
     }
 
     // Manejar la solicitud de login
