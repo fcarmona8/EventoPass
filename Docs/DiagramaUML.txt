@@ -96,7 +96,7 @@ class "Role" as roles {
 class "Event_Image" as event_images {
     # id : bigint <<PK>>
     # event_id : bigint <<FK>>
-    # image_url : varchar(255)
+    # image_id : varchar(255)
     # is_main : boolean
     --
     + event() : Event

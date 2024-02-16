@@ -109,20 +109,14 @@ Route::get('password/reset/{token}', [ResetPasswordController::class, 'showReset
 // Procesar el restablecimiento de contraseña
 Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 
-// Generar PDF Nominal
-Route::get('/a', [TicketsPDFController::class, 'generatePdfNominal']);
-
-// Generar PDF
-Route::get('/hola', [TicketsPDFController::class, 'generatePdf']);
-
 // Descargar PDF
-Route::get('/entrades/{nombrePdf}', [TicketsPDFController::class, 'descargarPDF']);
+Route::get('/entrades/{nombrePdf}', [TicketsPDFController::class, 'descargarPDF'])->name('download-pdf');
+
+//Generar PDF
+Route::get('/generatePDF', [TicketsPDFController::class, 'generatePdf'])->name('generate-pdf');
+//Generar PDF nominal
+Route::get('/generatePDFnominal', [TicketsPDFController::class, 'generatePdfNominal'])->name('generate-pdf-nominal');
 
 // enviar mail con enlace para descargar entradas
 Route::get('/mail/entrades', [MailController::class, 'enviarEntrades']);
-
-/* Route::get('/mail', function(){
-    $name = 'aaaaaaa';
-    Mail::to('hola@gmail.com')->send(new mailEntradesCorreu($name, $nombreEvento));
-}); */
 

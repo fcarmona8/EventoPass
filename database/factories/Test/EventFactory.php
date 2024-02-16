@@ -15,7 +15,7 @@ class EventFactory extends Factory
         return [
             'name' => $this->faker->sentence,
             'description' => $this->faker->paragraph,
-            'main_image' => $this->faker->imageUrl(),
+            'main_image_id' => $this->faker->imageUrl(),
             'category_id' => function () {
                 return \App\Models\Category::factory()->create()->id;
             },
