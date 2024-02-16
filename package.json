@@ -4,11 +4,7 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "compile:sass": "node-sass resources/sass/home.scss public/css/home.css && node-sass resources/sass/crear-sesion.scss public/css/crear-sesion.css && node-sass resources/sass/email.scss public/css/email.css && node-sass resources/sass/login.scss public/css/login.css && node-sass resources/sass/pagination.scss public/css/pagination.css && node-sass resources/sass/promotorhome.scss public/css/promotorhome.css && node-sass resources/sass/reset.scss public/css/reset.css && node-sass resources/sass/resultats.scss public/css/resultats.css && node-sass resources/sass/sesion-list.scss public/css/sesion-list.css  && node-sass resources/sass/show.scss public/css/show.css && node-sass resources/sass/styles.scss public/css/styles.css"
-
-
-
-        
+        "compile:sass": "node-sass resources/sass/main.scss public/css/style.css"
     },
     "devDependencies": {
         "axios": "^1.6.1",

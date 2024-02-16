@@ -6,8 +6,8 @@
         <div class="listSessions" id="listSessions">
             @foreach ($sessions as $session)
                 <div class="card cardHomePromotor">
-                    @if ($session->event->main_image_id)
-                        <picture class="contenedorImagen imagenSesiones">
+                    @if ($session->event && $session->event->main_image_id)
+                        <picture>
                             <source media="(max-width: 799px)"
                                 srcset="http://localhost:8080{{ $session->event->optimizedImageSmallUrl() }}">
                             <source media="(min-width: 800px) and (max-width: 1023px)"
