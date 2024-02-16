@@ -15,9 +15,7 @@
                 <div class="events">
                     @foreach ($events as $event)
                         @if ($event->category_id == $categoria->id)
-                            <div class="event">
                                 <x-card-event :event=$event />
-                            </div>
                         @endif
                     @endforeach
                 </div>
