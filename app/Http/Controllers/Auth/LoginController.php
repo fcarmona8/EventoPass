@@ -25,7 +25,25 @@ class LoginController extends Controller
         }
 
         Log::channel('login')->info('Mostrando formulario de login');
-        return view('auth.login');
+
+        // Dades per a les metadades dinàmiques
+        $metaData = [
+            'title' => 'Iniciar Sessió - EventoPass | Accedeix al Teu Compte',
+            'description' => 'Inicia sessió a EventoPass per descobrir i participar en els millors esdeveniments. Gestiona les teves entrades i preferències des del teu compte.',
+            'keywords' => 'EventoPass, iniciar sessió, compte d\'usuari, accés usuari, esdeveniments',
+            'ogType' => 'website',
+            'ogUrl' => request()->url(),
+            'ogTitle' => 'Iniciar Sessió a EventoPass',
+            'ogDescription' => 'Accedeix al teu compte d\'EventoPass per explorar esdeveniments únics i gestionar les teves entrades fàcilment.',
+            'ogImage' => asset('logo/logo.png'),
+            'twitterCard' => 'summary_large_image',
+            'twitterUrl' => request()->url(),
+            'twitterTitle' => 'Iniciar Sessió a EventoPass',
+            'twitterDescription' => 'Utilitza el teu compte d\'EventoPass per accedir a funcionalitats exclusives i personalitzar la teva experiència en esdeveniments.',
+            'twitterImage' => asset('logo/logo.png'),
+        ];
+
+        return view('auth.login', 'metaData');
     }
 
     // Manejar la solicitud de login

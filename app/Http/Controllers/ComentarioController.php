@@ -15,7 +15,25 @@ class ComentarioController extends Controller
         $tokenGenerado = substr($tokenGenerado, 0, 32);
 
         if ($tokenGenerado === $token) {
-            return view('tickets.crearComentario', ['eventoId' => $eventoId]);
+
+            // Dades per a les metadades dinàmiques
+            $metaData = [
+                'title' => 'Enviar un Comentari - EventoPass | Comparteix la Teva Opinió',
+                'description' => 'Deixa un comentari sobre la teva experiència en l\'esdeveniment. La teva opinió és important per a nosaltres i ajuda a millorar els nostres serveis.',
+                'keywords' => 'EventoPass, enviar comentari, valoració d\'esdeveniments, opinió sobre esdeveniments, feedback d\'usuari',
+                'ogType' => 'website',
+                'ogUrl' => request()->url(),
+                'ogTitle' => 'Comparteix la Teva Opinió a EventoPass',
+                'ogDescription' => 'Ens encantaria escoltar el que vas pensar sobre l\'esdeveniment. El teu feedback ajuda a millorar l\'experiència de tots els nostres usuaris.',
+                'ogImage' => asset('logo/logo.png'),
+                'twitterCard' => 'summary_large_image',
+                'twitterUrl' => request()->url(),
+                'twitterTitle' => 'Enviar un Comentari a EventoPass',
+                'twitterDescription' => 'Has assistit a un esdeveniment recentment? Comparteix la teva opinió i ajuda a la comunitat a conèixer millor l\'esdeveniment.',
+                'twitterImage' => asset('logo/logo.png'),
+            ];
+
+            return view('tickets.crearComentario', ['eventoId' => $eventoId], 'metaData');
         } else {
             return redirect('');
         }
