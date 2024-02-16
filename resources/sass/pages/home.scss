@@ -1,0 +1,40 @@
+.categories {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%; }
+  
+  .cardCategoria {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 2% 0%; }
+  
+  h1 {
+    text-align: center; }
+  
+  .events {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100%, auto));
+    gap: 20px;
+    padding: 0.5% 0;
+    width: 100%; }
+  
+  .verMas {
+    display: flex;
+    justify-content: center; 
+    margin-top: 20px;    
+}
+  
+  .BtnVerMas {
+    width: 50%;
+    font-size: 16px;
+ }
+  
+  @media (min-width: 768px) {
+    .events {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(480px, auto));
+      padding: 0.5% 0%;
+      width: 100%; } }
+  
