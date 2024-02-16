@@ -94,8 +94,8 @@
 
             <div class="div-additional-images">
                 <label for="additional_images" class="label-event">Imatges Adicionals:</label>
-                <input type="file" class="input-event" name="additional_images[]" id="additional_images" accept="image/jpeg, image/png, image/jpg"
-                    multiple>
+                <input type="file" class="input-event" name="additional_images[]" id="additional_images"
+                    accept="image/jpeg, image/png, image/jpg" multiple>
                 <ul id="preview"></ul>
             </div>
         </div>
@@ -155,7 +155,8 @@
             <div class="primaryDetail secondaryDetail">
                 <label for="nominal_entries" class="switch">Entrades Nominals:
                     <input type="hidden" name="nominal_entries" value="0">
-                    <input type="checkbox" class="input-event" name="nominal_entries" id="nominal_entries" value="1">
+                    <input type="checkbox" class="input-event" name="nominal_entries" id="nominal_entries"
+                        value="1">
                     <span class="slider round"></span>
                 </label>
             </div>
@@ -197,6 +198,10 @@
             </form>
         </div>
     </div>
+
+    @if ($errors->has('error'))
+        <div id="error-message" data-error="{{ $errors->first('error') }}" style="display: none;"></div>
+    @endif
 
     <div id="toastBox"></div>
 
@@ -406,6 +411,20 @@
 
             };
 
+
+
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const successMessage = document.getElementById('error-message');
+            const fechaInput = document.getElementById('event_datetime');
+            const fechaActual = new Date().toISOString().slice(0, 16);
+
+            if (successMessage) {
+                showToast("Error al crear l'esdeveniment");
+            }
+
+            fechaInput.setAttribute('min', fechaActual);
+        });
     </script>
 @endpush

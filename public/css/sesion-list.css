@@ -63,6 +63,14 @@ h2 {
 .card-sessions {
   margin-left: 0%; }
 
+.imagenSesiones{
+  width: 300px;
+}
+
+.imagenSessionList{
+  width: auto !important;
+}
+
 /* Ajustes para tarjetas de sesiones en pantallas más grandes */
 @media (min-width: 600px) {
   .session-card {

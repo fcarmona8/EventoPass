@@ -76,6 +76,15 @@ class Event extends Model
         }
     }
 
+    public static function eventosDisponibles() {
+        $fechaActual = now();
+
+        return Event::with('category', 'venue', 'sessions.tickets')
+            ->whereHas('sessions', function ($query) use ($fechaActual) {
+                $query->where('date_time', '>', $fechaActual);
+            });
+    }
+
     public function scopeNameEvent(Builder $query, string $name){
         try {
             return $query->where('name', 'ILIKE', "%{$name}%");

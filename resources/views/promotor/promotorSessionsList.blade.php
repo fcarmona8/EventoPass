@@ -7,12 +7,12 @@
             @foreach ($sessions as $session)
                 <div class="card cardHomePromotor">
                     @if ($session->event->main_image_id)
-                        <picture>
+                        <picture class="contenedorImagen imagenSesiones">
                             <source media="(max-width: 799px)"
-                                srcset="http://localhost:8080{{ $event->optimizedImageSmallUrl() }}">
+                                srcset="http://localhost:8080{{ $session->event->optimizedImageSmallUrl() }}">
                             <source media="(min-width: 800px) and (max-width: 1023px)"
-                                srcset="http://localhost:8080{{ $event->optimizedImageMediumUrl() }}">
-                            <img src="http://localhost:8080{{ $event->optimizedImageLargeUrl() }}" alt="{{ $event->name }}"
+                                srcset="http://localhost:8080{{ $session->event->optimizedImageMediumUrl() }}">
+                            <img class="imagenSessionList" src="http://localhost:8080{{ $session->event->optimizedImageLargeUrl() }}" alt="{{ $session->event->name }}"
                                 loading="lazy" onerror="this.onerror=null; this.src='https://picsum.photos/200'">
                         </picture>
                     @else
@@ -38,12 +38,12 @@
                     @foreach ($event->sessions as $session)
                         <div class="card cardHomePromotor">
                             @if ($event->main_image_id)
-                                <picture>
+                                <picture class="contenedorImagen imagenSesiones">
                                     <source media="(max-width: 799px)"
                                         srcset="http://localhost:8080{{ $event->optimizedImageSmallUrl() }}">
                                     <source media="(min-width: 800px) and (max-width: 1023px)"
                                         srcset="http://localhost:8080{{ $event->optimizedImageMediumUrl() }}">
-                                    <img src="http://localhost:8080{{ $event->optimizedImageLargeUrl() }}"
+                                    <img class="imagenSessionList" src="http://localhost:8080{{ $event->optimizedImageLargeUrl() }}"
                                         alt="{{ $event->name }}" loading="lazy"
                                         onerror="this.onerror=null; this.src='https://picsum.photos/200'">
                                 </picture>
