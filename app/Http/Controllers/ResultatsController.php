@@ -87,7 +87,24 @@ class ResultatsController extends Controller
             $endDuration = microtime(true) - $start;
             Log::channel('resultats')->info('Fin de solicitud a ResultatsController@index', ['duration' => $endDuration]);
 
-            return view('resultats', compact('events', 'selectedFiltro', 'searchTerm', 'categories', 'selectedCategoria', 'lowestPrice'));
+            // Dades per a les metadades dinàmiques
+            $metaData = [
+                'title' => 'Resultats de Cerca - EventoPass | Troba els Millors Esdeveniments',
+                'description' => 'Descobreix esdeveniments basats en la teva cerca. Explora una àmplia varietat d\'esdeveniments i troba el que més s\'ajusta als teus interessos.',
+                'keywords' => 'EventoPass, resultats de cerca, esdeveniments, trobar esdeveniments, cerca d\'esdeveniments',
+                'ogType' => 'website',
+                'ogUrl' => request()->url(),
+                'ogTitle' => 'Explora Esdeveniments a EventoPass',
+                'ogDescription' => 'Veure els esdeveniments que coincideixen amb la teva cerca. Navega pels resultats i descobreix esdeveniments únics.',
+                'ogImage' => asset('logo/logo.png'),
+                'twitterCard' => 'summary_large_image',
+                'twitterUrl' => request()->url(),
+                'twitterTitle' => 'Resultats de Cerca a EventoPass',
+                'twitterDescription' => 'Troba esdeveniments perfectes per a tu amb la nostra funció de cerca. Descobreix noves experiències i plans emocionants.',
+                'twitterImage' => asset('logo/logo.png'),
+            ];
+
+            return view('resultats', compact('events', 'selectedFiltro', 'searchTerm', 'categories', 'selectedCategoria', 'lowestPrice', 'metaData'));
  
         } catch (\Exception $e) {
 

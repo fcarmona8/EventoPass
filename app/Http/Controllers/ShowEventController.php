@@ -88,6 +88,23 @@ class ShowEventController extends Controller
         $duration = microtime(true) - $start;
         Log::channel('showevent')->info("Finalizando show", ['duration' => $duration]);
 
-        return view('tickets.showevent', compact('event', 'formattedSessions', 'coordinates', 'comentarios'));
+        // Dades per a les metadades dinàmiques
+        $metaData = [
+            'title' => $event->name . ' - Detalls de l\'Esdeveniment | EventoPass',
+            'description' => 'Descobreix tot sobre ' . $event->name . '. Informació detallada, ubicació, dates de sessions i opinions. No et perdis aquest esdeveniment únic!',
+            'keywords' => 'EventoPass, esdeveniments, ' . $event->name . ', detalls de l\'esdeveniment, sessions d\'esdeveniment, comentaris d\'esdeveniment',
+            'ogType' => 'website',
+            'ogUrl' => request()->url(),
+            'ogTitle' => $event->name . ' a EventoPass',
+            'ogDescription' => 'Explora ' . $event->name . ' a EventoPass. Veure dates de sessions, ubicació i llegir comentaris. Uneix-te a nosaltres per a aquesta experiència inoblidable.',
+            'ogImage' => asset('logo/logo.png'),
+            'twitterCard' => 'summary_large_image',
+            'twitterUrl' => request()->url(),
+            'twitterTitle' => $event->name . ' - EventoPass',
+            'twitterDescription' => 'Tot el que necessites saber sobre ' . $event->name . '. Dates, ubicació, i comentaris. Reserva la teva entrada ara a EventoPass.',
+            'twitterImage' => asset('logo/logo.png'),
+        ];
+
+        return view('tickets.showevent', compact('event', 'formattedSessions', 'coordinates', 'comentarios', 'metaData'));
     }
 }

@@ -23,7 +23,24 @@ class CreateEventController extends Controller
         $user_id = Auth::id();
         $existingAddresses = Venue::where('user_id', $user_id)->get();
 
-        return view('promotor.createEvent', compact('existingAddresses', 'categories'));
+        // Dades per a les metadades dinàmiques
+        $metaData = [
+            'title' => 'Crear Nou Esdeveniment - EventoPass | Publica el Teu Esdeveniment',
+            'description' => 'Crea i publica un nou esdeveniment a EventoPass. Afegeix detalls com el títol, la descripció, la data, l\'ubicació, i més per a atraure assistents.',
+            'keywords' => 'EventoPass, crear esdeveniment, publicar esdeveniment, organització d\'esdeveniments, gestió d\'esdeveniments',
+            'ogType' => 'website',
+            'ogUrl' => request()->url(),
+            'ogTitle' => 'Publica un Nou Esdeveniment a EventoPass',
+            'ogDescription' => 'Utilitza EventoPass per a crear i gestionar els teus esdeveniments fàcilment. Atrau més assistents amb una pàgina d\'esdeveniment atractiva.',
+            'ogImage' => asset('logo/logo.png'),
+            'twitterCard' => 'summary_large_image',
+            'twitterUrl' => request()->url(),
+            'twitterTitle' => 'Crea un Nou Esdeveniment a EventoPass',
+            'twitterDescription' => 'Descobreix com EventoPass pot ajudar-te a promocionar i gestionar els teus esdeveniments de manera eficaç.',
+            'twitterImage' => asset('logo/logo.png'),
+        ];
+
+        return view('promotor.createEvent', compact('existingAddresses', 'categories', 'metaData'));
     }
 
     public function store(Request $request)
