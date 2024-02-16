@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container contenedorPago">
+    <div class="contenedorPago">
         <h2 class="titulo-pagina-pago">Pago Seguro con Redsys</h2>
         <form class="formularioPago" name="redsysForm" action="{{ route('initiatePayment') }}" method="POST">
             @csrf

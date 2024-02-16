@@ -32,13 +32,13 @@
             <div class="form-group">
                 <label for="email">Correo Electrónico:</label>
                 <input type="email" name="email" id="email" value="{{ old('email') }}" required autofocus
-                    class="form-control">
+                    class="form-control LoginCardInput">
             </div>
 
             <!-- Campo de Contraseña -->
             <div class="form-group">
                 <label for="password">Contraseña:</label>
-                <input type="password" name="password" id="password" required class="form-control">
+                <input type="password" name="password" id="password" required class="form-control LoginCardInput">
             </div>
 
             <!-- Botón de Submit -->

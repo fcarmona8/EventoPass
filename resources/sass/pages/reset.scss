@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.ResPasCard{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ResPasCardHeader, .ResPasCardBody{
+  padding: 2%;
+}
+
+.ResPasCardInput{
+ width: 94%;
+}

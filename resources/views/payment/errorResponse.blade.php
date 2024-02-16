@@ -16,7 +16,7 @@
 }
     </style>
 @section('content')
-    <div class="container">
+    <div class="containerShowEvent">
         <h2>Respuesta de Pago</h2>
 
             <div class="alert alert-success confirmacion">

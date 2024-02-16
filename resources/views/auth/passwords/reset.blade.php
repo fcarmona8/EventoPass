@@ -7,15 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Correo</title>
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
 </head>
 
 <body>
 
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center ResPasCard">
             <div class="col-md-8">
-                <div class="card">
+                <div>
                     <div class="card-header">Restablecer Contraseña</div>
 
                     <div class="card-body">
