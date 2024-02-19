@@ -18,27 +18,36 @@ class ShowEventController extends Controller
     {
         $start = microtime(true);
         Log::channel('showevent')->info("Iniciando getCoordinates", ['venue' => $venue]);
-    
-        $apiKey = 'AIzaSyCbSv4bCYfNwXa_MXnzon8gG2kK_1MpoZw';
-        $address = urlencode("{$venue->province}, {$venue->city}, {$venue->postal_code}");
-        $url = "https://maps.googleapis.com/maps/api/geocode/json?address=$address&key=$apiKey";
-    
-        Log::channel('showevent')->debug("URL de solicitud de la API de Google Maps: $url");
-    
-        $response = file_get_contents($url);
+
+        $address = urlencode("{$venue->city}, {$venue->province}, {$venue->postal_code}");
+
+        $url = "https://nominatim.openstreetmap.org/search?format=json&limit=1&addressdetails=1&q=$address";
+
+        Log::channel('showevent')->debug("URL de solicitud a OpenStreetMap Nominatim: $url");
+
+        $opts = [
+            "http" => [
+                "header" => "User-Agent: MyEventApp/1.0"
+            ]
+        ];
+        $context = stream_context_create($opts);
+
+        $response = file_get_contents($url, false, $context);
         $data = json_decode($response);
-    
-        Log::channel('showevent')->debug("Respuesta cruda de la API de Google Maps: " . print_r($data, true));
-    
-        if (isset($data->results[0])) {
+
+        Log::channel('showevent')->debug("Respuesta cruda de Nominatim: " . print_r($data, true));
+
+        if (!empty($data)) {
             $duration = microtime(true) - $start;
             Log::channel('showevent')->info("Finalizando getCoordinates", ['duration' => $duration]);
-            return $data->results[0]->geometry->location;
+            
+            $location = $data[0];
+            return (object)['lat' => $location->lat, 'lon' => $location->lon];
         } else {
-            Log::channel('showevent')->error("No se encontraron coordenadas para la dirección dada. Respuesta de la API: " . print_r($data, true));
+            Log::channel('showevent')->error("No se encontraron coordenadas para la dirección dada. Respuesta de Nominatim: " . print_r($data, true));
             return null;
         }
-    }    
+    }
 
     public function show($id)
     {
