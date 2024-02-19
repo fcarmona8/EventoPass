@@ -18,7 +18,6 @@ class RunMigrationsWithApi extends Command
 
     public function handle()
     {
-        // Lee la ruta de la API desde la variable de entorno
         $apiPath = env('API_PATH');
 
         if (empty($apiPath)) {
@@ -26,18 +25,14 @@ class RunMigrationsWithApi extends Command
             return;
         }
 
-        // Define el comando para tu API usando la ruta de la variable de entorno
         $apiCommand = "cd $apiPath && php artisan migrate:fresh";
         
-        // Ejecuta el comando de la API
         $process = Process::fromShellCommandline($apiCommand);
         try {
             $process->mustRun();
 
-            // Muestra la salida del comando de la API
             echo $process->getOutput();
             
-            // Ahora ejecuta migrate:fresh --seed en el proyecto principal
             $this->call('migrate:fresh', [
                 '--seed' => true,
             ]);
