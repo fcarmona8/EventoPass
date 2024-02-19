@@ -19,7 +19,7 @@ class ResultatsController extends Controller
             $categories = ['todas' => 'Totes'] + $categories->toArray();
             $selectedCategoria = $request->input('categoria', 'todas');
 
-            $query = Event::with('category', 'venue', 'sessions.tickets'); 
+            $query = Event::eventosDisponibles();
 
             if ($request->filled('search')) {
                 $searchTerm = $request->get('search');
@@ -65,6 +65,8 @@ class ResultatsController extends Controller
             $searchTerm = $request->input('search') ?? '';
             $eventsPerPage = config('app.events_per_page', env('PAGINATION_LIMIT', 10));
             $events = $query->with('sessions.tickets')->orderBy('event_date')->paginate($eventsPerPage);
+
+            
 
             Log::info('Consulta completada en ResultatsController@index', [
                 'selectedFiltro' => $selectedFiltro,
