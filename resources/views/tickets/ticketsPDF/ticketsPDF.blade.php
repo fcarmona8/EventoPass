@@ -126,7 +126,7 @@ html {
             <p style="padding: 1% 2%">
                 Identificador entrada: 
                 @php 
-                    $hash = hash('sha256', $i . $session['ticketName'.$entrada] . $session['sessionId'] . $i . $session['buyerDNI'].$entrada . $i); 
+                    $hash = $session['unicIdNameTicket'.$entrada];
                     echo $hash;
                 @endphp 
             </p>

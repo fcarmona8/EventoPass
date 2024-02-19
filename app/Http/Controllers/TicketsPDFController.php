@@ -23,13 +23,8 @@ class TicketsPDFController extends Controller
         $pdf = PDF::loadView('tickets.ticketsPDF.ticketsPDF', $data);
 
         $session =  LaravelSession::get('datosCompra');
-        $pdfName = $session['buyerDNI'] . $session['sessionId'];
 
-        $storagePath = 'public/pdfs/'.$pdfName .'.pdf';
-
-        $session['namePDF'] = $pdfName.'.pdf';
-
-        LaravelSession::put('datosCompra', $session);
+        $storagePath = 'public/pdfs/'.$session['namePDF'] .'.pdf';
 
         Storage::put($storagePath, $pdf->output());
         

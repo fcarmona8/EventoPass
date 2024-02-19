@@ -133,7 +133,10 @@ html {
         <div class="dadesEntrades">
             <p style="padding: 1% 2%">
                 Identificador entrada: 
-                {{ hash('sha256', $entrada . $session['dni'.$entrada] . $session['sessionId'] . $entrada . $session['phone'.$entrada] . $entrada) }}
+                @php 
+                    $hash = $session['unicIdNameTicket'.$entrada];
+                    echo $hash;
+                @endphp 
             </p>
         </div>
          <div class="qr">

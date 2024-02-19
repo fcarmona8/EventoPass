@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Purchase;
 
 require_once base_path('app/redsysHMAC256_API_PHP_7.0.0/apiRedsys.php');
@@ -16,7 +17,7 @@ class PaymentController extends Controller
 {
     public function initiatePayment(Request $request)
     {
-        
+
         $validated = $request->validate([
             'creditCard' => 'required|numeric',
             'expirationDate' => 'required',
@@ -43,7 +44,7 @@ class PaymentController extends Controller
             $redsysAPI->setParameter($key, $value);
         }
         $modifiedParams = $redsysAPI->createMerchantParameters();
-        
+
         // Generar una nueva firma con los parámetros modificados
         $signature = $redsysAPI->createMerchantSignature(env('REDSYS_SECRET_KEY'));
 
@@ -66,23 +67,26 @@ class PaymentController extends Controller
             // Decodificar y verificar los parámetros de salida de Redsys
             $decodedResponseParams = json_decode(base64_decode($responseData['Ds_MerchantParameters']), true);
 
-            if (isset($decodedResponseParams['Ds_Response']) && (int)$decodedResponseParams['Ds_Response'] <= 99) {
+            if (isset($decodedResponseParams['Ds_Response']) && (int) $decodedResponseParams['Ds_Response'] <= 99) {
 
                 $session = sessionLaravel::get('datosCompra');
                 $ticketsPDFController = new TicketsPDFController();
 
-                if($session['nominals?']){
-                    $ticketsPDFController->generatePdfNominal();
-                }else{
-                    $ticketsPDFController->generatePdf();
-                }
-                
-                
+                $pdfName = $session['buyerDNI'] . $session['sessionId'];
+                $session['namePDF'] = $pdfName.'.pdf';
+                sessionLaravel::put('datosCompra', $session);
+
                 $session = sessionLaravel::get('datosCompra');
                 $compra = new Purchase;
-                $compra->generarCompra($session['sessionId'],$session['totalPrice'],$session['buyerName'],$session['buyerEmail'],$session['buyerDNI'],$session['buyerPhone'],$session['nEntrades'],$session['namePDF']);
+                $compra->generarCompra($session['sessionId'], $session['totalPrice'], $session['buyerName'], $session['buyerEmail'], $session['buyerDNI'], $session['buyerPhone'], $session['nEntrades'], $session['namePDF']);
 
-                MailController::enviarEntrades($session['buyerEmail'],$session['buyerDNI'].$session['sessionId'],$session['eventName'],$session['eventId']);
+                if ($session['nominals?']) {
+                    $ticketsPDFController->generatePdfNominal();
+                } else {
+                    $ticketsPDFController->generatePdf();
+                }
+
+                MailController::enviarEntrades($session['buyerEmail'], $session['buyerDNI'] . $session['sessionId'], $session['eventName'], $session['eventId']);
 
                 // Operación autorizada
                 return view('payment.response');
