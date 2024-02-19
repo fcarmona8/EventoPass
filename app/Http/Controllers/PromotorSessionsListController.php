@@ -178,7 +178,7 @@ class PromotorSessionsListController extends Controller{
     }
 
     public function CSVdownload ($id) {
-        Log::info('Entrando en método CSVdownload de PromotorHomeController.', ['id' => $id]);
+        Log::info('Entrando en método CSVdownload de PromotorSessionListController.', ['id' => $id]);
 
         $session = Session::find($id);
 
