@@ -27,6 +27,7 @@
                             <span class="card-price card-info card-sessions">Detalls</span>
                             <span class="card-price card-info card-sessions">Editar</span>
                             <span class="card-price card-info card-sessions">Entrades</span>
+                            <a class="card-price card-info card-sessions" href="{{ route('promotorsessionslist.downloadCSV', ['id' => $session->id]) }}">Descargar CSV</a>
                         </div>
                         <label for="session_closed">Sessió Oberta:</label>
                         <input type="checkbox" id="session_closed" name="session_closed"

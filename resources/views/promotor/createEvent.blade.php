@@ -45,7 +45,7 @@
                 <div class="div-data-image">
                     <label for="event_image" class="label-event">Imatge Principal de l’esdeveniment:</label>
                     <input type="file" class="input-event input-image-event" name="event_image" id="event_image"
-                        accept="image/*" required>
+                    accept="image/jpeg, image/png, image/jpg" required>
                 </div>
 
             </div>

@@ -24,7 +24,7 @@ class PromotorHomeController extends Controller {
             $q->userEvent($user_id);
         });
 
-        $events = $query->orderBy('id')->paginate(env('PAGINATION_LIMIT_PROMOTOR', 10));
+        $events = Event::eventosDisponibles()->orderBy('id')->paginate(env('PAGINATION_LIMIT_PROMOTOR', 10));
         Log::info('Eventos recuperados: ', ['events' => $events]);
 
         // Dades per a les metadades dinàmiques
