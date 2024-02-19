@@ -73,6 +73,26 @@
 
     <main class="w3-container w3-padding">
         @yield('content')
+        <div class="social-share-buttons">
+            <!-- Botón compartir en Facebook -->
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::fullUrl()) }}" target="_blank"
+                class="social-button facebook" title="Compartir en Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+
+            <!-- Botón compartir en Twitter -->
+            <a href="https://twitter.com/intent/tweet?url={{ urlencode(Request::fullUrl()) }}&text=Texto+personalizado+aquí"
+                target="_blank" class="social-button twitter" title="Compartir en Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+
+            <!-- Botón compartir en LinkedIn -->
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(Request::fullUrl()) }}"
+                target="_blank" class="social-button linkedin" title="Compartir en LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+
     </main>
 
     <footer>
