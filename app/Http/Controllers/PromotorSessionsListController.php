@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use App\Models\Event;
+use App\Models\Ticket;
+use League\Csv\Writer;
 use App\Models\Session;
 use App\Models\TicketType;
-use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class PromotorSessionsListController extends Controller{
 
@@ -33,7 +34,8 @@ class PromotorSessionsListController extends Controller{
                 });
             $isSpecificEvent = true;
         } else {
-            $events = Event::with(['sessions' => function($query) {
+            $events = Event::eventosDisponibles()
+                ->with(['sessions' => function($query) {
                     $query->orderBy('date_time');
                 }])
                 ->where('user_id', $user_id)
@@ -173,6 +175,25 @@ class PromotorSessionsListController extends Controller{
             Log::error('Error en el proceso de almacenamiento de la sesión: ' . $e->getMessage());
             return back()->withErrors(['error' => 'Error al guardar la sesión.']);
         }
+    }
+
+    public function CSVdownload ($id) {
+        Log::info('Entrando en método CSVdownload de PromotorHomeController.', ['id' => $id]);
+
+        $session = Session::find($id);
+
+        $csv = Writer::createFromFileObject(new \SplTempFileObject());
+
+        $csv->insertOne(['Nom comprador', 'Nom de l’assistent', 'Codi d’entrada', 'Tipus d’entrada']);
+
+        foreach ($session->tickets as $ticket) {
+
+            $csv->insertOne([
+                
+            ]);
+        }
+
+        $csv->output('sesion'. $session->id . '.csv');
     }
 
 }
