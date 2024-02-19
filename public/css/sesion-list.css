@@ -79,6 +79,20 @@ h2 {
 .card-sessions {
   margin-left: 0%; }
 
+.imagenSesiones{
+  width: 300px;
+}
+
+.imagenSessionList{
+  width: auto !important;
+}
+
+.labelSesion{
+  margin-right: auto;
+  font-size: 16px;
+}
+
+
 /* Ajustes para tarjetas de sesiones en pantallas más grandes */
 @media (min-width: 600px) {
   .session-card {
@@ -91,4 +105,9 @@ h2 {
     grid-template-columns: repeat(auto-fill, minmax(32%, auto));
     gap: 20px;
     padding: 1%;
-    width: 100%; } }
+    width: 100%; }
+  .labelSesion{
+      margin-right: auto;
+      margin-bottom: -10px;
+    }
+   }
