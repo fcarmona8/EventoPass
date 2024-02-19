@@ -8,14 +8,30 @@
   border-radius: 8px;
   overflow: hidden;
   margin: 1rem;
-  border: 1px solid var(--destacados-enlaces); }
+  border: 1px solid var(--destacados-enlaces); 
+}
 
 img {
   width: 100%;
   height: auto;
   object-fit: cover;
   max-width: 100%;
-  border-style: none; }
+  border-style: none; 
+}
+
+.checkbox-container {
+  display: flex;
+  vertical-align: middle;
+  margin-top: 7%;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.checkboxSessionList{
+  pointer-events: all;
+}
 
 h3,
 p {
@@ -57,7 +73,7 @@ h2 {
   flex-wrap: wrap;
   padding: 2% 0%;
   justify-content: center;
-  margin: 10%; }
+  margin: 10% 10% 0% 10%; }
 
 /* Ajustes para tarjetas de sesiones en pantallas más grandes */
 .card-sessions {
