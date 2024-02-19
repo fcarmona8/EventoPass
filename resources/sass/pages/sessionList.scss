@@ -55,11 +55,20 @@
     flex-wrap: wrap;
     padding: 2% 0%;
     justify-content: center;
-    margin: 10%; }
+    margin: 10% 10% 0% 10%; }
   
   /* Ajustes para tarjetas de sesiones en pantallas más grandes */
   .card-sessions {
     margin-left: 0%; }
+
+    .checkbox-container {
+      display: flex;
+      vertical-align: middle;
+      margin-top: 7%;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: center;
+  }
   
   /* Ajustes para tarjetas de sesiones en pantallas más grandes */
   @media (min-width: 600px) {
@@ -74,3 +83,4 @@
       gap: 20px;
       padding: 1%;
       width: 100%; } }
+
