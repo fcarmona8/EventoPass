@@ -29,6 +29,9 @@
                             <span class="card-price card-info card-sessions">Entrades</span>
                             <a class="card-price card-info card-sessions" href="{{ route('promotorsessionslist.downloadCSV', ['id' => $session->id]) }}">Descargar CSV</a>
                         </div>
+                        <label for="session_closed">Sessió Oberta:</label>
+                        <input type="checkbox" id="session_closed" name="session_closed"
+                            {{ $session->closed ? 'checked' : '' }}>
                     </div>
                 </div>
             @endforeach
@@ -62,11 +65,21 @@
                                     <span class="card-price card-info card-sessions">Editar</span>
                                     <span class="card-price card-info card-sessions">Entrades</span>
                                 </div>
+                                <div class="checkbox-container">
+                                    <label for="session_closed">Sessió Oberta:</label>
+                                    <input class="checkboxSessionList" type="checkbox" id="session_closed" name="session_closed"
+                                        {{ $session->closed ? 'checked' : '' }}>
+                                </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
             @endforeach
+        </div>
+        <div class="checkbox-container">
+            <label for="session_closed">Sessió Oberta:</label>
+            <input type="checkbox" id="session_closed" name="session_closed"
+                {{ $session->closed ? 'checked' : '' }}>
         </div>
     @endif
 

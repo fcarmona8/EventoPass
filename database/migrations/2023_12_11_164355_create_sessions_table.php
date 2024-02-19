@@ -16,6 +16,7 @@ class CreateSessionsTable extends Migration
             $table->timestamp('online_sale_end_time')->nullable();
             $table->integer('ticket_quantity')->nullable();
             $table->boolean('named_tickets')->default(false); 
+            $table->boolean('closed')->default(false);
             $table->timestamps();
             $table->foreign('event_id')->references('id')->on('events');
         });
