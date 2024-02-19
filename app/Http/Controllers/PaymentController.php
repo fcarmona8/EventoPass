@@ -92,7 +92,7 @@ class PaymentController extends Controller
             }
         } else {
             // Error al conectar con Redsys
-            return view('payment.response', ['error' => 'Error al conectar con el sistema de pago.']);
+            return view('payment.errorResponse', ['error' => 'Error al conectar con el sistema de pago.']);
         }
     }
 }
