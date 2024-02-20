@@ -149,8 +149,7 @@ h1 {
 
 .card-link {
   text-decoration: none;
-  color: black;
-  padding: 2% 1%; }
+  color: black; }
 
 .filtro,
 input {
@@ -206,7 +205,6 @@ label {
   margin-top: auto;
   border-radius: 8px;
   margin-right: 10px;
-  margin-bottom: 5px;
   background-color: var(--principal); }
 
 .card h3 {
@@ -1232,7 +1230,7 @@ h2 {
     width: 50%; }
   .listSessions {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(32%, auto));
+    grid-template-columns: repeat(auto-fill, minmax(480px, auto));
     gap: 20px;
     padding: 1%;
     width: 100%; } }

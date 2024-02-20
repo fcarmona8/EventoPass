@@ -131,7 +131,7 @@ select {
 @media (min-width: 768px) {
   .homepromotor {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(32%, auto));
+    grid-template-columns: repeat(auto-fill, minmax(480px, auto));
     gap: 20px;
     padding: 1%;
     width: 100%; }

@@ -69,6 +69,17 @@
       align-items: center;
       justify-content: center;
   }
+
+  .imagenSessionList {
+    width: auto !important;
+    max-width: 200px;
+  }
+
+  .checkbox-closed-session{
+    pointer-events: all;
+    white-space: nowrap;
+    margin-right: auto;
+  }
   
   /* Ajustes para tarjetas de sesiones en pantallas más grandes */
   @media (min-width: 600px) {
@@ -76,10 +87,11 @@
       flex-direction: row;
       max-width: 700px; }
     .session-card img {
-      width: 50%; }
+      width: 50%;
+    max-width: 200px; }
     .listSessions {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(32%, auto));
+      grid-template-columns: repeat(auto-fill, minmax(480px, auto));
       gap: 20px;
       padding: 1%;
       width: 100%; } }

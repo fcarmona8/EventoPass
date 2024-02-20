@@ -7,7 +7,7 @@
             @foreach ($sessions as $session)
                 <div class="card cardHomePromotor">
                     @if ($session->event && $session->event->main_image_id)
-                        <picture>
+                        <picture class="contenedorImagen">
                             <source media="(max-width: 799px)"
                                 srcset="http://localhost:8080{{ $session->event->optimizedImageSmallUrl() }}">
                             <source media="(min-width: 800px) and (max-width: 1023px)"
@@ -29,9 +29,11 @@
                             <span class="card-price card-info card-sessions">Entrades</span>
                             <a class="card-price card-info card-sessions" href="{{ route('promotorsessionslist.downloadCSV', ['id' => $session->id]) }}">Descargar CSV</a>
                         </div>
-                        <label for="session_closed">Sessió Oberta:</label>
-                        <input type="checkbox" id="session_closed" name="session_closed"
-                            {{ $session->closed ? 'checked' : '' }}>
+                        <label for="session_closed" class="switch checkbox-closed-session">Sessió Finalitzada:
+                            <input type="checkbox" class="input-event" id="session_closed" name="session_closed"
+                                {{ $session->closed ? 'checked' : '' }}>
+                            <span class="slider round"></span>
+                        </label>
                     </div>
                 </div>
             @endforeach
@@ -66,9 +68,11 @@
                                     <span class="card-price card-info card-sessions">Entrades</span>
                                 </div>
                                 <div class="checkbox-container">
-                                    <label for="session_closed">Sessió Oberta:</label>
-                                    <input class="checkboxSessionList" type="checkbox" id="session_closed" name="session_closed"
+                                <label for="session_closed" class="switch checkbox-closed-session">Sessió Finalitzada:
+                                    <input type="checkbox" class="input-event" id="session_closed" name="session_closed"
                                         {{ $session->closed ? 'checked' : '' }}>
+                                    <span class="slider round"></span>
+                                </label>
                                 </div>
                             </div>
                         </div>
