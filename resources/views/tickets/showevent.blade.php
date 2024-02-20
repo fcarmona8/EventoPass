@@ -112,16 +112,17 @@
             @endif
         </div>
     </div>
-    @endsection
+@endsection
 
-    @push('scripts')
-        <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css" rel="stylesheet" />
-        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.js"></script>
+@push('scripts')
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-
-                const calendarEl = document.getElementById('calendar');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const calendarEl = document.getElementById('calendar');
+            if (calendarEl) {
                 const calendar = new FullCalendar.Calendar(calendarEl, {
                     initialView: 'dayGridMonth',
                     events: [
@@ -161,86 +162,97 @@
                         }
                     }
                 });
+            }
+
+            @if ($coordinates)
+                var map = L.map('map').setView([{{ $coordinates->lat }}, {{ $coordinates->lon }}], 13);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+
+                var marker = L.marker([{{ $coordinates->lat }}, {{ $coordinates->lon }}]).addTo(map);
+            @endif
+        });
+
+        let inputEntradas;
+
+        const selectedTickets = {};
+
+        function displaySessions(sessions) {
+            const sessionList = document.getElementById('sessionList');
+            sessionList.innerHTML = '';
+
+            sessions.forEach(session => {
+                const sessionItem = document.createElement('li');
+                sessionItem.textContent = `Sesión a las ${session.formattedDateTime}`;
+                sessionItem.style.cursor = 'pointer';
+                sessionItem.onclick = () => displayTicketTypes(session.ticketTypes);
+                document.getElementById('sessionIdInput').value = session.id;
+                sessionList.appendChild(sessionItem);
             });
 
-            let inputEntradas;
+            document.getElementById('sessionDetails').style.display = 'block';
+        }
 
-            const selectedTickets = {};
+        function displayTicketTypes(ticketTypes) {
+            const sessionList = document.getElementById('sessionList');
+            sessionList.innerHTML = '';
 
-            function displaySessions(sessions) {
-                const sessionList = document.getElementById('sessionList');
-                sessionList.innerHTML = '';
+            ticketTypes.forEach(ticketType => {
+                const ticketItem = document.createElement('li');
+                ticketItem.textContent =
+                    `${ticketType.name}: ${ticketType.price} € (${ticketType.available_tickets} disponibles)`;
 
-                sessions.forEach(session => {
-                    const sessionItem = document.createElement('li');
-                    sessionItem.textContent = `Sesión a las ${session.formattedDateTime}`;
-                    sessionItem.style.cursor = 'pointer';
-                    sessionItem.onclick = () => displayTicketTypes(session.ticketTypes);
-                    document.getElementById('sessionIdInput').value = session.id;
-                    sessionList.appendChild(sessionItem);
-                });
-
-                document.getElementById('sessionDetails').style.display = 'block';
-            }
-
-            function displayTicketTypes(ticketTypes) {
-                const sessionList = document.getElementById('sessionList');
-                sessionList.innerHTML = '';
-
-                ticketTypes.forEach(ticketType => {
-                    const ticketItem = document.createElement('li');
-                    ticketItem.textContent =
-                        `${ticketType.name}: ${ticketType.price} € (${ticketType.available_tickets} disponibles)`;
-
-                    const inputQuantity = document.createElement('input');
-                    inputQuantity.type = 'number';
-                    inputQuantity.min = 0;
-                    inputQuantity.max = ticketType.available_tickets;
-                    inputQuantity.value = 0;
-                    inputQuantity.classList.add('inputQuantity');
-                    inputQuantity.addEventListener('input', function() {
-                        if (inputQuantity.value > parseInt(inputQuantity.max)) {
-                            inputQuantity.value = parseInt(inputQuantity.max)
-                        }
-                        selectedTickets[ticketType.id] = parseInt(inputQuantity.value);
-                        recalculateTotalPrice(ticketTypes);
-                    });
-
-                    ticketItem.appendChild(inputQuantity);
-                    sessionList.appendChild(ticketItem);
-                    inputEntradas = document.querySelectorAll('.inputQuantity');
-                });
-
-                const buyButton = document.getElementById('buyButton');
-                buyButton.style.display = 'block';
-
-                recalculateTotalPrice(ticketTypes);
-            }
-
-            function recalculateTotalPrice(ticketTypes) {
-                let totalPrice = 0;
-                for (const ticketType of ticketTypes) {
-                    if (selectedTickets[ticketType.id] > 0) {
-                        totalPrice += selectedTickets[ticketType.id] * ticketType.price;
+                const inputQuantity = document.createElement('input');
+                inputQuantity.type = 'number';
+                inputQuantity.min = 0;
+                inputQuantity.max = ticketType.available_tickets;
+                inputQuantity.value = 0;
+                inputQuantity.classList.add('inputQuantity');
+                inputQuantity.addEventListener('input', function() {
+                    if (inputQuantity.value > parseInt(inputQuantity.max)) {
+                        inputQuantity.value = parseInt(inputQuantity.max)
                     }
+                    selectedTickets[ticketType.id] = parseInt(inputQuantity.value);
+                    recalculateTotalPrice(ticketTypes);
+                });
+
+                ticketItem.appendChild(inputQuantity);
+                sessionList.appendChild(ticketItem);
+                inputEntradas = document.querySelectorAll('.inputQuantity');
+            });
+
+            const buyButton = document.getElementById('buyButton');
+            buyButton.style.display = 'block';
+
+            recalculateTotalPrice(ticketTypes);
+        }
+
+        function recalculateTotalPrice(ticketTypes) {
+            let totalPrice = 0;
+            for (const ticketType of ticketTypes) {
+                if (selectedTickets[ticketType.id] > 0) {
+                    totalPrice += selectedTickets[ticketType.id] * ticketType.price;
                 }
-
-                const totalPriceContainer = document.getElementById('totalPriceContainer');
-                const totalPriceElement = document.getElementById('totalPrice');
-                totalPriceElement.textContent = totalPrice.toFixed(2);
-                totalPriceContainer.style.display = 'block';
-
-                const totalPriceInput = document.getElementById('totalPriceInput');
-                totalPriceInput.value = totalPrice.toFixed(2);
-
-                const ticketDataInput = document.getElementById('ticketDataInput');
-                ticketDataInput.value = JSON.stringify(selectedTickets);
             }
 
-            function clearSessionsDisplay() {
-                const sessionList = document.getElementById('sessionList');
-                sessionList.innerHTML = '';
-                document.getElementById('sessionDetails').style.display = 'none';
-            }
-        </script>
-    @endpush
+            const totalPriceContainer = document.getElementById('totalPriceContainer');
+            const totalPriceElement = document.getElementById('totalPrice');
+            totalPriceElement.textContent = totalPrice.toFixed(2);
+            totalPriceContainer.style.display = 'block';
+
+            const totalPriceInput = document.getElementById('totalPriceInput');
+            totalPriceInput.value = totalPrice.toFixed(2);
+
+            const ticketDataInput = document.getElementById('ticketDataInput');
+            ticketDataInput.value = JSON.stringify(selectedTickets);
+        }
+
+        function clearSessionsDisplay() {
+            const sessionList = document.getElementById('sessionList');
+            sessionList.innerHTML = '';
+            document.getElementById('sessionDetails').style.display = 'none';
+        }
+    </script>
+@endpush
