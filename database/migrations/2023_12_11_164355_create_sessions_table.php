@@ -11,6 +11,7 @@ class CreateSessionsTable extends Migration
         Schema::create('sessions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('event_id');
+            $table->string('session_code')->unique();
             $table->timestamp('date_time');
             $table->integer('max_capacity')->nullable();
             $table->timestamp('online_sale_end_time')->nullable();
