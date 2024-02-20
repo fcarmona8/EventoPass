@@ -29,11 +29,16 @@
                             <span class="card-price card-info card-sessions">Entrades</span>
                             <a class="card-price card-info card-sessions" href="{{ route('promotorsessionslist.downloadCSV', ['id' => $session->id]) }}">Descargar CSV</a>
                         </div>
-                        <label for="session_closed" class="switch checkbox-closed-session">Sessió Finalitzada:
-                            <input type="checkbox" class="input-event" id="session_closed" name="session_closed"
-                                {{ $session->closed ? 'checked' : '' }}>
-                            <span class="slider round"></span>
-                        </label>
+                        <div class="statusSessionDiv">
+                            <p class="statusSessionText">Estat de la sessió: </p>
+                            <span class="statusSession {{ $session->closed ? 'closed' : '' }}">
+                                {{$session->closed ? 'Tancada' : 'Oberta'}}
+                            </span>
+                        </div>
+                        <button type="button" class="toggle-session-btn statusSessionBtn" data-session-id="{{ $session->id }}"
+                            data-session-closed="{{ $session->closed ? 'true' : 'false' }}" id="openModalButton">
+                            {{ $session->closed ? 'Obrir la sessió' : 'Tancar la sessió' }}
+                        </button>
                     </div>
                 </div>
             @endforeach
@@ -67,25 +72,35 @@
                                     <span class="card-price card-info card-sessions">Editar</span>
                                     <span class="card-price card-info card-sessions">Entrades</span>
                                 </div>
-                                <div class="checkbox-container">
-                                <label for="session_closed" class="switch checkbox-closed-session">Sessió Finalitzada:
-                                    <input type="checkbox" class="input-event" id="session_closed" name="session_closed"
-                                        {{ $session->closed ? 'checked' : '' }}>
-                                    <span class="slider round"></span>
-                                </label>
-                                </div>
+                                <p class="stautsSessionText">Estado de la sesión: 
+                                    <span class="statusSessionSpan {{ $session->closed ? 'closed' : '' }}">
+                                        {{$session->closed ? 'Tancada' : 'Oberta'}}
+                                    </span>
+                                </p>
+                                <button type="button" class="toggle-session-btn statusSessionBtn" data-session-id="{{ $session->id }}"
+                                    data-session-closed="{{ $session->closed ? 'true' : 'false' }}" id="openModalButton">
+                                    {{ $session->closed ? 'Abrir la sesión' : 'Cerrar la sesión' }}
+                                </button>
                             </div>
                         </div>
                     @endforeach
                 </div>
             @endforeach
         </div>
-        <div class="checkbox-container">
-            <label for="session_closed">Sessió Oberta:</label>
-            <input type="checkbox" id="session_closed" name="session_closed"
-                {{ $session->closed ? 'checked' : '' }}>
-        </div>
     @endif
+
+    <div id="confirmModal">
+        <div class="modal-contenedor">
+            <h2 class="modal-title">Segur que vols tancar la sessió?</h2>
+            <p class="modal-content">Tancar la sessión desactivarà la venta online d'entrades, 
+                es pot tornar a obrir la sessió en qualsevol moment
+            </p>
+            <div class="botonesModal">
+                <button id="cancelButton">Cancelar</button>
+                <button id="confirmButton">Confirmar</button>
+            </div>
+        </div>
+    </div>
 
     <div id="nueva-sesion-modal" class="modal">
         <div class="modal-content div-adreca" id="div-crear-sesion">
@@ -165,14 +180,21 @@
             </form>
         </div>
     </div>
-
-
+    
     <div id="overlay" class="overlay"></div>
+
+    <!-- Botón para abrir el modal -->
+    
 @endsection
 
 @push('scripts')
     <script>
         document.querySelectorAll('.label-adreca').forEach(setupSelector);
+        const modal = document.getElementById('confirmModal');
+        const btn = document.getElementById('openModalButton');
+        const cancelButton = document.getElementById('cancelButton');
+        const confirmButton = document.getElementById('confirmButton');
+
 
         if (document.getElementById('abrir-modal-sesion')) {
             document.getElementById('abrir-modal-sesion').addEventListener('click', function() {
@@ -411,5 +433,61 @@
             };
 
         });
+
+        function toggleSession() {
+            const sessionId = this.getAttribute('data-session-id');
+            const closed = this.getAttribute('data-session-closed') === 'true';
+
+            fetch(`/promotor/promotorsessionlist/update-session/${sessionId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}' 
+                },
+                body: JSON.stringify({ closed: !closed })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                this.setAttribute('data-session-closed', !closed);
+                this.textContent = !closed ? 'Obrir la sessió' : 'Tancar la sessió';
+
+                const statusSpan = this.parentElement.querySelector('.statusSession');
+                statusSpan.textContent = !closed ? 'Tancada' : 'Oberta';
+                if (!closed) {
+                    statusSpan.classList.add('closed');
+                } else {
+                    statusSpan.classList.remove('closed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error.message);
+                showToast("Error al canviar l'estat de la sessió");
+            });
+        }
+
+        document.querySelectorAll('.toggle-session-btn').forEach(function(button) {
+            button.addEventListener('click', function() {
+                if (this.getAttribute('data-session-closed') === 'true') {
+                    toggleSession.call(button);
+                } else {
+                    modal.style.display = "block";
+                    confirmButton.onclick = function() {
+                        modal.style.display = "none";
+                        toggleSession.call(button);
+                    }
+                }
+            });
+        });
+
+        cancelButton.onclick = function() {
+            modal.style.display = "none";
+        }
+
+
     </script>
 @endpush

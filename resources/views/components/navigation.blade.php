@@ -1,4 +1,4 @@
-<nav>
+<navz>
     <ul>
         <li><a href="{{ route('home') }}">Home</a></li>
 
@@ -9,4 +9,4 @@
         <li><a href="{{ route('tickets.aboutus') }}">Sobre Nosaltres</a></li>
         <li><a href="{{ route('tickets.legalnotice') }}">Avisos Legals</a></li>
     </ul>
-</nav>
+</navz>
