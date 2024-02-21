@@ -11,7 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
-class PromotorSessionsListController extends Controller{
+class PromotorSessionsListController extends Controller
+{
 
     public function index(Request $request)
     {
@@ -28,8 +29,8 @@ class PromotorSessionsListController extends Controller{
                 ->get()
                 ->map(function ($session) {
                     $session->sold_tickets = Ticket::where('session_id', $session->id)
-                                                ->whereNotNull('purchase_id')
-                                                ->count();
+                        ->whereNotNull('purchase_id')
+                        ->count();
                     return $session;
                 });
             $isSpecificEvent = true;
@@ -45,8 +46,8 @@ class PromotorSessionsListController extends Controller{
                 ->map(function ($event) {
                     $event->sessions->map(function ($session) {
                         $session->sold_tickets = Ticket::where('session_id', $session->id)
-                                                    ->whereNotNull('purchase_id')
-                                                    ->count();
+                            ->whereNotNull('purchase_id')
+                            ->count();
                         return $session;
                     });
                     return $event;
@@ -55,12 +56,12 @@ class PromotorSessionsListController extends Controller{
         }
 
         $primeraSesion = Session::with('event')
-                        ->where('event_id', $event_id)
-                        ->orderBy('id')
-                        ->first();
+            ->where('event_id', $event_id)
+            ->orderBy('id')
+            ->first();
 
         $ticketsPrimeraSesion = collect();
-        
+
         if ($primeraSesion) {
 
             $ticketsPrimeraSesion = $primeraSesion->tickets;
@@ -85,11 +86,20 @@ class PromotorSessionsListController extends Controller{
             'twitterImage' => asset('logo/logo.png'),
         ];
 
-        return view('promotor/promotorSessionsList', compact('sessions', 'events', 'isSpecificEvent', 
-                                            'event_id', 'primeraSesion', 'ticketsPrimeraSesion', 'metaData'));
+        return view('promotor/promotorSessionsList', compact(
+            'sessions',
+            'events',
+            'isSpecificEvent',
+            'event_id',
+            'primeraSesion',
+            'ticketsPrimeraSesion',
+            'metaData'
+        )
+        );
     }
 
-    public function storeSession(Request $request){
+    public function storeSession(Request $request)
+    {
 
         try {
 
@@ -125,12 +135,12 @@ class PromotorSessionsListController extends Controller{
                     $onlineSaleEndTime->modify('-2 hours');
                     break;
             }
-        
+
             $session = new Session([
                 'event_id' => $event_id,
                 'date_time' => $eventDateTime,
                 'max_capacity' => $validatedData['max_capacity'],
-                'online_sale_end_time' => $onlineSaleEndTime,    
+                'online_sale_end_time' => $onlineSaleEndTime,
                 'named_tickets' => $valorNominals
             ]);
 
@@ -162,16 +172,16 @@ class PromotorSessionsListController extends Controller{
             }
 
             $existingSessions = Session::with('event')
-                        ->where('event_id', $event_id)
-                        ->orderBy('date_time')
-                        ->get()
-                        ->map(function ($session) {
-                            $session->sold_tickets = Ticket::where('session_id', $session->id)
-                                                        ->whereNotNull('purchase_id')
-                                                        ->count();
-                            return $session;
-                        });
-    
+                ->where('event_id', $event_id)
+                ->orderBy('date_time')
+                ->get()
+                ->map(function ($session) {
+                    $session->sold_tickets = Ticket::where('session_id', $session->id)
+                        ->whereNotNull('purchase_id')
+                        ->count();
+                    return $session;
+                });
+
             return redirect()->route('promotorsessionslist', ['id' => $event_id])->with('success', 'Sesión creada con éxito');
         } catch (\Exception $e) {
             Log::error('Error en el proceso de almacenamiento de la sesión: ' . $e->getMessage());
@@ -179,7 +189,8 @@ class PromotorSessionsListController extends Controller{
         }
     }
 
-    public function CSVdownload ($id) {
+    public function CSVdownload($id)
+    {
         Log::info('Entrando en método CSVdownload de PromotorSessionListController.', ['id' => $id]);
 
         $session = Session::find($id);
@@ -187,15 +198,33 @@ class PromotorSessionsListController extends Controller{
         $csv = Writer::createFromFileObject(new \SplTempFileObject());
 
         $csv->insertOne(['Nom comprador', 'Nom de l’assistent', 'Codi d’entrada', 'Tipus d’entrada']);
-
         foreach ($session->tickets as $ticket) {
+            $typeTicket = TicketType::find($ticket->type_id)->name;
+            if ($ticket->purchase_id !== null) {
 
-            $csv->insertOne([
+                if($ticket->name == null){
+                    $csv->insertOne([
+                        $ticket->buyerName,
+                        "",
+                        $ticket->unicIdTicket,
+                        $typeTicket
+                    ]);
+                }else{
+                    $csv->insertOne([
+                        $ticket->buyerName,
+                        $ticket->name,
+                        $ticket->unicIdTicket,
+                        $typeTicket
+                    ]);
+                }
+
+
                 
-            ]);
+            }
+
         }
 
-        $csv->output('sesion'. $session->id . '.csv');
+        $csv->output('sesion' . $session->id . '.csv');
     }
 
     public function editSession (Request $request, $id) {
