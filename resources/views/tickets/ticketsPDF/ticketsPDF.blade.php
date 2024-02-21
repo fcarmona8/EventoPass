@@ -90,6 +90,7 @@ html {
     @php
         $session = Session::get('datosCompra');
         $entrada = 0;
+        $num = 1;
     @endphp
     @for ($i = 1; $i <= $session['nEntrades']; $i++)
     @php $entrada++; @endphp
@@ -126,13 +127,18 @@ html {
             <p style="padding: 1% 2%">
                 Identificador entrada: 
                 @php 
-                    $hash = $session['unicIdNameTicket'.$entrada];
+                    $hash = $session['unicIdNameTicket'.$num];
                     echo $hash;
+                    $num++;
                 @endphp 
             </p>
                 </div>
          <div class="qr">
-            <img src="data:image/png;base64, {{ $qrCode }}" alt="Código QR" loading="lazy">
+            @php
+                $qrCodeImage = QrCode::size(300)->generate('https://copernic.cat/'.$hash);
+                $base64QrCode = base64_encode($qrCodeImage);
+            @endphp
+            <img src="data:image/png;base64, {{ $base64QrCode }}" alt="Código QR" loading="lazy">
         </div>
     </div>
     @if ($session['ticketNameNum'.$entrada] > 1)

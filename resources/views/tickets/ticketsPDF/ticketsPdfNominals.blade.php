@@ -140,7 +140,11 @@ html {
             </p>
         </div>
          <div class="qr">
-            <img src="data:image/png;base64, {{ $qrCode }}" alt="Código QR" loading="lazy">
+            @php
+                $qrCodeImage = QrCode::size(300)->generate('https://copernic.cat/'.$hash);
+                $base64QrCode = base64_encode($qrCodeImage);
+            @endphp
+            <img src="data:image/png;base64, {{ $base64QrCode }}" alt="Código QR" loading="lazy">
         </div>
     </div>
     @endfor
