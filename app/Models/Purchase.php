@@ -51,8 +51,12 @@ class Purchase extends Model
 
             if (isset($session['name'.$num]) && !is_null($session['name'.$num])) {
                 $name = $session['name'.$num];
+                $dniNominal = $session['dni'.$num];
+                $telefono = $session['phone'.$num];
             }else{
                 $name = null;
+                $dniNominal = null;
+                $telefono = null;
             }
 
             $idEntrada = hash('sha256',$name.$ticket_id.$num.$session['sessionId'].rand(1, 100).$session['buyerDNI'].$ticket_id.$num);
@@ -62,7 +66,7 @@ class Purchase extends Model
 
             $buyerName = $session['buyerName'];
 
-            Ticket::buyTicket($session_id, $ticket_id, $purchase_id, $name, $idEntrada, $buyerName);
+            Ticket::buyTicket($session_id, $ticket_id, $purchase_id, $name, $dniNominal, $telefono, $idEntrada, $buyerName);
 
             Ticket::restarNTickets($ticket_id, 1);
             $num++;
