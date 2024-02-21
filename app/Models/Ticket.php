@@ -11,7 +11,7 @@ class Ticket extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['purchase_id', 'type_id', 'session_id'];
+    protected $fillable = ['purchase_id', 'type_id', 'session_id', 'is_validated', 'name', 'unicIdTicket', 'buyerName'];
 
     public function purchase()
     {
