@@ -15,6 +15,8 @@ class CreateTicketsTable extends Migration
             $table->unsignedBigInteger('type_id');
             $table->unsignedBigInteger('session_id');
             $table->string('name',255)->nullable();
+            $table->string('dni',255)->nullable();
+            $table->string('telefono',255)->nullable();
             $table->string('unicIdTicket',255)->nullable();
             $table->string('buyerName',255)->nullable();
             $table->timestamps();
