@@ -29,14 +29,14 @@ class Ticket extends Model
     }
 
 
-    public static function buyTicket($session_id, $type_id, $purchase_id, $cantidad){
+    public static function buyTicket($session_id, $type_id, $purchase_id, $name, $idEntrada, $buyerName){
 
         DB::table('tickets')
         ->where('session_id', '=', $session_id)
         ->where('type_id', '=', $type_id)
         ->whereNull('purchase_id') 
-        ->take($cantidad) 
-        ->update(['purchase_id' => $purchase_id]);
+        ->take(1) 
+        ->update(['purchase_id' => $purchase_id, 'name' => $name, 'unicIdTicket' => $idEntrada, 'buyerName' => $buyerName]);
 
     }
 
