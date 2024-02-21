@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="shortcut icon" href="{{ asset('favicon/favicon.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
@@ -20,7 +21,7 @@
     <link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
     <link rel="stylesheet" href="{{ asset('css/comentarios.css') }}">
     <link rel="stylesheet" href="{{ asset('css/compra-tickets.css') }}">
-    
+
     <title>@yield('title')</title>
 </head>
 
@@ -72,6 +73,26 @@
 
     <main class="w3-container w3-padding">
         @yield('content')
+        <div class="social-share-buttons">
+            <!-- Botón compartir en Facebook -->
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::fullUrl()) }}" target="_blank"
+                class="social-button facebook" title="Compartir en Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+
+            <!-- Botón compartir en Twitter -->
+            <a href="https://twitter.com/intent/tweet?url={{ urlencode(Request::fullUrl()) }}&text=Texto+personalizado+aquí"
+                target="_blank" class="social-button twitter" title="Compartir en Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+
+            <!-- Botón compartir en LinkedIn -->
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(Request::fullUrl()) }}"
+                target="_blank" class="social-button linkedin" title="Compartir en LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+
     </main>
 
     <footer>
