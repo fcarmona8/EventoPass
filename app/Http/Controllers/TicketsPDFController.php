@@ -32,7 +32,7 @@ class TicketsPDFController extends Controller
         $session =  LaravelSession::get('datosCompra');
         $pdfName = $session['buyerDNI'] . $session['sessionId'];
 
-        $storagePath = 'public/pdfs/'.$pdfName;
+        $storagePath = 'public/pdfs/'.$pdfName.'.pdf';
 
         $session['namePDF'] = $pdfName.'.pdf';
 
