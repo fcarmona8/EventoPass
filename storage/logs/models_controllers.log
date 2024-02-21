@@ -9842,3 +9842,32 @@ LINE 1: ...elect * from \"sessions\" where \"event_id\" = $1 and \"user_id\" ...
 [2024-02-21 16:11:47] local.INFO: Llamada al método venue {"event_id":28} 
 [2024-02-21 16:11:47] local.INFO: Llamada al método venue {"event_id":29} 
 [2024-02-21 16:37:45] local.INFO: Entrando en método editSession de PromotorSessionListController. {"id":"25"} 
+[2024-02-21 16:40:46] local.INFO: Llamada al método sessions {"event_id":null} 
+[2024-02-21 16:40:46] local.INFO: Llamada al método category {"event_id":null} 
+[2024-02-21 16:40:46] local.INFO: Llamada al método venue {"event_id":null} 
+[2024-02-21 16:40:46] local.INFO: Llamada al método sessions {"event_id":null} 
+[2024-02-21 16:41:23] local.INFO: Llamada al método sessions {"event_id":null} 
+[2024-02-21 16:41:23] local.INFO: Llamada al método category {"event_id":null} 
+[2024-02-21 16:41:23] local.INFO: Llamada al método venue {"event_id":null} 
+[2024-02-21 16:41:23] local.INFO: Llamada al método sessions {"event_id":null} 
+[2024-02-21 16:41:50] local.INFO: Entrando en método editSession de PromotorSessionListController. {"id":"28"} 
+[2024-02-21 16:44:07] local.INFO: Llamada al método sessions {"event_id":null} 
+[2024-02-21 16:44:07] local.INFO: Llamada al método category {"event_id":null} 
+[2024-02-21 16:44:07] local.INFO: Llamada al método venue {"event_id":null} 
+[2024-02-21 16:44:07] local.INFO: Llamada al método sessions {"event_id":null} 
+[2024-02-21 16:44:28] local.INFO: Llamada al método sessions {"event_id":null} 
+[2024-02-21 16:44:28] local.INFO: Llamada al método category {"event_id":null} 
+[2024-02-21 16:44:28] local.INFO: Llamada al método venue {"event_id":null} 
+[2024-02-21 16:44:28] local.INFO: Llamada al método sessions {"event_id":null} 
+[2024-02-21 16:46:21] local.INFO: Llamada al método sessions {"event_id":null} 
+[2024-02-21 16:46:21] local.INFO: Llamada al método category {"event_id":null} 
+[2024-02-21 16:46:21] local.INFO: Llamada al método venue {"event_id":null} 
+[2024-02-21 16:46:21] local.INFO: Llamada al método sessions {"event_id":null} 
+[2024-02-21 16:48:00] local.INFO: Llamada al método sessions {"event_id":null} 
+[2024-02-21 16:48:00] local.INFO: Llamada al método category {"event_id":null} 
+[2024-02-21 16:48:00] local.INFO: Llamada al método venue {"event_id":null} 
+[2024-02-21 16:48:00] local.INFO: Llamada al método sessions {"event_id":null} 
+[2024-02-21 16:48:12] local.INFO: Llamada al método sessions {"event_id":null} 
+[2024-02-21 16:48:12] local.INFO: Llamada al método category {"event_id":null} 
+[2024-02-21 16:48:12] local.INFO: Llamada al método venue {"event_id":null} 
+[2024-02-21 16:48:12] local.INFO: Llamada al método sessions {"event_id":null} 

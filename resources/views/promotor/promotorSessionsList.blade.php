@@ -50,8 +50,6 @@
                             <span class="card-price card-info card-sessions">Editar</span>
                             <a class="card-price card-info card-sessions btnCSV" href="{{ route('promotorsessionslist.downloadCSV', ['id' => $session->id]) }}">Descargar CSV</a>
                         </div>
-                        
-                       
                     </div>
                 </div>
             @endforeach
@@ -78,7 +76,7 @@
                                 <img src="https://picsum.photos/2000" alt="{{ $session->event->name }}" loading="lazy">
                             @endif
                             <div class="sessionCont">
-                                <p>Data: {{ \Carbon\Carbon::parse($event->event_date)->format('d/m/Y, H:i') }}</p>
+                                <p>Data: {{ \Carbon\Carbon::parse($session->date_time)->format('d/m/Y, H:i') }}</p>
                                 <p>Ventas: {{ $session->sold_tickets }} / {{ $session->max_capacity }}</p>
                                 <div class="statusSessionDiv">
                                     <p class="statusSessionText">Estat de la sessió: </p>
@@ -103,8 +101,8 @@
                                 </button>
                                 @endif
                                 <div class="divBoton">
-                                    <a class="card-price card-info card-sessions" href="{{ route('tickets.showevent', ['id' => $event->id]) }}">Detalls</a>
-                                    <span class="card-price card-info card-sessions">Editar</span>
+                                    <a class="card-price card-info card-sessions detailsBtn" href="{{ route('tickets.showevent', ['id' => $event->id]) }}">Detalls</a>
+                                    <span class="card-price card-info card-sessions editBtnSession" >Editar</span>
                                 </div>
                                 
                             </div>
