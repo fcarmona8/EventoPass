@@ -6,3 +6,11 @@
 [2024-02-19 14:53:22] local.INFO: Inicio de solicitud de login {"email":"promotor1@test.com"} 
 [2024-02-19 14:53:22] local.INFO: Login exitoso {"user_id":1,"email":"promotor1@test.com"} 
 [2024-02-19 14:53:22] local.INFO: Fin de solicitud de login exitosa {"duration":0.29071688652038574} 
+[2024-02-20 14:55:22] local.INFO: Mostrando formulario de login  
+[2024-02-20 14:55:28] local.INFO: Inicio de solicitud de login {"email":"promotor1@test.com"} 
+[2024-02-20 14:55:29] local.INFO: Login exitoso {"user_id":1,"email":"promotor1@test.com"} 
+[2024-02-20 14:55:29] local.INFO: Fin de solicitud de login exitosa {"duration":0.29978394508361816} 
+[2024-02-21 14:43:32] local.INFO: Mostrando formulario de login  
+[2024-02-21 14:43:39] local.INFO: Inicio de solicitud de login {"email":"promotor1@test.com"} 
+[2024-02-21 14:43:39] local.INFO: Login exitoso {"user_id":1,"email":"promotor1@test.com"} 
+[2024-02-21 14:43:39] local.INFO: Fin de solicitud de login exitosa {"duration":0.2930259704589844} 

@@ -32,7 +32,7 @@ h1 {
 @media (min-width: 768px) {
   .events {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(480px, auto));
+    grid-template-columns: repeat(auto-fill, minmax(440px, auto));
     padding: 1%;
     width: 100%; } }
 
