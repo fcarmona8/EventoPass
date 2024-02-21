@@ -36,11 +36,11 @@ class PromotorSessionsListController extends Controller
             $isSpecificEvent = true;
         } else {
             $events = Event::eventosDisponibles()
-                ->with([
-                    'sessions' => function ($query) {
-                        $query->orderBy('date_time');
-                    }
-                ])
+                ->with(['sessions' => function($query) {
+                    $query
+                    ->where('date_time', '>', now())
+                    ->orderBy('date_time');
+                }])
                 ->where('user_id', $user_id)
                 ->get()
                 ->map(function ($event) {
@@ -227,4 +227,23 @@ class PromotorSessionsListController extends Controller
         $csv->output('sesion' . $session->id . '.csv');
     }
 
+    public function editSession (Request $request, $id) {
+
+        Log::info('Entrando en método editSession de PromotorSessionListController.', ['id' => $id]);
+
+        $session = Session::findOrFail($id);
+
+        if ($request->has('closed')) {
+            $session->closed = $request->closed;
+            $session->save();
+
+            return response()->json(['success' => true]);
+        } else {
+            return response()->json(['error' => 'El campo "closed" no está presente en la solicitud.'], 400);
+        }
+
+
+
+    }
+        
 }

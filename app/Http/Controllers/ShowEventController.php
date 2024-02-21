@@ -65,6 +65,7 @@ class ShowEventController extends Controller
 
         $sessions = Session::where('event_id', $event->id)
             ->where('date_time', '>=', now())
+            ->where('closed', false)
             ->orderBy('date_time')
             ->get()
             ->groupBy(function ($session) {

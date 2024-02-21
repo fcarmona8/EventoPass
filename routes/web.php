@@ -37,6 +37,9 @@ Route::post('/promotor/promotorsessionlist', [PromotorSessionsListController::cl
 //Descargar CSV
 Route::get('/sesiones/{id}/descargar-csv', [PromotorSessionsListController::class, 'CSVdownload'])->name('promotorsessionslist.downloadCSV');
 
+//Editar una sesión
+Route::patch('/promotor/promotorsessionlist/update-session/{id}', [PromotorSessionsListController::class, 'editSession'])->name('promotorsessionslist.editSession');
+
 // Sobre Nosotros
 Route::get('/tickets/aboutus', function () {
     return view('tickets.aboutus');

@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+    <h2 class="titol-crear-event">Els meus esdeveniments</h2>
     <div class="homepromotor">
         @foreach ($events as $event)
             <div class="card cardHomePromotor" id="event-card-{{ $event->id }}">
                 @if ($event->main_image_id)
-                    <picture>
+                    <picture class="contenedorImagen">
                         <source media="(max-width: 799px)"
                             srcset="http://localhost:8080{{ $event->optimizedImageSmallUrl() }}">
                         <source media="(min-width: 800px) and (max-width: 1023px)"
