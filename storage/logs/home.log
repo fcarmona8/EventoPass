@@ -2189,3 +2189,21 @@ LINE 1: select * from \"events\" inner join \"session\" on \"event\".\"id\" ...
 [2024-02-20 14:49:35] local.INFO: Fin de solicitud a HomeController@index {"duration":0.03079390525817871} 
 [2024-02-20 14:53:08] local.INFO: Inicio de solicitud a HomeController@index  
 [2024-02-20 14:53:08] local.INFO: Fin de solicitud a HomeController@index {"duration":0.022633075714111328} 
+[2024-02-20 19:05:29] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-20 19:05:29] local.INFO: Fin de solicitud a HomeController@index {"duration":0.03015899658203125} 
+[2024-02-20 19:07:18] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-20 19:07:18] local.INFO: Fin de solicitud a HomeController@index {"duration":0.024690866470336914} 
+[2024-02-20 19:14:24] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-20 19:14:24] local.INFO: Fin de solicitud a HomeController@index {"duration":0.03073406219482422} 
+[2024-02-20 19:20:24] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-20 19:20:24] local.INFO: Fin de solicitud a HomeController@index {"duration":0.03892087936401367} 
+[2024-02-20 19:20:27] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-20 19:20:27] local.INFO: Fin de solicitud a HomeController@index {"duration":0.026443004608154297} 
+[2024-02-20 19:20:30] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-20 19:20:30] local.INFO: Fin de solicitud a HomeController@index {"duration":0.027918100357055664} 
+[2024-02-20 19:22:45] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-20 19:22:45] local.INFO: Fin de solicitud a HomeController@index {"duration":0.025599002838134766} 
+[2024-02-21 14:43:29] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-21 14:43:29] local.INFO: Fin de solicitud a HomeController@index {"duration":0.06536102294921875} 
+[2024-02-21 14:50:44] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-21 14:50:44] local.INFO: Fin de solicitud a HomeController@index {"duration":0.028290987014770508} 

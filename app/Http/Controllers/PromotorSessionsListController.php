@@ -36,7 +36,9 @@ class PromotorSessionsListController extends Controller{
         } else {
             $events = Event::eventosDisponibles()
                 ->with(['sessions' => function($query) {
-                    $query->orderBy('date_time');
+                    $query
+                    ->where('date_time', '>', now())
+                    ->orderBy('date_time');
                 }])
                 ->where('user_id', $user_id)
                 ->get()

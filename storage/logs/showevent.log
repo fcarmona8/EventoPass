@@ -2827,3 +2827,1424 @@
 )
   
 [2024-02-20 14:48:06] local.INFO: Finalizando show {"duration":0.22492599487304688} 
+[2024-02-20 19:07:26] local.INFO: Iniciando show {"id":"29"} 
+[2024-02-20 19:07:26] local.INFO: Evento encontrado: Array
+(
+    [id] => 29
+    [name] => Evento 29
+    [description] => Descripción 29
+    [main_image_id] => 148
+    [category_id] => 6
+    [venue_id] => 3
+    [user_id] => 1
+    [event_date] => 2021-01-29 00:00:00
+    [video_link] => 
+    [hidden] => 
+    [nominal] => 
+    [created_at] => 2024-02-19T16:58:15.000000Z
+    [updated_at] => 2024-02-19T16:58:15.000000Z
+    [images] => Array
+        (
+        )
+
+    [venue] => Array
+        (
+            [id] => 3
+            [province] => Maine
+            [city] => West Colbyview
+            [postal_code] => 86829
+            [venue_name] => Auditorio Ciudad
+            [capacity] => 159
+            [user_id] => 1
+            [created_at] => 2024-02-19T16:58:05.000000Z
+            [updated_at] => 2024-02-19T16:58:05.000000Z
+        )
+
+)
+  
+[2024-02-20 19:07:26] local.INFO: Sesiones encontradas para el evento: Array
+(
+    [2024-03-30] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 28
+                    [event_id] => 29
+                    [date_time] => 2024-03-30 10:00:00
+                    [max_capacity] => 17
+                    [online_sale_end_time] => 
+                    [ticket_quantity] => 
+                    [named_tickets] => 
+                    [closed] => 
+                    [created_at] => 2024-02-19T16:58:15.000000Z
+                    [updated_at] => 2024-02-19T16:58:15.000000Z
+                )
+
+        )
+
+)
+  
+[2024-02-20 19:07:26] local.DEBUG: Detalles de la sesión: Array
+(
+    [date] => 2024-03-30
+    [count] => 1
+    [sessions] => Illuminate\Database\Eloquent\Collection Object
+        (
+            [items:protected] => Array
+                (
+                    [0] => App\Models\Session Object
+                        (
+                            [connection:protected] => pgsql
+                            [table:protected] => sessions
+                            [primaryKey:protected] => id
+                            [keyType:protected] => int
+                            [incrementing] => 1
+                            [with:protected] => Array
+                                (
+                                )
+
+                            [withCount:protected] => Array
+                                (
+                                )
+
+                            [preventsLazyLoading] => 
+                            [perPage:protected] => 15
+                            [exists] => 1
+                            [wasRecentlyCreated] => 
+                            [escapeWhenCastingToString:protected] => 
+                            [attributes:protected] => Array
+                                (
+                                    [id] => 28
+                                    [event_id] => 29
+                                    [date_time] => 2024-03-30 10:00:00
+                                    [max_capacity] => 17
+                                    [online_sale_end_time] => 
+                                    [ticket_quantity] => 
+                                    [named_tickets] => 
+                                    [closed] => 
+                                    [created_at] => 2024-02-19 16:58:15
+                                    [updated_at] => 2024-02-19 16:58:15
+                                    [ticketTypes] => Illuminate\Database\Eloquent\Collection Object
+                                        (
+                                            [items:protected] => Array
+                                                (
+                                                    [0] => App\Models\TicketType Object
+                                                        (
+                                                            [connection:protected] => pgsql
+                                                            [table:protected] => ticket_types
+                                                            [primaryKey:protected] => id
+                                                            [keyType:protected] => int
+                                                            [incrementing] => 1
+                                                            [with:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [withCount:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [preventsLazyLoading] => 
+                                                            [perPage:protected] => 15
+                                                            [exists] => 1
+                                                            [wasRecentlyCreated] => 
+                                                            [escapeWhenCastingToString:protected] => 
+                                                            [attributes:protected] => Array
+                                                                (
+                                                                    [id] => 1
+                                                                    [name] => General
+                                                                    [price] => 146.98
+                                                                    [available_tickets] => 1
+                                                                    [created_at] => 2024-02-19 16:58:15
+                                                                    [updated_at] => 2024-02-19 16:58:15
+                                                                )
+
+                                                            [original:protected] => Array
+                                                                (
+                                                                    [id] => 1
+                                                                    [name] => General
+                                                                    [price] => 146.98
+                                                                    [available_tickets] => 1
+                                                                    [created_at] => 2024-02-19 16:58:15
+                                                                    [updated_at] => 2024-02-19 16:58:15
+                                                                )
+
+                                                            [changes:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [casts:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [classCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [attributeCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dateFormat:protected] => 
+                                                            [appends:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dispatchesEvents:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [observables:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [relations:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [touches:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [timestamps] => 1
+                                                            [usesUniqueIds] => 
+                                                            [hidden:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [visible:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [fillable:protected] => Array
+                                                                (
+                                                                    [0] => name
+                                                                    [1] => price
+                                                                    [2] => available_tickets
+                                                                )
+
+                                                            [guarded:protected] => Array
+                                                                (
+                                                                    [0] => *
+                                                                )
+
+                                                        )
+
+                                                    [1] => App\Models\TicketType Object
+                                                        (
+                                                            [connection:protected] => pgsql
+                                                            [table:protected] => ticket_types
+                                                            [primaryKey:protected] => id
+                                                            [keyType:protected] => int
+                                                            [incrementing] => 1
+                                                            [with:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [withCount:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [preventsLazyLoading] => 
+                                                            [perPage:protected] => 15
+                                                            [exists] => 1
+                                                            [wasRecentlyCreated] => 
+                                                            [escapeWhenCastingToString:protected] => 
+                                                            [attributes:protected] => Array
+                                                                (
+                                                                    [id] => 3
+                                                                    [name] => Platino
+                                                                    [price] => 28.56
+                                                                    [available_tickets] => 5
+                                                                    [created_at] => 2024-02-19 16:58:15
+                                                                    [updated_at] => 2024-02-19 16:58:15
+                                                                )
+
+                                                            [original:protected] => Array
+                                                                (
+                                                                    [id] => 3
+                                                                    [name] => Platino
+                                                                    [price] => 28.56
+                                                                    [available_tickets] => 5
+                                                                    [created_at] => 2024-02-19 16:58:15
+                                                                    [updated_at] => 2024-02-19 16:58:15
+                                                                )
+
+                                                            [changes:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [casts:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [classCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [attributeCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dateFormat:protected] => 
+                                                            [appends:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dispatchesEvents:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [observables:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [relations:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [touches:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [timestamps] => 1
+                                                            [usesUniqueIds] => 
+                                                            [hidden:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [visible:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [fillable:protected] => Array
+                                                                (
+                                                                    [0] => name
+                                                                    [1] => price
+                                                                    [2] => available_tickets
+                                                                )
+
+                                                            [guarded:protected] => Array
+                                                                (
+                                                                    [0] => *
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                            [escapeWhenCastingToString:protected] => 
+                                        )
+
+                                    [formattedDateTime] => 2024-03-30 10:00
+                                )
+
+                            [original:protected] => Array
+                                (
+                                    [id] => 28
+                                    [event_id] => 29
+                                    [date_time] => 2024-03-30 10:00:00
+                                    [max_capacity] => 17
+                                    [online_sale_end_time] => 
+                                    [ticket_quantity] => 
+                                    [named_tickets] => 
+                                    [closed] => 
+                                    [created_at] => 2024-02-19 16:58:15
+                                    [updated_at] => 2024-02-19 16:58:15
+                                )
+
+                            [changes:protected] => Array
+                                (
+                                )
+
+                            [casts:protected] => Array
+                                (
+                                )
+
+                            [classCastCache:protected] => Array
+                                (
+                                )
+
+                            [attributeCastCache:protected] => Array
+                                (
+                                )
+
+                            [dateFormat:protected] => 
+                            [appends:protected] => Array
+                                (
+                                )
+
+                            [dispatchesEvents:protected] => Array
+                                (
+                                )
+
+                            [observables:protected] => Array
+                                (
+                                )
+
+                            [relations:protected] => Array
+                                (
+                                )
+
+                            [touches:protected] => Array
+                                (
+                                )
+
+                            [timestamps] => 1
+                            [usesUniqueIds] => 
+                            [hidden:protected] => Array
+                                (
+                                )
+
+                            [visible:protected] => Array
+                                (
+                                )
+
+                            [fillable:protected] => Array
+                                (
+                                    [0] => event_id
+                                    [1] => date_time
+                                    [2] => online_sale_end_time
+                                    [3] => ticket_quantity
+                                    [4] => named_tickets
+                                    [5] => max_capacity
+                                )
+
+                            [guarded:protected] => Array
+                                (
+                                    [0] => *
+                                )
+
+                        )
+
+                )
+
+            [escapeWhenCastingToString:protected] => 
+        )
+
+)
+  
+[2024-02-20 19:07:26] local.INFO: Iniciando getCoordinates {"venue":{"App\\Models\\Venue":{"id":3,"province":"Maine","city":"West Colbyview","postal_code":"86829","venue_name":"Auditorio Ciudad","capacity":159,"user_id":1,"created_at":"2024-02-19T16:58:05.000000Z","updated_at":"2024-02-19T16:58:05.000000Z"}}} 
+[2024-02-20 19:07:26] local.DEBUG: URL de solicitud a OpenStreetMap Nominatim: https://nominatim.openstreetmap.org/search?format=json&limit=1&addressdetails=1&q=West+Colbyview%2C+Maine%2C+86829  
+[2024-02-20 19:07:30] local.DEBUG: Respuesta cruda de Nominatim: Array
+(
+)
+  
+[2024-02-20 19:07:30] local.ERROR: No se encontraron coordenadas para la dirección dada. Respuesta de Nominatim: Array
+(
+)
+  
+[2024-02-20 19:07:30] local.INFO: Finalizando show {"duration":3.3225479125976562} 
+[2024-02-20 19:14:26] local.INFO: Iniciando show {"id":"29"} 
+[2024-02-20 19:14:26] local.INFO: Evento encontrado: Array
+(
+    [id] => 29
+    [name] => Evento 29
+    [description] => Descripción 29
+    [main_image_id] => 148
+    [category_id] => 6
+    [venue_id] => 3
+    [user_id] => 1
+    [event_date] => 2021-01-29 00:00:00
+    [video_link] => 
+    [hidden] => 
+    [nominal] => 
+    [created_at] => 2024-02-19T16:58:15.000000Z
+    [updated_at] => 2024-02-19T16:58:15.000000Z
+    [images] => Array
+        (
+        )
+
+    [venue] => Array
+        (
+            [id] => 3
+            [province] => Maine
+            [city] => West Colbyview
+            [postal_code] => 86829
+            [venue_name] => Auditorio Ciudad
+            [capacity] => 159
+            [user_id] => 1
+            [created_at] => 2024-02-19T16:58:05.000000Z
+            [updated_at] => 2024-02-19T16:58:05.000000Z
+        )
+
+)
+  
+[2024-02-20 19:14:26] local.INFO: Sesiones encontradas para el evento: Array
+(
+)
+  
+[2024-02-20 19:14:26] local.INFO: Iniciando getCoordinates {"venue":{"App\\Models\\Venue":{"id":3,"province":"Maine","city":"West Colbyview","postal_code":"86829","venue_name":"Auditorio Ciudad","capacity":159,"user_id":1,"created_at":"2024-02-19T16:58:05.000000Z","updated_at":"2024-02-19T16:58:05.000000Z"}}} 
+[2024-02-20 19:14:26] local.DEBUG: URL de solicitud a OpenStreetMap Nominatim: https://nominatim.openstreetmap.org/search?format=json&limit=1&addressdetails=1&q=West+Colbyview%2C+Maine%2C+86829  
+[2024-02-20 19:14:29] local.DEBUG: Respuesta cruda de Nominatim: Array
+(
+)
+  
+[2024-02-20 19:14:29] local.ERROR: No se encontraron coordenadas para la dirección dada. Respuesta de Nominatim: Array
+(
+)
+  
+[2024-02-20 19:14:29] local.INFO: Finalizando show {"duration":3.3143439292907715} 
+[2024-02-20 19:14:29] local.INFO: Iniciando show {"id":"29"} 
+[2024-02-20 19:14:29] local.INFO: Evento encontrado: Array
+(
+    [id] => 29
+    [name] => Evento 29
+    [description] => Descripción 29
+    [main_image_id] => 148
+    [category_id] => 6
+    [venue_id] => 3
+    [user_id] => 1
+    [event_date] => 2021-01-29 00:00:00
+    [video_link] => 
+    [hidden] => 
+    [nominal] => 
+    [created_at] => 2024-02-19T16:58:15.000000Z
+    [updated_at] => 2024-02-19T16:58:15.000000Z
+    [images] => Array
+        (
+        )
+
+    [venue] => Array
+        (
+            [id] => 3
+            [province] => Maine
+            [city] => West Colbyview
+            [postal_code] => 86829
+            [venue_name] => Auditorio Ciudad
+            [capacity] => 159
+            [user_id] => 1
+            [created_at] => 2024-02-19T16:58:05.000000Z
+            [updated_at] => 2024-02-19T16:58:05.000000Z
+        )
+
+)
+  
+[2024-02-20 19:14:29] local.INFO: Sesiones encontradas para el evento: Array
+(
+)
+  
+[2024-02-20 19:14:29] local.INFO: Iniciando getCoordinates {"venue":{"App\\Models\\Venue":{"id":3,"province":"Maine","city":"West Colbyview","postal_code":"86829","venue_name":"Auditorio Ciudad","capacity":159,"user_id":1,"created_at":"2024-02-19T16:58:05.000000Z","updated_at":"2024-02-19T16:58:05.000000Z"}}} 
+[2024-02-20 19:14:29] local.DEBUG: URL de solicitud a OpenStreetMap Nominatim: https://nominatim.openstreetmap.org/search?format=json&limit=1&addressdetails=1&q=West+Colbyview%2C+Maine%2C+86829  
+[2024-02-20 19:14:30] local.DEBUG: Respuesta cruda de Nominatim: Array
+(
+)
+  
+[2024-02-20 19:14:30] local.ERROR: No se encontraron coordenadas para la dirección dada. Respuesta de Nominatim: Array
+(
+)
+  
+[2024-02-20 19:14:30] local.INFO: Finalizando show {"duration":0.46343994140625} 
+[2024-02-20 19:15:46] local.INFO: Iniciando show {"id":"29"} 
+[2024-02-20 19:15:46] local.INFO: Evento encontrado: Array
+(
+    [id] => 29
+    [name] => Evento 29
+    [description] => Descripción 29
+    [main_image_id] => 148
+    [category_id] => 6
+    [venue_id] => 3
+    [user_id] => 1
+    [event_date] => 2021-01-29 00:00:00
+    [video_link] => 
+    [hidden] => 
+    [nominal] => 
+    [created_at] => 2024-02-19T16:58:15.000000Z
+    [updated_at] => 2024-02-19T16:58:15.000000Z
+    [images] => Array
+        (
+        )
+
+    [venue] => Array
+        (
+            [id] => 3
+            [province] => Maine
+            [city] => West Colbyview
+            [postal_code] => 86829
+            [venue_name] => Auditorio Ciudad
+            [capacity] => 159
+            [user_id] => 1
+            [created_at] => 2024-02-19T16:58:05.000000Z
+            [updated_at] => 2024-02-19T16:58:05.000000Z
+        )
+
+)
+  
+[2024-02-20 19:15:46] local.INFO: Sesiones encontradas para el evento: Array
+(
+)
+  
+[2024-02-20 19:15:46] local.INFO: Iniciando getCoordinates {"venue":{"App\\Models\\Venue":{"id":3,"province":"Maine","city":"West Colbyview","postal_code":"86829","venue_name":"Auditorio Ciudad","capacity":159,"user_id":1,"created_at":"2024-02-19T16:58:05.000000Z","updated_at":"2024-02-19T16:58:05.000000Z"}}} 
+[2024-02-20 19:15:46] local.DEBUG: URL de solicitud a OpenStreetMap Nominatim: https://nominatim.openstreetmap.org/search?format=json&limit=1&addressdetails=1&q=West+Colbyview%2C+Maine%2C+86829  
+[2024-02-20 19:15:49] local.DEBUG: Respuesta cruda de Nominatim: Array
+(
+)
+  
+[2024-02-20 19:15:49] local.ERROR: No se encontraron coordenadas para la dirección dada. Respuesta de Nominatim: Array
+(
+)
+  
+[2024-02-20 19:15:49] local.INFO: Finalizando show {"duration":3.2666008472442627} 
+[2024-02-21 14:50:45] local.INFO: Iniciando show {"id":"29"} 
+[2024-02-21 14:50:45] local.INFO: Evento encontrado: Array
+(
+    [id] => 29
+    [name] => Evento 29
+    [description] => Descripción 29
+    [main_image_id] => 148
+    [category_id] => 6
+    [venue_id] => 3
+    [user_id] => 1
+    [event_date] => 2021-01-29 00:00:00
+    [video_link] => 
+    [hidden] => 
+    [nominal] => 
+    [created_at] => 2024-02-19T16:58:15.000000Z
+    [updated_at] => 2024-02-19T16:58:15.000000Z
+    [images] => Array
+        (
+        )
+
+    [venue] => Array
+        (
+            [id] => 3
+            [province] => Maine
+            [city] => West Colbyview
+            [postal_code] => 86829
+            [venue_name] => Auditorio Ciudad
+            [capacity] => 159
+            [user_id] => 1
+            [created_at] => 2024-02-19T16:58:05.000000Z
+            [updated_at] => 2024-02-19T16:58:05.000000Z
+        )
+
+)
+  
+[2024-02-21 14:50:45] local.INFO: Sesiones encontradas para el evento: Array
+(
+    [2024-03-30] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 28
+                    [event_id] => 29
+                    [date_time] => 2024-03-30 10:00:00
+                    [max_capacity] => 17
+                    [online_sale_end_time] => 
+                    [ticket_quantity] => 
+                    [named_tickets] => 
+                    [closed] => 
+                    [created_at] => 2024-02-19T16:58:15.000000Z
+                    [updated_at] => 2024-02-20T19:17:54.000000Z
+                )
+
+        )
+
+)
+  
+[2024-02-21 14:50:45] local.DEBUG: Detalles de la sesión: Array
+(
+    [date] => 2024-03-30
+    [count] => 1
+    [sessions] => Illuminate\Database\Eloquent\Collection Object
+        (
+            [items:protected] => Array
+                (
+                    [0] => App\Models\Session Object
+                        (
+                            [connection:protected] => pgsql
+                            [table:protected] => sessions
+                            [primaryKey:protected] => id
+                            [keyType:protected] => int
+                            [incrementing] => 1
+                            [with:protected] => Array
+                                (
+                                )
+
+                            [withCount:protected] => Array
+                                (
+                                )
+
+                            [preventsLazyLoading] => 
+                            [perPage:protected] => 15
+                            [exists] => 1
+                            [wasRecentlyCreated] => 
+                            [escapeWhenCastingToString:protected] => 
+                            [attributes:protected] => Array
+                                (
+                                    [id] => 28
+                                    [event_id] => 29
+                                    [date_time] => 2024-03-30 10:00:00
+                                    [max_capacity] => 17
+                                    [online_sale_end_time] => 
+                                    [ticket_quantity] => 
+                                    [named_tickets] => 
+                                    [closed] => 
+                                    [created_at] => 2024-02-19 16:58:15
+                                    [updated_at] => 2024-02-20 19:17:54
+                                    [ticketTypes] => Illuminate\Database\Eloquent\Collection Object
+                                        (
+                                            [items:protected] => Array
+                                                (
+                                                    [0] => App\Models\TicketType Object
+                                                        (
+                                                            [connection:protected] => pgsql
+                                                            [table:protected] => ticket_types
+                                                            [primaryKey:protected] => id
+                                                            [keyType:protected] => int
+                                                            [incrementing] => 1
+                                                            [with:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [withCount:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [preventsLazyLoading] => 
+                                                            [perPage:protected] => 15
+                                                            [exists] => 1
+                                                            [wasRecentlyCreated] => 
+                                                            [escapeWhenCastingToString:protected] => 
+                                                            [attributes:protected] => Array
+                                                                (
+                                                                    [id] => 1
+                                                                    [name] => General
+                                                                    [price] => 146.98
+                                                                    [available_tickets] => 1
+                                                                    [created_at] => 2024-02-19 16:58:15
+                                                                    [updated_at] => 2024-02-19 16:58:15
+                                                                )
+
+                                                            [original:protected] => Array
+                                                                (
+                                                                    [id] => 1
+                                                                    [name] => General
+                                                                    [price] => 146.98
+                                                                    [available_tickets] => 1
+                                                                    [created_at] => 2024-02-19 16:58:15
+                                                                    [updated_at] => 2024-02-19 16:58:15
+                                                                )
+
+                                                            [changes:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [casts:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [classCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [attributeCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dateFormat:protected] => 
+                                                            [appends:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dispatchesEvents:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [observables:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [relations:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [touches:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [timestamps] => 1
+                                                            [usesUniqueIds] => 
+                                                            [hidden:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [visible:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [fillable:protected] => Array
+                                                                (
+                                                                    [0] => name
+                                                                    [1] => price
+                                                                    [2] => available_tickets
+                                                                )
+
+                                                            [guarded:protected] => Array
+                                                                (
+                                                                    [0] => *
+                                                                )
+
+                                                        )
+
+                                                    [1] => App\Models\TicketType Object
+                                                        (
+                                                            [connection:protected] => pgsql
+                                                            [table:protected] => ticket_types
+                                                            [primaryKey:protected] => id
+                                                            [keyType:protected] => int
+                                                            [incrementing] => 1
+                                                            [with:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [withCount:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [preventsLazyLoading] => 
+                                                            [perPage:protected] => 15
+                                                            [exists] => 1
+                                                            [wasRecentlyCreated] => 
+                                                            [escapeWhenCastingToString:protected] => 
+                                                            [attributes:protected] => Array
+                                                                (
+                                                                    [id] => 3
+                                                                    [name] => Platino
+                                                                    [price] => 28.56
+                                                                    [available_tickets] => 5
+                                                                    [created_at] => 2024-02-19 16:58:15
+                                                                    [updated_at] => 2024-02-19 16:58:15
+                                                                )
+
+                                                            [original:protected] => Array
+                                                                (
+                                                                    [id] => 3
+                                                                    [name] => Platino
+                                                                    [price] => 28.56
+                                                                    [available_tickets] => 5
+                                                                    [created_at] => 2024-02-19 16:58:15
+                                                                    [updated_at] => 2024-02-19 16:58:15
+                                                                )
+
+                                                            [changes:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [casts:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [classCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [attributeCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dateFormat:protected] => 
+                                                            [appends:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dispatchesEvents:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [observables:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [relations:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [touches:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [timestamps] => 1
+                                                            [usesUniqueIds] => 
+                                                            [hidden:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [visible:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [fillable:protected] => Array
+                                                                (
+                                                                    [0] => name
+                                                                    [1] => price
+                                                                    [2] => available_tickets
+                                                                )
+
+                                                            [guarded:protected] => Array
+                                                                (
+                                                                    [0] => *
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                            [escapeWhenCastingToString:protected] => 
+                                        )
+
+                                    [formattedDateTime] => 2024-03-30 10:00
+                                )
+
+                            [original:protected] => Array
+                                (
+                                    [id] => 28
+                                    [event_id] => 29
+                                    [date_time] => 2024-03-30 10:00:00
+                                    [max_capacity] => 17
+                                    [online_sale_end_time] => 
+                                    [ticket_quantity] => 
+                                    [named_tickets] => 
+                                    [closed] => 
+                                    [created_at] => 2024-02-19 16:58:15
+                                    [updated_at] => 2024-02-20 19:17:54
+                                )
+
+                            [changes:protected] => Array
+                                (
+                                )
+
+                            [casts:protected] => Array
+                                (
+                                )
+
+                            [classCastCache:protected] => Array
+                                (
+                                )
+
+                            [attributeCastCache:protected] => Array
+                                (
+                                )
+
+                            [dateFormat:protected] => 
+                            [appends:protected] => Array
+                                (
+                                )
+
+                            [dispatchesEvents:protected] => Array
+                                (
+                                )
+
+                            [observables:protected] => Array
+                                (
+                                )
+
+                            [relations:protected] => Array
+                                (
+                                )
+
+                            [touches:protected] => Array
+                                (
+                                )
+
+                            [timestamps] => 1
+                            [usesUniqueIds] => 
+                            [hidden:protected] => Array
+                                (
+                                )
+
+                            [visible:protected] => Array
+                                (
+                                )
+
+                            [fillable:protected] => Array
+                                (
+                                    [0] => event_id
+                                    [1] => date_time
+                                    [2] => online_sale_end_time
+                                    [3] => ticket_quantity
+                                    [4] => named_tickets
+                                    [5] => max_capacity
+                                )
+
+                            [guarded:protected] => Array
+                                (
+                                    [0] => *
+                                )
+
+                        )
+
+                )
+
+            [escapeWhenCastingToString:protected] => 
+        )
+
+)
+  
+[2024-02-21 14:50:45] local.INFO: Iniciando getCoordinates {"venue":{"App\\Models\\Venue":{"id":3,"province":"Maine","city":"West Colbyview","postal_code":"86829","venue_name":"Auditorio Ciudad","capacity":159,"user_id":1,"created_at":"2024-02-19T16:58:05.000000Z","updated_at":"2024-02-19T16:58:05.000000Z"}}} 
+[2024-02-21 14:50:45] local.DEBUG: URL de solicitud a OpenStreetMap Nominatim: https://nominatim.openstreetmap.org/search?format=json&limit=1&addressdetails=1&q=West+Colbyview%2C+Maine%2C+86829  
+[2024-02-21 14:50:48] local.DEBUG: Respuesta cruda de Nominatim: Array
+(
+)
+  
+[2024-02-21 14:50:48] local.ERROR: No se encontraron coordenadas para la dirección dada. Respuesta de Nominatim: Array
+(
+)
+  
+[2024-02-21 14:50:48] local.INFO: Finalizando show {"duration":3.373656988143921} 
+[2024-02-21 14:50:48] local.INFO: Iniciando show {"id":"29"} 
+[2024-02-21 14:50:48] local.INFO: Evento encontrado: Array
+(
+    [id] => 29
+    [name] => Evento 29
+    [description] => Descripción 29
+    [main_image_id] => 148
+    [category_id] => 6
+    [venue_id] => 3
+    [user_id] => 1
+    [event_date] => 2021-01-29 00:00:00
+    [video_link] => 
+    [hidden] => 
+    [nominal] => 
+    [created_at] => 2024-02-19T16:58:15.000000Z
+    [updated_at] => 2024-02-19T16:58:15.000000Z
+    [images] => Array
+        (
+        )
+
+    [venue] => Array
+        (
+            [id] => 3
+            [province] => Maine
+            [city] => West Colbyview
+            [postal_code] => 86829
+            [venue_name] => Auditorio Ciudad
+            [capacity] => 159
+            [user_id] => 1
+            [created_at] => 2024-02-19T16:58:05.000000Z
+            [updated_at] => 2024-02-19T16:58:05.000000Z
+        )
+
+)
+  
+[2024-02-21 14:50:48] local.INFO: Sesiones encontradas para el evento: Array
+(
+    [2024-03-30] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 28
+                    [event_id] => 29
+                    [date_time] => 2024-03-30 10:00:00
+                    [max_capacity] => 17
+                    [online_sale_end_time] => 
+                    [ticket_quantity] => 
+                    [named_tickets] => 
+                    [closed] => 
+                    [created_at] => 2024-02-19T16:58:15.000000Z
+                    [updated_at] => 2024-02-20T19:17:54.000000Z
+                )
+
+        )
+
+)
+  
+[2024-02-21 14:50:48] local.DEBUG: Detalles de la sesión: Array
+(
+    [date] => 2024-03-30
+    [count] => 1
+    [sessions] => Illuminate\Database\Eloquent\Collection Object
+        (
+            [items:protected] => Array
+                (
+                    [0] => App\Models\Session Object
+                        (
+                            [connection:protected] => pgsql
+                            [table:protected] => sessions
+                            [primaryKey:protected] => id
+                            [keyType:protected] => int
+                            [incrementing] => 1
+                            [with:protected] => Array
+                                (
+                                )
+
+                            [withCount:protected] => Array
+                                (
+                                )
+
+                            [preventsLazyLoading] => 
+                            [perPage:protected] => 15
+                            [exists] => 1
+                            [wasRecentlyCreated] => 
+                            [escapeWhenCastingToString:protected] => 
+                            [attributes:protected] => Array
+                                (
+                                    [id] => 28
+                                    [event_id] => 29
+                                    [date_time] => 2024-03-30 10:00:00
+                                    [max_capacity] => 17
+                                    [online_sale_end_time] => 
+                                    [ticket_quantity] => 
+                                    [named_tickets] => 
+                                    [closed] => 
+                                    [created_at] => 2024-02-19 16:58:15
+                                    [updated_at] => 2024-02-20 19:17:54
+                                    [ticketTypes] => Illuminate\Database\Eloquent\Collection Object
+                                        (
+                                            [items:protected] => Array
+                                                (
+                                                    [0] => App\Models\TicketType Object
+                                                        (
+                                                            [connection:protected] => pgsql
+                                                            [table:protected] => ticket_types
+                                                            [primaryKey:protected] => id
+                                                            [keyType:protected] => int
+                                                            [incrementing] => 1
+                                                            [with:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [withCount:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [preventsLazyLoading] => 
+                                                            [perPage:protected] => 15
+                                                            [exists] => 1
+                                                            [wasRecentlyCreated] => 
+                                                            [escapeWhenCastingToString:protected] => 
+                                                            [attributes:protected] => Array
+                                                                (
+                                                                    [id] => 1
+                                                                    [name] => General
+                                                                    [price] => 146.98
+                                                                    [available_tickets] => 1
+                                                                    [created_at] => 2024-02-19 16:58:15
+                                                                    [updated_at] => 2024-02-19 16:58:15
+                                                                )
+
+                                                            [original:protected] => Array
+                                                                (
+                                                                    [id] => 1
+                                                                    [name] => General
+                                                                    [price] => 146.98
+                                                                    [available_tickets] => 1
+                                                                    [created_at] => 2024-02-19 16:58:15
+                                                                    [updated_at] => 2024-02-19 16:58:15
+                                                                )
+
+                                                            [changes:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [casts:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [classCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [attributeCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dateFormat:protected] => 
+                                                            [appends:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dispatchesEvents:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [observables:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [relations:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [touches:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [timestamps] => 1
+                                                            [usesUniqueIds] => 
+                                                            [hidden:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [visible:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [fillable:protected] => Array
+                                                                (
+                                                                    [0] => name
+                                                                    [1] => price
+                                                                    [2] => available_tickets
+                                                                )
+
+                                                            [guarded:protected] => Array
+                                                                (
+                                                                    [0] => *
+                                                                )
+
+                                                        )
+
+                                                    [1] => App\Models\TicketType Object
+                                                        (
+                                                            [connection:protected] => pgsql
+                                                            [table:protected] => ticket_types
+                                                            [primaryKey:protected] => id
+                                                            [keyType:protected] => int
+                                                            [incrementing] => 1
+                                                            [with:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [withCount:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [preventsLazyLoading] => 
+                                                            [perPage:protected] => 15
+                                                            [exists] => 1
+                                                            [wasRecentlyCreated] => 
+                                                            [escapeWhenCastingToString:protected] => 
+                                                            [attributes:protected] => Array
+                                                                (
+                                                                    [id] => 3
+                                                                    [name] => Platino
+                                                                    [price] => 28.56
+                                                                    [available_tickets] => 5
+                                                                    [created_at] => 2024-02-19 16:58:15
+                                                                    [updated_at] => 2024-02-19 16:58:15
+                                                                )
+
+                                                            [original:protected] => Array
+                                                                (
+                                                                    [id] => 3
+                                                                    [name] => Platino
+                                                                    [price] => 28.56
+                                                                    [available_tickets] => 5
+                                                                    [created_at] => 2024-02-19 16:58:15
+                                                                    [updated_at] => 2024-02-19 16:58:15
+                                                                )
+
+                                                            [changes:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [casts:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [classCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [attributeCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dateFormat:protected] => 
+                                                            [appends:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dispatchesEvents:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [observables:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [relations:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [touches:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [timestamps] => 1
+                                                            [usesUniqueIds] => 
+                                                            [hidden:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [visible:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [fillable:protected] => Array
+                                                                (
+                                                                    [0] => name
+                                                                    [1] => price
+                                                                    [2] => available_tickets
+                                                                )
+
+                                                            [guarded:protected] => Array
+                                                                (
+                                                                    [0] => *
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                            [escapeWhenCastingToString:protected] => 
+                                        )
+
+                                    [formattedDateTime] => 2024-03-30 10:00
+                                )
+
+                            [original:protected] => Array
+                                (
+                                    [id] => 28
+                                    [event_id] => 29
+                                    [date_time] => 2024-03-30 10:00:00
+                                    [max_capacity] => 17
+                                    [online_sale_end_time] => 
+                                    [ticket_quantity] => 
+                                    [named_tickets] => 
+                                    [closed] => 
+                                    [created_at] => 2024-02-19 16:58:15
+                                    [updated_at] => 2024-02-20 19:17:54
+                                )
+
+                            [changes:protected] => Array
+                                (
+                                )
+
+                            [casts:protected] => Array
+                                (
+                                )
+
+                            [classCastCache:protected] => Array
+                                (
+                                )
+
+                            [attributeCastCache:protected] => Array
+                                (
+                                )
+
+                            [dateFormat:protected] => 
+                            [appends:protected] => Array
+                                (
+                                )
+
+                            [dispatchesEvents:protected] => Array
+                                (
+                                )
+
+                            [observables:protected] => Array
+                                (
+                                )
+
+                            [relations:protected] => Array
+                                (
+                                )
+
+                            [touches:protected] => Array
+                                (
+                                )
+
+                            [timestamps] => 1
+                            [usesUniqueIds] => 
+                            [hidden:protected] => Array
+                                (
+                                )
+
+                            [visible:protected] => Array
+                                (
+                                )
+
+                            [fillable:protected] => Array
+                                (
+                                    [0] => event_id
+                                    [1] => date_time
+                                    [2] => online_sale_end_time
+                                    [3] => ticket_quantity
+                                    [4] => named_tickets
+                                    [5] => max_capacity
+                                )
+
+                            [guarded:protected] => Array
+                                (
+                                    [0] => *
+                                )
+
+                        )
+
+                )
+
+            [escapeWhenCastingToString:protected] => 
+        )
+
+)
+  
+[2024-02-21 14:50:48] local.INFO: Iniciando getCoordinates {"venue":{"App\\Models\\Venue":{"id":3,"province":"Maine","city":"West Colbyview","postal_code":"86829","venue_name":"Auditorio Ciudad","capacity":159,"user_id":1,"created_at":"2024-02-19T16:58:05.000000Z","updated_at":"2024-02-19T16:58:05.000000Z"}}} 
+[2024-02-21 14:50:48] local.DEBUG: URL de solicitud a OpenStreetMap Nominatim: https://nominatim.openstreetmap.org/search?format=json&limit=1&addressdetails=1&q=West+Colbyview%2C+Maine%2C+86829  
+[2024-02-21 14:50:49] local.DEBUG: Respuesta cruda de Nominatim: Array
+(
+)
+  
+[2024-02-21 14:50:49] local.ERROR: No se encontraron coordenadas para la dirección dada. Respuesta de Nominatim: Array
+(
+)
+  
+[2024-02-21 14:50:49] local.INFO: Finalizando show {"duration":0.4724090099334717} 
+[2024-02-21 15:08:06] local.INFO: Iniciando show {"id":"2"} 
+[2024-02-21 15:08:06] local.INFO: Evento encontrado: Array
+(
+    [id] => 2
+    [name] => Evento 2
+    [description] => Descripción 2
+    [main_image_id] => 121
+    [category_id] => 9
+    [venue_id] => 3
+    [user_id] => 1
+    [event_date] => 2021-01-02 00:00:00
+    [video_link] => 
+    [hidden] => 
+    [nominal] => 
+    [created_at] => 2024-02-19T16:58:15.000000Z
+    [updated_at] => 2024-02-19T16:58:15.000000Z
+    [images] => Array
+        (
+        )
+
+    [venue] => Array
+        (
+            [id] => 3
+            [province] => Maine
+            [city] => West Colbyview
+            [postal_code] => 86829
+            [venue_name] => Auditorio Ciudad
+            [capacity] => 159
+            [user_id] => 1
+            [created_at] => 2024-02-19T16:58:05.000000Z
+            [updated_at] => 2024-02-19T16:58:05.000000Z
+        )
+
+)
+  
+[2024-02-21 15:08:06] local.INFO: Sesiones encontradas para el evento: Array
+(
+)
+  
+[2024-02-21 15:08:06] local.INFO: Iniciando getCoordinates {"venue":{"App\\Models\\Venue":{"id":3,"province":"Maine","city":"West Colbyview","postal_code":"86829","venue_name":"Auditorio Ciudad","capacity":159,"user_id":1,"created_at":"2024-02-19T16:58:05.000000Z","updated_at":"2024-02-19T16:58:05.000000Z"}}} 
+[2024-02-21 15:08:06] local.DEBUG: URL de solicitud a OpenStreetMap Nominatim: https://nominatim.openstreetmap.org/search?format=json&limit=1&addressdetails=1&q=West+Colbyview%2C+Maine%2C+86829  
+[2024-02-21 15:08:09] local.DEBUG: Respuesta cruda de Nominatim: Array
+(
+)
+  
+[2024-02-21 15:08:09] local.ERROR: No se encontraron coordenadas para la dirección dada. Respuesta de Nominatim: Array
+(
+)
+  
+[2024-02-21 15:08:09] local.INFO: Finalizando show {"duration":3.383021116256714} 

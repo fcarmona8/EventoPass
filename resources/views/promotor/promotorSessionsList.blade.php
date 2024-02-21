@@ -23,22 +23,35 @@
                     <div class="sessionCont">
                         <p>Data: {{ \Carbon\Carbon::parse($session->date_time)->format('Y-m-d, H:i') }}</p>
                         <p>Ventas: {{ $session->sold_tickets }} / {{ $session->max_capacity }}</p>
-                        <div class="divBoton">
-                            <span class="card-price card-info card-sessions">Detalls</span>
-                            <span class="card-price card-info card-sessions">Editar</span>
-                            <span class="card-price card-info card-sessions">Entrades</span>
-                            <a class="card-price card-info card-sessions" href="{{ route('promotorsessionslist.downloadCSV', ['id' => $session->id]) }}">Descargar CSV</a>
-                        </div>
                         <div class="statusSessionDiv">
                             <p class="statusSessionText">Estat de la sessió: </p>
-                            <span class="statusSession {{ $session->closed ? 'closed' : '' }}">
-                                {{$session->closed ? 'Tancada' : 'Oberta'}}
+                            <span class="statusSession @if ($session->date_time < now())
+                                closed                                
+                            @else
+                                {{$session->closed ? 'closed' : ''}}
+                            @endif">
+                                @if ($session->date_time < now())
+                                    Sessió Finalitzada
+                                @else
+                                    {{$session->closed ? 'Tancada' : 'Oberta'}}
+                                @endif
                             </span>
                         </div>
+                        @if ($session->date_time < now())
+                            
+                        @else
                         <button type="button" class="toggle-session-btn statusSessionBtn" data-session-id="{{ $session->id }}"
                             data-session-closed="{{ $session->closed ? 'true' : 'false' }}" id="openModalButton">
                             {{ $session->closed ? 'Obrir la sessió' : 'Tancar la sessió' }}
                         </button>
+                        @endif
+                        <div class="divBoton">
+                            <a class="card-price card-info card-sessions" href="{{ route('tickets.showevent', ['id' => $session->event->id]) }}">Detalls</a>
+                            <span class="card-price card-info card-sessions">Editar</span>
+                            <a class="card-price card-info card-sessions btnCSV" href="{{ route('promotorsessionslist.downloadCSV', ['id' => $session->id]) }}">Descargar CSV</a>
+                        </div>
+                        
+                       
                     </div>
                 </div>
             @endforeach
@@ -67,20 +80,33 @@
                             <div class="sessionCont">
                                 <p>Data: {{ \Carbon\Carbon::parse($event->event_date)->format('d/m/Y, H:i') }}</p>
                                 <p>Ventas: {{ $session->sold_tickets }} / {{ $session->max_capacity }}</p>
-                                <div class="divBoton">
-                                    <span class="card-price card-info card-sessions">Detalls</span>
-                                    <span class="card-price card-info card-sessions">Editar</span>
-                                    <span class="card-price card-info card-sessions">Entrades</span>
-                                </div>
-                                <p class="stautsSessionText">Estado de la sesión: 
-                                    <span class="statusSessionSpan {{ $session->closed ? 'closed' : '' }}">
-                                        {{$session->closed ? 'Tancada' : 'Oberta'}}
+                                <div class="statusSessionDiv">
+                                    <p class="statusSessionText">Estat de la sessió: </p>
+                                    <span class="statusSession @if ($session->date_time < now())
+                                        closed                                
+                                    @else
+                                        {{$session->closed ? 'closed' : ''}}
+                                    @endif">
+                                        @if ($session->date_time < now())
+                                            Sessió Finalitzada
+                                        @else
+                                            {{$session->closed ? 'Tancada' : 'Oberta'}}
+                                        @endif
                                     </span>
-                                </p>
+                                </div>
+                                @if ($session->date_time < now())
+                                    
+                                @else
                                 <button type="button" class="toggle-session-btn statusSessionBtn" data-session-id="{{ $session->id }}"
                                     data-session-closed="{{ $session->closed ? 'true' : 'false' }}" id="openModalButton">
-                                    {{ $session->closed ? 'Abrir la sesión' : 'Cerrar la sesión' }}
+                                    {{ $session->closed ? 'Obrir la sessió' : 'Tancar la sessió' }}
                                 </button>
+                                @endif
+                                <div class="divBoton">
+                                    <a class="card-price card-info card-sessions" href="{{ route('tickets.showevent', ['id' => $event->id]) }}">Detalls</a>
+                                    <span class="card-price card-info card-sessions">Editar</span>
+                                </div>
+                                
                             </div>
                         </div>
                     @endforeach
@@ -119,6 +145,13 @@
                     <input class="input-event input-adreca" type="number" name="max_capacity" id="max_capacity_session"
                         placeholder="Aforament màxim" oninput="vaciarEntradas()"
                         value="{{ $primeraSesion->max_capacity }}">
+                @else
+                    <label class="labelSesion" for="data_sesion">Data i hora</label>
+                    <input type="datetime-local" class="input-event input-adreca" name="data_sesion" id="nova_data">
+
+                    <label class="labelSesion" for="max_capacity">Aforament màxim</label>
+                    <input class="input-event input-adreca" type="number" name="max_capacity" id="max_capacity_session"
+                        placeholder="Aforament màxim" oninput="vaciarEntradas()">
                 @endif
 
                 <hr class="separador-entradas-sesion">
@@ -154,6 +187,30 @@
                                     <hr class="separador-entradas-sesion">
                                 </div>
                             @endforeach
+                        @else
+                            <div class="div-informacion-principal ticket-input" id="ticket-input">
+                                <label class="labelSesion" for="entry_type_name[]" id="labelNombreEntradasSesion">Nom
+                                        del tipus d'entrada</label>
+                                <input type="text" class="input-event inputNombreSesion" name="entry_type_name[]"
+                                        id="nombre-entradas-sesion-0"
+                                        placeholder="Nom del tipus d'entrada">
+                                <label class="labelSesion" for="entry_type_price[]"
+                                        id="labelNombrePrecioSesion">Preu</label>
+                                <input type="number" class="input-event" name="entry_type_price[]" placeholder="Preu"
+                                        id="precio_entradas-0" step="0.01">
+                                <label class="labelSesion" for="entry_type_quantity[]"
+                                        id="labelNombreCantidadSesion">Quantitat</label>
+                                <input type="number" class="input-event" name="entry_type_quantity[]"
+                                        id="entry_type_quantity_sesion-0" placeholder="Quantitat"
+                                          min="0"
+                                        oninput="actualizarMaxEntradas()">
+
+                                <button type="button" class="eliminar-linea" id="eliminar-entrada-session"
+                                        style="display: none;"
+                                        onclick="eliminarEntrada(this)">Eliminar entrada
+                                    </button>
+                                <hr class="separador-entradas-sesion">
+                            </div>
                         @endif
                     </div>
 

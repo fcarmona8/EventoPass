@@ -59,16 +59,21 @@ h2 {
 
 /* Estilos para botones */
 .divBoton {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 2% 0%;
+  display: grid;
+  grid-template-columns: 1fr;
   justify-content: center;
-  margin: 10% 10% 0% 10%;
+  gap: 10px;
+  margin: auto auto 0px;
 }
 
 /* Ajustes para tarjetas de sesiones en pantallas más grandes */
 .card-sessions {
   margin-left: 0%;
+  width: 100%;
+}
+
+.btnCSV {
+  grid-column: unset;
 }
 
 .checkbox-container {
@@ -95,7 +100,9 @@ h2 {
   border-radius: 10px;
   font-size: 16px;
   padding: 5px 10px;
-  margin-top: auto;
+  margin: 10px auto 0px;
+  min-width: 184px;
+  width: 70%;
 }
 
 .statusSession {
@@ -105,7 +112,7 @@ h2 {
   padding: 3px 6px;
   border-radius: 8px;
   width: min-content;
-  margin: 0 16px !important;
+  white-space: nowrap;
 }
 
 .statusSession.closed {
@@ -166,12 +173,14 @@ h2 {
   margin-top: 10px;
 }
 
-.statusSessionDiv {
+.statusSessionDiv{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-top: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 45px;
 }
 
 /* Ajustes para tarjetas de sesiones en pantallas más grandes */
@@ -188,7 +197,7 @@ h2 {
 
   .listSessions {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(460px, auto));
+    grid-template-columns: repeat(auto-fill, minmax(420px, auto));
     gap: 20px;
     padding: 1%;
     width: 100%;
@@ -198,9 +207,7 @@ h2 {
     width: 50%;
   }
 
-  .statusSessionDiv {
-    flex-direction: row;
-    align-items: center;
-    justify-content: start;
+  .btnCSV {
+    grid-column: 1 / 3;
   }
 }
