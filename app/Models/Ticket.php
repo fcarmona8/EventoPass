@@ -11,7 +11,7 @@ class Ticket extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['purchase_id', 'type_id', 'session_id', 'is_validated', 'name', 'unicIdTicket', 'buyerName'];
+    protected $fillable = ['purchase_id', 'type_id', 'session_id', 'is_validated', 'name', 'dni', 'telefono', 'unicIdTicket', 'buyerName'];
 
     public function purchase()
     {
@@ -29,14 +29,14 @@ class Ticket extends Model
     }
 
 
-    public static function buyTicket($session_id, $type_id, $purchase_id, $name, $idEntrada, $buyerName){
+    public static function buyTicket($session_id, $type_id, $purchase_id, $name, $dni, $telefono, $idEntrada, $buyerName){
 
         DB::table('tickets')
         ->where('session_id', '=', $session_id)
         ->where('type_id', '=', $type_id)
         ->whereNull('purchase_id') 
         ->take(1) 
-        ->update(['purchase_id' => $purchase_id, 'name' => $name, 'unicIdTicket' => $idEntrada, 'buyerName' => $buyerName]);
+        ->update(['purchase_id' => $purchase_id, 'name' => $name, 'dni' => $dni, 'telefono' => $telefono, 'unicIdTicket' => $idEntrada, 'buyerName' => $buyerName]);
 
     }
 
