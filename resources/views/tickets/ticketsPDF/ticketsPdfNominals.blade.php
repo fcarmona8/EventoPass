@@ -133,11 +133,18 @@ html {
         <div class="dadesEntrades">
             <p style="padding: 1% 2%">
                 Identificador entrada: 
-                {{ hash('sha256', $entrada . $session['dni'.$entrada] . $session['sessionId'] . $entrada . $session['phone'.$entrada] . $entrada) }}
+                @php 
+                    $hash = $session['unicIdNameTicket'.$entrada];
+                    echo $hash;
+                @endphp 
             </p>
         </div>
          <div class="qr">
-            <img src="data:image/png;base64, {{ $qrCode }}" alt="Código QR" loading="lazy">
+            @php
+                $qrCodeImage = QrCode::size(300)->generate('https://copernic.cat/'.$hash);
+                $base64QrCode = base64_encode($qrCodeImage);
+            @endphp
+            <img src="data:image/png;base64, {{ $base64QrCode }}" alt="Código QR" loading="lazy">
         </div>
     </div>
     @endfor
