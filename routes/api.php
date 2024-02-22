@@ -19,4 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('V1')->group(function () {
+    Route::post('/login', 'App\Http\Controllers\V1\TicketController@login');
+    Route::get('/getTicketInfo/{hash}', 'App\Http\Controllers\V1\TicketController@getTicketInfo');
 });
