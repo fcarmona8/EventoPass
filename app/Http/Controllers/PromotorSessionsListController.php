@@ -227,23 +227,39 @@ class PromotorSessionsListController extends Controller
         $csv->output('sesion' . $session->id . '.csv');
     }
 
-    public function editSession (Request $request, $id) {
-
+    public function editSession(Request $request, $id)
+    {
         Log::info('Entrando en método editSession de PromotorSessionListController.', ['id' => $id]);
 
         $session = Session::findOrFail($id);
 
         if ($request->has('closed')) {
             $session->closed = $request->closed;
+
+            if ($session->closed) {
+                $session->session_code = $this->generateAccessCode();
+            } else {
+                $session->session_code = null;
+            }
+
             $session->save();
 
             return response()->json(['success' => true]);
         } else {
             return response()->json(['error' => 'El campo "closed" no está presente en la solicitud.'], 400);
         }
+    }
 
+    private function generateAccessCode()
+    {
+        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $accessCode = '';
 
+        for ($i = 0; $i < 8; $i++) {
+            $accessCode .= $characters[rand(0, strlen($characters) - 1)];
+        }
 
+        return $accessCode;
     }
         
 }
