@@ -24,6 +24,7 @@
                         <p>Data: {{ \Carbon\Carbon::parse($session->date_time)->format('Y-m-d, H:i') }}</p>
                         <p>Ventas: {{ $session->sold_tickets }} / {{ $session->max_capacity }}</p>
                         <div class="statusSessionDiv">
+                            <p class="statusSessionText">codigo: {{$session->session_code}}</p>
                             <p class="statusSessionText">Estat de la sessió: </p>
                             <span class="statusSession @if ($session->date_time < now())
                                 closed                                
