@@ -135,7 +135,7 @@
             </div>
             <div class="qr">
                 @php
-                    $qrCodeImage = QrCode::size(300)->generate('https:localhost:8000/api/V1/getTicketInfo/' . $hash);
+                    $qrCodeImage = QrCode::size(300)->generate($session['sessionId'] . '$' . $hash);
                     $base64QrCode = base64_encode($qrCodeImage);
                 @endphp
                 <img src="data:image/png;base64, {{ $base64QrCode }}" alt="Código QR" loading="lazy">
