@@ -32,12 +32,6 @@ class RunMigrationsWithApi extends Command
             $process->mustRun();
             echo $process->getOutput();
 
-            $apiServeCommand = "php artisan serve --port=8080";
-            $process = Process::fromShellCommandline($apiServeCommand, $apiPath);
-            $process->start();
-
-            sleep(3);
-
             $this->call('migrate:fresh', [
                 '--seed' => true,
             ]);
