@@ -67,7 +67,7 @@ class PaymentController extends Controller
             // Decodificar y verificar los parámetros de salida de Redsys
             $decodedResponseParams = json_decode(base64_decode($responseData['Ds_MerchantParameters']), true);
 
-            if (isset($decodedResponseParams['Ds_Response']) && (int) $decodedResponseParams['Ds_Response'] <= 99) {
+            if (isset($decodedResponseParams['Ds_Response']) && (int) $decodedResponseParams['Ds_Response'] <= 99 || $decodedResponseParams['Ds_Response'] === "0173") {
 
                 $session = sessionLaravel::get('datosCompra');
                 $ticketsPDFController = new TicketsPDFController();
