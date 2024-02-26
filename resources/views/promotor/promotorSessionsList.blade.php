@@ -23,8 +23,8 @@
                     <div class="sessionCont">
                         <p>Data: {{ \Carbon\Carbon::parse($session->date_time)->format('Y-m-d, H:i') }}</p>
                         <p>Ventas: {{ $session->sold_tickets }} / {{ $session->max_capacity }}</p>
+                        <p class="codigo_acceso">codi d'accés: {{$session->session_code}}</p>
                         <div class="statusSessionDiv">
-                            <p class="statusSessionText">codigo: {{$session->session_code}}</p>
                             <p class="statusSessionText">Estat de la sessió: </p>
                             <span class="statusSession @if ($session->date_time < now())
                                 closed                                
@@ -513,6 +513,9 @@
                 this.textContent = !closed ? 'Obrir la sessió' : 'Tancar la sessió';
 
                 const statusSpan = this.parentElement.querySelector('.statusSession');
+                const codigoAcceso = this.parentElement.parentElement.querySelector('.codigo_acceso');
+                codigoAcceso.textContent = !closed ? "codi d'accés: " + data.session_code : "codi d'accés:";
+                
                 statusSpan.textContent = !closed ? 'Tancada' : 'Oberta';
                 if (!closed) {
                     statusSpan.classList.add('closed');
