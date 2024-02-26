@@ -250,6 +250,8 @@
         const btn = document.getElementById('openModalButton');
         const cancelButton = document.getElementById('cancelButton');
         const confirmButton = document.getElementById('confirmButton');
+        const fechaInput = document.getElementById('nova_data');
+        const fechaActual = new Date().toISOString().slice(0, 16);
 
 
         if (document.getElementById('abrir-modal-sesion')) {
@@ -529,24 +531,36 @@
             });
         }
 
+        function showModal(button) {
+            modal.style.display = "block";
+            confirmButton.onclick = function() {
+                modal.style.display = "none";
+                toggleSession.call(button);
+            }
+        }
+
+        function handleToggleSession(button) {
+            if (button.getAttribute('data-session-closed') === 'true') {
+                toggleSession.call(button);
+            } else {
+                showModal(button);
+            }
+        }
+
         document.querySelectorAll('.toggle-session-btn').forEach(function(button) {
             button.addEventListener('click', function() {
-                if (this.getAttribute('data-session-closed') === 'true') {
-                    toggleSession.call(button);
-                } else {
-                    modal.style.display = "block";
-                    confirmButton.onclick = function() {
-                        modal.style.display = "none";
-                        toggleSession.call(button);
-                    }
-                }
+                handleToggleSession(button);
             });
         });
 
         cancelButton.onclick = function() {
             modal.style.display = "none";
-        }
+        };
 
+        document.addEventListener('DOMContentLoaded', function() {
+
+            fechaInput.setAttribute('min', fechaActual);
+        });
 
     </script>
 @endpush
