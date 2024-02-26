@@ -3,70 +3,45 @@
 namespace App\Http\Controllers\V1;
 
 use App\Http\Controllers\Controller;
-use App\Models\Session;
 use App\Models\Ticket;
+use App\Models\Session;
 use Illuminate\Http\Request;
 
 class TicketValidateController extends Controller
 {
-    /**
-     * Handle the login using session code.
-     */
     public function login(Request $request)
     {
-        $request->validate([
-            'session_code' => 'required|string',
-        ]);
+        $request->validate(['session_code' => 'required|string']);
+        
+        $session = Session::where('session_code', $request->session_code)->where('closed', true)->first();
 
-        $sessionCode = $request->input('session_code');
-        $session = Session::where('session_code', $sessionCode)->first();
-
-        if ($session && !$session->closed) {
-            return response()->json(['success' => true, 'message' => 'Login exitoso.', 'session' => $session]);
+        if (!$session) {
+            return response()->json([
+                'success' => false, 
+                'message' => 'Código de sesión inválido o la sesión no está cerrada para nuevos logins.'
+            ], 401);
         }
-
-        return response()->json(['success' => false, 'message' => 'Código de sesión inválido o sesión cerrada.'], 401);
-    }
-
-    public function getTicketInfo(Request $request)
-    {
-        $request->validate([
-            'ticket_id' => 'required|integer',
-        ]);
-
-        $ticketId = $request->input('ticket_id');
-
-        $ticket = Ticket::with(['session.event', 'purchase'])
-                        ->where('id', $ticketId)->first();
-
-        if (!$ticket) {
-            return response()->json(['success' => false, 'message' => 'Ticket no encontrado.'], 404);
-        }
-
-        $buyerData = $ticket->purchase ? [
-            'name' => $ticket->purchase->name,
-            'dni' => $ticket->purchase->dni,
-            'phone' => $ticket->purchase->phone,
-            'email' => $ticket->purchase->email
-        ] : null;
 
         return response()->json([
             'success' => true,
-            'ticket_info' => [
-                'is_validated' => $ticket->is_validated,
-                'buyer_data' => $buyerData,
-            ]
-        ]);
+            'message' => 'Login exitoso.',
+            'session_code' => $session->session_code,
+        ], 200);
     }
 
-    public function validateTicket(Request $request)
+    public function getTicketInfo(Request $request, $sessionId, $hash)
     {
-        $request->validate([
-            'ticket_id' => 'required|integer',
-        ]);
+        $loggedSessionCode = $request->header('Session-Code');
+        
+        $session = Session::find($sessionId);
 
-        $ticketId = $request->input('ticket_id');
-        $ticket = Ticket::find($ticketId);
+        if (!$session || $session->session_code !== $loggedSessionCode) {
+            return response()->json(['success' => false, 'message' => 'La sesión no coincide o no se encontró.'], 403);
+        }
+
+        $ticket = Ticket::where('unicIdTicket', $hash)
+                        ->where('session_id', $sessionId)
+                        ->first();
 
         if (!$ticket) {
             return response()->json(['success' => false, 'message' => 'Ticket no encontrado.'], 404);
@@ -79,6 +54,14 @@ class TicketValidateController extends Controller
         $ticket->is_validated = true;
         $ticket->save();
 
-        return response()->json(['success' => true, 'message' => 'Ticket validado correctamente.']);
+        return response()->json([
+            'success' => true,
+            'message' => 'Ticket validado correctamente.',
+            'ticket_info' => [
+                'name' => $ticket->name,
+                'dni' => $ticket->dni,
+                'phone' => $ticket->phone,
+            ],
+        ]);
     }
 }

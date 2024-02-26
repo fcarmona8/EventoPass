@@ -15,15 +15,15 @@ return [
     |
     */
 
-    'paths' => ['*'],
-
-    'allowed_methods' => ['*'],
+    'paths' => ['api/*'],
 
     'allowed_origins' => ['*'],
 
     'allowed_origins_patterns' => [],
 
-    'allowed_headers' => ['*'],
+    'allowed_methods' => ['*'],
+    
+    'allowed_headers' => ['Content-Type', 'X-Request-With', 'Origin', 'Authorization', 'Accept', 'Client-Security-Token', 'Session-Code'],
 
     'exposed_headers' => [],
 
