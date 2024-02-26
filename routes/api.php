@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\V1\TicketValidateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('V1')->group(function () {
+    Route::post('/login', [TicketValidateController::class, 'login'])->middleware('verifySessionCode');
+    Route::get('/tickets/validate/{sessionId}/{hash}', [TicketValidateController::class, 'getTicketInfo'])->middleware('verifySessionCode');
 });

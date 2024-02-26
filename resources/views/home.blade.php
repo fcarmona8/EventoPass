@@ -28,7 +28,7 @@
                 </div>
                 <form class="verMas" id="searchForm" action="{{ route('resultats') }}" method="GET">
                     <button class="BtnVerMas">Ver mas</button>
-                    <input type="text" name="categoria" value={{ $categoria->id }} style="display: none">
+                    <input type="text" name="categoria" value="{{ $categoria->id }}" style="display: none">
                     </select>
                 </form>
             </div>
