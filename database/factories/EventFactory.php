@@ -2,12 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Event;
-use App\Models\Category;
-use App\Models\Venue;
+use Carbon\Carbon;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Event;
+use App\Models\Venue;
 use GuzzleHttp\Client;
+use App\Models\Category;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class EventFactory extends Factory
 {
@@ -86,7 +87,7 @@ class EventFactory extends Factory
             'user_id' => User::inRandomOrder()->first()->id ?? User::factory(),
             'category_id' => Category::inRandomOrder()->first()->id ?? Category::factory(),
             'main_image_id' => $imageId,
-            'event_date' => $dates[$eventCounter % count($dates)]
+            'event_date' => $this->faker->dateTimeBetween(Carbon::tomorrow(), Carbon::today()->addYear())->format('Y-m-d H:i:s')
         ];
 
         $eventCounter++;

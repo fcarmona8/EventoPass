@@ -25,7 +25,8 @@ class TicketsPDFControllerTest extends TestCase
         Session::start();
         Session::put('datosCompra', [
             'buyerDNI' => '12345678A',
-            'sessionId' => 'ABC123'
+            'sessionId' => 'ABC123',
+            'namePDF' => '12345678AABC123.pdf'
         ]);
 
         $qrCodeImage = QrCode::size(300)->generate('https://copernic.cat/');
@@ -54,7 +55,8 @@ class TicketsPDFControllerTest extends TestCase
         Session::start();
         Session::put('datosCompra', [
             'buyerDNI' => '12345678A',
-            'sessionId' => 'ABC123'
+            'sessionId' => 'ABC123',
+            'namePDF' => '12345678AABC123'
         ]);
 
         // Generate QR code
