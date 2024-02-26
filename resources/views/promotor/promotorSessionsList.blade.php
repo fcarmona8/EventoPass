@@ -415,7 +415,9 @@
 
             camposRequeridos.forEach(campoId => {
                 let campo = document.getElementById(campoId);
-                campo.style.border = "";
+                if (campo) {
+                    campo.style.border = "";
+                }
             });
         }
 

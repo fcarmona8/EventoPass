@@ -8980,3 +8980,414 @@
 )
   
 [2024-02-21 18:48:51] local.INFO: Finalizando show {"duration":3.432967185974121} 
+[2024-02-26 16:23:09] local.INFO: Iniciando show {"id":"31"} 
+[2024-02-26 16:23:09] local.INFO: Evento encontrado: Array
+(
+    [id] => 31
+    [name] => hfgjfghj
+    [description] => fghjfghj
+    [main_image_id] => 241
+    [category_id] => 1
+    [venue_id] => 1
+    [user_id] => 1
+    [event_date] => 2024-02-29 16:34:00
+    [video_link] => 
+    [hidden] => 
+    [nominal] => 
+    [created_at] => 2024-02-26T15:35:07.000000Z
+    [updated_at] => 2024-02-26T15:35:07.000000Z
+    [images] => Array
+        (
+        )
+
+    [venue] => Array
+        (
+            [id] => 1
+            [province] => Kentucky
+            [city] => New Floydstad
+            [postal_code] => 01022
+            [venue_name] => Centro de Eventos
+            [capacity] => 832
+            [user_id] => 1
+            [created_at] => 2024-02-22T14:54:28.000000Z
+            [updated_at] => 2024-02-22T14:54:28.000000Z
+        )
+
+)
+  
+[2024-02-26 16:23:09] local.INFO: Sesiones encontradas para el evento: Array
+(
+    [2024-02-29] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 51
+                    [event_id] => 31
+                    [session_code] => 
+                    [date_time] => 2024-02-29 16:34:00
+                    [max_capacity] => 4657
+                    [online_sale_end_time] => 2024-02-29 16:34:00
+                    [ticket_quantity] => 4657
+                    [named_tickets] => 
+                    [closed] => 
+                    [created_at] => 2024-02-26T15:35:07.000000Z
+                    [updated_at] => 2024-02-26T15:35:07.000000Z
+                )
+
+        )
+
+)
+  
+[2024-02-26 16:23:09] local.DEBUG: Detalles de la sesión: Array
+(
+    [date] => 2024-02-29
+    [count] => 1
+    [sessions] => Illuminate\Database\Eloquent\Collection Object
+        (
+            [items:protected] => Array
+                (
+                    [0] => App\Models\Session Object
+                        (
+                            [connection:protected] => pgsql
+                            [table:protected] => sessions
+                            [primaryKey:protected] => id
+                            [keyType:protected] => int
+                            [incrementing] => 1
+                            [with:protected] => Array
+                                (
+                                )
+
+                            [withCount:protected] => Array
+                                (
+                                )
+
+                            [preventsLazyLoading] => 
+                            [perPage:protected] => 15
+                            [exists] => 1
+                            [wasRecentlyCreated] => 
+                            [escapeWhenCastingToString:protected] => 
+                            [attributes:protected] => Array
+                                (
+                                    [id] => 51
+                                    [event_id] => 31
+                                    [session_code] => 
+                                    [date_time] => 2024-02-29 16:34:00
+                                    [max_capacity] => 4657
+                                    [online_sale_end_time] => 2024-02-29 16:34:00
+                                    [ticket_quantity] => 4657
+                                    [named_tickets] => 
+                                    [closed] => 
+                                    [created_at] => 2024-02-26 15:35:07
+                                    [updated_at] => 2024-02-26 15:35:07
+                                    [ticketTypes] => Illuminate\Database\Eloquent\Collection Object
+                                        (
+                                            [items:protected] => Array
+                                                (
+                                                    [0] => App\Models\TicketType Object
+                                                        (
+                                                            [connection:protected] => pgsql
+                                                            [table:protected] => ticket_types
+                                                            [primaryKey:protected] => id
+                                                            [keyType:protected] => int
+                                                            [incrementing] => 1
+                                                            [with:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [withCount:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [preventsLazyLoading] => 
+                                                            [perPage:protected] => 15
+                                                            [exists] => 1
+                                                            [wasRecentlyCreated] => 
+                                                            [escapeWhenCastingToString:protected] => 
+                                                            [attributes:protected] => Array
+                                                                (
+                                                                    [id] => 11
+                                                                    [name] => ghjfghj
+                                                                    [price] => 7.00
+                                                                    [available_tickets] => 4657
+                                                                    [created_at] => 2024-02-26 15:35:07
+                                                                    [updated_at] => 2024-02-26 15:35:07
+                                                                )
+
+                                                            [original:protected] => Array
+                                                                (
+                                                                    [id] => 11
+                                                                    [name] => ghjfghj
+                                                                    [price] => 7.00
+                                                                    [available_tickets] => 4657
+                                                                    [created_at] => 2024-02-26 15:35:07
+                                                                    [updated_at] => 2024-02-26 15:35:07
+                                                                )
+
+                                                            [changes:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [casts:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [classCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [attributeCastCache:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dateFormat:protected] => 
+                                                            [appends:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [dispatchesEvents:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [observables:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [relations:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [touches:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [timestamps] => 1
+                                                            [usesUniqueIds] => 
+                                                            [hidden:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [visible:protected] => Array
+                                                                (
+                                                                )
+
+                                                            [fillable:protected] => Array
+                                                                (
+                                                                    [0] => name
+                                                                    [1] => price
+                                                                    [2] => available_tickets
+                                                                )
+
+                                                            [guarded:protected] => Array
+                                                                (
+                                                                    [0] => *
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                            [escapeWhenCastingToString:protected] => 
+                                        )
+
+                                    [formattedDateTime] => 2024-02-29 16:34
+                                )
+
+                            [original:protected] => Array
+                                (
+                                    [id] => 51
+                                    [event_id] => 31
+                                    [session_code] => 
+                                    [date_time] => 2024-02-29 16:34:00
+                                    [max_capacity] => 4657
+                                    [online_sale_end_time] => 2024-02-29 16:34:00
+                                    [ticket_quantity] => 4657
+                                    [named_tickets] => 
+                                    [closed] => 
+                                    [created_at] => 2024-02-26 15:35:07
+                                    [updated_at] => 2024-02-26 15:35:07
+                                )
+
+                            [changes:protected] => Array
+                                (
+                                )
+
+                            [casts:protected] => Array
+                                (
+                                )
+
+                            [classCastCache:protected] => Array
+                                (
+                                )
+
+                            [attributeCastCache:protected] => Array
+                                (
+                                )
+
+                            [dateFormat:protected] => 
+                            [appends:protected] => Array
+                                (
+                                )
+
+                            [dispatchesEvents:protected] => Array
+                                (
+                                )
+
+                            [observables:protected] => Array
+                                (
+                                )
+
+                            [relations:protected] => Array
+                                (
+                                )
+
+                            [touches:protected] => Array
+                                (
+                                )
+
+                            [timestamps] => 1
+                            [usesUniqueIds] => 
+                            [hidden:protected] => Array
+                                (
+                                )
+
+                            [visible:protected] => Array
+                                (
+                                )
+
+                            [fillable:protected] => Array
+                                (
+                                    [0] => event_id
+                                    [1] => session_code
+                                    [2] => date_time
+                                    [3] => max_capacity
+                                    [4] => online_sale_end_time
+                                    [5] => ticket_quantity
+                                    [6] => named_tickets
+                                    [7] => closed
+                                )
+
+                            [guarded:protected] => Array
+                                (
+                                    [0] => *
+                                )
+
+                        )
+
+                )
+
+            [escapeWhenCastingToString:protected] => 
+        )
+
+)
+  
+[2024-02-26 16:23:09] local.INFO: Iniciando getCoordinates {"venue":{"App\\Models\\Venue":{"id":1,"province":"Kentucky","city":"New Floydstad","postal_code":"01022","venue_name":"Centro de Eventos","capacity":832,"user_id":1,"created_at":"2024-02-22T14:54:28.000000Z","updated_at":"2024-02-22T14:54:28.000000Z"}}} 
+[2024-02-26 16:23:09] local.DEBUG: URL de solicitud a OpenStreetMap Nominatim: https://nominatim.openstreetmap.org/search?format=json&limit=1&addressdetails=1&q=New+Floydstad%2C+Kentucky%2C+01022  
+[2024-02-26 16:23:12] local.DEBUG: Respuesta cruda de Nominatim: Array
+(
+)
+  
+[2024-02-26 16:23:12] local.ERROR: No se encontraron coordenadas para la dirección dada. Respuesta de Nominatim: Array
+(
+)
+  
+[2024-02-26 16:23:12] local.INFO: Finalizando show {"duration":3.3461930751800537} 
+[2024-02-26 16:25:41] local.INFO: Iniciando show {"id":"31"} 
+[2024-02-26 16:25:41] local.INFO: Evento encontrado: Array
+(
+    [id] => 31
+    [name] => hfgjfghj
+    [description] => fghjfghj
+    [main_image_id] => 241
+    [category_id] => 1
+    [venue_id] => 1
+    [user_id] => 1
+    [event_date] => 2024-02-29 16:34:00
+    [video_link] => 
+    [hidden] => 
+    [nominal] => 
+    [created_at] => 2024-02-26T15:35:07.000000Z
+    [updated_at] => 2024-02-26T15:35:07.000000Z
+    [images] => Array
+        (
+        )
+
+    [venue] => Array
+        (
+            [id] => 1
+            [province] => Kentucky
+            [city] => New Floydstad
+            [postal_code] => 01022
+            [venue_name] => Centro de Eventos
+            [capacity] => 832
+            [user_id] => 1
+            [created_at] => 2024-02-22T14:54:28.000000Z
+            [updated_at] => 2024-02-22T14:54:28.000000Z
+        )
+
+)
+  
+[2024-02-26 16:25:41] local.INFO: Sesiones encontradas para el evento: Array
+(
+)
+  
+[2024-02-26 16:25:41] local.INFO: Iniciando getCoordinates {"venue":{"App\\Models\\Venue":{"id":1,"province":"Kentucky","city":"New Floydstad","postal_code":"01022","venue_name":"Centro de Eventos","capacity":832,"user_id":1,"created_at":"2024-02-22T14:54:28.000000Z","updated_at":"2024-02-22T14:54:28.000000Z"}}} 
+[2024-02-26 16:25:41] local.DEBUG: URL de solicitud a OpenStreetMap Nominatim: https://nominatim.openstreetmap.org/search?format=json&limit=1&addressdetails=1&q=New+Floydstad%2C+Kentucky%2C+01022  
+[2024-02-26 16:25:45] local.DEBUG: Respuesta cruda de Nominatim: Array
+(
+)
+  
+[2024-02-26 16:25:45] local.ERROR: No se encontraron coordenadas para la dirección dada. Respuesta de Nominatim: Array
+(
+)
+  
+[2024-02-26 16:25:45] local.INFO: Finalizando show {"duration":3.33076810836792} 
+[2024-02-26 16:25:45] local.INFO: Iniciando show {"id":"31"} 
+[2024-02-26 16:25:45] local.INFO: Evento encontrado: Array
+(
+    [id] => 31
+    [name] => hfgjfghj
+    [description] => fghjfghj
+    [main_image_id] => 241
+    [category_id] => 1
+    [venue_id] => 1
+    [user_id] => 1
+    [event_date] => 2024-02-29 16:34:00
+    [video_link] => 
+    [hidden] => 
+    [nominal] => 
+    [created_at] => 2024-02-26T15:35:07.000000Z
+    [updated_at] => 2024-02-26T15:35:07.000000Z
+    [images] => Array
+        (
+        )
+
+    [venue] => Array
+        (
+            [id] => 1
+            [province] => Kentucky
+            [city] => New Floydstad
+            [postal_code] => 01022
+            [venue_name] => Centro de Eventos
+            [capacity] => 832
+            [user_id] => 1
+            [created_at] => 2024-02-22T14:54:28.000000Z
+            [updated_at] => 2024-02-22T14:54:28.000000Z
+        )
+
+)
+  
+[2024-02-26 16:25:45] local.INFO: Sesiones encontradas para el evento: Array
+(
+)
+  
+[2024-02-26 16:25:45] local.INFO: Iniciando getCoordinates {"venue":{"App\\Models\\Venue":{"id":1,"province":"Kentucky","city":"New Floydstad","postal_code":"01022","venue_name":"Centro de Eventos","capacity":832,"user_id":1,"created_at":"2024-02-22T14:54:28.000000Z","updated_at":"2024-02-22T14:54:28.000000Z"}}} 
+[2024-02-26 16:25:45] local.DEBUG: URL de solicitud a OpenStreetMap Nominatim: https://nominatim.openstreetmap.org/search?format=json&limit=1&addressdetails=1&q=New+Floydstad%2C+Kentucky%2C+01022  
+[2024-02-26 16:25:45] local.DEBUG: Respuesta cruda de Nominatim: Array
+(
+)
+  
+[2024-02-26 16:25:45] local.ERROR: No se encontraron coordenadas para la dirección dada. Respuesta de Nominatim: Array
+(
+)
+  
+[2024-02-26 16:25:45] local.INFO: Finalizando show {"duration":0.5019650459289551} 
