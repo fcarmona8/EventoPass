@@ -232,6 +232,6 @@ class CreateEventController extends Controller
             'APP-TOKEN' => env('TIQUETS_APP_TOKEN'),
         ])->attach(
             'image', $imageFile->get(), $imageFile->getClientOriginalName()
-        )->post('http://localhost:8080/api/V1/images');
+        )->post(env('URL_API').'/api/V1/images');
     }
 }
