@@ -244,7 +244,7 @@ class PromotorSessionsListController extends Controller
 
             $session->save();
 
-            return response()->json(['success' => true]);
+            return response()->json(['success' => true, 'session_code' => $session->session_code]);
         } else {
             return response()->json(['error' => 'El campo "closed" no está presente en la solicitud.'], 400);
         }
