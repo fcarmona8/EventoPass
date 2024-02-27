@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="shortcut icon" href="{{ asset('favicon/favicon.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <!--<link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('css/resultats.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('css/event-create.css') }}">
@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="{{ asset('css/sesion-list.css') }}">
     <link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
     <link rel="stylesheet" href="{{ asset('css/comentarios.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/compra-tickets.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/compra-tickets.css') }}">-->
 
     <title>@yield('title')</title>
 </head>
