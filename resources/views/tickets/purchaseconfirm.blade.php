@@ -94,7 +94,7 @@
                 </div>
             @endif
             <p class="ticketCompraLinea">Precio Total: <span class="importeCompra">{{ $totalPrice }} €</span></p>
-            </div>
+            
             
                 <div class="buyer-details">
                     <h4>Datos del Comprador</h4>
@@ -111,7 +111,7 @@
 
                     <button type="submit" id="continue-button" class="btn btn-primary boton-confirmacion-compra">Continuar</button>
                 </div>
-            
+            </div>
 
             
 
