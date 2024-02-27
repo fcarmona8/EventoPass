@@ -41,15 +41,15 @@
                         @for ($i=1; $i <= $quantity; $i++)
                             
 
-                <div class="buyer-details">
+                <div class="attendee-details buyer-details2">
                     <h4>Detalles del Asistente {{ $nEntrada }}</h4>
                     <p>Tipo de entrada: {{ $ticket->name }}</p>
                     <p>Precio individual: €{{ $ticket->price }}</p>
-                    <input type="text" name="name{{$nEntrada}}"
+                    <input class="inputNominal" type="text" name="name{{$nEntrada}}"
                         placeholder="Nombre Asistente {{ $nEntrada }}" required>
-                    <input type="text" name="dni{{$nEntrada}}"
+                    <input class="inputNominal" type="text" name="dni{{$nEntrada}}"
                         placeholder="DNI Asistente {{ $nEntrada }}" required>
-                    <input type="text" name="phone{{$nEntrada}}"
+                    <input class="inputNominal" type="text" name="phone{{$nEntrada}}"
                         placeholder="Teléfono Asistente {{ $nEntrada }}" required>
                     <input type="hidden" name="ticketName{{$nEntrada}}" value="{{$ticket->name}}">
                     <input type="hidden" name="ticketNameId{{$nEntrada}}" value="{{$ticket->id}}">
@@ -156,5 +156,19 @@
                 window.location.href = `/tickets/showevent/${eventId}`;
             }
         }, 1000);
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const iconosRedesSociales = document.querySelectorAll('.fab');
+            const bodyElement = document.body;
+
+
+            if (window.innerWidth < 768) {
+                bodyElement.style.backgroundColor = '#fff';
+                iconosRedesSociales.forEach(icono => {
+                    icono.style.color = '#000';
+                });
+            }
+        });
     </script>
 @endpush
