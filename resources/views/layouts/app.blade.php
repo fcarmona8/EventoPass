@@ -73,7 +73,7 @@
 
     <main class="w3-container w3-padding">
         @yield('content')
-        <div class="social-share-buttons">
+        <div class="social-share-buttons"> Compartir:
             <!-- Botón compartir en Facebook -->
             <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::fullUrl()) }}" target="_blank"
                 class="social-button facebook" title="Compartir en Facebook">
@@ -107,6 +107,12 @@
             const content = document.querySelector('.user-info');
             sidebar.classList.toggle('active');
             content.classList.toggle('active');
+
+            if (sidebar.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
 
         }
 

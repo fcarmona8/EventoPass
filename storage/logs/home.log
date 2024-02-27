@@ -2253,3 +2253,135 @@ LINE 1: select * from \"events\" inner join \"session\" on \"event\".\"id\" ...
 [2024-02-26 15:14:18] local.INFO: Fin de solicitud a HomeController@index {"duration":0.050375938415527344} 
 [2024-02-26 15:17:03] local.INFO: Inicio de solicitud a HomeController@index  
 [2024-02-26 15:17:03] local.INFO: Fin de solicitud a HomeController@index {"duration":0.022399187088012695} 
+[2024-02-26 16:24:34] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:24:34] local.INFO: Fin de solicitud a HomeController@index {"duration":0.06553196907043457} 
+[2024-02-26 16:25:37] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:25:37] local.INFO: Fin de solicitud a HomeController@index {"duration":0.06779193878173828} 
+[2024-02-26 16:25:40] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:25:40] local.INFO: Fin de solicitud a HomeController@index {"duration":0.0742490291595459} 
+[2024-02-26 16:27:08] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:27:08] local.INFO: Fin de solicitud a HomeController@index {"duration":0.03288698196411133} 
+[2024-02-26 16:27:30] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:27:30] local.INFO: Fin de solicitud a HomeController@index {"duration":0.06696796417236328} 
+[2024-02-26 16:32:40] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:32:40] local.INFO: Fin de solicitud a HomeController@index {"duration":0.09928297996520996} 
+[2024-02-26 16:33:59] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:33:59] local.INFO: Fin de solicitud a HomeController@index {"duration":0.032073020935058594} 
+[2024-02-26 16:34:08] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:34:08] local.INFO: Fin de solicitud a HomeController@index {"duration":0.09232401847839355} 
+[2024-02-26 16:37:15] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:37:15] local.INFO: Fin de solicitud a HomeController@index {"duration":0.09562492370605469} 
+[2024-02-26 16:38:36] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:38:36] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10409998893737793} 
+[2024-02-26 16:41:03] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:41:03] local.INFO: Fin de solicitud a HomeController@index {"duration":0.06331801414489746} 
+[2024-02-26 16:41:04] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:41:04] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10085082054138184} 
+[2024-02-26 16:41:04] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:41:04] local.INFO: Fin de solicitud a HomeController@index {"duration":0.09692597389221191} 
+[2024-02-26 16:41:05] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:41:05] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10722017288208008} 
+[2024-02-26 16:41:06] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:41:06] local.INFO: Fin de solicitud a HomeController@index {"duration":0.09444117546081543} 
+[2024-02-26 16:42:48] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:42:49] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10130786895751953} 
+[2024-02-26 16:43:07] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:43:07] local.INFO: Fin de solicitud a HomeController@index {"duration":0.09134817123413086} 
+[2024-02-26 16:47:22] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:47:22] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10299301147460938} 
+[2024-02-26 16:47:59] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:47:59] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10141301155090332} 
+[2024-02-26 16:48:41] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:48:41] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10777401924133301} 
+[2024-02-26 16:48:42] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:48:42] local.INFO: Fin de solicitud a HomeController@index {"duration":0.1154470443725586} 
+[2024-02-26 16:48:43] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:48:43] local.INFO: Fin de solicitud a HomeController@index {"duration":0.1098470687866211} 
+[2024-02-26 16:48:51] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:48:51] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10584402084350586} 
+[2024-02-26 16:48:52] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:48:52] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10193109512329102} 
+[2024-02-26 16:49:42] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:49:42] local.INFO: Fin de solicitud a HomeController@index {"duration":0.09235310554504395} 
+[2024-02-26 16:49:58] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:49:58] local.INFO: Fin de solicitud a HomeController@index {"duration":0.1102609634399414} 
+[2024-02-26 16:50:09] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:50:09] local.INFO: Fin de solicitud a HomeController@index {"duration":0.09118795394897461} 
+[2024-02-26 16:50:20] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:50:20] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10432910919189453} 
+[2024-02-26 16:50:29] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:50:29] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10028815269470215} 
+[2024-02-26 16:50:30] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:50:30] local.INFO: Fin de solicitud a HomeController@index {"duration":0.0769810676574707} 
+[2024-02-26 16:50:49] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:50:49] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10364913940429688} 
+[2024-02-26 16:50:50] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:50:50] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10671615600585938} 
+[2024-02-26 16:50:59] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:50:59] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10268807411193848} 
+[2024-02-26 16:51:01] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:51:01] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10727882385253906} 
+[2024-02-26 16:51:38] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:51:38] local.INFO: Fin de solicitud a HomeController@index {"duration":0.11190199851989746} 
+[2024-02-26 16:52:27] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:52:27] local.INFO: Fin de solicitud a HomeController@index {"duration":0.0973060131072998} 
+[2024-02-26 16:52:41] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:52:41] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10178279876708984} 
+[2024-02-26 16:53:12] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:53:12] local.INFO: Fin de solicitud a HomeController@index {"duration":0.09821009635925293} 
+[2024-02-26 16:53:13] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:53:13] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10406303405761719} 
+[2024-02-26 16:53:23] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:53:23] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10272908210754395} 
+[2024-02-26 16:53:24] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:53:24] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10901594161987305} 
+[2024-02-26 16:53:31] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:53:31] local.INFO: Fin de solicitud a HomeController@index {"duration":0.1005098819732666} 
+[2024-02-26 16:54:01] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:54:01] local.INFO: Fin de solicitud a HomeController@index {"duration":0.09635710716247559} 
+[2024-02-26 16:54:19] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:54:19] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10204792022705078} 
+[2024-02-26 16:59:28] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:59:28] local.INFO: Fin de solicitud a HomeController@index {"duration":0.09953188896179199} 
+[2024-02-26 16:59:44] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 16:59:44] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10611701011657715} 
+[2024-02-26 17:01:52] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 17:01:53] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10436391830444336} 
+[2024-02-26 17:02:08] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 17:02:09] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10721588134765625} 
+[2024-02-26 17:02:09] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 17:02:09] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10044598579406738} 
+[2024-02-26 17:02:36] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 17:02:36] local.INFO: Fin de solicitud a HomeController@index {"duration":0.08948016166687012} 
+[2024-02-26 17:02:51] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 17:02:51] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10227417945861816} 
+[2024-02-26 17:03:01] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 17:03:01] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10183286666870117} 
+[2024-02-26 17:03:10] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 17:03:10] local.INFO: Fin de solicitud a HomeController@index {"duration":0.09136486053466797} 
+[2024-02-26 17:03:11] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 17:03:11] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10103106498718262} 
+[2024-02-26 17:14:33] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 17:14:33] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10229277610778809} 
+[2024-02-26 18:17:30] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 18:17:30] local.INFO: Fin de solicitud a HomeController@index {"duration":0.09343194961547852} 
+[2024-02-26 18:20:29] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 18:20:29] local.INFO: Fin de solicitud a HomeController@index {"duration":0.07805705070495605} 
+[2024-02-26 18:26:09] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-26 18:26:09] local.INFO: Fin de solicitud a HomeController@index {"duration":0.0950479507446289} 
+[2024-02-27 14:46:01] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-27 14:46:02] local.INFO: Fin de solicitud a HomeController@index {"duration":0.12287783622741699} 
+[2024-02-27 14:48:21] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-27 14:48:21] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10208797454833984} 
+[2024-02-27 14:49:23] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-27 14:49:24] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10724091529846191} 
+[2024-02-27 15:36:13] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-27 15:36:13] local.INFO: Fin de solicitud a HomeController@index {"duration":0.09973883628845215} 
+[2024-02-27 15:45:29] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-27 15:45:29] local.INFO: Fin de solicitud a HomeController@index {"duration":0.1046290397644043} 
+[2024-02-27 15:46:13] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-27 15:46:13] local.INFO: Fin de solicitud a HomeController@index {"duration":0.12609100341796875} 
+[2024-02-27 16:00:53] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-27 16:00:53] local.INFO: Fin de solicitud a HomeController@index {"duration":0.12143206596374512} 
+[2024-02-27 16:00:57] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-27 16:00:57] local.INFO: Fin de solicitud a HomeController@index {"duration":0.12889599800109863} 
