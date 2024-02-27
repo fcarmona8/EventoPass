@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Correo</title>
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
 <body>
 
-    <div class="container">
+    <div class="container containerNuevaContrasena">
         <div class="row justify-content-center ResPasCard">
-            <div class="col-md-8">
-                <div>
+            
+                
                     <div class="card-header">Restablecer Contraseña</div>
 
                     <div class="card-body">
@@ -65,8 +65,8 @@
                             </div>
                         </form>
                     </div>
-                </div>
-            </div>
+                
+            
         </div>
     </div>
     </div>
