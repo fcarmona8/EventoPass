@@ -9,11 +9,11 @@
                     @if ($session->event && $session->event->main_image_id)
                         <picture class="contenedorImagen">
                             <source media="(max-width: 799px)"
-                                srcset="http://localhost:8080{{ $session->event->optimizedImageSmallUrl() }}">
+                                srcset="{{env('URL_API')}}{{ $session->event->optimizedImageSmallUrl() }}">
                             <source media="(min-width: 800px) and (max-width: 1023px)"
-                                srcset="http://localhost:8080{{ $session->event->optimizedImageMediumUrl() }}">
+                                srcset="{{env('URL_API')}}{{ $session->event->optimizedImageMediumUrl() }}">
                             <img class="imagenSessionList"
-                                src="http://localhost:8080{{ $session->event->optimizedImageLargeUrl() }}"
+                                src="{{env('URL_API')}}{{ $session->event->optimizedImageLargeUrl() }}"
                                 alt="{{ $session->event->name }}" loading="lazy"
                                 onerror="this.onerror=null; this.src='https://picsum.photos/200'">
                         </picture>
@@ -65,11 +65,11 @@
                             @if ($event->main_image_id)
                                 <picture class="contenedorImagen imagenSesiones">
                                     <source media="(max-width: 799px)"
-                                        srcset="http://localhost:8080{{ $event->optimizedImageSmallUrl() }}">
+                                        srcset="{{env('URL_API')}}{{ $event->optimizedImageSmallUrl() }}">
                                     <source media="(min-width: 800px) and (max-width: 1023px)"
-                                        srcset="http://localhost:8080{{ $event->optimizedImageMediumUrl() }}">
+                                        srcset="{{env('URL_API')}}{{ $event->optimizedImageMediumUrl() }}">
                                     <img class="imagenSessionList"
-                                        src="http://localhost:8080{{ $event->optimizedImageLargeUrl() }}"
+                                        src="{{env('URL_API')}}{{ $event->optimizedImageLargeUrl() }}"
                                         alt="{{ $event->name }}" loading="lazy"
                                         onerror="this.onerror=null; this.src='https://picsum.photos/200'">
                                 </picture>

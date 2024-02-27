@@ -20,7 +20,6 @@ class ResetPasswordController extends Controller
         // Verificación del token
         $tokenData = DB::table('password_reset_tokens')
                        ->where('email', $request->email)
-                       ->where('token', $token)
                        ->first();
 
         if (!$tokenData || Carbon::parse($tokenData->created_at)->addMinutes(env('PASSWORD_RESET_EXPIRATION', 60))->isPast()) {

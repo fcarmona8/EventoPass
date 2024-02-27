@@ -29,7 +29,7 @@
                 <p>Fecha: {{ head(explode(' ', $sessio->date_time)) }}</p>
                 <p>Hora: {{ implode(' ', array_slice(explode(' ', $sessio->date_time), 1)) }}</p>            
             </div>
-            <input type="hidden" name="eventId" value="{{ $event->id }}">
+            <input type="hidden" id="eventId" name="eventId" value="{{ $event->id }}">
             <input type="hidden" name="totalPrice" value="{{ $totalPrice }}">
 
             @if ($areTicketsNominal)
@@ -127,6 +127,7 @@
         const countdownElement = document.getElementById('countdown');
         const minutesElement = document.getElementById('minutes');
         const secondsElement = document.getElementById('seconds');
+        const eventId = document.getElementById('eventId').value;
 
         const interval = setInterval(() => {
             const minutes = Math.floor(timer / 60);
