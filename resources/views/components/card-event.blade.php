@@ -1,10 +1,10 @@
 <a class="card-link" href="{{ route('tickets.showevent', ['id' => $event->id]) }}">
     <div class="card">
         <picture class="contenedorImagen">
-            <source media="(max-width: 799px)" srcset="http://localhost:8080{{ $event->optimizedImageSmallUrl() }}">
+            <source media="(max-width: 799px)" srcset="{{env('URL_API')}}{{ $event->optimizedImageSmallUrl() }}">
             <source media="(min-width: 800px) and (max-width: 1023px)"
-                srcset="http://localhost:8080{{ $event->optimizedImageMediumUrl() }}">
-            <img src="http://localhost:8080{{ $event->optimizedImageLargeUrl() }}" alt="{{ $event->name }}" loading="lazy"
+                srcset="{{env('URL_API')}}{{ $event->optimizedImageMediumUrl() }}">
+            <img src="{{env('URL_API')}}{{ $event->optimizedImageLargeUrl() }}" alt="{{ $event->name }}" loading="lazy"
                 onerror="this.onerror=null; this.src='https://picsum.photos/200'">
         </picture>
         <div class="card-content">

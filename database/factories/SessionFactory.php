@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Carbon\Carbon;
 use App\Models\Event;
 use App\Models\Session;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -30,7 +31,7 @@ class SessionFactory extends Factory
 
         $sessionData = [
             'event_id' => Event::inRandomOrder()->first()->id,
-            'date_time' => $dateTimes[$sessionCounter % count($dateTimes)],
+            'date_time' => $this->faker->dateTimeBetween(Carbon::tomorrow(), Carbon::today()->addYear())->format('Y-m-d H:i:s'),
             'max_capacity' => $this->faker->numberBetween(10, 20) 
         ];
 

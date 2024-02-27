@@ -2,9 +2,10 @@
 
 namespace Database\Factories\Test;
 
+use Carbon\Carbon;
 use App\Models\Event;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class EventFactory extends Factory
 {
@@ -25,7 +26,7 @@ class EventFactory extends Factory
             'user_id' => function () {
                 return \App\Models\User::factory()->create()->id;
             },
-            'event_date' => $this->faker->dateTimeBetween('+1 week', '+1 month'),
+            'event_date' => $this->faker->dateTimeBetween(Carbon::tomorrow(), Carbon::today()->addYear())->format('Y-m-d H:i:s'),
             'video_link' => $this->faker->url,
             'hidden' => $this->faker->boolean,
         ];

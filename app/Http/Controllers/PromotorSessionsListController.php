@@ -35,13 +35,12 @@ class PromotorSessionsListController extends Controller
                 });
             $isSpecificEvent = true;
         } else {
-            $events = Event::eventosDisponibles()
+            $events = Event::where('user_id', $user_id)
                 ->with(['sessions' => function($query) {
                     $query
-                    ->where('date_time', '>', now())
-                    ->orderBy('date_time');
+                    ->where('date_time', '>=', now()
+                    ->subDays(30))->orderBy('date_time');
                 }])
-                ->where('user_id', $user_id)
                 ->get()
                 ->map(function ($event) {
                     $event->sessions->map(function ($session) {
@@ -85,6 +84,7 @@ class PromotorSessionsListController extends Controller
             'twitterDescription' => 'Administra les sessions dels teus esdeveniments fàcilment amb EventoPass. Afegeix noves sessions per a oferir més opcions als teus assistents.',
             'twitterImage' => asset('logo/logo.png'),
         ];
+
 
         return view('promotor/promotorSessionsList', compact(
             'sessions',
