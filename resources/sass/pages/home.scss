@@ -52,6 +52,12 @@
 .facebook {
   margin-left: 14px;
 }
+
+.CategoriaVaciaTexto {
+  grid-column: 1 / 3;
+  margin: 0 auto;
+  margin-top: 50px;
+}
   
   @media (min-width: 768px) {
     .events {

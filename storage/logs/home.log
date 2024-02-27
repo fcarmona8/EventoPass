@@ -2375,3 +2375,13 @@ LINE 1: select * from \"events\" inner join \"session\" on \"event\".\"id\" ...
 [2024-02-27 14:48:21] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10208797454833984} 
 [2024-02-27 14:49:23] local.INFO: Inicio de solicitud a HomeController@index  
 [2024-02-27 14:49:24] local.INFO: Fin de solicitud a HomeController@index {"duration":0.10724091529846191} 
+[2024-02-27 15:36:13] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-27 15:36:13] local.INFO: Fin de solicitud a HomeController@index {"duration":0.09973883628845215} 
+[2024-02-27 15:45:29] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-27 15:45:29] local.INFO: Fin de solicitud a HomeController@index {"duration":0.1046290397644043} 
+[2024-02-27 15:46:13] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-27 15:46:13] local.INFO: Fin de solicitud a HomeController@index {"duration":0.12609100341796875} 
+[2024-02-27 16:00:53] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-27 16:00:53] local.INFO: Fin de solicitud a HomeController@index {"duration":0.12143206596374512} 
+[2024-02-27 16:00:57] local.INFO: Inicio de solicitud a HomeController@index  
+[2024-02-27 16:00:57] local.INFO: Fin de solicitud a HomeController@index {"duration":0.12889599800109863} 
