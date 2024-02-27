@@ -285,7 +285,7 @@ Finalment, reiniciem el servei apache2 -> sudo systemctl restart apache2
 == Documentació de Permisos
 Descripció detallada dels permisos necessaris per a components, programes, contenidors, etc.
 
-Hem de donar permisos a la carpeta de logs i framework amb aquestes dues comandes -> chmod -R 775 /var/www/html/"EventoPass"/storage/framework /var/www/html/"EventoPass"/storage/logs
+Hem de donar permisos a la carpeta de logs i framework amb aquestes dues comandes -> chmod -R 777 /var/www/html/"EventoPass"/storage/framework /var/www/html/"EventoPass"/storage/logs
 
 I hem de fer un enllaç simbòlic entre storage/app i public amb -> php artisan storage:link
 
