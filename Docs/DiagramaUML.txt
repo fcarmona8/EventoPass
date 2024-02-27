@@ -1,164 +1,128 @@
 @startuml
 
-class "Category" {
-    # id : bigint
-    # name : varchar
+class "Category" as categories {
+    # id : bigint <<PK>>
+    # name : varchar(255)
     --
     + events() : Event[]
-    + eventsWithLimit(events) : Event[]
 }
 
-class "Comentario" {
-    # id : bigint
-    # nombre : varchar
-    # event_id : bigint <<FK>>
-    # smileyRating : int
-    # puntuacion : int
-    # titulo : varchar
-    # comentario : text
-    --
-    + evento() : Evento
-}
-
-class "Event" {
-    # id : bigint
-    # name : varchar
+class "Event" as events {
+    # id : bigint <<PK>>
+    # name : varchar(255)
     # description : text
+    # main_image : varchar(255)
+    # event_date : date
     # category_id : bigint <<FK>>
     # venue_id : bigint <<FK>>
-    # main_image_id : bigint
-    # event_date : date
     # max_capacity : integer
-    # video_link : varchar
+    # video_link : varchar(255)
     # hidden : boolean
-    # nominal : boolean
-    # user_id : bigint <<FK>>
     --
     + category() : Category
     + venue() : Venue
     + sessions() : Session[]
-    + tickets() : Ticket[]
-    + images() : EventImage[]
-    + comentarios() : Comentario[]
-    + obtenerComentarios() : Comentario[]
     + lowestTicketPrice() : numeric
-    + eventosDisponibles() : Event[]
     + scopeNameEvent(query: Builder, name: string)
-    + scopeUserEvent(query: Builder, user_id: bigint)
-    + scopeCategoryEvent(query: Builder, category: int)
-    + optimizedImageSmallUrl()
-    + optimizedImageMediumUrl()
 }
 
-class "Venue" {
-    # province : varchar
-    # city : varchar
-    # postal_code : varchar
-    # venue_name : varchar
+class "Venue" as venues {
+    # id : bigint <<PK>>
+    # name : varchar(255)
+    # location : text
     # capacity : integer
-    # user_id : bigint <<FK>>
     --
-    + user() : User
-    + events() : Event[]
-    + scopeSearchByVenueId(query: Builder, venueId: bigint)
-}
-
-class "User" {
-    # name : varchar
-    # email : varchar
-    # password : hashed
-    --
-    + role() : Role
-    + venues() : Venue[]
     + events() : Event[]
 }
 
-class "Role" {
-    # id : bigint
-    # name : varchar
-    --
-    + users() : User[]
-}
-
-class "EventImage" {
+class "Session" as sessions {
+    # id : bigint <<PK>>
     # event_id : bigint <<FK>>
-    # image_url : varchar
-    # is_main : boolean
-    # image_id : bigint
-    --
-    + event() : Event
-}
-
-class "Purchase" {
-    # session_id : bigint <<FK>>
-    # total_price : numeric
-    # name : varchar
-    # email : varchar
-    # dni : varchar
-    # phone : varchar
-    # ticketsPDF : varchar
-    --
-    + tickets() : Ticket[]
-    + generarCompra(session_id, total_price, name, email, dni, phone, nTickets, namePDF)
-    + nEntradesAgrupadas()
-    + nEntradesNominal()
-    + nEntrades()
-}
-
-class "Session" {
-    # event_id : bigint <<FK>>
-    # session_code : varchar
-    # date_time : datetime
-    # max_capacity : integer
-    # online_sale_end_time : datetime
-    # ticket_quantity : integer
-    # named_tickets : boolean
-    # closed : boolean
+    # date_time : timestamp
+    # online_sale_end_time : timestamp
     --
     + event() : Event
     + purchases() : Purchase[]
-    + tickets() : Ticket[]
-    + scopeEventSessions(query: Builder, event_id)
-    + scopeSessionEvent(query: Builder, session_id)
 }
 
-class "Ticket" {
-    # purchase_id : bigint <<FK>>
-    # type_id : bigint <<FK>>
+class "Purchase" as purchases {
+    # id : bigint <<PK>>
+    # user_id : bigint <<FK>>
     # session_id : bigint <<FK>>
-    # is_validated : boolean
-    # name : varchar
-    # dni : varchar
-    # telefono : varchar
-    # unicIdTicket : varchar
-    # buyerName : varchar
+    # total_price : numeric(8,2)
     --
-    + purchase() : Purchase
-    + type() : TicketType
+    + user() : User
     + session() : Session
-    + buyTicket(session_id, type_id, purchase_id, name, dni, telefono, idEntrada, buyerName)
-    + restarNTickets(idTicket, cantidad)
+    + tickets() : Ticket[]
 }
 
-class "TicketType" {
-    # name : varchar
-    # price : numeric
+class "User" as users {
+    # id : bigint <<PK>>
+    # name : varchar(255)
+    # email : varchar(255)
+    # email_verified_at : timestamp
+    # password : varchar(255)
+    # remember_token : varchar(100)
+    # role_id : bigint <<FK>>
+    --
+    + purchases() : Purchase[]
+    + addresses() : Address[]
+}
+
+class "TicketType" as ticket_types {
+    # id : bigint <<PK>>
+    # name : varchar(255)
+    # price : numeric(8,2)
     # available_tickets : integer
     --
     + tickets() : Ticket[]
 }
 
-Comentario "0..*" -- "1" Event : "event_id"
-Event "1" -- "0..*" Category : "category_id"
-Event "0..*" -- "1" Venue : "venue_id"
-Venue "0..*" -- "1" User : "user_id"
-User "0..*" -- "1" Role : "role_id"
-Event "1" -- "0..*" EventImage : "event_id"
-Session "1" -- "*" Event : "event_id"
-Purchase "1" -- "*" Session : "session_id"
-Purchase "1" -- "0..*" Ticket : contains
-Session "1" -- "*" Purchase : "session_id"
-Session "1" -- "*" Ticket : "session_id"
-Ticket "0..*" -- "1" TicketType : "type_id"
+class "Ticket" as tickets {
+    # id : bigint <<PK>>
+    # purchase_id : bigint <<FK>>
+    # type_id : bigint <<FK>>
+    --
+    + purchase() : Purchase
+    + type() : TicketType
+}
+
+class "Role" as roles {
+    # id : bigint <<PK>>
+    # name : varchar(255)
+    --
+}
+
+class "Event_Image" as event_images {
+    # id : bigint <<PK>>
+    # event_id : bigint <<FK>>
+    # image_id : varchar(255)
+    # is_main : boolean
+    --
+    + event() : Event
+}
+
+class "Address" as addresses {
+    # id : bigint <<PK>>
+    # province : varchar(255)
+    # city : varchar(255)
+    # postal_code : varchar(255)
+    # venue_name : varchar(255)
+    # capacity : integer
+    # user_id : bigint <<FK>>
+    --
+    + user() : User
+}
+
+events }|--|| categories : "category_id"
+events }|--|| venues : "venue_id"
+sessions }|--|| events : "event_id"
+purchases }|--|| sessions : "session_id"
+purchases }|--|| users : "user_id"
+tickets }|--|| purchases : "purchase_id"
+tickets }|--|| ticket_types : "type_id"
+users }|--|| roles : "role_id"
+event_images }|--|| events : "event_id"
+addresses }|--|| users : "user_id"
 
 @enduml

@@ -27,99 +27,92 @@ El disseny de la base de dades per al portal web es basa en diverses taules inte
 
 image::images/DiagramaE-R.png[Diagrama d'Entitat-Relació,800,600]
 
-
 == Taules de la Base de Dades
-
-=== Taula: Categories
-* `id`: Clau primària, bigint.
-* `name`: Nom de la categoria, varchar.
-
-=== Taula: Events
-* `id`: Clau primària, bigint.
-* `name`: Nom de l'esdeveniment, varchar.
-* `description`: Descripció de l'esdeveniment, text.
-* `category_id`: Clau forana a Categories, bigint.
-* `venue_id`: Clau forana a Venues, bigint.
-* `main_image_id`: Clau forana a EventImages, bigint.
-* `event_date`: Data de l'esdeveniment, timestamp.
-* `max_capacity``: Capacitat màxima, integer.
-* `video_link`: Enllaç a vídeo promocional, varchar.
-* `hidden`: Indica si l'esdeveniment està ocult, boolean.
-* `nominal`: Indica si l'esdeveniment és nominal, boolean.
-* `user_id`: Clau forana a Users, bigint.
 
 === Taula: Venues
 * `id`: Clau primària, bigint.
-* `province`: Província, varchar.
-* `city`: Ciutat, varchar.
-* `postal_code`: Codi postal, varchar.
-* `venue_name`: Nom del recinte, varchar.
-* `capacity`: Capacitat, integer.
-* `user_id`: Clau forana a Users, bigint.
+* `name`: Nom del recinte, character varying(255).
+* `location`: Ubicació del recinte, text.
+* `capacity`: Capacitat, integer, nullable.
+* `created_at`: Data de creació, timestamp.
+* `updated_at`: Data d'actualització, timestamp.
 
 === Taula: Users
-* `id`: Clau primària, bigint.
-* `name`: Nom de l'usuari, varchar.
-* `email`: Email de l'usuari, varchar.
-* `email_verified_at`: Data de verificació de l'email, timestamp.
-* `password`: Contrasenya, varchar.
-* `remember_token`: Token de recordatori, varchar.
-* `role_id`: Clau forana a Roles, bigint.
+* `id`: Clau primària.
+* `name`: Nom de l'usuari.
+* `email`: Correu electrònic, únic.
+* `email_verified_at`: Data de verificació del correu, nullable.
+* `password`: Contrasenya.
+* `remember_token`: Token de recordatori.
+* `created_at`: Data de creació, timestamp.
+* `updated_at`: Data d'actualització, timestamp.
+* `role_id`: Clau forana a `roles`, bigint, nullable.
 
-=== Taula: Roles
+=== Taula: Categories
 * `id`: Clau primària, bigint.
-* `name`: Nom del rol, varchar.
+* `name`: Nom de la categoria, character varying(255).
+* `created_at`: Data de creació, timestamp.
+* `updated_at`: Data d'actualització, timestamp.
 
-=== Taula: EventImages
+=== Taula: Events
 * `id`: Clau primària, bigint.
-* `event_id`: Clau forana a Events, bigint.
-* `image_url`: URL de la imatge, varchar.
-* `is_main`: Indica si és la imatge principal, boolean.
+* `name`: Nom de l'esdeveniment, character varying(255).
+* `description`: Descripció de l'esdeveniment, text.
+* `main_image`: Imatge principal, character varying(255).
+* `category_id`: Clau forana a `categories`, bigint.
+* `venue_id`: Clau forana a `venues`, bigint.
+* `event_date`: Data de l'esdeveniment, timestamp, nullable.
+* `max_capacity`: Aforament màxim, integer, nullable.
+* `video_link`: Enllaç a vídeo promocional, character varying(255), nullable.
+* `hidden`: Esdeveniment ocult, boolean, default false.
+* `created_at`: Data de creació, timestamp.
+* `updated_at`: Data d'actualització, timestamp.
 
 === Taula: Sessions
 * `id`: Clau primària, bigint.
-* `event_id`: Clau forana a Events, bigint.
+* `event_id`: Clau forana a `events`, bigint.
 * `date_time`: Data i hora de la sessió, timestamp.
-* `online_sale_end_time`: Data i hora de fi de venda en línia, timestamp.
-* `max_capacity`: Capacitat màxima, integer.
-* `named_tickets`: Indica si els tiquets són nominals, boolean.
-* `closed`: Indica si la sessió està tancada, boolean.
+* `online_sale_end_time`: Hora de finalització de la venda en línia, timestamp, nullable.
+* `created_at`: Data de creació, timestamp.
+* `updated_at`: Data d'actualització, timestamp.
 
-=== Taula: TicketTypes
+=== Taula: Ticket_Types
 * `id`: Clau primària, bigint.
-* `name`: Nom del tipus de tiquet, varchar.
+* `name`: Nom del tipus de tiquet, character varying(255).
 * `price`: Preu, numeric(8,2).
-* `available_tickets`: Entrades disponibles, integer.
+* `available_tickets`: Entrades disponibles, integer, nullable.
+* `created_at`: Data de creació, timestamp.
+* `updated_at`: Data d'actualització, timestamp.
 
 === Taula: Purchases
 * `id`: Clau primària, bigint.
-* `user_id`: Clau forana a Users, bigint.
-* `session_id`: Clau forana a Sessions, bigint.
+* `user_id`: Clau forana a `users`, bigint.
+* `session_id`: Clau forana a `sessions`, bigint.
 * `total_price`: Preu total, numeric(8,2).
+* `created_at`: Data de creació, timestamp.
+* `updated_at`: Data d'actualització, timestamp.
 
 === Taula: Tickets
 * `id`: Clau primària, bigint.
-* `purchase_id`: Clau forana a Purchases, bigint.
-* `type_id`: Clau forana a TicketTypes, bigint.
-* `session_id`: Clau forana a Sessions, bigint.
-* `is_validated`: Indica si el tiquet està validat, boolean.
-* `name`: Nom de l'assistent, varchar.
-* `dni`: DNI de l'assistent, varchar.
-* `telefono`: Telèfon de l'assistent, varchar.
-* `unicIdTicket`: ID únic del tiquet, varchar.
-* `buyerName`: Nom del comprador, varchar.
+* `purchase_id`: Clau forana a `purchases`, bigint.
+* `type_id`: Clau forana a `ticket_types`, bigint.
+* `session_id`: Clau forana a `sessions`, bigint.
+* `created_at`: Data de creació, timestamp.
+* `updated_at`: Data d'actualització, timestamp.
 
-=== Taula: Comentaris
+=== Taula: Roles
+* `id`: Clau primària.
+* `name`: Nom, únic.
+* `created_at`: Data de creació, timestamp.
+* `updated_at`: Data d'actualització, timestamp.
+
+=== Taula: Event_Images
 * `id`: Clau primària, bigint.
-* `nombre`: Nom de l'usuari que realitza el comentari, varchar.
-* `event_id`: Clau forana que referència a Events, bigint.
-* `smileyRating`: Qualificació del comentari en forma d'emoticones, int, nullable.
-* `puntuacion`: Puntuació numèrica del comentari, int, nullable.
-* `titulo`: Títol del comentari, varchar.
-* `comentario`: Text del comentari, text.
-* `created_at`: Data i hora en què es va crear el comentari, timestamp.
-* `updated_at`: Data i hora en què es va actualitzar el comentari, timestamp.
-
+* `event_id`: Clau forana a `events`, bigint.
+* `image_id`: URL de la imatge.
+* `is_main`: Imatge principal, boolean, default false.
+* `created_at`: Data de creació, timestamp.
+* `updated_at`: Data d'actualització, timestamp.
 
 image::images/DiagramaUML.png[Diagrama UML,1000,800]
 
@@ -185,8 +178,6 @@ Noteu que la mida dels botons i trucades d'acció s'ha incrementat lleugerament 
 === Estàndards de Disseny
 
 Els estàndards de disseny inclouen les especificacions per a marges, espaiat, alineació i altres elements de disseny que contribueixen a la coherència visual i funcional de l'aplicació. S'espera que tots els dissenyadors i desenvolupadors segueixin aquests estàndards per assegurar una experiència d'usuari unificada.
-
-== Manual d'instalació local
 
 
 == Manual d'Instal·lació/Distribució

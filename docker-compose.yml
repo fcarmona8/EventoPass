@@ -11,13 +11,12 @@ services:
     ports:
       - "5555:5432"
 
-  migrador:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    depends_on:
-      - mi_postgres
-    volumes:
-      - ./EventoPass:/app
-    working_dir: /app
-    command: sh -c "php artisan migrate"
+  postgres_api:
+    image: postgres:latest
+    container_name: postgres_api
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: apibd
+    ports:
+      - "5555:5432"
