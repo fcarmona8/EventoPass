@@ -41,7 +41,7 @@
                         @for ($i=1; $i <= $quantity; $i++)
                             
 
-                <div class="attendee-details">
+                <div class="buyer-details">
                     <h4>Detalles del Asistente {{ $nEntrada }}</h4>
                     <p>Tipo de entrada: {{ $ticket->name }}</p>
                     <p>Precio individual: €{{ $ticket->price }}</p>
@@ -94,7 +94,7 @@
                 </div>
             @endif
             <p class="ticketCompraLinea">Precio Total: <span class="importeCompra">{{ $totalPrice }} €</span></p>
-            </div>
+            
             
                 <div class="buyer-details">
                     <h4>Datos del Comprador</h4>
@@ -111,7 +111,7 @@
 
                     <button type="submit" id="continue-button" class="btn btn-primary boton-confirmacion-compra">Continuar</button>
                 </div>
-            
+            </div>
 
             
 
