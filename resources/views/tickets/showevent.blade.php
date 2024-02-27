@@ -2,40 +2,52 @@
 
 @section('content')
     <div class="containerShowEvent">
+        <div class="slideshow-container">
 
-        <!-- Carrusel de fotografías -->
-        <div class="slider-frame">
-            <ul>
-                <!-- Verifica si hay una imagen principal -->
-                @if ($event->main_image_id)
-                    <li>
-                        <picture>
-                            <source media="(max-width: 799px)"
+            <!-- Full-width images with number and caption text -->
+            @if ($event->main_image_id)
+                <div class="mySlides fade">
+                    <picture>
+                        <source media="(max-width: 799px)"
                                 srcset="http://localhost:8080{{ $event->optimizedImageSmallUrl() }}">
-                            <source media="(min-width: 800px) and (max-width: 1023px)"
+                        <source media="(min-width: 800px) and (max-width: 1023px)"
                                 srcset="http://localhost:8080{{ $event->optimizedImageMediumUrl() }}">
-                            <img src="http://localhost:8080{{ $event->optimizedImageLargeUrl() }}" alt="{{ $event->name }}"
-                                loading="lazy" onerror="this.onerror=null; this.src='https://picsum.photos/200'">
-                        </picture>
-                    </li>
-                @endif
+                        <img src="http://localhost:8080{{ $event->optimizedImageLargeUrl() }}" alt="{{ $event->name }}"
+                             loading="lazy" onerror="this.onerror=null; this.src='https://picsum.photos/200'">
+                    </picture>
+                </div>
+            @endif
 
-                @foreach ($event->images as $index => $image)
-                    <li>
-                        <picture>
-                            <source media="(max-width: 799px)"
+            @foreach ($event->images as $index => $image)
+                <div class="mySlides fade">
+                    <picture>
+                        <source media="(max-width: 799px)"
                                 srcset="http://localhost:8080/api/V1/optimized-images/{{ $image->image_id }}/small">
-                            <source media="(min-width: 800px) and (max-width: 1023px)"
+                        <source media="(min-width: 800px) and (max-width: 1023px)"
                                 srcset="http://localhost:8080/api/V1/optimized-images/{{ $image->image_id }}/medium">
-                            <img src="http://localhost:8080/api/V1/optimized-images/{{ $image->image_id }}/large"
-                                alt="{{ $event->name }}" loading="lazy"
-                                onerror="this.onerror=null; this.src='https://picsum.photos/200'">
-                        </picture>
-                    </li>
-                @endforeach
-            </ul>
-        </div>
+                        <img src="http://localhost:8080/api/V1/optimized-images/{{ $image->image_id }}/large"
+                             alt="{{ $event->name }}" loading="lazy"
+                             onerror="this.onerror=null; this.src='https://picsum.photos/200'">
+                    </picture>
+                </div>
+            @endforeach
 
+            <!-- Next and previous buttons -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <br>
+
+        <!-- The dots/circles -->
+        <div class="puntosImagenes">
+            @if ($event->main_image_id)
+                <span class="dot" onclick="currentSlide(1)"></span>
+            @endif
+
+            @foreach ($event->images as $index => $image)
+                <span class="dot" onclick="currentSlide({{ $index + 2 }})"></span>
+            @endforeach
+        </div>
         <h1>{{ $event->name }}</h1>
         <!-- Descripción del evento -->
         <div class="divDescEvent">
@@ -122,6 +134,17 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const calendarEl = document.getElementById('calendar');
+            const iconosRedesSociales = document.querySelectorAll('.fab');
+            const bodyElement = document.body;
+
+
+            if (window.innerWidth < 768) {
+                bodyElement.style.backgroundColor = '#fff';
+                iconosRedesSociales.forEach(icono => {
+                    icono.style.color = '#000';
+                });
+            }
+
             if (calendarEl) {
                 const calendar = new FullCalendar.Calendar(calendarEl, {
                     initialView: 'dayGridMonth',
@@ -174,6 +197,39 @@
                 var marker = L.marker([{{ $coordinates->lat }}, {{ $coordinates->lon }}]).addTo(map);
             @endif
         });
+
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = slides.length
+            }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" actived", "");
+            }
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " actived";
+        }
 
         let inputEntradas;
 

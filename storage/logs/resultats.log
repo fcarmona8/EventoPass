@@ -7,3 +7,9 @@
 [2024-02-21 17:24:37] local.INFO: Inicio de solicitud a ResultatsController@index  
 [2024-02-21 17:24:37] local.INFO: Procesamiento parcial en ResultatsController@index {"duration":0.02934408187866211} 
 [2024-02-21 17:24:37] local.INFO: Fin de solicitud a ResultatsController@index {"duration":0.05403900146484375} 
+[2024-02-26 17:15:04] local.INFO: Inicio de solicitud a ResultatsController@index  
+[2024-02-26 17:15:04] local.INFO: Procesamiento parcial en ResultatsController@index {"duration":0.01287388801574707} 
+[2024-02-26 17:15:04] local.INFO: Fin de solicitud a ResultatsController@index {"duration":0.10598897933959961} 
+[2024-02-26 17:15:20] local.INFO: Inicio de solicitud a ResultatsController@index  
+[2024-02-26 17:15:20] local.INFO: Procesamiento parcial en ResultatsController@index {"duration":0.011414051055908203} 
+[2024-02-26 17:15:20] local.INFO: Fin de solicitud a ResultatsController@index {"duration":0.08404707908630371} 
