@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class TicketValidateController extends Controller
 {
+    /**
+     * Maneja el proceso de login verificando el código de sesión.
+     * Si la sesión con el código proporcionado está cerrada, permite el login.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function login(Request $request)
     {
         $request->validate(['session_code' => 'required|string']);
@@ -29,6 +36,15 @@ class TicketValidateController extends Controller
         ], 200);
     }
 
+    /**
+     * Obtiene la información de un ticket basado en el ID de sesión y un hash único.
+     * Valida si el ticket aún no ha sido validado y, de ser así, lo marca como validado.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $sessionId Identificador de la sesión.
+     * @param  string  $hash Hash único del ticket.
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getTicketInfo(Request $request, $sessionId, $hash)
     {
         $loggedSessionCode = $request->header('Session-Code');

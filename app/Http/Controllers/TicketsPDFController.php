@@ -12,6 +12,12 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 class TicketsPDFController extends Controller
 {
 
+    /**
+     * Genera un archivo PDF de tickets estándar y lo almacena.
+     * Utiliza una vista específica para el diseño de los tickets y los datos de la sesión actual.
+     *
+     * @return string
+     */
     public function generatePdf(){
 
         $pdf = PDF::loadView('tickets.ticketsPDF.ticketsPDF');
@@ -25,6 +31,13 @@ class TicketsPDFController extends Controller
         return 'PDF guardado en la ruta: ' . $storagePath;
     }
 
+    /**
+     * Genera un archivo PDF de tickets nominales con nombres especificados para cada entrada,
+     * y lo almacena en el sistema de archivos. Similar a `generatePdf` pero utiliza una vista distinta
+     * para los tickets nominales.
+     *
+     * @return string
+     */
     public function generatePdfNominal()
     {
         $pdf = PDF::loadView('tickets.ticketsPDF.ticketsPdfNominals');
@@ -43,6 +56,13 @@ class TicketsPDFController extends Controller
         return 'PDF guardado en la ruta: ' . $storagePath;
     }
 
+    /**
+     * Permite la descarga de un archivo PDF de tickets previamente generado.
+     * Busca el archivo y lo devuelve como una respuesta de descarga.
+     *
+     * @param  string $nombrePdf
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
     public function descargarPDF($nombrePdf){
 
         $filePath = public_path("storage/pdfs/{$nombrePdf}"); 

@@ -10,7 +10,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 
-class PromotorHomeController extends Controller {
+class PromotorHomeController extends Controller 
+{
+    /**
+     * Muestra la página principal del promotor con la lista de eventos que ha creado y las direcciones existentes.
+     * Recopila los eventos recientes del promotor y prepara los metadatos para la vista.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View
+     */
     public function index(Request $request) {
         Log::info('Entrando en método index de PromotorHomeController.');
 
@@ -32,7 +40,6 @@ class PromotorHomeController extends Controller {
                 ->orderBy('id')->paginate(env('PAGINATION_LIMIT_PROMOTOR', 10));
         Log::info('Eventos recuperados: ', ['events' => $events]);
 
-        // Dades per a les metadades dinàmiques
         $metaData = [
             'title' => 'Gestiona els Teus Esdeveniments - EventoPass | Llistat d\'Esdeveniments',
             'description' => 'Visualitza i edita els esdeveniments que has creat a EventoPass. Accedeix a les opcions d\'edició per a actualitzar la informació dels teus esdeveniments.',
@@ -52,10 +59,17 @@ class PromotorHomeController extends Controller {
         return view('promotor/promotorhome', compact('events', 'existingAddresses', 'metaData'));
     }
 
+     /**
+     * Maneja la solicitud de edición de un evento específico por parte del promotor.
+     * Valida los datos del formulario de edición del evento, actualiza la información del evento en la base de datos
+     * y gestiona la carga de una nueva imagen principal si se ha proporcionado una.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function edit(Request $request) {
         Log::info('Entrando en método edit de PromotorHomeController.', ['request' => $request->all()]);
-    
-        // Validación de los datos del formulario
+
         $validatedData = $request->validate([
             'eventId' => 'required',
             'eventName' => 'required|string|max:255',
@@ -85,11 +99,9 @@ class PromotorHomeController extends Controller {
             return response()->json(['error' => 'Venue no encontrado.'], 404);
         }
 
-        // Crear directorio base para el evento
         $eventDirectory = 'event_' . $event->id;
         Storage::disk('public')->makeDirectory($eventDirectory);
 
-        // Guardar imagen principal en subcarpeta 'main_image'
         if ($request->hasFile('eventPhoto')) {
             $image = $request->file('eventPhoto');
             $imagePath = $image->storeAs($eventDirectory . '/main_image', time().'_'.$image->getClientOriginalName(), 'public');
@@ -108,7 +120,6 @@ class PromotorHomeController extends Controller {
         try {
             $event->save();
             Log::info('Evento guardado exitosamente.');
-            // Agregar mensaje flash a la sesión
             Session::flash('success_message', 'Event: ' . $eventName . ' editat amb èxit');
             return response()->json(['event' => $event]);
         } catch (\Exception $e) {

@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Auth;
 class PromotorSessionsListController extends Controller
 {
 
+    /**
+     * Muestra una lista de sesiones para un evento específico o todos los eventos de un promotor.
+     * Permite al promotor ver el detalle de las sesiones, incluyendo el número de entradas vendidas.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View
+     */
     public function index(Request $request)
     {
         $event_id = $request->input('id');
@@ -68,7 +75,6 @@ class PromotorSessionsListController extends Controller
 
         }
 
-        // Dades per a les metadades dinàmiques
         $metaData = [
             'title' => 'Gestiona Sessions d\'Esdeveniments - EventoPass | Veure i Crear Sessions',
             'description' => 'Accedeix al detall de sessions per als teus esdeveniments a EventoPass. Crea noves sessions per a ampliar l\'oferta d\'esdeveniments als teus assistents.',
@@ -98,9 +104,15 @@ class PromotorSessionsListController extends Controller
         );
     }
 
+    /**
+     * Maneja la creación de una nueva sesión para un evento existente.
+     * Valida los datos de entrada y crea la sesión junto con los tipos de entradas especificados.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function storeSession(Request $request)
     {
-
         try {
 
             $event_id = $request->input('id');
@@ -189,6 +201,12 @@ class PromotorSessionsListController extends Controller
         }
     }
 
+    /**
+     * Genera y descarga un archivo CSV con la lista de asistentes a una sesión específica.
+     * Incluye detalles como el nombre del comprador, el nombre del asistente, el código de la entrada y el tipo de entrada.
+     *
+     * @param  int $id
+     */
     public function CSVdownload($id)
     {
         Log::info('Entrando en método CSVdownload de PromotorSessionListController.', ['id' => $id]);
@@ -217,16 +235,20 @@ class PromotorSessionsListController extends Controller
                         $typeTicket
                     ]);
                 }
-
-
-                
             }
-
         }
 
         $csv->output('sesion' . $session->id . '.csv');
     }
 
+    /**
+     * Permite editar los detalles de una sesión existente, como abrir o cerrar la sesión a nuevas ventas de entradas.
+     * Actualiza el estado de la sesión y, si se cierra, genera un código de acceso para la sesión.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id 
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function editSession(Request $request, $id)
     {
         Log::info('Entrando en método editSession de PromotorSessionListController.', ['id' => $id]);
@@ -250,6 +272,12 @@ class PromotorSessionsListController extends Controller
         }
     }
 
+    /**
+     * Genera un código de acceso único para una sesión cerrada.
+     * Utiliza una combinación aleatoria de números y letras mayúsculas.
+     *
+     * @return string
+     */
     private function generateAccessCode()
     {
         $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';

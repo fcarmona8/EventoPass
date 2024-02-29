@@ -15,6 +15,14 @@ use Illuminate\Support\Facades\Session as sessionLaravel;
 
 class PaymentController extends Controller
 {
+    /**
+     * Inicia el proceso de pago mediante la pasarela de pago de Redsys.
+     * Valida los datos de la tarjeta de crédito proporcionados, prepara y envía una solicitud a Redsys
+     * con los parámetros de pago modificados y gestiona la respuesta de Redsys.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View
+     */
     public function initiatePayment(Request $request)
     {
 
@@ -24,31 +32,24 @@ class PaymentController extends Controller
             'CVV' => 'required|numeric'
         ]);
 
-        // Transformación de la fecha de caducidad de MM/AA a AAMM
         $expirationParts = explode('/', $validated['expirationDate']);
-        $expirationDateAAMM = $expirationParts[1] . $expirationParts[0]; // Cambio de MM/AA a AAMM
+        $expirationDateAAMM = $expirationParts[1] . $expirationParts[0];
 
-        // Instancia de RedsysAPI para manejar los parámetros
         $redsysAPI = new RedsysAPI;
 
-        // Decodificar los parámetros recibidos para obtener un array asociativo
         $decodedParams = json_decode(base64_decode($request->input('Ds_MerchantParameters')), true);
 
-        // Añadir/Modificar los datos de la tarjeta en el array de parámetros
         $decodedParams['DS_MERCHANT_PAN'] = $validated['creditCard'];
         $redsysAPI->setParameter("DS_MERCHANT_EXPIRYDATE", $expirationDateAAMM);
         $decodedParams['DS_MERCHANT_CVV2'] = $validated['CVV'];
 
-        // Volver a codificar los parámetros modificados
         foreach ($decodedParams as $key => $value) {
             $redsysAPI->setParameter($key, $value);
         }
         $modifiedParams = $redsysAPI->createMerchantParameters();
 
-        // Generar una nueva firma con los parámetros modificados
         $signature = $redsysAPI->createMerchantSignature(env('REDSYS_SECRET_KEY'));
 
-        // Preparar la nueva solicitud con los parámetros y firma modificados
         $requestData = [
             'Ds_SignatureVersion' => 'HMAC_SHA256_V1',
             'Ds_MerchantParameters' => $modifiedParams,
@@ -57,14 +58,11 @@ class PaymentController extends Controller
 
         $redsysUrl = env('REDSYS_URL', 'https://sis-t.redsys.es:25443/sis/rest/trataPeticionREST');
 
-        // Enviar la solicitud modificada a Redsys
         $response = Http::withoutVerifying()->post($redsysUrl, $requestData);
 
-        // Verificar la respuesta de Redsys
         if ($response->successful()) {
             $responseData = $response->json();
 
-            // Decodificar y verificar los parámetros de salida de Redsys
             $decodedResponseParams = json_decode(base64_decode($responseData['Ds_MerchantParameters']), true);
 
             if (isset($decodedResponseParams['Ds_Response']) && (int) $decodedResponseParams['Ds_Response'] <= 99 || $decodedResponseParams['Ds_Response'] === "0173") {
@@ -88,14 +86,11 @@ class PaymentController extends Controller
 
                 MailController::enviarEntrades($session['buyerEmail'], $session['buyerDNI'] . $session['sessionId'], $session['eventName'], $session['eventId']);
 
-                // Operación autorizada
                 return view('payment.response');
             } else {
-                // Operación rechazada o fallida
                 return view('payment.errorResponse', ['error' => 'Transacción rechazada o fallida.']);
             }
         } else {
-            // Error al conectar con Redsys
             return view('payment.errorResponse', ['error' => 'Error al conectar con el sistema de pago.']);
         }
     }

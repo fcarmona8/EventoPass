@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Log;
 
 class ShowEventController extends Controller
 {
+    /**
+     * Obtiene las coordenadas geográficas de la ubicación de un evento a partir de su dirección.
+     * Utiliza el servicio de geocodificación de OpenStreetMap para convertir una dirección en coordenadas latitud/longitud.
+     *
+     * @param  object $venue
+     * @return object|null
+     */
     function getCoordinates($venue)
     {
         $start = microtime(true);
@@ -49,6 +56,13 @@ class ShowEventController extends Controller
         }
     }
 
+    /**
+     * Muestra los detalles de un evento específico, incluyendo información sobre el evento, sesiones disponibles,
+     * tipos de entradas y comentarios. También calcula y muestra las coordenadas del lugar del evento.
+     *
+     * @param  int $id
+     * @return \Illuminate\View\View
+     */
     public function show($id)
     {
         $start = microtime(true);
@@ -98,7 +112,6 @@ class ShowEventController extends Controller
         $duration = microtime(true) - $start;
         Log::channel('showevent')->info("Finalizando show", ['duration' => $duration]);
 
-        // Dades per a les metadades dinàmiques
         $metaData = [
             'title' => $event->name . ' - Detalls de l\'Esdeveniment | EventoPass',
             'description' => 'Descobreix tot sobre ' . $event->name . '. Informació detallada, ubicació, dates de sessions i opinions. No et perdis aquest esdeveniment únic!',

@@ -19,6 +19,13 @@ use Illuminate\Support\Facades\Session as sessionLaravel;
 
 class ConfirmPurchaseController extends Controller
 {
+    /**
+     * Muestra la página de confirmación de compra con los detalles del evento, sesión, tipos de tickets y precios.
+     * Valida la existencia de la sesión y el evento, y prepara los datos para la vista.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Illuminate\Http\RedirectResponse
+     */
     public function showConfirmPurchase(Request $request)
     {
         $eventId = $request->input('eventId');
@@ -47,9 +54,15 @@ class ConfirmPurchaseController extends Controller
         return view('tickets.purchaseconfirm', compact('eventId', 'event', 'totalPrice', 'ticketTypes', 'ticketData', 'areTicketsNominal', 'sessio'));
     }
 
+    /**
+     * Inicia el proceso de pago, ya sea redirigiendo a la pasarela de pagos o completando la compra sin pago.
+     * Determina si se debe saltar la pasarela de pagos basado en la configuración o requisitos.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Illuminate\Http\RedirectResponse
+     */
     public function createPayment(Request $request)
     {
-        // Esta variable controla si se debe saltar la pasarela de pagos, ya sea por configuración o por lógica de negocio.
         $skipPaymentGateway = env('SKIP_PAYMENT_GATEWAY', false);
 
         $totalPrice = $request->input('totalPrice');
@@ -62,10 +75,8 @@ class ConfirmPurchaseController extends Controller
         if ($skipPaymentGateway || $totalPrice == 0) {
             return $this->completePurchaseWithoutPayment($request);
         } else {
-            // Convertir el precio a la forma que Redsys espera (sin decimales, como entero)
             $amount = (int) ($totalPrice * 100);
 
-            // Datos de la transacción
             $order = time();
             $merchantCode = '999008881';
             $currency = '978';
@@ -74,10 +85,8 @@ class ConfirmPurchaseController extends Controller
             $merchantURL = '';
             $authCode = '123456';
 
-            // Cargar la clase RedsysAPI
             $redsys = new \RedsysAPI;
 
-            // Establecer parámetros
             $redsys->setParameter("DS_MERCHANT_AMOUNT", $amount);
             $redsys->setParameter("DS_MERCHANT_ORDER", $order);
             $redsys->setParameter("DS_MERCHANT_MERCHANTCODE", $merchantCode);
@@ -89,15 +98,21 @@ class ConfirmPurchaseController extends Controller
             $redsys->setParameter("DS_REDSYS_ENVIROMENT", "true");
             $redsys->setParameter("DS_MERCHANT_AUTHORISATIONCODE", $authCode);
 
-            // Generar parámetros y firma
             $params = $redsys->createMerchantParameters();
             $signature = $redsys->createMerchantSignature('sq7HjrUOBfKmC576ILgskD5srU870gJ7');
 
-            // Pasar los datos a la vista
             return view('payment.paymentform', compact('params', 'signature'));
         }
     }
 
+    /**
+     * Completa la compra sin pasar por la pasarela de pagos.
+     * Utilizado cuando el total de la compra es 0 o la pasarela de pagos está deshabilitada.
+     * Genera los PDF de los tickets y guarda la compra en la base de datos.
+     *
+     * @param  mixed $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     protected function completePurchaseWithoutPayment($request)
     {
         $session = sessionLaravel::get('datosCompra');
@@ -116,13 +131,18 @@ class ConfirmPurchaseController extends Controller
 
         MailController::enviarEntrades($session['buyerEmail'], $session['buyerDNI'] . $session['sessionId'], $session['eventName'], $session['eventId']);
 
-        // Operación autorizada, redirigir al usuario a la página de éxito
         return redirect()->route('payment.response');
     }
 
+    /**
+     * Genera una cadena de texto con la ubicación del evento formateada.
+     * Utiliza el ID del evento para buscar la ubicación y formatearla.
+     *
+     * @param  int $eventId
+     * @return string
+     */
     public function stringUbicacion($eventId)
     {
-
         $eventVenueid = Event::find($eventId);
 
         $eventubi = Venue::searchByVenueId($eventVenueid->venue_id)->value('venue_name');
