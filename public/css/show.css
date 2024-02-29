@@ -226,8 +226,10 @@
 
 #sessionList li {
   cursor: pointer;
+  display: flex;
   padding: 5px;
   list-style: none;
+  justify-content: space-between;
 }
 
 #sessionList li:hover {

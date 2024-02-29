@@ -1,0 +1,4 @@
+[2024-02-29 15:12:45] local.INFO: Inicio del proceso de cierre de sesión {"user_id":1} 
+[2024-02-29 15:12:45] local.INFO: Sesión cerrada con éxito {"user_id":null,"duration":0.01896500587463379} 
+[2024-02-29 15:13:14] local.INFO: Inicio del proceso de cierre de sesión {"user_id":1} 
+[2024-02-29 15:13:14] local.INFO: Sesión cerrada con éxito {"user_id":null,"duration":0.016386985778808594} 
