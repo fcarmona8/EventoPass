@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\Log;
 
 class ResultatsController extends Controller
 {
+    /**
+     * Muestra los resultados de búsqueda de eventos basados en filtros aplicados por el usuario.
+     * Incluye la búsqueda por nombre de evento, ciudad, recinto y categoría. Los eventos se presentan
+     * ordenados por fecha y se paginan según la configuración.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View
+     */
     public function index(Request $request)
     {
         $start = microtime(true);
@@ -78,10 +86,8 @@ class ResultatsController extends Controller
             $eventId = $request->input('eventId');
             $event = Event::find($eventId);
 
-            // Inicializamos $lowestPrice
             $lowestPrice = null;
 
-            // Verificamos que $event no sea null antes de llamar al método
             if ($event !== null) {
                 $lowestPrice = $event->lowestTicketPrice();
             }
@@ -89,7 +95,6 @@ class ResultatsController extends Controller
             $endDuration = microtime(true) - $start;
             Log::channel('resultats')->info('Fin de solicitud a ResultatsController@index', ['duration' => $endDuration]);
 
-            // Dades per a les metadades dinàmiques
             $metaData = [
                 'title' => 'Resultats de Cerca - EventoPass | Troba els Millors Esdeveniments',
                 'description' => 'Descobreix esdeveniments basats en la teva cerca. Explora una àmplia varietat d\'esdeveniments i troba el que més s\'ajusta als teus interessos.',

@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
+    /**
+    * Maneja la solicitud GET para la página de inicio de la aplicación.
+    * Recupera y muestra una lista de eventos disponibles y categorías para filtrar esos eventos.
+    *
+    * @param  \Illuminate\Http\Request $request
+    * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+    */
     public function index(Request $request)
     {
         $start = microtime(true);
@@ -37,7 +44,6 @@ class HomeController extends Controller
             $duration = microtime(true) - $start;
             Log::channel('home')->info('Fin de solicitud a HomeController@index', ['duration' => $duration]);
 
-            // Dades per a les metadades dinàmiques
             $metaData = [
                 'title' => 'Pàgina d\'Inici - EventoPass | Descobreix els Millors Esdeveniments',
                 'description' => 'Explora i descobreix els esdeveniments més emocionants a prop teu. Cerca per nom, recinte o ciutat. Troba esdeveniments per a totes les categories.',
@@ -62,17 +68,5 @@ class HomeController extends Controller
             ]);
 
         }
-
-
     }
 }
-
-
-
-
-
-
-
-
-
-

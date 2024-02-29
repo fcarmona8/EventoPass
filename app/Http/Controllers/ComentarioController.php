@@ -8,6 +8,16 @@ use Illuminate\Support\Facades\Log;
 
 class ComentarioController extends Controller
 {
+    /**
+     * Muestra la página para enviar un comentario, validando el token generado para el evento.
+     * El token asegura que el comentario se asocie correctamente con la compra y el evento específicos.
+     * Si el token no es válido, redirecciona al usuario a la página de inicio.
+     *
+     * @param  string $token
+     * @param  int $compraId
+     * @param  int $eventoId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Illuminate\Http\RedirectResponse
+     */
     public function index($token, $compraId, $eventoId) {
 
         $tokenData = $compraId . '_' . $eventoId;
@@ -16,7 +26,6 @@ class ComentarioController extends Controller
 
         if ($tokenGenerado === $token) {
 
-            // Dades per a les metadades dinàmiques
             $metaData = [
                 'title' => 'Enviar un Comentari - EventoPass | Comparteix la Teva Opinió',
                 'description' => 'Deixa un comentari sobre la teva experiència en l\'esdeveniment. La teva opinió és important per a nosaltres i ajuda a millorar els nostres serveis.',
@@ -40,6 +49,14 @@ class ComentarioController extends Controller
         
     }
 
+    /**
+     * Guarda un nuevo comentario enviado por el usuario.
+     * Valida los datos del formulario y crea un nuevo registro de comentario en la base de datos.
+     * Registra la acción en el log del sistema y redirecciona al usuario con un mensaje de éxito o error.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $request->validate([

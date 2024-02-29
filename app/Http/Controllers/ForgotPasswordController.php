@@ -8,12 +8,24 @@ use Illuminate\Support\Facades\Log;
 
 class ForgotPasswordController extends Controller
 {
+    /**
+     * Muestra el formulario para solicitar el enlace de restablecimiento de contraseña.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showLinkRequestForm()
     {
         Log::channel('forgot_password')->info('Accediendo a ForgotPasswordController@showLinkRequestForm');
         return view('auth.passwords.email');
     }
 
+    /**
+     * Maneja la solicitud para enviar un enlace de restablecimiento de contraseña al email proporcionado.
+     * Valida el email e intenta enviar el enlace.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function sendResetLinkEmail(Request $request)
     {
         $start = microtime(true);

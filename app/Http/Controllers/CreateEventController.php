@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\Http;
 
 class CreateEventController extends Controller
 {
+    /**
+     * Muestra el formulario para crear un nuevo evento.
+     * Recupera las categorías disponibles y las direcciones existentes del usuario autenticado para mostrarlas en el formulario.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         $categories = Category::pluck('name', 'id');
@@ -23,7 +29,6 @@ class CreateEventController extends Controller
         $user_id = Auth::id();
         $existingAddresses = Venue::where('user_id', $user_id)->get();
 
-        // Dades per a les metadades dinàmiques
         $metaData = [
             'title' => 'Crear Nou Esdeveniment - EventoPass | Publica el Teu Esdeveniment',
             'description' => 'Crea i publica un nou esdeveniment a EventoPass. Afegeix detalls com el títol, la descripció, la data, l\'ubicació, i més per a atraure assistents.',
@@ -43,12 +48,18 @@ class CreateEventController extends Controller
         return view('promotor.createEvent', compact('existingAddresses', 'categories', 'metaData'));
     }
 
+    /**
+     * Procesa los datos enviados desde el formulario de creación de evento, valida y almacena el evento en la base de datos.
+     * También gestiona la carga de la imagen principal del evento y las imágenes adicionales, si las hay.
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse 
+     */
     public function store(Request $request)
     {
         try {
             Log::info('Inicio del proceso de almacenamiento del evento.');
 
-            // Validación de los datos del formulario
             $validatedData = $request->validate([
                 'title' => 'required|string|max:255',
                 'selector-options-categoria' => 'required|string|max:255',
@@ -68,7 +79,6 @@ class CreateEventController extends Controller
 
             Log::info('Datos del evento validados: ' . json_encode($validatedData));
 
-            // Buscar la categoría y el venue por ID
             $categoryId = $request->input('selector-options-categoria');
             $venueId = $request->input('selector-options');
             $category = Category::find($categoryId);
@@ -82,7 +92,6 @@ class CreateEventController extends Controller
 
             Log::info('Categoría y Venue encontrados: ' . $category->id . ', ' . $venue->id);
 
-            // Crear el evento
             $event = new Event([
                 'name' => $validatedData['title'],
                 'description' => $validatedData['description'],
@@ -98,7 +107,6 @@ class CreateEventController extends Controller
             $event->save();
             Log::info('Evento guardado con éxito: ' . $event->id);
 
-            // Subir y guardar imagen principal
             $mainImageResponse = $this->uploadImageToApi($request->file('event_image'));
             if ($mainImageResponse->successful()) {
                 $event->main_image_id = $mainImageResponse->json()['imageId'];
@@ -107,7 +115,6 @@ class CreateEventController extends Controller
                 Log::error('Error al subir la imagen principal: ' . $mainImageResponse->body());
             }
 
-            // Subir y guardar imágenes adicionales (si existen)
             if ($request->hasFile('additional_images')) {
                 foreach ($request->file('additional_images') as $additionalImage) {
                     $additionalImageResponse = $this->uploadImageToApi($additionalImage);
@@ -124,7 +131,6 @@ class CreateEventController extends Controller
                 }
             }
 
-            // Crear el cierre de sesión basándose en la selección del usuario
             $selectorOption = $request->input('selector-options-venue');
             Log::info('Selector Option: ' . $selectorOption);
 
@@ -154,14 +160,12 @@ class CreateEventController extends Controller
             $session->save();
             Log::info('Sesión guardada con éxito: ' . $session->id);
 
-            // Procesar los tipos de tickets
             $typeNames = $request->input('entry_type_name');
             $typePrices = $request->input('entry_type_price');
             $typeQuantities = $request->input('entry_type_quantity');
 
             if (is_array($typeNames) && is_array($typePrices) && is_array($typeQuantities)) {
                 foreach ($typeNames as $index => $name) {
-                    // Crear el tipo de ticket
                     $ticketType = new TicketType([
                         'name' => $name,
                         'price' => $typePrices[$index],
@@ -170,7 +174,6 @@ class CreateEventController extends Controller
 
                     $ticketType->save();
 
-                    // Crear los tickets
                     for ($i = 0; $i < $ticketType->available_tickets; $i++) {
                         $ticket = new Ticket([
                             'type_id' => $ticketType->id,
@@ -189,6 +192,13 @@ class CreateEventController extends Controller
         }
     }
 
+    /**
+     * Maneja la creación de una nueva ubicación a partir de los datos proporcionados en el formulario.
+     * Valida los datos y almacena la nueva ubicación en la base de datos.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function storeVenue(Request $request)
     {
 
@@ -225,6 +235,13 @@ class CreateEventController extends Controller
         }
     }
 
+    /**
+     * Funcion privado para subir imágenes a través de una API.
+     * Prepara y envía una solicitud HTTP con el archivo de imagen.
+     *
+     * @param  mixed $imageFile
+     * @return \Illuminate\Http\Client\Response
+     */
     private function uploadImageToApi($imageFile)
     {
         return Http::withHeaders([

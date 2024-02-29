@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\Log;
 
 class LogoutController extends Controller
 {
+    /**
+     * Cierra la sesión del usuario actual y lo redirige a la página de inicio.
+     * Invalida la sesión actual y regenera el token de la sesión para prevenir ataques de tipo session fixation.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function logout(Request $request)
     {
         $start = microtime(true);

@@ -9,7 +9,12 @@ use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
-    // Mostrar el formulario de login
+    /**
+     * Muestra el formulario de inicio de sesión al usuario.
+     * Si el usuario ya está autenticado, lo redirige a su página de inicio basada en su rol.
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function showLoginForm()
     {
         if (Auth::check()) {
@@ -26,7 +31,6 @@ class LoginController extends Controller
 
         Log::channel('login')->info('Mostrando formulario de login');
 
-        // Dades per a les metadades dinàmiques
         $metaData = [
             'title' => 'Iniciar Sessió - EventoPass | Accedeix al Teu Compte',
             'description' => 'Inicia sessió a EventoPass per descobrir i participar en els millors esdeveniments. Gestiona les teves entrades i preferències des del teu compte.',
@@ -46,7 +50,13 @@ class LoginController extends Controller
         return view('auth.login', compact('metaData'));
     }
 
-    // Manejar la solicitud de login
+    /**
+     * Maneja la solicitud de inicio de sesión.
+     * Valida las credenciales proporcionadas y, si son correctas, inicia sesión del usuario y lo redirige según su rol.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function login(Request $request)
     {
         $start = microtime(true);

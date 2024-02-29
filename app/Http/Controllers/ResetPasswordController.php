@@ -12,12 +12,19 @@ use Illuminate\Support\Facades\Log;
 
 class ResetPasswordController extends Controller
 {
+    /**
+     * Muestra el formulario de restablecimiento de contraseña.
+     * Verifica si el token de restablecimiento es válido y no ha expirado.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  string|null $token
+     * @return \Illuminate\View\View
+     */
     public function showResetForm(Request $request, $token = null)
     {
         $start = microtime(true);
         Log::channel('reset_password')->info('Accediendo a ResetPasswordController@showResetForm');
 
-        // Verificación del token
         $tokenData = DB::table('password_reset_tokens')
                        ->where('email', $request->email)
                        ->where('token', $token)
@@ -26,7 +33,6 @@ class ResetPasswordController extends Controller
         if (!$tokenData || Carbon::parse($tokenData->created_at)->addMinutes(env('PASSWORD_RESET_EXPIRATION', 60))->isPast()) {
             Log::channel('reset_password')->warning('Token de restablecimiento de contraseña caducado o inválido', ['email' => $request->email, 'token' => $token]);
 
-            // Redirigir a la vista de token caducado
             return view('auth.passwords.token_expired');
         }
 
@@ -36,6 +42,13 @@ class ResetPasswordController extends Controller
         return view('auth.passwords.reset')->with(['token' => $token, 'email' => $request->email]);
     }
 
+    /**
+     * Procesa la solicitud de restablecimiento de contraseña.
+     * Valida los datos proporcionados y, si son correctos, actualiza la contraseña del usuario.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function reset(Request $request)
     {
         $start = microtime(true);
