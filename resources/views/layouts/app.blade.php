@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="shortcut icon" href="{{ asset('favicon/favicon.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <!--<link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('css/resultats.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('css/event-create.css') }}">
@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="{{ asset('css/sesion-list.css') }}">
     <link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
     <link rel="stylesheet" href="{{ asset('css/comentarios.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/compra-tickets.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/compra-tickets.css') }}">-->
 
     <title>@yield('title')</title>
 </head>
@@ -73,7 +73,7 @@
 
     <main class="w3-container w3-padding">
         @yield('content')
-        <div class="social-share-buttons">
+        <div class="social-share-buttons"> Compartir:
             <!-- Botón compartir en Facebook -->
             <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::fullUrl()) }}" target="_blank"
                 class="social-button facebook" title="Compartir en Facebook">
@@ -107,6 +107,12 @@
             const content = document.querySelector('.user-info');
             sidebar.classList.toggle('active');
             content.classList.toggle('active');
+
+            if (sidebar.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
 
         }
 
