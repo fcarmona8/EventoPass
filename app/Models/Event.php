@@ -81,7 +81,8 @@ class Event extends Model
 
         return Event::with('category', 'venue', 'sessions.tickets')
             ->whereHas('sessions', function ($query) use ($fechaActual) {
-                $query->where('date_time', '>', $fechaActual);
+                $query->where('date_time', '>', $fechaActual)
+                      ->where('closed', false);
             });
     }
 
