@@ -130,10 +130,10 @@ La nostra paleta de colors està dissenyada per reflectir la nostra marca i faci
 [options="header"]
 |=======================
 | Nom          | Hex       
-| Fons i Contrast | #F0E6D2# 
-| Principal    | #5C5346# 
-| Botons i Trucades d'Ació | #D4AF37# 
-| Text i Detalls | #1A1A1A# 
+| Fons i Contrast | #d8d8d8# 
+| Principal    | #11436b# 
+| Botons i Trucades d'Ació | #FF6B6B# 
+| Text i Detalls | #2C3E50# 
 | Destacats i Enllaços | #C9B7A5# 
 | Elements Secundaris | #857C6D# 
 |=======================

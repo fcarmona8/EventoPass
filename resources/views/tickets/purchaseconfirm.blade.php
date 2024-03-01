@@ -24,11 +24,11 @@
             
             <div class="detalles-compra">
             {{-- Detalles del Evento --}}
-            <div class="event-details">
-                <h4>{{ $event->name }}</h4>
-                <p>Fecha: {{ head(explode(' ', $sessio->date_time)) }}</p>
-                <p>Hora: {{ implode(' ', array_slice(explode(' ', $sessio->date_time), 1)) }}</p>            
-            </div>
+                <div class="event-details">
+                    <h4>{{ $event->name }}</h4>
+                    <p>Fecha: {{ head(explode(' ', $sessio->date_time)) }}</p>
+                    <p>Hora: {{ implode(' ', array_slice(explode(' ', $sessio->date_time), 1)) }}</p>            
+                </div>
             <input type="hidden" id="eventId" name="eventId" value="{{ $event->id }}">
             <input type="hidden" name="totalPrice" value="{{ $totalPrice }}">
 
@@ -59,7 +59,6 @@
                 @php $nEntrada++; @endphp
                 @endfor
                 @endforeach
-
             @else
                 <div class="non-nominal-details">
                     <h4>Detalles de la Compra (No Nominal)</h4>
@@ -94,7 +93,7 @@
                 </div>
             @endif
             <p class="ticketCompraLinea">Precio Total: <span class="importeCompra">{{ $totalPrice }} €</span></p>
-            
+            </div>
             
                 <div class="buyer-details">
                     <h4>Datos del Comprador</h4>
@@ -111,7 +110,6 @@
 
                     <button type="submit" id="continue-button" class="btn btn-primary boton-confirmacion-compra">Continuar</button>
                 </div>
-            </div>
 
             
 

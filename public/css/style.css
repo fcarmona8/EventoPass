@@ -482,8 +482,10 @@ label {
 
 #sessionList li {
   cursor: pointer;
+  display: flex;
   padding: 5px;
-  list-style: none; }
+  list-style: none;
+  justify-content: space-between; }
 
 #sessionList li:hover {
   background-color: var(--botones-accion);
@@ -1441,7 +1443,9 @@ h2 {
     max-width: 700px; }
   .session-card img {
     width: 50%;
-    max-width: 200px; }
+    max-width: 200px;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px; }
   .listSessions {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(420px, auto));
@@ -1870,7 +1874,7 @@ h3 {
 p,
 .text {
   font-family: 'Lato', sans-serif;
-  font-size: 12px; }
+  font-size: 16px; }
 
 /* Botones y llamadas a la acción */
 button,

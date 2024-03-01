@@ -35,3 +35,7 @@
 [2024-02-29 15:44:42] local.INFO: Inicio de solicitud de login {"email":"promotor1@test.com"} 
 [2024-02-29 15:44:42] local.INFO: Login exitoso {"user_id":1,"email":"promotor1@test.com"} 
 [2024-02-29 15:44:42] local.INFO: Fin de solicitud de login exitosa {"duration":0.2841489315032959} 
+[2024-03-01 16:18:39] local.INFO: Mostrando formulario de login  
+[2024-03-01 16:18:46] local.INFO: Inicio de solicitud de login {"email":"promotor1@test.com"} 
+[2024-03-01 16:18:47] local.INFO: Login exitoso {"user_id":1,"email":"promotor1@test.com"} 
+[2024-03-01 16:18:47] local.INFO: Fin de solicitud de login exitosa {"duration":0.28998303413391113} 
