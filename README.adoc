@@ -12,9 +12,17 @@ Figma: https://www.figma.com/files/project/176138190/Team-project?fuid=129576489
 
 GitLab: https://git.copernic.cat/gpuigantell/gr04-puigantell-carmona-perez
 
+= Portfolios
+
+Alfred:
+
+Guiu:
+
+Ferran:
+
 = Isard
 
-Servidor de Guiu Puigantell, ip: 192.168.60.150
+Servidor de Ferran Carmona, ip: 192.168.60.130
 
 = Links API
 Imatge: https://git.copernic.cat/aperez/image_management_api
