@@ -19,10 +19,10 @@ class EventFactory extends Factory
         $client = new Client();
 
         // Suponiendo que la API espera una solicitud POST con un campo 'image'
-        $response = $client->request('POST', env('URL_API').'/api/V1/images', [
+        $response = $client->request('POST', config('services.api.url').'/api/V1/images', [
             'headers' => [
                 'Accept' => 'application/json',
-                'APP-TOKEN' => env('TIQUETS_APP_TOKEN'),
+                'APP-TOKEN' => config('services.api.token'),
             ],
             'multipart' => [
                 [

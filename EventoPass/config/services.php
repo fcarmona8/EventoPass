@@ -31,4 +31,13 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    
+'api' => [
+    'path' => env('API_PATH'),
+    'url' => env('URL_API'),
+    'token' => env('TIQUETS_APP_TOKEN')
+],
+    
+    
+
 ];

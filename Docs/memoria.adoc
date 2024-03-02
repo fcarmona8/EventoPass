@@ -27,158 +27,479 @@ El disseny de la base de dades per al portal web es basa en diverses taules inte
 
 image::images/DiagramaE-R.png[Diagrama d'Entitat-Relació,800,600]
 
-== Taules de la Base de Dades
+== Taules de la Base de Dades EventoPass
 
-=== Taula: Venues
-* `id`: Clau primària, bigint.
-* `name`: Nom del recinte, character varying(255).
-* `location`: Ubicació del recinte, text.
-* `capacity`: Capacitat, integer, nullable.
-* `created_at`: Data de creació, timestamp.
-* `updated_at`: Data d'actualització, timestamp.
+=== Venues
 
-=== Taula: Users
-* `id`: Clau primària.
-* `name`: Nom de l'usuari.
-* `email`: Correu electrònic, únic.
-* `email_verified_at`: Data de verificació del correu, nullable.
-* `password`: Contrasenya.
-* `remember_token`: Token de recordatori.
-* `created_at`: Data de creació, timestamp.
-* `updated_at`: Data d'actualització, timestamp.
-* `role_id`: Clau forana a `roles`, bigint, nullable.
+[cols="2,5,3"]
+|===
+| Camp | Descripció | Tipus de Dada
 
-=== Taula: Categories
-* `id`: Clau primària, bigint.
-* `name`: Nom de la categoria, character varying(255).
-* `created_at`: Data de creació, timestamp.
-* `updated_at`: Data d'actualització, timestamp.
+| `id`
+| Identificador únic per a cada venue (recinte)
+| `bigIncrements`
 
-=== Taula: Events
-* `id`: Clau primària, bigint.
-* `name`: Nom de l'esdeveniment, character varying(255).
-* `description`: Descripció de l'esdeveniment, text.
-* `main_image`: Imatge principal, character varying(255).
-* `category_id`: Clau forana a `categories`, bigint.
-* `venue_id`: Clau forana a `venues`, bigint.
-* `event_date`: Data de l'esdeveniment, timestamp, nullable.
-* `max_capacity`: Aforament màxim, integer, nullable.
-* `video_link`: Enllaç a vídeo promocional, character varying(255), nullable.
-* `hidden`: Esdeveniment ocult, boolean, default false.
-* `created_at`: Data de creació, timestamp.
-* `updated_at`: Data d'actualització, timestamp.
+| `province`
+| Província on es troba el venue
+| `string(255)`
 
-=== Taula: Sessions
-* `id`: Clau primària, bigint.
-* `event_id`: Clau forana a `events`, bigint.
-* `date_time`: Data i hora de la sessió, timestamp.
-* `online_sale_end_time`: Hora de finalització de la venda en línia, timestamp, nullable.
-* `created_at`: Data de creació, timestamp.
-* `updated_at`: Data d'actualització, timestamp.
+| `city`
+| Ciutat on es troba el venue
+| `string(255)`
 
-=== Taula: Ticket_Types
-* `id`: Clau primària, bigint.
-* `name`: Nom del tipus de tiquet, character varying(255).
-* `price`: Preu, numeric(8,2).
-* `available_tickets`: Entrades disponibles, integer, nullable.
-* `created_at`: Data de creació, timestamp.
-* `updated_at`: Data d'actualització, timestamp.
+| `postal_code`
+| Codi postal del venue
+| `string(255)`
 
-=== Taula: Purchases
-* `id`: Clau primària, bigint.
-* `user_id`: Clau forana a `users`, bigint.
-* `session_id`: Clau forana a `sessions`, bigint.
-* `total_price`: Preu total, numeric(8,2).
-* `created_at`: Data de creació, timestamp.
-* `updated_at`: Data d'actualització, timestamp.
+| `venue_name`
+| Nom del venue
+| `string(255)`
 
-=== Taula: Tickets
-* `id`: Clau primària, bigint.
-* `purchase_id`: Clau forana a `purchases`, bigint.
-* `type_id`: Clau forana a `ticket_types`, bigint.
-* `session_id`: Clau forana a `sessions`, bigint.
-* `created_at`: Data de creació, timestamp.
-* `updated_at`: Data d'actualització, timestamp.
+| `capacity`
+| Capacitat màxima del venue
+| `integer`
 
-=== Taula: Roles
-* `id`: Clau primària.
-* `name`: Nom, únic.
-* `created_at`: Data de creació, timestamp.
-* `updated_at`: Data d'actualització, timestamp.
+| `user_id`
+| Clau forana que referència a l'usuari propietari del venue
+| `unsignedBigInteger`, clau forana referència `id` en `users`
 
-=== Taula: Event_Images
-* `id`: Clau primària, bigint.
-* `event_id`: Clau forana a `events`, bigint.
-* `image_id`: URL de la imatge.
-* `is_main`: Imatge principal, boolean, default false.
-* `created_at`: Data de creació, timestamp.
-* `updated_at`: Data d'actualització, timestamp.
+| `created_at` i `updated_at`
+| Camps automàtics per a registrar les dates de creació i última actualització
+| `timestamps`
+|===
+
+=== Users
+
+[cols="2,5,3"]
+|===
+| Camp | Descripció | Tipus de Dada
+
+| `id`
+| Identificador únic per a cada usuari
+| `id()`
+
+| `name`
+| Nom de l'usuari
+| `string`
+
+| `email`
+| Correu electrònic de l'usuari, ha de ser únic
+| `string`, únic
+
+| `email_verified_at`
+| Data i hora de la verificació del correu electrònic, pot ser nul·la
+| `timestamp`, nullable
+
+| `password`
+| Contrasenya de l'usuari
+| `string`
+
+| `rememberToken`
+| Token per a recordar la sessió de l'usuari
+| `rememberToken()`
+
+| `created_at` i `updated_at`
+| Camps automàtics per a registrar les dates de creació i última actualització de l'usuari
+| `timestamps`
+|===
+
+=== Categories
+
+[cols="2,5,3"]
+|===
+| Camp | Descripció | Tipus de Dada
+
+| `id`
+| Identificador únic per a cada categoria
+| `bigIncrements`
+
+| `name`
+| Nom de la categoria
+| `string(255)`
+
+| `created_at` i `updated_at`
+| Camps automàtics per a registrar les dates de creació i última actualització del registre
+| `timestamps`
+|===
+
+=== Events
+
+[cols="2,5,3"]
+|===
+| Camp | Descripció | Tipus de Dada
+
+| `id`
+| Identificador únic per a cada esdeveniment
+| `bigIncrements`
+
+| `name`
+| Nom de l'esdeveniment
+| `string(255)`
+
+| `description`
+| Descripció de l'esdeveniment
+| `text`
+
+| `main_image_id`
+| ID de la imatge principal de l'esdeveniment, pot ser null, vincula amb la BD de la API d'imatges
+| `unsignedBigInteger`, nullable
+
+| `category_id`
+| Clau forana que referència a la categoria de l'esdeveniment
+| `unsignedBigInteger`
+
+| `venue_id`
+| Clau forana que referència al recinte on es realitza l'esdeveniment
+| `unsignedBigInteger`
+
+| `user_id`
+| Clau forana que referència a l'usuari creador de l'esdeveniment, pot ser null
+| `unsignedBigInteger`, nullable
+
+| `event_date`
+| Data i hora de l'esdeveniment, pot ser null
+| `timestamp`, nullable
+
+| `video_link`
+| Enllaç al vídeo relacionat amb l'esdeveniment, pot ser null
+| `string(255)`, nullable
+
+| `hidden`
+| Indica si l'esdeveniment està ocult o no
+| `boolean`, default false
+
+| `nominal`
+| Indica si l'esdeveniment és nominal o no
+| `boolean`, default false
+
+| `created_at` i `updated_at`
+| Camps automàtics per a registrar les dates de creació i última actualització del registre
+| `timestamps`
+
+|===
+
+=== Sessions
+
+[cols="2,5,3"]
+|===
+| Camp | Descripció | Tipus de Dada
+
+| `id`
+| Identificador únic per a cada sessió
+| `bigIncrements`
+
+| `event_id`
+| Clau forana que referència a l'esdeveniment associat
+| `unsignedBigInteger`
+
+| `session_code`
+| Codi únic de la sessió, pot ser null
+| `string`, únic, nullable
+
+| `date_time`
+| Data i hora de la sessió
+| `timestamp`
+
+| `max_capacity`
+| Capacitat màxima de la sessió, pot ser null
+| `integer`, nullable
+
+| `online_sale_end_time`
+| Temps final per la venda online de tiquets, pot ser null
+| `timestamp`, nullable
+
+| `ticket_quantity`
+| Quantitat de tiquets disponibles, pot ser null
+| `integer`, nullable
+
+| `named_tickets`
+| Indica si els tiquets són nominals
+| `boolean`, default false
+
+| `closed`
+| Indica si la sessió està tancada
+| `boolean`, default false
+
+| `created_at` i `updated_at`
+| Camps automàtics per a registrar les dates de creació i última actualització del registre
+| `timestamps`
+
+|===
+
+=== Ticket_Types
+
+[cols="2,5,3"]
+|===
+| Camp | Descripció | Tipus de Dada
+
+| `id`
+| Identificador únic per a cada tipus de tiquet
+| `bigIncrements`
+
+| `name`
+| Nom del tipus de tiquet
+| `string(255)`
+
+| `price`
+| Preu del tiquet
+| `decimal(8,2)`
+
+| `available_tickets`
+| Tiquets disponibles per aquest tipus, pot ser null
+| `integer`, nullable
+
+| `created_at` i `updated_at`
+| Camps automàtics per a registrar les dates de creació i última actualització del registre
+| `timestamps`
+
+|===
+
+=== Purchases
+
+[cols="2,5,3"]
+|===
+| Camp | Descripció | Tipus de Dada
+
+| `id`
+| Identificador únic per a cada compra
+| `bigIncrements`
+
+| `session_id`
+| Clau forana que referència a la sessió associada a la compra
+| `unsignedBigInteger`
+
+| `name`
+| Nom de la persona que realitza la compra
+| `string`
+
+| `dni`
+| Document Nacional d'Identitat de la persona que realitza la compra
+| `string`
+
+| `phone`
+| Telèfon de contacte de la persona que realitza la compra
+| `integer`
+
+| `email`
+| Correu electrònic de la persona que realitza la compra
+| `string`
+
+| `total_price`
+| Preu total de la compra
+| `decimal(8,2)`
+
+| `ticketsPDF`
+| Enllaç al PDF dels tiquets de la compra, pot ser null
+| `string`, nullable
+
+| `created_at` i `updated_at`
+| Camps automàtics per a registrar les dates de creació i última actualització del registre
+| `timestamps`
+
+|===
+
+=== Tickets
+
+[cols="2,5,3"]
+|===
+| Camp | Descripció | Tipus de Dada
+
+| `id`
+| Identificador únic per a cada tiquet
+| `bigIncrements`
+
+| `is_validated`
+| Indica si el tiquet ha estat validat
+| `boolean`, default false
+
+| `purchase_id`
+| Clau forana que referència a la compra associada, pot ser null
+| `unsignedBigInteger`, nullable
+
+| `type_id`
+| Clau forana que referència al tipus de tiquet
+| `unsignedBigInteger`
+
+| `session_id`
+| Clau forana que referència a la sessió associada
+| `unsignedBigInteger`
+
+| `name`
+| Nom de la persona titular del tiquet, pot ser null
+| `string(255)`, nullable
+
+| `dni`
+| Document Nacional d'Identitat de la persona titular del tiquet, pot ser null
+| `string(255)`, nullable
+
+| `telefono`
+| Telèfon de contacte de la persona titular del tiquet, pot ser null
+| `string(255)`, nullable
+
+| `unicIdTicket`
+| Identificador únic del tiquet, pot ser null
+| `string(255)`, nullable
+
+| `buyerName`
+| Nom de la persona que ha fet la compra, pot ser null
+| `string(255)`, nullable
+
+| `created_at` i `updated_at`
+| Camps automàtics per a registrar les dates de creació i última actualització del registre
+| `timestamps`
+
+|===
+
+=== Roles
+
+[cols="2,5,3"]
+|===
+| Camp | Descripció | Tipus de Dada
+
+| `id`
+| Identificador únic per a cada rol
+| `id`
+
+| `name`
+| Nom del rol, ha de ser únic
+| `string`, únic
+
+| `created_at` i `updated_at`
+| Camps automàtics per a registrar les dates de creació i última actualització del registre
+| `timestamps`
+
+|===
+
+=== Event_Images
+
+[cols="2,5,3"]
+|===
+| Camp | Descripció | Tipus de Dada
+
+| `id`
+| Identificador únic per a cada imatge d'esdeveniment
+| `bigIncrements`
+
+| `event_id`
+| Clau forana que referència a l'esdeveniment associat
+| `unsignedBigInteger`
+
+| `image_id`
+| Identificador de la imatge
+| `string`
+
+| `is_main`
+| Indica si la imatge és la principal de l'esdeveniment
+| `boolean`, default false
+
+| `created_at` i `updated_at`
+| Camps automàtics per a registrar les dates de creació i última actualització del registre
+| `timestamps`
+
+|===
+
+=== Comentaris
+
+[cols="2,5,3"]
+|===
+| Camp | Descripció | Tipus de Dada
+
+| `id`
+| Identificador únic per a cada comentari
+| `bigIncrements`
+
+| `event_id`
+| Clau forana que referència a l'esdeveniment associat
+| `unsignedBigInteger`
+
+| `nombre`
+| Nom de la persona que fa el comentari
+| `string`
+
+| `smileyRating`
+| Valoració amb emoticones, pot ser null
+| `integer`, nullable
+
+| `puntuacion`
+| Puntuació numèrica del comentari
+| `integer`
+
+| `titulo`
+| Títol del comentari
+| `string`
+
+| `comentario`
+| Text del comentari
+| `text`
+
+| `created_at` i `updated_at`
+| Camps automàtics per a registrar les dates de creació i última actualització del registre
+| `timestamps`
+
+|===
 
 image::images/DiagramaUML.png[Diagrama UML,1000,800]
 
+
+== Taules de la Base de Dades de la API Imatges
+image::images/DiagramaE-R_API.png[Diagrama d'Entitat-Relació,800,600]
+
+=== Images
+
+[cols="2,5,3"]
+|===
+| Camp | Descripció | Tipus de Dada
+
+| `id`
+| Identificador únic per a cada imatge
+| `bigIncrements`
+
+| `name`
+| Nom de la imatge
+| `string`
+
+| `created_at` i `updated_at`
+| Camps automàtics per a registrar les dates de creació i última actualització del registre
+| `timestamps`
+|===
+
+=== Optimized_Images
+
+[cols="2,5,3"]
+|===
+| Camp | Descripció | Tipus de Dada
+
+| `id`
+| Identificador únic per a cada imatge optimitzada
+| `bigIncrements`
+
+| `image_id`
+| Clau forana que referència a la imatge original
+| `unsignedBigInteger`
+
+| `version`
+| Versió de la imatge optimitzada
+| `string`
+
+| `path`
+| Camí on es guarda la imatge optimitzada
+| `string`
+
+| `url`
+| URL on es pot accedir a la imatge optimitzada
+| `string`
+
+| `created_at` i `updated_at`
+| Camps automàtics per a registrar les dates de creació i última actualització del registre
+| `timestamps`
+
+|===
+
+image::images/DiagramaUML_API.png[Diagrama UML,800,200]
+
+
 == Sketching i Mockup d'Interfícies
-Descripció del procés de disseny d'interfícies, amb imatges dels sketchings i mockups.
-
-== Guia d'Estil
-
-La guia d'estil de l'aplicació proporciona una referència visual i técnica per mantenir la coherència en tots els elements gràfics i interfaces d'usuari. A continuació es detallen els components clau de la nostra guia d'estil.
-
-=== Paleta de Colors
-
-La nostra paleta de colors està dissenyada per reflectir la nostra marca i facilitar la lectura i la navegació.
-
-[options="header"]
-|=======================
-| Nom          | Hex       
-| Fons i Contrast | #F0E6D2# 
-| Principal    | #5C5346# 
-| Botons i Trucades d'Ació | #D4AF37# 
-| Text i Detalls | #1A1A1A# 
-| Destacats i Enllaços | #C9B7A5# 
-| Elements Secundaris | #857C6D# 
-|=======================
-
-=== Tipografies
-
-==== Tipografies per a Escriptori
-
-Utilitzem un conjunt seleccionat de tipografies per garantir que la nostra comunicació sigui clara i consistent.
-
-[options="header"]
-|=======================
-| Element        | Font                  | Mida | Pes
-| Capçalera H1   | Montserrat Bold       | 36px | Bold
-| Capçalera H2   | Montserrat SemiBold   | 28px | SemiBold
-| Capçalera H3   | Montserrat SemiBold   | 22px | SemiBold
-| Text           | Lato Regular          | 18px | Regular
-| Botons i Trucades d'Ació | Lato Light  | 16px | Light
-| Text d'Ajuda i Peu de Pàgina | Lato Light | 14px | Light
-| Etiquetes de Formulari i Menús de Navegació | Roboto Regular | 16px | Regular
-|=======================
-
-==== Tipografies per a Mòbil
-
-Per a una millor experiència d'usuari en dispositius mòbils, hem adaptat les mides de les nostres tipografies per assegurar una lectura òptima en pantalles més petites.
-
-[options="header"]
-|=======================
-| Element        | Font                  | Mida   | Pes
-| Capçalera H1   | Montserrat Bold       | 30px   | Bold
-| Capçalera H2   | Montserrat SemiBold   | 24px   | SemiBold
-| Capçalera H3   | Montserrat SemiBold   | 20px   | SemiBold
-| Text           | Lato Regular          | 16px   | Regular
-| Botons i Trucades d'Ació | Lato Light  | 18px   | Light
-| Text d'Ajuda i Peu de Pàgina | Lato Light | 12px   | Light
-| Etiquetes de Formulari i Menús de Navegació | Roboto Regular | 14px   | Regular
-|=======================
-
-Noteu que la mida dels botons i trucades d'acció s'ha incrementat lleugerament per a facilitar la interacció tàctil, mentre que les mides del text d'ajuda i els peus de pàgina s'han reduït per optimitzar l'espai sense comprometre la llegibilitat.
-
-
-=== Estàndards de Disseny
-
-Els estàndards de disseny inclouen les especificacions per a marges, espaiat, alineació i altres elements de disseny que contribueixen a la coherència visual i funcional de l'aplicació. S'espera que tots els dissenyadors i desenvolupadors segueixin aquests estàndards per assegurar una experiència d'usuari unificada.
-
+https://www.figma.com/file/FqrK3TnRAHJla14AuuZgMQ/Grupo4-Puigantell-Carmona-Perez-team-library?type=design&node-id=0-1&mode=design&t=g8761nKUwxHuE5S8-0
 
 == Manual d'Instal·lació/Distribució
 Pas a pas detallat de com instal·lar i distribuir l'aplicació.
@@ -298,22 +619,26 @@ En l'arxiu config/app.php a l'apartat de 'provaiders' fiquem la següent línia 
 I publiquem el paquet per a poder modificar-lo --> php artisan vendor:publish --provider="Barryvdh\DomPDF\ServiceProvider"
 
 == Descripció General de l'API
+
 L'API de Gestió d'Imatges permet la càrrega, optimització i gestió d'imatges. Aquesta API és accessible a través de la base URL `http://localhost:8080/api/V1` i està dissenyada per oferir una forma eficient de manejar imatges en aplicacions web i mòbils.
 
 === Informació General
+
 - *Títol:* Image Management API
 - *Descripció:* API per a la càrrega, optimització, i gestió d'imatges.
 - *Versió:* 1.0.0
 
 === Servidors
+
 - URL: http://localhost:8080/api/V1
 - Descripció: URL base de l'API
 
-== Rutes de l'API
+=== Rutes de l'API
 
-=== Operacions sobre Imatges `/images`
+==== Operacions sobre Imatges `/images`
 
-==== GET
+===== GET
+
 .Llista totes les imatges.
 * Resum: Retorna una llista de totes les imatges disponibles.
 * Respostes:
@@ -343,7 +668,8 @@ L'API de Gestió d'Imatges permet la càrrega, optimització i gestió d'imatges
 }
 ----
 
-==== POST
+===== POST
+
 .Carrega una nova imatge i crea les seves versions optimitzades.
 * Resum: Permet la càrrega d'una nova imatge.
 * RequestBody: Requerit, `multipart/form-data`.
@@ -353,9 +679,10 @@ L'API de Gestió d'Imatges permet la càrrega, optimització i gestió d'imatges
 ** `415`: Tipus de mitjà no suportat.
 ** `500`: Error intern del servidor.
 
-=== Operacions sobre una Imatge Específica `/images/{id}`
+==== Operacions sobre una Imatge Específica `/images/{id}`
 
-==== GET
+===== GET
+
 .Obté una imatge específica pel seu ID.
 * Resum: Retorna una imatge específica.
 * Paràmetres: `id` - El ID de la imatge a obtenir.
@@ -363,7 +690,8 @@ L'API de Gestió d'Imatges permet la càrrega, optimització i gestió d'imatges
 ** `200`: Imatge obtinguda amb èxit.
 ** `404`: Imatge no trobada.
 
-==== DELETE
+===== DELETE
+
 .Elimina una imatge específica i les seves versions optimitzades.
 * Resum: Elimina la imatge especificada pel ID.
 * Paràmetres: `id` - El ID de la imatge a eliminar.
@@ -371,7 +699,8 @@ L'API de Gestió d'Imatges permet la càrrega, optimització i gestió d'imatges
 ** `204`: Imatge eliminada amb èxit.
 ** `404`: Imatge no trobada.
 
-==== POST
+===== POST
+
 .Actualitza una imatge específica i les seves versions optimitzades.
 * Resum: Actualitza la imatge especificada pel ID.
 * RequestBody: Requerit, `multipart/form-data`.
@@ -382,9 +711,11 @@ L'API de Gestió d'Imatges permet la càrrega, optimització i gestió d'imatges
 ** `415`: Tipus de mitjà no suportat.
 ** `500`: Error intern del servidor.
 
-=== Operacions sobre Imatges Optimitzades `/optimized-images/{image_id}/{version}`
+==== Operacions sobre Imatges Optimitzades
+`/optimized-images/{image_id}/{version}`
 
-==== GET
+===== GET
+
 .Obté una versió optimitzada específica d'una imatge.
 * Resum: Retorna una versió optimitzada de la imatge.
 * Paràmetres:
@@ -392,167 +723,133 @@ L'API de Gestió d'Imatges permet la càrrega, optimització i gestió d'imatges
 ** `version` - La versió de la imatge optimitzada a obtenir (small, medium, large).
 * Respostes:
 ** `200`: Versió optimitzada de la imatge obtinguda amb èxit.
-** `404`: Imatge no trobada.
+** `404`: Imatge o versió optimitzada no trobada.
 ** `500`: Error intern del servidor.
 
-----
-openapi: 3.0.0
-info:
-  title: Image Management API
-  description: API para la carga, optimización, y gestión de imágenes.
-  version: 1.0.0
-servers:
-  - url: http://localhost:8080/api/V1
-    description: API base URL
-paths:
-  /images:
-    get:
-      summary: Lista todas las imágenes
-      responses:
-        '200':
-          description: Lista de imágenes obtenida con éxito
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                      example: 1
-                    name:
-                      type: string
-                      example: image.jpg
-    post:
-      summary: Carga una nueva imagen y crea sus versiones optimizadas
-      requestBody:
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                image:
-                  type: string
-                  format: binary
-                  description: Archivo de imagen para cargar.
-              required:
-                - image
-      responses:
-        '201':
-          description: Imagen cargada y optimizada correctamente
-        '400':
-          description: Solicitud inválida
-        '415':
-          description: Tipo de medio no soportado
-        '500':
-          description: Error interno del servidor
-  /images/{id}:
-    get:
-      summary: Obtiene una imagen específica por su ID
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: integer
-          description: El ID de la imagen a obtener.
-      responses:
-        '200':
-          description: Imagen obtenida con éxito
-        '404':
-          description: Imagen no encontrada
-    delete:
-      summary: Elimina una imagen específica y sus versiones optimizadas
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: integer
-          description: El ID de la imagen a eliminar.
-      responses:
-        '204':
-          description: Imagen eliminada con éxito
-        '404':
-          description: Imagen no encontrada
-    post:
-      summary: Actualiza una imagen específica y sus versiones optimizadas
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: integer
-          description: El ID de la imagen a actualizar.
-      requestBody:
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                image:
-                  type: string
-                  format: binary
-                  description: Archivo de imagen para actualizar.
-              required:
-                - image
-      responses:
-        '200':
-          description: Imagen actualizada con éxito
-        '400':
-          description: Solicitud inválida
-        '404':
-          description: Imagen no encontrada
-        '415':
-          description: Tipo de medio no soportado
-        '500':
-          description: Error interno del servidor
-  /optimized-images/{image_id}/{version}:
-    get:
-      summary: Obtiene una versión optimizada específica de una imagen
-      parameters:
-        - in: path
-          name: image_id
-          required: true
-          schema:
-            type: integer
-          description: El ID de la imagen.
-        - in: path
-          name: version
-          required: true
-          schema:
-            type: string
-            enum:
-              - small
-              - medium
-              - large
-          description: La versión de la imagen optimizada a obtener.
-      responses:
-        '200':
-          description: Versión optimizada de la imagen obtenida con éxito
-        '404':
-          description: Imagen no encontrada
-        '500':
-          description: Error interno del servidor
+== Autenticació
 
+=== Token d'Aplicació
+
+.La verificació del token de l'aplicació és requerida per a realitzar operacions d'escriptura.
+* Headers requerits per a les operacions POST, DELETE, i POST sobre `/images/{id}`:
+** `Authorization: Bearer {app_token}`
+
+== Codis d'Estat d'Error Comuns
+
+* `400` - Sol·licitud invàlida. Pot ser degut a dades d'entrada incorrectes.
+* `404` - Recurs no trobat. L'ID especificat no correspon a cap recurs existent.
+* `415` - Tipus de mitjà no suportat. L'arxiu carregat no és una imatge o supera la mida màxima permesa.
+* `500` - Error intern del servidor. Error inesperat en el servidor.
+
+
+= API de Validació de Tickets
+
+La API de Validació de Tickets permet la verificació de codis de sessió i la validació de tickets dins de sessions específiques. Aquesta API és part del sistema de gestió de tickets i proporciona una interfície per a la validació segura i eficient dels tickets.
+
+== Rutes de l'API
+
+=== Validació de Sessió `/login`
+
+==== POST
+
+.Login amb codi de sessió.
+* Resum: Maneja el procés de login verificant el codi de sessió. Permet el login si la sessió amb el codi proporcionat està tancada.
+* Paràmetres de la sol·licitud: `session_code` - Requerit, codi de la sessió a verificar.
+* Headers requerits: No aplica.
+* Respostes:
+** `200`: Login exitós.
+** `401`: Codi de sessió invàlid o la sessió no està tancada per a nous logins.
++
+.Content-type: `application/json`
++
+.Esquema de la resposta:
++
+[source,json]
+----
+{
+  "success": true,
+  "message": "Login exitoso.",
+  "session_code": "CODI_DE_SESSIÓ"
+}
 ----
 
-== Línies Futures
-Plantejaments sobre l'evolució futura del projecte.
+=== Validació de Ticket `/tickets/validate/{sessionId}/{hash}`
 
-== Conclusions
-* Desviacions en la planificació.
-* Aportacions del projecte als coneixements de l'alumne.
+==== GET
 
-== Glossari
-Termes clau utilitzats al llarg de la memòria.
+.Obté informació i valida un ticket.
+* Resum: Obtiene la información de un ticket basado en el ID de sesión y un hash único. Valida si el ticket aún no ha sido validado y, de ser así, lo marca como validado.
+* Paràmetres de la sol·licitud:
+** `sessionId` - Identificador de la sessió.
+** `hash` - Hash únic del ticket.
+* Headers requerits: `Session-Code` - Codi de sessió per a la verificació de la sessió actual.
+* Respostes:
+** `200`: Ticket validat correctament.
+** `403`: La sessió no coincideix o no es va trobar.
+** `404`: Ticket no trobat.
+** `409`: El ticket ja ha estat validat.
++
+.Content-type: `application/json`
++
+.Esquema de la resposta:
++
+[source,json]
+----
+{
+  "success": true,
+  "message": "Ticket validado correctamente.",
+  "ticket_info": {
+    "name": "NOM_DEL_PROPRIETARI",
+    "dni": "DNI_DEL_PROPRIETARI",
+    "phone": "TELÈFON_DEL_PROPRIETARI"
+  }
+}
+----
+
+== Middleware Utilitzat a l'API de Validacion de Tickets
+
+* `verifySessionCode`: Verifica que el codi de sessió proporcionat en la capçalera de la petició sigui vàlid. Utilitzat per a totes les operacions que requereixen verificació de sessió.
 
 == Web-grafia i Altres Recursos de Consulta
-Llistat de fonts consultades i recursos addicionals.
+
+Durant el desenvolupament, s'han utilitzat diversos recursos i eines. A continuació, es detallen alguns dels més rellevants:
+
+=== R18: Passarel·la de pagament
+
+* *RedSys Sandbox - Versió REST:* Una plataforma per a la implementació de pagaments amb targeta de crèdit.
+** URL: https://pagosonline.redsys.es/conexion-rest.html
+
+=== R28: Càrrega de recursos optimitzada
+
+* *<img> i l'atribut loading:* Permet carregar imatges de manera diferida millorant el rendiment de la pàgina.
+** Guia MDN: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-loading
+* *<picture>:* Utilitzat per a especificar múltiples fonts d'imatge o per a oferir versions d'una imatge per a diferents dimensions de pantalla.
+** Guia MDN: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture
+* *<source> i el srcset:* Permet definir diverses fonts d'imatge que el navegador pot triar entre elles basant-se en les dimensions de la pantalla i la densitat de píxels.
+** Guia MDN: https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images
+
+=== R29: Metadades i compartició a xarxes socials
+
+* *Metadata en HTML:* Important per a un bon reconeixement per part dels cercadors i per a la compartició en xarxes socials.
+** Article MDN: https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/The_head_metadata_in_HTML
+
+=== R30: Microservei d’optimització d’imatges
+
+* *Docker:* Permet crear una API RESTful en un contenidor aïllant la responsabilitat del sistema.
+** Web oficial: https://www.docker.com/
+* *OpenAPI:* Eina per a la documentació d'APIs que facilita la descripció dels endpoints, mètodes i paràmetres.
+** Web oficial: https://www.openapis.org/
+
+=== R31: Proves de l’API amb Postman
+
+* *Postman:* Eina per a la prova i documentació d'APIs que permet enviar peticions HTTP i revisar les respostes.
+** Web oficial: https://www.postman.com/
+
+=== R35: Creació d’aplicació per a validació d’entrades
+
+* *Cordova:* Framework per al desenvolupament d'aplicacions mòbils utilitzant HTML, CSS i JavaScript.
+** Web oficial: https://cordova.apache.org/
 
 == Presentació del Projecte
-Breu descripció de com es presentarà el projecte.
 
+El projecte EventoPass serà presentat mitjançant una demostració en directe on es mostraran les funcionalitats clau de la plataforma, incloent la gestió d'esdeveniments, la compra i validació d'entrades, i l'ús de l'API de gestió d'imatges.

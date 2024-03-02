@@ -1,0 +1,85 @@
+= Documentació Desplegament en Local
+:author: Alfred Perez, Ferran Carmona, Guiu Puigantell
+:doctype: book
+:chapter-label:
+:sectnums:
+:toc: left
+:toclevels: 6
+:toc-title: Table of Contents
+:front-cover-image: image::images/logo.png[]
+
+=== Preparació del projecte:
+
+Primer de tot fem un clone el nostre repositori de git al terminal del VSC -> git clone https://git.copernic.cat/gpuigantell/gr04-puigantell-carmona-perez.git
+
+==== Preparació del projecte
+
+Accedim al projecte de EventoPass -> cd EventoPass
+
+Ara instal·lem les dependències del composer -> composer install
+
+Copiem el fitxer .env.example amb el nom .env -> cp .env.example .env
+
+I creem la key del Artisan -> php artisan key:generate
+
+A continuació, buscar dintre del archiu .env del projecte EventoPass la linea que conté -> API_PATH=tu/ruta/de/api/aqui
+
+I cambiar tu/ruta/de/api/aqui a la teva ruta on estigui la carpeta API, per exemple -> C:\Users\Alfred\Desktop\gr04-puigantell-carmona-perez\API
+
+També en el arxiu .env del Directori EventoPass cambiem totes les seguentes linees per les nostres dades de MAILTRAP i de POSTGRESS:
+
+* DB_CONNECTION=pgsql
+* DB_HOST=127.0.0.1
+* DB_PORT=5432
+* DB_DATABASE=Project2 
+* DB_USERNAME=Usuari
+* DB_PASSWORD=Contrasenya
+
+* MAIL_MAILER=smtp
+* MAIL_HOST=mailpit
+* MAIL_PORT=1025
+* MAIL_USERNAME=Usuari MAILTRAP
+* MAIL_PASSWORD=Contrasenya MAILTRAP
+* MAIL_ENCRYPTION=tls
+* MAIL_FROM_ADDRESS="support@eventopass.com"
+* MAIL_FROM_NAME="EventoPass"
+* MAIL_FROM_NAME="${APP_NAME}"
+
+==== Preparació de la API d'Imatges
+
+Accedim al projecte de EventoPass -> cd API
+
+Ara instal·lem les dependències del composer -> composer install
+
+Copiem el fitxer .env.example amb el nom .env -> cp .env.example .env
+
+I creem la key del Artisan -> php artisan key:generate
+
+A continuació, buscar dintre del archiu .env del projecte API, cambiem totes les seguentes linees per les nostres dades de POSTGRESS per a la API:
+
+* DB_CONNECTION=pgsql
+* DB_HOST=127.0.0.1
+* DB_PORT=5432
+* DB_DATABASE=Image_Management_API
+* DB_USERNAME=Usuari
+* DB_PASSWORD=Contrasenya
+
+
+==== Preparació BD i servidors API i EventoPass
+
+Obrir una nova Terminal Powershell (l'objectiu es tenir 2 terminals PowerShell al VSC obertes)
+
+En una escribim la comanda -> cd API
+
+Un cop dins de API introduim aquesta comanda -> php artisan serve --port=8080
+
+despres anem a la altra Terminal PowerShell e introduim la comanda cd EventoPass
+
+Un cop dins del Directori EventoPass introduim la comanda -> php artisan api:migrate:refresh
+
+esperem a que acabi e introduim la comanda ->php artisan serve
+
+Accedim desde el buscador -> http://127.0.0.1:8000
+
+
+Si trobes problemes de permisos realitzant aquestes accions sense sudo, verifica els permisos del directori on estàs treballant. Pot ser que necessitis ajustar els permisos del directori (amb comandes com chown o chmod) per evitar l'ús de sudo per aquestes operacions.

@@ -8,11 +8,12 @@
                 @if ($event->main_image_id)
                     <picture class="contenedorImagen">
                         <source media="(max-width: 799px)"
-                            srcset="{{env('URL_API')}}{{ $event->optimizedImageSmallUrl() }}">
+                            srcset="{{ config('services.api.url') }}{{ $event->optimizedImageSmallUrl() }}">
                         <source media="(min-width: 800px) and (max-width: 1023px)"
-                            srcset="{{env('URL_API')}}{{ $event->optimizedImageMediumUrl() }}">
-                        <img src="{{env('URL_API')}}{{ $event->optimizedImageLargeUrl() }}" alt="{{ $event->name }}"
-                            loading="lazy" onerror="this.onerror=null; this.src='https://picsum.photos/200'">
+                            srcset="{{ config('services.api.url') }}{{ $event->optimizedImageMediumUrl() }}">
+                        <img src="{{ config('services.api.url') }}{{ $event->optimizedImageLargeUrl() }}"
+                            alt="{{ $event->name }}" loading="lazy"
+                            onerror="this.onerror=null; this.src='https://picsum.photos/200'">
                     </picture>
                 @else
                     <img src="https://picsum.photos/2000" alt="{{ $event->name }}" loading="lazy">

@@ -246,9 +246,9 @@ class CreateEventController extends Controller
     {
         return Http::withHeaders([
             'Accept' => 'application/json',
-            'APP-TOKEN' => env('TIQUETS_APP_TOKEN'),
+            'APP-TOKEN' => config('services.api.token'),
         ])->attach(
             'image', $imageFile->get(), $imageFile->getClientOriginalName()
-        )->post(env('URL_API').'/api/V1/images');
+        )->post(config('services.api.url').'/api/V1/images');
     }
 }

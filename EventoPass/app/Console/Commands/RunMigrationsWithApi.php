@@ -18,7 +18,7 @@ class RunMigrationsWithApi extends Command
 
     public function handle()
     {
-        $apiPath = env('API_PATH');
+        $apiPath = config('services.api.path');;
 
         if (empty($apiPath)) {
             $this->error('La variable de entorno API_PATH no está definida.');
