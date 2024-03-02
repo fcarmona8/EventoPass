@@ -19,6 +19,11 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ConfirmPurchaseController;
 use App\Http\Controllers\PromotorSessionsListController;
 
+Route::get('/test-env', function () {
+    dd(config('services.api.url'), config('services.api.token'), config('services.api.path')); // Ahora debería mostrar el valor de URL_API correctamente
+});
+
+
 
 // Página principal
 Route::get('/', [HomeController::class, 'index'])->name('home');

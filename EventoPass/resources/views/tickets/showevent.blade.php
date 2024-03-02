@@ -9,11 +9,12 @@
                 <div class="mySlides fade">
                     <picture>
                         <source media="(max-width: 799px)"
-                            srcset=" {{ env('URL_API') }}{{ $event->optimizedImageSmallUrl() }}">
+                            srcset=" {{ config('services.api.url') }}{{ $event->optimizedImageSmallUrl() }}">
                         <source media="(min-width: 800px) and (max-width: 1023px)"
-                            srcset=" {{ env('URL_API') }}{{ $event->optimizedImageMediumUrl() }}">
-                        <img src="{{ env('URL_API') }}{{ $event->optimizedImageLargeUrl() }}" alt="{{ $event->name }}"
-                            loading="lazy" onerror="this.onerror=null; this.src='https://picsum.photos/200'">
+                            srcset=" {{ config('services.api.url') }}{{ $event->optimizedImageMediumUrl() }}">
+                        <img src="{{ config('services.api.url') }}{{ $event->optimizedImageLargeUrl() }}"
+                            alt="{{ $event->name }}" loading="lazy"
+                            onerror="this.onerror=null; this.src='https://picsum.photos/200'">
                     </picture>
                 </div>
             @endif
@@ -22,10 +23,10 @@
                 <div class="mySlides fade">
                     <picture>
                         <source media="(max-width: 799px)"
-                            srcset="{{ env('URL_API') }}/api/V1/optimized-images/{{ $image->image_id }}/small">
+                            srcset="{{ config('services.api.url') }}/api/V1/optimized-images/{{ $image->image_id }}/small">
                         <source media="(min-width: 800px) and (max-width: 1023px)"
-                            srcset="{{ env('URL_API') }}/api/V1/optimized-images/{{ $image->image_id }}/medium">
-                        <img src="{{ env('URL_API') }}/api/V1/optimized-images/{{ $image->image_id }}/large"
+                            srcset="{{ config('services.api.url') }}/api/V1/optimized-images/{{ $image->image_id }}/medium">
+                        <img src="{{ config('services.api.url') }}/api/V1/optimized-images/{{ $image->image_id }}/large"
                             alt="{{ $event->name }}" loading="lazy"
                             onerror="this.onerror=null; this.src='https://picsum.photos/200'">
                     </picture>
