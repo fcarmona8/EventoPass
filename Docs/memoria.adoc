@@ -501,7 +501,7 @@ image::images/DiagramaE-R_API.PNG[Diagrama d'Entitat-Relació,800,*]
 
 |===
 
-image::images/DiagramaUML_API.png[Diagrama UML,600,400]
+image::images/DiagramaUML_API.png[Diagrama UML,300,*]
 
 
 == Sketching i Mockup d'Interfícies
