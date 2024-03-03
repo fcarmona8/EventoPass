@@ -1,0 +1,161 @@
+@charset "UTF-8";
+
+/* Estilos básicos para móviles */
+.grid-container {
+  display: grid;
+  //grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 0 10px 10px 10px;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid var(--destacados-enlaces);
+  background-color: white;
+  border-radius: 5px;
+  margin: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-in-out;
+  min-height: 100%;
+}
+
+.card-link {
+  text-decoration: none;
+  color: black;
+}
+
+.filtro,
+input {
+  padding: 3px;
+}
+
+label {
+  padding: 3px;
+}
+
+.iconoLupa {
+  font-size: 10px;
+  border-radius: 1000px;
+}
+
+.inputSearch {
+  border-radius: 8px;
+  border: 1px solid black;
+  padding: 0.7%;
+  margin: 0% 5% 0% 2.5%;
+}
+
+.contenedorFiltro {
+  width: 98%;
+  margin: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  overflow-y: hidden;
+}
+
+.card-link:hover {
+  text-decoration: none;
+}
+
+.contenedorImagen{
+  display: flex;
+}
+
+.card img {
+  width: 150px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  padding: 3%;
+  word-break: break-all;
+  width: 100%;
+}
+
+.card-price {
+  color: white;
+  display: flex;
+  width: min-content;
+  padding: 7px 15px;
+  white-space: nowrap;
+  margin-left: auto;
+  margin-top: auto;
+  border-radius: 8px;
+  margin-right: 10px;
+  background-color: var(--principal);
+}
+
+.card h3 {
+  font-size: 16px;
+  margin: 0;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+.card p {
+  font-size: 12px;
+  margin: 5px 0px;
+  word-wrap: break-word;
+}
+
+.description {
+  display: none;
+  margin: 5px 0;
+  font-size: 13px;
+}
+
+/* Media query para pantallas más grandes */
+@media (min-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 columnas para pantallas más grandes */
+    //padding: 2% 10%;
+  }
+
+  .iconoLupa,
+  .filtro,
+  input,
+  label {
+    font-size: 16px;
+  }
+
+  label {
+    padding: 10px 5px;
+  }
+
+  input {
+    width: 50%;
+  }
+
+  .card:hover {
+    box-shadow: 0 7px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.06) !important;
+    cursor: pointer;
+  }
+
+  .card img {
+    width: 180px;
+  }
+
+  .card h3 {
+    font-size: 16px;
+    margin: 0;
+    font-weight: 600;
+    word-wrap: break-word;
+  }
+
+  .card p {
+    font-size: 14px;
+    word-wrap: break-word;
+  }
+
+  .inputSearch {
+    height: 40px;
+  }
+}

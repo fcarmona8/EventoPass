@@ -1,0 +1,164 @@
+@startuml
+
+class "Category" {
+    # id : bigint
+    # name : varchar
+    --
+    + events() : Event[]
+    + eventsWithLimit(events) : Event[]
+}
+
+class "Comentario" {
+    # id : bigint
+    # nombre : varchar
+    # event_id : bigint <<FK>>
+    # smileyRating : int
+    # puntuacion : int
+    # titulo : varchar
+    # comentario : text
+    --
+    + evento() : Evento
+}
+
+class "Event" {
+    # id : bigint
+    # name : varchar
+    # description : text
+    # category_id : bigint <<FK>>
+    # venue_id : bigint <<FK>>
+    # main_image_id : bigint
+    # event_date : date
+    # max_capacity : integer
+    # video_link : varchar
+    # hidden : boolean
+    # nominal : boolean
+    # user_id : bigint <<FK>>
+    --
+    + category() : Category
+    + venue() : Venue
+    + sessions() : Session[]
+    + tickets() : Ticket[]
+    + images() : EventImage[]
+    + comentarios() : Comentario[]
+    + obtenerComentarios() : Comentario[]
+    + lowestTicketPrice() : numeric
+    + eventosDisponibles() : Event[]
+    + scopeNameEvent(query: Builder, name: string)
+    + scopeUserEvent(query: Builder, user_id: bigint)
+    + scopeCategoryEvent(query: Builder, category: int)
+    + optimizedImageSmallUrl()
+    + optimizedImageMediumUrl()
+}
+
+class "Venue" {
+    # province : varchar
+    # city : varchar
+    # postal_code : varchar
+    # venue_name : varchar
+    # capacity : integer
+    # user_id : bigint <<FK>>
+    --
+    + user() : User
+    + events() : Event[]
+    + scopeSearchByVenueId(query: Builder, venueId: bigint)
+}
+
+class "User" {
+    # name : varchar
+    # email : varchar
+    # password : hashed
+    --
+    + role() : Role
+    + venues() : Venue[]
+    + events() : Event[]
+}
+
+class "Role" {
+    # id : bigint
+    # name : varchar
+    --
+    + users() : User[]
+}
+
+class "EventImage" {
+    # event_id : bigint <<FK>>
+    # image_url : varchar
+    # is_main : boolean
+    # image_id : bigint
+    --
+    + event() : Event
+}
+
+class "Purchase" {
+    # session_id : bigint <<FK>>
+    # total_price : numeric
+    # name : varchar
+    # email : varchar
+    # dni : varchar
+    # phone : varchar
+    # ticketsPDF : varchar
+    --
+    + tickets() : Ticket[]
+    + generarCompra(session_id, total_price, name, email, dni, phone, nTickets, namePDF)
+    + nEntradesAgrupadas()
+    + nEntradesNominal()
+    + nEntrades()
+}
+
+class "Session" {
+    # event_id : bigint <<FK>>
+    # session_code : varchar
+    # date_time : datetime
+    # max_capacity : integer
+    # online_sale_end_time : datetime
+    # ticket_quantity : integer
+    # named_tickets : boolean
+    # closed : boolean
+    --
+    + event() : Event
+    + purchases() : Purchase[]
+    + tickets() : Ticket[]
+    + scopeEventSessions(query: Builder, event_id)
+    + scopeSessionEvent(query: Builder, session_id)
+}
+
+class "Ticket" {
+    # purchase_id : bigint <<FK>>
+    # type_id : bigint <<FK>>
+    # session_id : bigint <<FK>>
+    # is_validated : boolean
+    # name : varchar
+    # dni : varchar
+    # telefono : varchar
+    # unicIdTicket : varchar
+    # buyerName : varchar
+    --
+    + purchase() : Purchase
+    + type() : TicketType
+    + session() : Session
+    + buyTicket(session_id, type_id, purchase_id, name, dni, telefono, idEntrada, buyerName)
+    + restarNTickets(idTicket, cantidad)
+}
+
+class "TicketType" {
+    # name : varchar
+    # price : numeric
+    # available_tickets : integer
+    --
+    + tickets() : Ticket[]
+}
+
+Comentario "0..*" -- "1" Event : "event_id"
+Event "1" -- "0..*" Category : "category_id"
+Event "0..*" -- "1" Venue : "venue_id"
+Venue "0..*" -- "1" User : "user_id"
+User "0..*" -- "1" Role : "role_id"
+Event "1" -- "0..*" EventImage : "event_id"
+Session "1" -- "*" Event : "event_id"
+Purchase "1" -- "*" Session : "session_id"
+Purchase "1" -- "0..*" Ticket : contains
+Session "1" -- "*" Purchase : "session_id"
+Session "1" -- "*" Ticket : "session_id"
+Ticket "0..*" -- "1" TicketType : "type_id"
+
+@enduml

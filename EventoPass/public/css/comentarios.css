@@ -1,0 +1,333 @@
+#contenedorPuntuacionHidden .stars-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 20rem;
+}
+
+#contenedorPuntuacionHidden .star-container {
+    flex: 0 0 0%;
+    display: grid;
+    grid: [stack] 2rem / [stack] 2rem;
+    place-items: center;
+}
+
+#contenedorPuntuacionHidden .star-container>* {
+    grid-area: stack;
+}
+
+#contenedorPuntuacionHidden .star-container>label {
+    color: transparent;
+}
+
+#contenedorPuntuacionHidden .star-container>label::selection {
+    background: transparent;
+}
+
+#contenedorPuntuacionHidden .star-container>input {
+    appearance: none;
+}
+
+#contenedorPuntuacionHidden .fake-star {
+    pointer-events: none;
+    fill: lightgrey;
+}
+
+#contenedorPuntuacionHidden .star-container>input:hover~.fake-star {
+    fill: lightgoldenrodyellow;
+}
+
+#contenedorPuntuacionHidden .star-container>input:focus~.fake-star {
+    stroke: lightblue;
+    stroke-width: 1;
+}
+
+#contenedorPuntuacionHidden .star-container>input:checked~.fake-star {
+    fill: orange;
+}
+
+/* Attempt 2 styles */
+
+.stars-wrapper,
+.stars-display {
+    display: grid;
+    grid: 2rem / repeat(5, 1fr);
+}
+
+.stars-wrapper {
+    margin: 0 auto;
+    max-width: 16rem;
+}
+
+.stars-display {
+    grid-row: 1;
+    grid-column: 1 / -1;
+    fill: lightgrey;
+    pointer-events: none;
+    place-items: center;
+}
+
+#contenedorPuntuacion input,
+#contenedorPuntuacion label,
+#contenedorPuntuacion label::selection {
+    appearance: none;
+    color: transparent;
+    background: transparent;
+}
+
+#one-star-rating-2,
+label[for="one-star-rating-2"] {
+    grid-row: 1;
+    grid-column: 1;
+}
+
+#two-star-rating-2,
+label[for="two-star-rating-2"] {
+    grid-row: 1;
+    grid-column: 2;
+}
+
+#three-star-rating-2,
+label[for="three-star-rating-2"] {
+    grid-row: 1;
+    grid-column: 3;
+}
+
+#four-star-rating-2,
+label[for="four-star-rating-2"] {
+    grid-row: 1;
+    grid-column: 4;
+}
+
+#five-star-rating-2,
+label[for="five-star-rating-2"] {
+    grid-row: 1;
+    grid-column: 5;
+}
+
+/* Fill stars up to and including selected star */
+#one-star-rating-2:checked~.stars-display svg:nth-child(-n + 1) {
+    fill: orange;
+}
+
+#two-star-rating-2:checked~.stars-display svg:nth-child(-n + 2) {
+    fill: orange;
+}
+
+#three-star-rating-2:checked~.stars-display svg:nth-child(-n + 3) {
+    fill: orange;
+}
+
+#four-star-rating-2:checked~.stars-display svg:nth-child(-n + 4) {
+    fill: orange;
+}
+
+#five-star-rating-2:checked~.stars-display svg:nth-child(-n + 5) {
+    fill: orange;
+}
+
+/* Fill stars that are being hovered (overrides the fill up to selected rating) */
+#one-star-rating-2:hover~.stars-display svg:nth-child(-n + 1) {
+    fill: lightgoldenrodyellow;
+}
+
+#two-star-rating-2:hover~.stars-display svg:nth-child(-n + 2) {
+    fill: lightgoldenrodyellow;
+}
+
+#three-star-rating-2:hover~.stars-display svg:nth-child(-n + 3) {
+    fill: lightgoldenrodyellow;
+}
+
+#four-star-rating-2:hover~.stars-display svg:nth-child(-n + 4) {
+    fill: lightgoldenrodyellow;
+}
+
+#five-star-rating-2:hover~.stars-display svg:nth-child(-n + 5) {
+    fill: lightgoldenrodyellow;
+}
+
+/* Fill stars that are being hovered (overrides the fill up to selected rating) */
+#one-star-rating-2:hover:checked~.stars-display svg:nth-child(-n + 1) {
+    fill: orange;
+}
+
+#two-star-rating-2:hover:checked~.stars-display svg:nth-child(-n + 2) {
+    fill: orange;
+}
+
+#three-star-rating-2:hover:checked~.stars-display svg:nth-child(-n + 3) {
+    fill: orange;
+}
+
+#four-star-rating-2:hover:checked~.stars-display svg:nth-child(-n + 4) {
+    fill: orange;
+}
+
+#five-star-rating-2:hover:checked~.stars-display svg:nth-child(-n + 5) {
+    fill: orange;
+}
+
+.contenedorCrearComentario {
+    background-color: white;
+    height: 100%;
+}
+
+.guardar-comentario {
+    border-radius: 20px;
+    font-size: 18px;
+    margin: 20px auto 10px auto;
+
+    width: 150px;
+    color: rgb(50, 50, 50);
+}
+
+.contenedorCrearComentario {
+    width: 100%;
+}
+
+.tituloEnviarComentario {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.formCrearComentario {
+    display: grid;
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    width: 80%;
+}
+
+.formCrearComentario label {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.formCrearComentario input {
+    font-size: 16px;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 10px 16px;
+}
+
+.formCrearComentario textarea {
+    font-size: 16px;
+    border: 1px solid black;
+    min-height: 200px;
+    border-radius: 8px;
+    padding: 10px 16px;
+}
+
+.starInput {
+    border: none !important;
+    position: static !important;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.stars-wrapper label {
+    margin: 0;
+    padding: 0;
+}
+
+.contenedorCrearComentario section {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.iconosComentarios {
+    fill: rgb(242, 242, 242);
+    height: 3.6rem;
+    width: 3.6rem;
+    margin: 0.2rem;
+}
+
+input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+input[type="radio"]+.iconosComentarios {
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+input+.iconosComentarios {
+    cursor: pointer;
+}
+
+input[class="super-happy"]:hover+.iconosComentarios,
+input[class="super-happy"]:checked+.iconosComentarios,
+input[class="super-happy"]:focus+.iconosComentarios {
+    fill: rgb(0, 109, 217);
+}
+
+input[class="happy"]:hover+.iconosComentarios,
+input[class="happy"]:checked+.iconosComentarios,
+input[class="happy"]:focus+.iconosComentarios {
+    fill: rgb(0, 204, 79);
+}
+
+input[class="neutral"]:hover+.iconosComentarios,
+input[class="neutral"]:checked+.iconosComentarios,
+input[class="neutral"]:focus+.iconosComentarios {
+    fill: rgb(232, 214, 0);
+}
+
+input[class="sad"]:hover+.iconosComentarios,
+input[class="sad"]:checked+.iconosComentarios,
+input[class="sad"]:focus+.iconosComentarios {
+    fill: rgb(229, 132, 0);
+}
+
+input[class="super-sad"]:hover+.iconosComentarios,
+input[class="super-sad"]:checked+.iconosComentarios,
+input[class="super-sad"]:focus+.iconosComentarios {
+    fill: rgb(239, 42, 16);
+}
+
+.contenedorPuntuacionIconos{
+    display: flex;
+    justify-content: center;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+
+@media (min-width: 768px) {
+    
+    .contenedorCrearComentario {
+        background-color: white;
+        height: min-content;
+        margin: 50px auto 50px auto;
+        width: 70%;
+        padding-bottom: 40px;
+        padding-top: 40px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .formCrearComentario {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        width: 80%;
+    }
+
+    .formCrearComentario input{
+        width: auto;
+    }
+
+
+
+    .smileyRatingLabel{
+        margin-top: 0px !important;
+    }
+
+}

@@ -1,0 +1,101 @@
+#entradas-sesion {
+  width: 100% !important;
+}
+
+#ticket-input {
+  display: grid;
+  grid-template-columns: 1fr 1fr !important;
+  grid-row-gap: 0px;
+  grid-column-gap: 15px;
+}
+
+#nombre-entradas-sesion {
+  grid-column: 1 / span 2;
+
+}
+
+#labelNombreEntradasSesion,
+.inputNombreSesion {
+  grid-column: 1 / span 2 !important;
+}
+
+#labelNombrePrecioSesion {
+  grid-area: 3 / 1 / 4 / 2;
+}
+
+#labelNombreCantidadSesion {
+  grid-area: 3 / 2 / 4 / 3;
+}
+
+#guardar-sesion {
+  border-radius: 20px;
+  font-size: 18px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  width: 150px;
+  color: #fff;
+}
+
+#div-crear-sesion {
+  overflow-x: scroll;
+  max-height: 650px;
+}
+
+.sliderSesion {
+  left: 182px;
+  right: -179px;
+}
+
+.separador-entradas-sesion {
+  border: 1px solid #434343;
+  width: 100%;
+  margin-top: 35px;
+  grid-area: unset !important;
+  grid-column: 1 / span 2 !important;
+}
+
+#eliminar-entrada-session {
+  color: red;
+  font-size: 14px;
+  background-color: inherit;
+  text-decoration: underline;
+  right: -16px;
+  top: 174px;
+}
+
+.nueva-linea {
+  margin-top: 35px;
+}
+
+#selector-options-sesion {
+  width: 100%;
+  display: "" !important;
+  min-height: 35px;
+}
+
+#cierre-entradas-sesion {
+  width: 100%;
+}
+
+#div-event-sesion {
+  width: 100%;
+  margin-top: 15px;
+}
+
+#entradas-nominales-sesion {
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+@media (min-width: 768px) {
+  #eliminar-entrada-session {
+    right: -16px;
+    top: 150px;
+  }
+
+  .sliderSesion {
+    left: 217px;
+    right: -213px;
+  }
+}

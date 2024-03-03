@@ -1,0 +1,94 @@
+@charset "UTF-8";
+.container {
+  position: relative;
+  top: 20%;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: center;
+  padding: 1rem;
+  max-width: 363px;
+  margin: 0 auto;
+  background-color: #f0e6d2;
+  border-radius: 10px;
+  box-shadow: -1px 1px 6px 6px rgba(0, 0, 0, 0.1); }
+
+.card {
+  background-color: var(--fondo-y-contraste);
+  border-radius: 10px;
+  /* box-shadow: 0 4px 8px rgba(0,0,0,0.1); */
+  padding: 1rem; }
+
+.card-header {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--principal);
+  font-size: 24px;
+  margin-bottom: 1rem;
+  text-align: center; }
+
+.card-body {
+  display: flex;
+  flex-direction: column; }
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem; }
+
+.form-group label {
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 0.5rem;
+  color: var(--texto-detalle); }
+
+.form-group input,
+.form-group small {
+  font-family: 'Lato', sans-serif;
+  padding: 0.5rem;
+  border: 1px solid var(--elementos-secundarios);
+  border-radius: 5px;
+  margin-bottom: 0.5rem; }
+
+.btn-primary {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--botones-accion);
+  color: var(--fondo-y-contraste);
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px; }
+
+.alert-danger ul {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+
+.alert-danger li {
+  font-family: 'Roboto', sans-serif;
+  color: red;
+  display: flex;
+  margin-bottom: 0.5rem;
+  flex-direction: column;
+  align-items: center; }
+
+.form-text {
+  color: var(--texto-detalle);
+  font-size: 10px; }
+
+/* Estilos para pantallas más grandes */
+@media (min-width: 768px) {
+  .container {
+    top: 10%;
+    /* grid-template-columns: repeat(2, 1fr); */
+    padding: 2rem; }
+  .card-header {
+    font-size: 28px; }
+  .form-group label,
+  .form-group input {
+    font-size: 14px; } }
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 500px; }
+  .card-header {
+    font-size: 30px; } }

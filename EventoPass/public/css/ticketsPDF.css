@@ -1,0 +1,67 @@
+body, html{
+    width: 297mm; 
+    height: 210mm;
+    margin: 0;
+}
+.pdf{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+}
+
+
+.header{
+    display: flex;
+    margin: 2% 0%;
+    background-color: blue;
+    width: 90%;
+    justify-items: center;
+    align-items: center;
+}
+
+.pdfh1 {
+    text-align: center;
+    height: fit-content;
+    padding: 5%;
+    max-width: 100%;
+    white-space: nowrap; /* Evita saltos de línea */
+    overflow: hidden; /* Oculta el desbordamiento */
+    text-overflow: ellipsis;
+    color: rgb(230, 223, 223);
+}
+
+.content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: white;
+    width: 90%;
+}
+
+.divInfoEntrada, .divInfoSessio, .divInfoPersonal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0% 2%;
+    width: 33%;
+}
+
+.dadesEntrades{
+    margin-top: 2%;
+    width: 90%;
+    background-color: white;
+}
+
+.linea {
+    border-left: 7px solid var(--fondo-y-contraste); 
+    height: 100%; 
+}
+
+.logoPDF{
+    width: 150px; 
+    height: 150px;
+}
+

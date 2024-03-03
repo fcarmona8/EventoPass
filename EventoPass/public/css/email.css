@@ -1,0 +1,84 @@
+@charset "UTF-8";
+/* Estilos específicos para la página de restablecimiento de contraseña */
+.container {
+  position: relative;
+  top: 33%;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: center;
+  padding: 1rem;
+  max-width: 363px;
+  margin: 0 auto;
+  background-color: var(--principal);
+  border-radius: 10px;
+  box-shadow: -1px 1px 6px 6px rgba(0, 0, 0, 0.1); }
+
+.card {
+  width: 100%;
+  background-color: var(--principal);
+  border-radius: 10px; }
+
+.card-header {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--titulos);
+  font-size: 22px;
+  margin-bottom: 1rem;
+  text-align: center; }
+
+.card-body {
+  display: flex;
+  flex-direction: column; }
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem; }
+  .form-group label {
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 0.5rem;
+    color: var(--titulos); }
+  .form-group input {
+    font-family: 'Lato', sans-serif;
+    padding: 0.5rem;
+    border: 1px solid var(--elementos-secundarios);
+    border-radius: 5px; }
+
+.btn-primary {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--botones-accion);
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px; }
+
+.alert-success,
+.alert-danger {
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: var(--botones-accion);
+  font-weight: bold;
+  font-size: 15px; }
+
+li {
+  list-style: none; }
+
+/* Estilos para pantallas más grandes */
+@media (min-width: 768px) {
+  .container {
+    /* top: 15%; */
+    /* grid-template-columns: repeat(2, 1fr); */
+    padding: 2rem; }
+  .card-header {
+    font-size: 26px; }
+  .form-group label,
+  .form-group input {
+    font-size: 14px; } }
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 500px; }
+  .card-header {
+    font-size: 28px; } }

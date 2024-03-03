@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="css/index.css" />
+    <title>Validación de Entradas</title>
+  </head>
+  <body>
+    <div id="loginForm">
+      <input type="text" id="sessionCodeInput" placeholder="Código de Sesión" />
+      <button onclick="login()">Login</button>
+    </div>
+    <button id="logoutButton" onclick="logout()" style="display: none">
+      Logout
+    </button>
+    <button id="scanQRCode" onclick="scanQRCode()" style="display: none">
+      Escanear Código QR
+    </button>
+    <button
+      id="validateTicket"
+      onclick="validateTicket()"
+      style="display: none"
+    >
+      Validar Entrada
+    </button>
+    <div id="result"></div>
+    <script src="cordova.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>

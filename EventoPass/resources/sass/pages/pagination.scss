@@ -1,0 +1,40 @@
+@charset "UTF-8";
+.pagination {
+  display: flex;
+  list-style: none;
+  padding: 7%; }
+
+.pagination li {
+  margin: 0 5px; }
+
+.pagination li a {
+  color:#5c66f8;
+  /* Color del enlace */
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'lato', sans-serif; }
+
+.pagination li.disabled span,
+.pagination li a:hover {
+  color: #ff0000;
+  /* Color al pasar el ratón */ }
+
+.pagination-info {
+  width: 100%;
+  text-align: center;
+  color: #000000; }
+
+p {
+  font-size: 16px; }
+
+@media (min-width: 768px) {
+  .pagination {
+    display: flex;
+    list-style: none;
+    padding: 7% 0% 2% 0%;
+    width: 100%; }
+  .pagination li a {
+    font-size: 16px; }
+  p {
+    font-size: 16px; } }

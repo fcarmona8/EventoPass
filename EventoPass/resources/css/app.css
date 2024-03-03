@@ -1,0 +1,21 @@
+.container {
+    background-color: #eee;
+    width: 90%;
+    margin: 30px auto;
+    display: grid;
+
+   /* grid-template-rows: 150px 150px;
+    grid-template-columns: 150px 150px;*/
+    grid-template-columns: repeat(2,200px);
+    grid-template-rows: repeat(3,200px);
+    gap: 20px;
+  }
+  .item {
+    padding: 20px;
+    font-size: 30px;
+    font-family: sans-serif;
+    color: white;
+  }
+  .filtro {
+    background-color: green;
+  }

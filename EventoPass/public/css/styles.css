@@ -1,0 +1,404 @@
+@charset "UTF-8";
+/* Importar las fuentes de Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Lato:wght@300;400&family=Roboto:wght@400&display=swap");
+
+/* Definición de colores */
+:root {
+  --fondo-y-contraste: #d8d8d8;
+  --principal: #11436b;
+  --botones-accion: #FF6B6B;
+  --texto-detalle: #2C3E50;
+  --destacados-enlaces: #FF6B6B;
+  --titulos: #ffff;
+  --elementos-secundarios: #857C6D;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+.w3-content {
+  flex: 1;
+  /* Permite que el contenedor crezca y llene el espacio disponible */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilos generales */
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: var(--fondo-y-contraste);
+  color: var(--texto-detalle);
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+header {
+  display: flex;
+  flex-direction: row-reverse;
+  background-color: var(--principal);
+  color: white;
+  padding: 1rem;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+footer {
+  background-color: var(--principal);
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  margin-top: auto;
+}
+
+#logo {
+  width: 75px;
+  margin-right: 2.5%;
+  margin-bottom: 0.5rem;
+}
+
+/* Encabezados */
+#title {
+  position: relative;
+  left: 3%;
+  color: var(--titulos);
+}
+
+h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 28px;
+  color: var(--texto-detalle);
+}
+
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--texto-detalle);
+}
+
+h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--texto-detalle);
+}
+
+/* Texto general */
+p,
+.text {
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+}
+
+/* Botones y llamadas a la acción */
+button,
+.button {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 6px;
+  background-color: var(--botones-accion);
+  color: #0b2c47;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Texto de ayuda y pie de página */
+.help-text,
+.footer-text {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 4px;
+}
+
+/* Etiquetas de formulario y menús de navegación */
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+nav li {
+  margin-right: 20px;
+}
+
+nav li:last-child {
+  margin-right: 0;
+}
+
+nav a {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+}
+
+label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+}
+
+/* Enlaces destacados */
+a,
+.link-highlight {
+  color: var(--titulos);
+  text-decoration: none;
+}
+
+a:hover,
+.link-highlight:hover {
+  text-decoration: underline;
+}
+
+/* Elementos secundarios */
+.secondary-item {
+  color: var(--elementos-secundarios);
+}
+
+.sidebar {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-sizing: border-box;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  right: -410px;
+  background-color: #12293d;
+  color: #fff;
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+.sidebar.active {
+  right: 0px;
+  width: 310px;
+}
+
+.usuari {
+  margin: 100px 30px 0px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background-color: #12293d;
+  border-bottom: 2px solid white;
+}
+
+.user-name {
+  color: white;
+  font-size: 18px;
+}
+
+.logout-div {
+  display: flex;
+  margin-left: 30px;
+  width: calc(100% - 60px);
+  margin-right: 30px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 2px solid white;
+  justify-content: flex-end;
+}
+
+.logout-button {
+  border: 2px solid #E00F00;
+  background-color: white;
+  font-size: 14px;
+  color: #E00F00;
+  border-radius: 8px;
+  margin-left: auto;
+}
+
+.logout-button-text {
+  vertical-align: 1.5px;
+}
+
+.user-menu {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  align-items: flex-start;
+  margin-top: 30px;
+}
+
+.user-menu li {
+  list-style: none;
+  margin: 10px 0px;
+  padding: 20px 30px;
+  width: 100%;
+}
+
+.user-menu li a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.user-menu li a:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.user-menu li:hover {
+  background-color: #184b74;
+}
+
+.user-info {
+  display: none;
+}
+
+.user-info.active {
+  display: block;
+}
+
+.menu-mobile {
+  position: relative;
+  z-index: 1000;
+  font-size: 26px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+#mobile-menu-div {
+  margin-left: auto;
+  margin-right: 25px;
+}
+
+#toastBox {
+  position: absolute;
+  bottom: 125px;
+  right: 30px;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.toast {
+  width: 75%;
+  height: 80px;
+  background: white;
+  font-weight: 500;
+  margin: 15px 0;
+  border-radius: 1rem;
+  display: flex;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  border: 2px solid green;
+  position: fixed;
+  transform: translateX(100%);
+  animation: moveleft 0.1s linear forwards;
+}
+
+.toast.error {
+  border: 2px solid #9d0000;
+}
+
+@keyframes moveleft {
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.toast::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 10px;
+  background: green;
+  animation: anim 3000ms linear forwards;
+  border-radius: 0 0 1rem 1rem;
+}
+
+.toast.error::after {
+  background: #9d0000;
+}
+
+@keyframes anim {
+  100% {
+    width: 0;
+  }
+}
+
+.errorIcon {
+  fill: #9d0000;
+  width: 25px;
+  margin-right: 15px;
+  margin-left: 25px;
+}
+
+.successIcon {
+  fill: green;
+  width: 25px;
+  margin-right: 15px;
+  margin-left: 25px;
+}
+
+/* Estilos para móviles y Media Queries */
+@media (min-width: 768px) {
+  header {
+    display: flex;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 0.5rem 1rem;
+  }
+
+  #logo {
+    position: relative;
+    width: 100px;
+    margin-right: 0.5rem;
+    left: 1%;
+  }
+
+  h1 {
+    font-size: 36px;
+    margin: 0;
+  }
+
+  footer {
+    text-align: left;
+    padding: 1rem 2rem;
+  }
+
+  .sidebar.active {
+    width: 450px;
+  }
+
+  .user-menu li {
+    list-style: none;
+    margin: 10px 0px;
+    padding: 30px 50px;
+    width: 100%;
+  }
+
+  .user-menu {
+    font-size: 20px;
+  }
+
+  .usuari {
+    margin: 100px 50px 0px 50px;
+  }
+
+  .logout-div {
+    margin-left: 50px;
+    width: calc(100% - 100px);
+  }
+
+  .toast {
+    width: 400px;
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    margin: 0 auto;
+  }
+}
