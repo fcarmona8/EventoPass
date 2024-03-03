@@ -76,6 +76,7 @@ DB_PORT=5432
 DB_DATABASE=Image_Management_API
 DB_USERNAME=Usuari
 DB_PASSWORD=Contrasenya
+
 ==== Preparació Cordova
 
 Instal·lar Cordova a la teva màquina I NODE.JS, seguir Documentació Oficial
