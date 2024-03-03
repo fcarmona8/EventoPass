@@ -13,12 +13,7 @@ function login() {
         method: 'POST',
         body: formData,
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Respuesta de red no fue ok');
-        }
-        return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
         if (data.success) {
             console.log("Login exitoso");
@@ -26,8 +21,9 @@ function login() {
             document.getElementById("loginForm").style.display = "none";
             document.getElementById("logoutButton").style.display = "block";
             document.getElementById("scanQRCode").style.display = "block";
+            document.getElementById("result").innerText = data.message;
         } else {
-            throw new Error(data.message);
+            document.getElementById("result").innerText = data.message;
         }
     })
     .catch(error => {
@@ -94,20 +90,10 @@ function validateTicket(sessionId, hash) {
             'Session-Code': sessionCode,
         },
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Respuesta de red no fue ok');
-        }
-        const contentType = response.headers.get('content-type');
-        if (!contentType || !contentType.includes('application/json')) {
-            throw new TypeError("Oops, no recibimos JSON!");
-        }
-        return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
         if (data.success) {
-            let message = "Ticket validado correctamente: " + data.message;
-            document.getElementById("result").innerText = message;
+            document.getElementById("result").innerText = "Ticket validado correctamente: " + data.message;
         } else {
             document.getElementById("result").innerText = "Error al validar el ticket: " + data.message;
         }
@@ -117,3 +103,4 @@ function validateTicket(sessionId, hash) {
         document.getElementById("result").innerText = "Error de conexión al validar el ticket. Detalles: " + error.message;
     });
 }
+

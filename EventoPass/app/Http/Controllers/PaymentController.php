@@ -48,7 +48,7 @@ class PaymentController extends Controller
         }
         $modifiedParams = $redsysAPI->createMerchantParameters();
 
-        $signature = $redsysAPI->createMerchantSignature(env('REDSYS_SECRET_KEY'));
+        $signature = $redsysAPI->createMerchantSignature('sq7HjrUOBfKmC576ILgskD5srU870gJ7');
 
         $requestData = [
             'Ds_SignatureVersion' => 'HMAC_SHA256_V1',
@@ -65,7 +65,7 @@ class PaymentController extends Controller
 
             $decodedResponseParams = json_decode(base64_decode($responseData['Ds_MerchantParameters']), true);
 
-            if (isset($decodedResponseParams['Ds_Response']) && (int) $decodedResponseParams['Ds_Response'] <= 99 || $decodedResponseParams['Ds_Response'] === "0173") {
+            if (isset($decodedResponseParams['Ds_Response']) && ((int) $decodedResponseParams['Ds_Response'] <= 99 || $decodedResponseParams['Ds_Response'] === "0173" || $decodedResponseParams['Ds_Response'] === "0190")) {
 
                 $session = sessionLaravel::get('datosCompra');
                 $ticketsPDFController = new TicketsPDFController();
