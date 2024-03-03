@@ -1,0 +1,57 @@
+:root {
+    --fondo-y-contraste: #d8d8d8;
+    --principal: #11436b;
+    --botones-accion: #FF6B6B;
+    --texto-detalle: #2C3E50;
+    --destacados-enlaces: #FF6B6B;
+    --titulos: #ffff;
+    --elementos-secundarios: #857C6D;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--fondo-y-contraste);
+    color: var(--texto-detalle);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+  }
+  
+  #loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  #loginForm input[type=text] {
+    padding: 10px;
+    border: 2px solid var(--principal);
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  button {
+    background-color: var(--botones-accion);
+    color: var(--titulos);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #logoutButton, #scanQRCode, #validateTicket {
+    margin-top: 20px;
+  }
+  
+  #result {
+    margin-top: 20px;
+    color: var(--elementos-secundarios);
+    font-weight: bold;
+  }
+  
