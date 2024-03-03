@@ -1,12 +1,18 @@
-= Documentació Desplegament en Local
-:author: Alfred Pérez, Ferran Carmona, Guiu Puigantell
-:doctype: llibre
+= EventoPass
+:doctype: book
 :chapter-label:
 :sectnums:
 :toc: left
 :toclevels: 6
-:toc-title: Taula de Continguts
+:toc-title: Table of Contents
 :front-cover-image: image::images/logo.png[]
+
+== Autores
+
+* link:https://ansmore.github.io/[Alfred Perez]
+* link:https://fcarmona8.github.io/fcarmona8/[Ferran Carmona]
+* link:https://guiu-pj.github.io/portafolio/[Guiu Puigantell]
+
 
 === Preparació del projecte:
 
@@ -28,35 +34,35 @@ I canviem tu/ruta/de/api/aqui per la teva ruta on estigui la carpeta API, per ex
 
 També en l'arxiu .env del Directori EventoPass canviem totes les següents línies per les nostres dades de MAILTRAP i de POSTGRESQL:
 
-DB_CONNECTION=pgsql
+* DB_CONNECTION=pgsql
 
-DB_HOST=127.0.0.1
+* DB_HOST=127.0.0.1
 
-DB_PORT=5432
+* DB_PORT=5432
 
-DB_DATABASE=Project2
+* DB_DATABASE=Project2
 
-DB_USERNAME=Usuari
+* DB_USERNAME=Usuari
 
-DB_PASSWORD=Contrasenya
+* DB_PASSWORD=Contrasenya
 
-MAIL_MAILER=smtp
+* MAIL_MAILER=smtp
 
-MAIL_HOST=mailtrap
+* MAIL_HOST=mailtrap
 
-MAIL_PORT=1025
+* MAIL_PORT=1025
 
-MAIL_USERNAME=Usuari MAILTRAP
+* MAIL_USERNAME=Usuari MAILTRAP
 
-MAIL_PASSWORD=Contrasenya MAILTRAP
+* MAIL_PASSWORD=Contrasenya MAILTRAP
 
-MAIL_ENCRYPTION=tls
+* MAIL_ENCRYPTION=tls
 
-MAIL_FROM_ADDRESS="support@eventopass.com"
+* MAIL_FROM_ADDRESS="support@eventopass.com"
 
-MAIL_FROM_NAME="EventoPass"
+* MAIL_FROM_NAME="EventoPass"
 
-MAIL_FROM_NAME="${APP_NAME}"
+* MAIL_FROM_NAME="${APP_NAME}"
 
 ==== Preparació de l'API d'Imatges
 
@@ -70,24 +76,30 @@ I creem la clau d'Artisan -> php artisan key:generate
 
 A continuació, busquem dins de l'arxiu .env del projecte API, canviem totes les següents línies per les nostres dades de POSTGRESQL per a l'API:
 
-DB_CONNECTION=pgsql
-DB_HOST=127.0.0.1
-DB_PORT=5432
-DB_DATABASE=Image_Management_API
-DB_USERNAME=Usuari
-DB_PASSWORD=Contrasenya
+* DB_CONNECTION=pgsql
+
+* DB_HOST=127.0.0.1
+
+* DB_PORT=5432
+
+* DB_DATABASE=Image_Management_API
+
+* DB_USERNAME=Usuari
+
+* DB_PASSWORD=Contrasenya
+
 ==== Preparació Cordova
 
 Instal·lar Cordova a la teva màquina I NODE.JS, seguir Documentació Oficial
 
 [cols="2,5"]
 |===
-Camp | Descripció
-|'Instal·lació i creació APK'
+|Camp | Descripció
+|Instal·lació i creació APK
 | https://cordova.apache.org/
 https://cordova.apache.org/docs/en/12.x/guide/platforms/android/index.html
 
-|'Instal·lació de JDK de Java, SDK d'Android i Gradle'
+|Instal·lació de JDK de Java, SDK d'Android i Gradle
 |https://cordova.apache.org/docs/en/12.x/guide/platforms/android/index.html
 |===
 
@@ -133,5 +145,23 @@ Si trobes problemes de permisos realitzant aquestes accions sense sudo, verifica
 
 
 
+=== Altres
 
+Per a poder fer compres a la pasarela de pagamen s'han d'utilitzar questes tarjetes:
 
+[cols="2,2,2,2,2"]
+|===
+| Descripción | Tarjeta | Numeración | Caducidad | CVV
+
+| Autenticación Frictionless - Tarjeta Master con DCC y EMV3DS
+| Mastercard
+| 5424180805648190
+| 12/34
+| 123
+
+| Autenticación Challenge - Tarjeta Visa con DCC y EMV3DS
+| Visa
+| 4117731234567891
+| 12/34
+| 123
+|===

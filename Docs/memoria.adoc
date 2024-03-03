@@ -9,9 +9,9 @@
 
 == Autores
 
-* link:https://portfolio.alfredperez.com[Alfred Perez]
-* link:https://portfolio.ferrancarmona.com[Ferran Carmona]
-* link:https://portfolio.guiupuigantell.com[Guiu Puigantell]
+* link:https://ansmore.github.io/[Alfred Perez]
+* link:https://fcarmona8.github.io/fcarmona8/[Ferran Carmona]
+* link:https://guiu-pj.github.io/portafolio/[Guiu Puigantell]
 
 == Objectiu de l'Aplicació
 El projecte té com a objectiu principal el desenvolupament d'un portal web innovador destinat a la venda d'entrades per a esdeveniments variats. Aquesta plataforma es concep com un eina clau per als promotors d'esdeveniments, oferint-los la capacitat de gestionar la venda d'entrades i la publicació dels seus esdeveniments de manera eficient i centralitzada.
@@ -501,7 +501,7 @@ image::images/DiagramaE-R_API.PNG[Diagrama d'Entitat-Relació,800,600]
 
 |===
 
-image::images/DiagramaUML_API.png[Diagrama UML,800,200]
+image::images/DiagramaUML_API.png[Diagrama UML,600,400]
 
 
 == Sketching i Mockup d'Interfícies
