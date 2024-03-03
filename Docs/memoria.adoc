@@ -442,7 +442,8 @@ image::images/DiagramaUML.png[Diagrama UML,1000,800]
 
 
 == Taules de la Base de Dades de la API Imatges
-image::images/DiagramaE-R_API.png[Diagrama d'Entitat-Relació,800,600]
+
+image::images/DiagramaE-R_API.PNG[Diagrama d'Entitat-Relació,800,600]
 
 === Images
 
