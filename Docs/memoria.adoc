@@ -1,5 +1,4 @@
 = EventoPass
-:author: Alfred Perez, Ferran Carmona, Guiu Puigantell
 :doctype: book
 :chapter-label:
 :sectnums:
@@ -7,6 +6,12 @@
 :toclevels: 6
 :toc-title: Table of Contents
 :front-cover-image: image::images/logo.png[]
+
+== Autores
+
+* link:https://portfolio.alfredperez.com[Alfred Perez]
+* link:https://portfolio.ferrancarmona.com[Ferran Carmona]
+* link:https://portfolio.guiupuigantell.com[Guiu Puigantell]
 
 == Objectiu de l'Aplicació
 El projecte té com a objectiu principal el desenvolupament d'un portal web innovador destinat a la venda d'entrades per a esdeveniments variats. Aquesta plataforma es concep com un eina clau per als promotors d'esdeveniments, oferint-los la capacitat de gestionar la venda d'entrades i la publicació dels seus esdeveniments de manera eficient i centralitzada.
@@ -805,11 +810,11 @@ L'API de Gestió d'Imatges permet la càrrega, optimització i gestió d'imatges
 * `500` - Error intern del servidor. Error inesperat en el servidor.
 
 
-= API de Validació de Tickets
+== API de Validació de Tickets
 
 La API de Validació de Tickets permet la verificació de codis de sessió i la validació de tickets dins de sessions específiques. Aquesta API és part del sistema de gestió de tickets i proporciona una interfície per a la validació segura i eficient dels tickets.
 
-== Rutes de l'API
+=== Rutes de l'API
 
 === Validació de Sessió `/login`
 
