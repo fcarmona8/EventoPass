@@ -518,11 +518,15 @@ I el podem engegar -> sudo systemctl enable apache2
 
 Primer de tot fem un clone el nostre repositori de git en la ruta /var/www/html --> sudo git clone https://git.copernic.cat/gpuigantell/gr04-puigantell-carmona-perez.git
 
+Dins de cd /var/www/html/gr04-puigantell-carmona-perez/Eventopass y dins de cd /var/www/html/gr04-puigantell-carmona-perez/Api realitzem aqueste 4 comandes.
+
 Ara instal·lem les dependències del composer -> sudo composer install
 
 Copiem el fitxer .env.example amb el nom .env -> sudo cp .env.example .env
 
 I creem la key del Artisan -> sudo php artisan key:generate
+
+I fem el link simbòlic del public i el storage -> sudo php artisan storage:link
 
 === Creació del docker:
 Instal·lem les dependencies del Docker -> sudo apt install apt-transport-https ca-certificates curl gnupg lsb-release
@@ -535,28 +539,17 @@ Fem un update -> sudo apt update
 
 Instal·lem el Docker CE -> sudo apt install docker-ce docker-ce-cli containerd.io
 
-Ara descarreguem la imatge del Postgres -> docker pull postgres:latest
+Instal·lem el docker compose -> sudo curl -L "https://github.com/docker/compose/releases/download/VERSION/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
-Creem el contenidor -> docker run -d --name mi_postgres -e POSTGRES_PASSWORD=mi_contraseña -e POSTGRES_USER=mi_usuario -e POSTGRES_DB=mi_basededatos -v nombre_del_volumen:/var/lib/postgresql/data -p 5432:5432 postgres:latest
+I li donem permisos -> sudo chmod +x /usr/local/bin/docker-compose
 
-En el teu fitxer .env, edita les següents línies per a conectar-te a PostgreSQL:
+Ara hem de crear el fitxer docker-compose.yml, aixi que anem a la ubicació del EventoPass, que hauria de ser -> cd /var/www/html/gr04-puigantell-carmona-perez/EventoPass
 
-[source,ini]
-----
-DB_CONNECTION=pgsql
-DB_HOST=127.0.0.1
-DB_PORT=5432
-DB_DATABASE=basededatos
-DB_USERNAME=postgres
-DB_PASSWORD=1234
-----
-
-Dins de l'arrel del projecte "EventoPass" creem el fitxer docker-compose.yml -> sudo docker-compose.yml
-
-En el fitxer docker-compose escrivim:
+Dins d'aquesta carpeta creem el fitxer -> sudo nano docker-compose.yml
 
 [source,yaml]
 ----
+
 version: '3'
 
 services:
@@ -569,46 +562,115 @@ services:
       POSTGRES_DB: basededatos
     ports:
       - "5555:5432"
-    restart: always
+
+  postgres_api:
+    image: postgres:latest
+    container_name: postgres_api
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: apibd
+    ports:
+      - "5554:5432"
 
 ----
 
-També podem obrir el docker executant a l'arrel del projecte "EventoPass" -> sudo docker-compose up -d
+Ara hem d'editar el nostre fitxer .env
+
+Editarem el de la carpeta EventoPass -> sudo nano /var/www/html/gr04-puigantell-carmona-perez/EventoPass/.env
+Les línies que hem de revisar són: url=, URL_API=, API_PATH= i les credencials del mail.
+
+=== Aixecament de les bases de dades:
+
+Crearem un servei perquè les bases de dades del Docker s'aixequin sempre a l'engegar el servidor:
+
+Primer creem el fitxer -> sudo nano /etc/systemd/system/eventoPass.service
+
+[source, service]
+----
+
+[Unit]
+Description=Lenvantar Docker Compose
+
+[Service]
+WorkingDirectory=/var/www/html/gr04-Puigantell-Carmona-Perez/EventoPass
+ExecStart=/usr/local/bin/docker-compose -f /var/www/html/gr04-Puigantell-Carmona-Perez/EventoPass/docker-compose.yml up -d
+
+----
+
+Un cop creat executem -> "sudo systemctl daemon-reload" despres -> "sudo systemctl enable eventoPass.service" i  -> sudo systemctl start eventoPass.service
+
+Reiniciem el servidor per activar i que s'executi el servei.
 
 === Configuració de servidor web:
 
-Si no el tenim ja, posem el nostre projecte "EventoPass" a /var/www/html
+==== EventoPass
 
-Creem un fitxer de configuració del apache2 -> /etc/apache2/sites-available/nom.conf
+Creem un fitxer de configuració del apache2 -> /etc/apache2/sites-available/eventoPass.conf
 
 Configurem el fitxer amb les nostres rutes i ips:
 
 [source,apache]
 ----
 <VirtualHost *:80>
-    ServerAdmin webmaster@tudominio.com
-    ServerName tudominio.com
-    DocumentRoot /var/www/html/"EventoPass"/public
+    ServerName 192.168.60.130
+    DocumentRoot /var/www/html/gr04-Puigantell-Carmona-Perez/EventoPass/public
 
-    <Directory /var/www/html/"EventoPass">
+    <Directory /var/www/html/gr04-Puigantell-Carmona-Perez/EventoPass>
         Options Indexes FollowSymLinks
         AllowOverride All
         Require all granted
     </Directory>
 
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ----
 
-Finalment, reiniciem el servei apache2 -> sudo systemctl restart apache2
+Habilitem el nostre virtual host -> sudo a2ensite eventoPass.conf
+Reiniciem el servei apache2 -> sudo systemctl restart apache2
+
+==== API
+
+Creem un fitxer de configuració del apache2 -> /etc/apache2/sites-available/api.conf
+
+Configurem el fitxer amb les nostres rutes i ips:
+
+[source,apache]
+----
+<VirtualHost *:8080>
+    ServerName 192.168.60.130
+    DocumentRoot /var/www/html/gr04-Puigantell-Carmona-Perez/API/public
+
+    <Directory /var/www/html/gr04-Puigantell-Carmona-Perez/API>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+</VirtualHost>
+----
+
+Habilitem el nostre virtual host -> sudo a2ensite eventoPass.conf
+Reiniciem el servei apache2 -> sudo systemctl restart apache2
+
+I habilitem perquè apache pugui escoltar en el port 8080:
+
+sudo nano /etc/apache2/ports.conf
+
+Aquí afegim -> Listen 8080
 
 == Documentació de Permisos
 Descripció detallada dels permisos necessaris per a components, programes, contenidors, etc.
 
-Hem de donar permisos a la carpeta de logs i framework amb aquestes dues comandes -> sudo chown -R www-data:www-data /var/www/html/"EventoPass"/storage/framework y sudo chown -R www-data:www-data /var/www/html/"EventoPass"/storage/logs
+Hem de donar permisos a la carpeta de logs, framework i public amb aquestes tres comandes -> sudo chown -R www-data:www-data /var/www/html/gr04-Puigantell-Carmona-Perez/EventoPass/storage/framework , sudo chown -R www-data:www-data /var/www/html/gr04-Puigantell-Carmona-Perez/EventoPass/storage/logs y sudo chown -R www-data:www-data /var/www/html/gr04-Puigantell-Carmona-Perez/EventoPass/public
 
-I hem de fer un enllaç simbòlic entre storage/app i public amb -> php artisan storage:link
+tambe hem de fer le mateix amb l'API -> sudo chown -R www-data:www-data /var/www/html/gr04-Puigantell-Carmona-Perez/API/storage/framework , sudo chown -R www-data:www-data /var/www/html/gr04-Puigantell-Carmona-Perez/API/storage/logs y sudo chown -R www-data:www-data /var/www/html/gr04-Puigantell-Carmona-Perez/API/public
+
+
+Per acabar anem  la ruta de l'API -> cd /var/www/html/gr04-Puigantell-Carmona-Perez/API y dins executem -> sudo php artisan migrate:refresh
+
+Fem el mateix en EventoPass -> cd /var/www/html/gr04-Puigantell-Carmona-Perez/EventoPass y dins executem -> sudo php artisan migrate:refresh
+
+I ja tindriem el nostre servidor operatiu.
 
 == Instal·lació del DomPDF
 
