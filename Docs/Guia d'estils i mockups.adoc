@@ -8,16 +8,20 @@ image::images/mockups/Guia_estilos.png[Guia d'estils,600,*,align=center]
 
 === Inici de sessió ===
 
-image::images/mockups/Iniciar_sesion.png[Iniciar Sessió,600,*,align=center] | image::images/mockups/Iniciar_sesion_mobile.png[Pàgina Home,400,align=center]
+image::images/mockups/Iniciar_sesion.png[Iniciar Sessió,600,*,align=center]
+image::images/mockups/Iniciar_sesion_mobile.png[Pàgina Home,400,align=center]
 
 === Recuperar contrasenya ===
 
-image::images/mockups/Recuperar_contraseña.png[Recuperar contrasenya,600,*,align=center] | image::images/mockups/Recuperar_contraseña_mobile.png[Recuperar contrasenya,400,align=center]
+image::images/mockups/Recuperar_contraseña.png[Recuperar contrasenya,600,*,align=center]
+image::images/mockups/Recuperar_contraseña_mobile.png[Recuperar contrasenya,400,align=center]
 
 == Pàgina Home ==
 
-image::images/mockups/Home.png[Pàgina Home,400,align=center] | image::images/mockups/HomeMobile.png[Pàgina Home,400,align=center]
+image::images/mockups/Home.png[Pàgina Home,400,align=center]
+image::images/mockups/HomeMobile.png[Pàgina Home,400,align=center]
 
 == Pàgina Home Promotor ==
 
-image::images/mockups/Home_promotor.png[Pàgina Home Promotor,400,align=center] | image::images/mockups/Home_promotor_mobile.png[Pàgina Home Promotor,400,align=center]
+image::images/mockups/Home_promotor.png[Pàgina Home Promotor,400,align=center]
+image::images/mockups/Home_promotor_mobile.png[Pàgina Home Promotor,400,align=center]
