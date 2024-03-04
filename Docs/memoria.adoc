@@ -921,3 +921,9 @@ Durant el desenvolupament, s'han utilitzat diversos recursos i eines. A continua
 == Presentació del Projecte
 
 El projecte EventoPass serà presentat mitjançant una demostració en directe on es mostraran les funcionalitats clau de la plataforma, incloent la gestió d'esdeveniments, la compra i validació d'entrades, i l'ús de l'API de gestió d'imatges.
+
+== Conclusions
+
+En aquest projecte esperàvem aprendre a com fer una web utilitzant Laravel i Postgres majoritàriament. El qual hem après, i també com crear una api independent del projecte i fer-la servir en la nostra web.
+
+Ens ha servit per aprendre més PHP, HTML, JS, CSS, SASS i el desplegament d'una web en un servidor amb Debian12 i Apache2.
