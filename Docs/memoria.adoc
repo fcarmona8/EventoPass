@@ -7,7 +7,7 @@
 :toc-title: Table of Contents
 :front-cover-image: image::images/logo.png[]
 
-== Autores
+== Autors
 
 * link:https://ansmore.github.io/[Alfred Perez]
 * link:https://fcarmona8.github.io/fcarmona8/[Ferran Carmona]
