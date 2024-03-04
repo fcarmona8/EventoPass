@@ -507,6 +507,160 @@ image::images/DiagramaUML_API.png[Diagrama UML,300,*]
 == Sketching i Mockup d'Interfícies
 https://www.figma.com/file/FqrK3TnRAHJla14AuuZgMQ/Grupo4-Puigantell-Carmona-Perez-team-library?type=design&node-id=0-1&mode=design&t=g8761nKUwxHuE5S8-0
 
+== Preparació del projecte en Local:
+
+Primer de tot fem un clon del nostre repositori de git al terminal del VSC -> git clone https://git.copernic.cat/gpuigantell/gr04-puigantell-carmona-perez.git
+
+=== Preparació del projecte
+
+Accedim al projecte d'EventoPass -> cd EventoPass
+
+Ara instal·lem les dependències del composer -> composer install
+
+Copiem el fitxer .env.example amb el nom .env -> cp .env.example .env
+
+I creem la clau d'Artisan -> php artisan key:generate
+
+A continuació, busquem dins de l'arxiu .env del projecte EventoPass la línia que conté -> API_PATH=tu/ruta/de/api/aqui
+
+I canviem tu/ruta/de/api/aqui per la teva ruta on estigui la carpeta API, per exemple -> C:\Users\Alfred\Desktop\gr04-puigantell-carmona-perez\API
+
+També en l'arxiu .env del Directori EventoPass canviem totes les següents línies per les nostres dades de MAILTRAP i de POSTGRESQL:
+
+* DB_CONNECTION=pgsql
+
+* DB_HOST=127.0.0.1
+
+* DB_PORT=5432
+
+* DB_DATABASE=Project2
+
+* DB_USERNAME=Usuari
+
+* DB_PASSWORD=Contrasenya
+
+* MAIL_MAILER=smtp
+
+* MAIL_HOST=mailtrap
+
+* MAIL_PORT=1025
+
+* MAIL_USERNAME=Usuari MAILTRAP
+
+* MAIL_PASSWORD=Contrasenya MAILTRAP
+
+* MAIL_ENCRYPTION=tls
+
+* MAIL_FROM_ADDRESS="support@eventopass.com"
+
+* MAIL_FROM_NAME="EventoPass"
+
+* MAIL_FROM_NAME="${APP_NAME}"
+
+=== Preparació de l'API d'Imatges
+
+Accedim al projecte d'EventoPass -> cd API
+
+Ara instal·lem les dependències del composer -> composer install
+
+Copiem el fitxer .env.example amb el nom .env -> cp .env.example .env
+
+I creem la clau d'Artisan -> php artisan key:generate
+
+A continuació, busquem dins de l'arxiu .env del projecte API, canviem totes les següents línies per les nostres dades de POSTGRESQL per a l'API:
+
+* DB_CONNECTION=pgsql
+
+* DB_HOST=127.0.0.1
+
+* DB_PORT=5432
+
+* DB_DATABASE=Image_Management_API
+
+* DB_USERNAME=Usuari
+
+* DB_PASSWORD=Contrasenya
+
+=== Preparació Cordova
+
+Instal·lar Cordova a la teva màquina I NODE.JS, seguir Documentació Oficial
+
+[cols="2,5"]
+|===
+|Camp | Descripció
+|Instal·lació i creació APK
+| https://cordova.apache.org/
+https://cordova.apache.org/docs/en/12.x/guide/platforms/android/index.html
+
+|Instal·lació de JDK de Java, SDK d'Android i Gradle
+|https://cordova.apache.org/docs/en/12.x/guide/platforms/android/index.html
+|===
+
+Accedir al CMD de Node.js al buscador -> Node.js command prompt
+
+Accedir al directori -> Mòbil del projecte
+
+introduir la comanda -> cordova build android
+
+esperar a que acabi i es generarà un arxiu .apk i se't mostrarà un enllaç a aquest arxiu, per exemple -> C:\Users\Alfred\Desktop\gr04-puigantell-carmona-perez\Mòbil\platforms\android\app\build\outputs\apk\debug\app-debug.apk
+
+En aquest enllaç treure el nom de l'arxiu, per exemple -> C:\Users\Alfred\Desktop\gr04-puigantell-carmona-perez\Mòbil\platforms\android\app\build\outputs\apk\debug
+
+I accedir a aquest directori
+
+Una vegada dins enviem l'arxiu .apk al nostre mòbil per Whatsapp Web per exemple, instal·lar l'apk al telèfon mòbil
+
+=== Preparació BD i servidors API i EventoPass
+
+Obrir una nova Terminal Powershell (l'objectiu és tenir 2 terminals PowerShell al VSC obertes)
+
+En una escrivim la comanda -> cd API
+
+Una cop dins d'API introduïm aquesta comanda -> php artisan serve --port=8080
+
+després anem a l'altra Terminal PowerShell i introduïm la comanda -> cd EventoPass
+
+Una cop dins del Directori EventoPass introduïm la comanda -> php artisan api:migrate:refresh
+
+esperem a que acabi i introduïm la comanda -> php artisan serve
+
+Accedim des del buscador -> http://127.0.0.1:8000
+
+Assegurar-nos que a la màquina on hem seguit els passos per obrir els servidors estigui a la mateixa xarxa que el mòbil
+
+Una vegada hem fet això, abans de construir l'apk de l'aplicació amb la comanda -> cordova build android, accedir al CMD de windows i introduir la comanda -> ipconfig per trobar la IP de la nostra màquina
+
+Assegurar-nos que dins del directori Mòbil accedim a l'arxiu -> Mòbil\www\js\index.js i canviem -> https://192.168.43.191:443 per -> https://LA TEVA IP QUE HAGIS ACONSEGUIT AMB IPCONFIG:443
+
+A continuació seguir amb els passos explicats més amunt per procedir a la creació de l'apk i a la instal·lació al teu telèfon mòbil
+
+Si trobes problemes de permisos realitzant aquestes accions sense sudo, verifica els permisos del directori on estàs treballant. Pot ser que necessitis ajustar els permisos del directori (amb comandes com chown o chmod) per evitar l'ús de sudo per aquestes operacions.
+
+
+
+=== Altres
+
+Per a poder fer compres a la pasarela de pagamen s'han d'utilitzar questes tarjetes a dia d'avui, si en el moment de fer probes aquestes tarjetes no funciones es perque el REDSYS cambia les tarjetes de proba, accedir al seguent enllaç -> https://pagosonline.redsys.es/entornosPruebas.html i probar les tarjetes de l'opcio -> Datos de prueba para DCC:
+
+[cols="2,2,2,2,2"]
+|===
+| Descripción | Tarjeta | Numeración | Caducidad | CVV
+
+| Autenticación Frictionless - Tarjeta Master con DCC y EMV3DS
+| Mastercard
+| 5424180805648190
+| 12/34
+| 123
+
+| Autenticación Challenge - Tarjeta Visa con DCC y EMV3DS
+| Visa
+| 4117731234567891
+| 12/34
+| 123
+|===
+
+
+
 == Manual d'Instal·lació/Distribució
 Pas a pas detallat de com instal·lar i distribuir l'aplicació.
 
