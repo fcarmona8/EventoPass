@@ -11,3 +11,9 @@ Trello: https://trello.com/b/025KAHQW/grupo4-puigantell-carmona-perez
 Figma: https://www.figma.com/files/project/176138190/Team-project?fuid=1295764897854637221
 
 GitLab: https://git.copernic.cat/gpuigantell/gr04-puigantell-carmona-perez
+
+= Portfolis
+
+* link:https://ansmore.github.io/[Alfred Perez]
+* link:https://fcarmona8.github.io/fcarmona8/[Ferran Carmona]
+* link:https://guiu-pj.github.io/portafolio/[Guiu Puigantell]
