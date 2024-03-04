@@ -1,0 +1,62 @@
+= Guia d'estils i mockups
+
+== Guia d'estils 
+
+image::images/mockups/Guia_estilos.png[Guia d'estils,700,*,align=center]
+
+== Autenticació 
+
+=== Inici de sessió 
+
+image::images/mockups/Iniciar_sesion.png[Iniciar Sessió,700,*,align=center]
+image::images/mockups/Iniciar_sesion_mobile.png[Pàgina Home,300,align=center]
+
+=== Recuperar contrasenya 
+
+image::images/mockups/Recuperar_contraseña.png[Recuperar contrasenya,700,*,align=center]
+image::images/mockups/Recuperar_contraseña_mobile.png[Recuperar contrasenya,300,align=center]
+
+== Pàgina Home 
+
+image::images/mockups/Home.png[Pàgina Home,700,align=center]
+image::images/mockups/HomeMobile.png[Pàgina Home,300,align=center]
+
+== Mostrar Esdeveniment 
+
+image::images/mockups/Mostrar_evento.png[Mostrar Esdeveniment,700,align=center]
+image::images/mockups/Mostrar_evento_mobile.png[Mostrar Esdeveniment,300,align=center]
+
+== Crear Esdeveniment 
+
+image::images/mockups/Crear_evento.png[Crear Esdeveniment,700,align=center]
+image::images/mockups/Crear_evento_mobile.png[Crear Esdeveniment,300,align=center]
+
+== Pàgina Home Promotor 
+
+image::images/mockups/Home_promotor.png[Pàgina Home Promotor,700,align=center]
+image::images/mockups/Home_promotor_mobile.png[Pàgina Home Promotor,300,align=center]
+
+== Gestionar Sessions Promotor 
+
+image::images/mockups/Sessions_promotor.png[Gestionar Sessions Promotor,700,align=center]
+image::images/mockups/Sessions_promotor_mobile.png[Gestionar Sessions Promotor,300,align=center]
+
+== Pagina Escriure un Comentari 
+
+image::images/mockups/Escriure_comentari.png[Pàgina Escriure un Comentari,700,align=center]
+image::images/mockups/Escriure_comentari_mobile.png[Pàgina Escriure un Comentari,300,align=center]
+
+
+== Confirmació de Compra 
+
+image::images/mockups/Confirmacion_compra.png[Confirmació de Compra,700,align=center]
+image::images/mockups/Confirmacion_compra_mobile.png[Confirmació de Compra,300,align=center]
+
+== Pàgina de Pagament 
+
+image::images/mockups/pago.png[Pàgina de Pagament,700,align=center]
+image::images/mockups/pago_mobile.png[Pàgina de Pagament,300,align=center]
+
+== Maquetació PDF de les entrades 
+
+image::images/mockups/entrada.png[Maquetació PDF de les entrades,700,align=center]
