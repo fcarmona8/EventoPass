@@ -25,3 +25,19 @@ image::images/mockups/HomeMobile.png[Pàgina Home,300,align=center]
 
 image::images/mockups/Home_promotor.png[Pàgina Home Promotor,700,align=center]
 image::images/mockups/Home_promotor_mobile.png[Pàgina Home Promotor,300,align=center]
+
+== Mostrar Esdeveniment ==
+
+image::images/mockups/Mostrar_evento.png[Mostrar Esdeveniment,700,align=center]
+image::images/mockups/Mostrar_evento_mobile.png[Mostrar Esdeveniment,300,align=center]
+
+== Crear Esdeveniment ==
+
+image::images/mockups/Crear_evento.png[Crear Esdeveniment,700,align=center]
+image::images/mockups/Crear_evento_mobile.png[Crear Esdeveniment,300,align=center]
+
+== Gestionar Sessions Promotor ==
+
+image::images/mockups/Sessions_promotor.png[Gestionar Sessions Promotor,700,align=center]
+image::images/mockups/Sessions_promotor_mobile.png[Gestionar Sessions Promotor,300,align=center]
+
